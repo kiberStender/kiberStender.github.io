@@ -1,3 +1,7 @@
+title = "kiberSite"
+
+description = "A description"
+
 # The URL the site will be built for
 base_url = "https://kiberStender.github.io/"
 
@@ -13,3 +17,6 @@ build_search_index = false
 
 [extra]
 # Put all your custom variables here
+
+[extra.author]
+name = "Kleber Stender"
