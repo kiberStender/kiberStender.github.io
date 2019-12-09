@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://kiberstender.github.io/sitemap.xml
+Sitemap: localhost/sitemap.xml
