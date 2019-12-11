@@ -1,129 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-      
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<html>
 
-        <!-- SEO -->
-        <title> kiberBlog </title>
+<head>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <!-- Enable responsiveness on mobile devices-->
-        <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1" >
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-        <!--  css -->
-        <link rel="stylesheet"  href="https:&#x2F;&#x2F;kiberstender.github.io/ergo.css" >
+    <title>
+        kiberBlog
+    </title>
 
-        <!-- fonts -->
-        <!-- preload  -->
-        <link rel="preload" href= href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway" as="style">
-        <link rel="preload"  href= "https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" as="style" >
-        <!-- load -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-      
-    </head>
+    
 
-    <body>
-      
-        
-<input type="checkbox" id="openSidebarMenu" class="openSidebarMenu">
-<label class="menu cross menu--1" for="openSidebarMenu">
-    <svg viewBox="0 0 75 75" xmlns="https://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30" />
-        <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35" />
-        <path class="line--2" d="M0 50h70" />
-        <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65" />
-    </svg>
-</label>
+<link id="darkly" class="stylesheet" rel="stylesheet"
+    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
 
-<div id="sidebarMenu">
-    <div class="menu_wrapper">
-        <ul class="sidebarMenuInner">
-            <li>
-                <a href="https:&#x2F;&#x2F;kiberstender.github.io" >kiberBlog</a>
-                <div class="menu_div" ></div>
-            </li>
-            
-            
-            <li><a href="https://github.com/kiberStender" target="_blank" >kiberStender</a><i class="fab fa-github" ></i></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="mailto:kleber.stender@gmail.com?subject=hi" target="_blank">say hello</a><i class="fas fa-envelope" ></i></li>
-            
-            
-        </ul>
+
+    <!-- This script must follow css -->
+    
+
+    
+
+    
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+    
+
+    
+    
+
+    <noscript>
+        <style>
+            .navbar-menu {
+                display: block;
+            }
+
+            .js-only {
+                display: none;
+            }
+        </style>
+    </noscript>
+    
+</head>
+
+<body>
+    
+    
+<!-- START NAV -->
+
+
+    
+
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <a class="navbar-item" href="/">
+                    
+                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
+                        alt="Home">
+                    
+                </a>
+                
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
+                        <span itemprop="name">Categories
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
+                        <span itemprop="name">Tags
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
+                        <span itemprop="name">Authors
+                        </span>
+                    </a>
+                    
+                    
+
+                    
+                    <div class="navbar-item search-container js-only">
+                        <input class="input" id="search" type="search" placeholder="Search">
+
+                        <div class="search-results box">
+                            <div class="search-results__items"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    
+
+<!-- END NAV -->
+<main>
+    <section class="container">
+        <div class="columns is-desktop">
+            <div class="column is-10-desktop is-offset-1-desktop">
+                <article itemscope itemtype="http://schema.org/BlogPosting">
+                    <div class="card article">
+                        <div class="card-content">
+                            
+<header>
+    <div class="has-text-centered">
+        <a href="https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/">
+            <p class="title article-title">Spring Websocket and Stomp- How to send data to a single user
+            </p>
+        </a>
+        <div class="tags has-addons level-item">
+            <span class="tag is-rounded">2019-12-08</span>
+                       
+            <span class="tag is-rounded">
+<svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
+    stroke-linejoin="round" stroke-width="6.25%">
+    <circle cx="16" cy="16" r="14" />
+    <path d="M16 8 L16 16 20 20" />
+</svg>
+<span>&nbsp;7 minute read</span>
+</span>
+        </div>
     </div>
-</div>
+</header>
 
-      
+                            <div itemprop="articleBody" class="content article-body">
+                                <h1 id="introduction">Introduction</h1>
+<p>When I joined my actual company (2 months before this has been posted) I was challenged to do something that looked very simple.</p>
+<p>-We need you to make a Websocket service where whenever a user sends a request he will be the only one that will receive the response</p>
+<p>It seems simple if you do not understand what a Websocket really does. A Websocket is a connection between a user and the server that only closes
+when the user requests it or when something happens to the server that forces it to disconnects the user(be it hardware problem, the user being 
+banned for doing innapropriate actions or the server losing connection). Another thing is, unlike a normal Http conmnection that one way, that means 
+you request something and the server answers you using the same connection, in a Websocket the connection both ways, so you have one connection and a 
+pool of users connected to the same place. So whatever request the server receives, all connected users will receive the response. 
+Then what is Websocket used for? For large stream of data like video and audio like youtube, making it easy to buffer small parts of the video instead of sending it whole
+to the user. In normal connection you had to keep sending the video to the user and the more time it took for the video to load in the user browser or whatever
+device being used, the bigger the chance of timeout.</p>
+<p>But ... of course, this is a program, a machine code, you can have control over the connections. Each connection is seen as a session by the Weboscket server,
+so you can send specific data to a specific user. Nice, problem solved right? Well the type of connection they wanted was some kind of web chat. The user would send 
+a request, the Websocket gets this requests, send it to some Spring component and this component would send chunks of data to the user using the Websocket. Well, I did
+something similar to it in my college degree Term paper. I was using <a href="https://www.playframework.com/documentation/2.1.x/Home">Play framework 2.1</a> and thought Spring would
+provide me with the same functionality I used, controlling each user as a session and channel, thus &quot;routing the data&quot; to the correct user as long as I saved his channel
+in some Map or whatever structure. But no! Spring has something way easier, I just did not know it yet. Since I undergraduated the Websocket world evolved a lot and now
+we have something called <a href="http://stomp.github.io/stomp-specification-1.1.html">STOMP</a>, so we can route our requests in a Websocket like we do in a normal Http request, like a
+REST API. Wow, but my obstacle to have this knowledge was Baeldung. This damn website where people explain some things while inferring others. Like: </p>
+<p>-Let's make a Spring application. For this tutorial you need to be familiar with Java 8 and Spring =D</p>
+<p>I've read so many tutorials about Wesocket and STOMP trying to simply create a &quot;url&quot; that was unique to the user, so whenever I sent there only one user would receive
+this data, but Baeldung tutorials always telling me I needed to set this or adjust that and see ... my example works and yours not, because your forgot to do something
+we did not mention in this tutorial :) . Good luck going to our Github where we mixed all examples in one single repo and you don't know what you need and what you don't.
+I was giving up until 3 weeks later I found a thread in a Brazilian website. Up until that day I searched through internet using only english, but I was so frustrated 
+that I decided to use brazilian portuguese (my native language) and in 5 minutes I found the answer. This is the <a href="https://www.it-swarm.net/pt/java/enviando-mensagem-para-um-usuario-especifico-no-spring-websocket/1045036791/">thread</a> if you speak portuguese and it is still online. I made this whole paragraph to express my hate for 90% of Baeldung's tutorials. I'm sorry if 
+you only wanted to know how to make a user-specific connection. Now I will give the whole explanation, not only what the thread shows us as the answer to the problem. Let's make 
+a whole Spring project from scratch.</p>
+<h1 id="implementing">Implementing</h1>
+<p>To start you need to be familiar with Java 8(or newer), Spring boot, Websocket and STOMP. Thanks guys the tutorial is finished you already know what you need ^^
+Just kidding =D, but yeah the minimum here is knowledge in Java and Spring, even though I'll try to make it easy explaning Spring things in as much details as possible,
+so if you never used Spring don't worry, you still will not know anything after this post, I mean, don't worry you will know at least how to set it up for a basic project.</p>
+<h2 id="first-things-first">First things first</h2>
+<p>Be sure that youy have Java and Maven (or gradle installed). Create a directory (like spring_websocket_specific_user for example).</p>
+<p>If you are using Maven create a file pom.xml in the root of your directory and copy the following to the file:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&lt;?</span><span style="color:#bf616a;">xml </span><span style="color:#d08770;">version</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">1.0</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">encoding</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">UTF-8</span><span style="color:#c0c5ce;">&quot;?&gt;
+&lt;</span><span style="color:#bf616a;">project </span><span style="color:#d08770;">xmlns</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">http://maven.apache.org/POM/4.0.0</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">xmlns:xsi</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color:#c0c5ce;">&quot;
+    </span><span style="color:#d08770;">xsi:schemaLocation</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd</span><span style="color:#c0c5ce;">&quot;&gt;
+    &lt;</span><span style="color:#bf616a;">modelVersion</span><span style="color:#c0c5ce;">&gt;4.0.0&lt;/</span><span style="color:#bf616a;">modelVersion</span><span style="color:#c0c5ce;">&gt;
 
-      
-<nav id="overlord" class="overlord" >
-  
-<figure class="mini_logo ">
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io" style="background-image: url(https:&#x2F;&#x2F;kiberstender.github.io/img/profile.svg)"></a>
-</figure>
-<h5>
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io">kiberBlog</a>
-</h5>
+    &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;org.websocket.spring&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+    &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;spring_websocket_specific_user&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+    &lt;</span><span style="color:#bf616a;">version</span><span style="color:#c0c5ce;">&gt;0.1.0&lt;/</span><span style="color:#bf616a;">version</span><span style="color:#c0c5ce;">&gt;
 
-</nav>
+    &lt;</span><span style="color:#bf616a;">parent</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;spring-boot-starter-parent&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">version</span><span style="color:#c0c5ce;">&gt;2.2.1.RELEASE&lt;/</span><span style="color:#bf616a;">version</span><span style="color:#c0c5ce;">&gt;
+    &lt;/</span><span style="color:#bf616a;">parent</span><span style="color:#c0c5ce;">&gt;
 
-<section class="post_container">
-  <article>
-    
-      <h1 class="article_title"><a href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;miscelaneous-spring-websocket-stomp-specific-user&#x2F;" id="article_link">Spring Websocket and Stomp- How to send data to a single user</a></h1>
-      
-<ul class="frontmatter frontmatter_page" id="frontmatter">
-    <li>
-        <time class="article_time"  datetime="2019-12-08T13:00:00Z">December 08, 2019</time>
-    </li>
-    <span class="dotDivider"></span>
-    <li> 1 words </li>
-    <span class="dotDivider" ></span>
-    <li> 1 min </li>
-</ul>
+    &lt;</span><span style="color:#bf616a;">dependencies</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;spring-boot-starter-web&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+        &lt;/</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;spring-boot-starter-test&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">scope</span><span style="color:#c0c5ce;">&gt;test&lt;/</span><span style="color:#bf616a;">scope</span><span style="color:#c0c5ce;">&gt;
+        &lt;/</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;com.jayway.jsonpath&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;json-path&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">scope</span><span style="color:#c0c5ce;">&gt;test&lt;/</span><span style="color:#bf616a;">scope</span><span style="color:#c0c5ce;">&gt;
+        &lt;/</span><span style="color:#bf616a;">dependency</span><span style="color:#c0c5ce;">&gt;
+    &lt;/</span><span style="color:#bf616a;">dependencies</span><span style="color:#c0c5ce;">&gt;
 
-      <h1 id="introduction">Introduction</h1>
+    &lt;</span><span style="color:#bf616a;">properties</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">java.version</span><span style="color:#c0c5ce;">&gt;1.8&lt;/</span><span style="color:#bf616a;">java.version</span><span style="color:#c0c5ce;">&gt;
+    &lt;/</span><span style="color:#bf616a;">properties</span><span style="color:#c0c5ce;">&gt;
 
-      
-  </article>
-</section>
 
-       
+    &lt;</span><span style="color:#bf616a;">build</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">plugins</span><span style="color:#c0c5ce;">&gt;
+            &lt;</span><span style="color:#bf616a;">plugin</span><span style="color:#c0c5ce;">&gt;
+                &lt;</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span style="color:#c0c5ce;">&gt;
+                &lt;</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;spring-boot-maven-plugin&lt;/</span><span style="color:#bf616a;">artifactId</span><span style="color:#c0c5ce;">&gt;
+            &lt;/</span><span style="color:#bf616a;">plugin</span><span style="color:#c0c5ce;">&gt;
+        &lt;/</span><span style="color:#bf616a;">plugins</span><span style="color:#c0c5ce;">&gt;
+    &lt;/</span><span style="color:#bf616a;">build</span><span style="color:#c0c5ce;">&gt;
 
-      <footer>
-        
-          
-<figure class="mini_logo ">
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io" style="background-image: url(https:&#x2F;&#x2F;kiberstender.github.io/img/profile.svg)"></a>
-</figure>
-<h5>
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io">kiberBlog</a>
-</h5>
+&lt;/</span><span style="color:#bf616a;">project</span><span style="color:#c0c5ce;">&gt;
+</span></pre>
+<p>If you are using Gradle create a file build.gradle in the root of your directory and copy this:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(&quot;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE</span><span style="color:#c0c5ce;">&quot;)
+    }
+}
 
-          
-<ul class="social_list foot_list" >
-    
-    
-    <li class="button extra_small font_faint"><a href="https://github.com/kiberStender" target="_blank" >kiberStender</a><i class="fab fa-github" ></i></li>
-    
-    
-    
-    
-    
-    
-    <li class="button extra_small font_faint"><a href="mailto:kleber.stender@gmail.com?subject=hi" target="_blank">say hello</a><i class="fas fa-envelope" ></i></li>
-    
-    
-</ul>
+apply </span><span style="color:#d08770;">plugin</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">java</span><span style="color:#c0c5ce;">&#39;
+apply </span><span style="color:#d08770;">plugin</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">eclipse</span><span style="color:#c0c5ce;">&#39;
+apply </span><span style="color:#d08770;">plugin</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">idea</span><span style="color:#c0c5ce;">&#39;
+apply </span><span style="color:#d08770;">plugin</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">org.springframework.boot</span><span style="color:#c0c5ce;">&#39;
+apply </span><span style="color:#d08770;">plugin</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">io.spring.dependency-management</span><span style="color:#c0c5ce;">&#39;
 
-        
-      </footer>
-    </body>
+bootJar {
+    baseName = &#39;</span><span style="color:#a3be8c;">spring_websocket_specific_user</span><span style="color:#c0c5ce;">&#39;
+    version =  &#39;</span><span style="color:#a3be8c;">0.1.0</span><span style="color:#c0c5ce;">&#39;
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = </span><span style="color:#d08770;">1.8</span><span style="color:#c0c5ce;">
+targetCompatibility = </span><span style="color:#d08770;">1.8</span><span style="color:#c0c5ce;">
+
+dependencies {
+    compile(&quot;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-starter-web</span><span style="color:#c0c5ce;">&quot;)
+    testCompile(&#39;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-starter-test</span><span style="color:#c0c5ce;">&#39;)
+}
+</span></pre>
+<p>These files will manage Spring dependencies for you downloading everything you'll need to make Spring work.
+Now, 4 dirs one inside the other: src, then main then java then websocket</p>
+<p>Maven representation</p>
+<img src="/imgs/tree_maven.png" />
+<p>Gradle representation</p>
+<img src="/imgs/tree_gradle.png" />
+<h2 id="creating-your-main-class">Creating your Main class</h2>
+<p>Now let's create the class who will start your program. </p>
+<p>Go to /src/main/java/websocket and create a file named Main.java and add the following</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">package </span><span style="color:#c0c5ce;">websocket;
+
+</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">org.springframework.boot.</span><span style="color:#ebcb8b;">SpringApplication</span><span style="color:#c0c5ce;">;
+</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">org.springframework.boot.autoconfigure.</span><span style="color:#ebcb8b;">SpringBootApplication</span><span style="color:#c0c5ce;">;
+
+@</span><span style="color:#bf616a;">SpringBootApplication
+</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">Main </span><span style="color:#eff1f5;">{
+
+  </span><span style="color:#b48ead;">public static void </span><span style="color:#8fa1b3;">main</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String</span><span style="color:#b48ead;">[] </span><span style="color:#bf616a;">args</span><span style="color:#eff1f5;">) {
+    </span><span style="color:#ebcb8b;">SpringApplication</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">run</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">Main</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">class</span><span style="color:#eff1f5;">, args);
+  }
+}
+</span></pre>
+<p>Now you can run it to test if everything works</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">mvn</span><span style="color:#c0c5ce;"> spring-boot:run
+</span></pre>
+<p>or</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">gradle</span><span style="color:#c0c5ce;"> bootRun
+</span></pre>
+<p>If everything went fine you will see something similar to this:</p>
+<img src="/imgs/spring_success_start.png" />
+<h2 id="let-s-create-our-websocket">Let's create our Websocket</h2>
+<p>Navigate back to /src/main/java and create the packages org.websocket.spring.config and org.websocket.spring.controller</p>
+<img src="/imgs/package_creation.png" />
+<blockquote>
+<p>PS: Before we proceed, be sure that everything you've done so far is correct and you have a working Spring application. You can tell if you have it by looking at the picture above.
+Don't try the rest of the steps if it is not running at this point. Otherwise it will be hard for you to know what is wrong and it will be worse as more you progress</p>
+</blockquote>
+
+                            </div>
+                        </div>
+                        
+                        
+<footer class="card-footer">
+    <div class="article-footer">
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <p>
+                    Published
+                    
+
+<time datetime="2019-12-08">
+    2019-12-08
+</time>
+
+
+                    
+
+
+                    
+
+
+                    
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/spring/">
+    <span class="tag is-link">spring </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/websocket/">
+    <span class="tag is-link">websocket </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/stomp/">
+    <span class="tag is-link">stomp </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/chat/">
+    <span class="tag is-link">chat </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/user-specific/">
+    <span class="tag is-link">user-specific </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/introduction/">
+    <span class="tag is-link">introduction </span>
+</a>
+
+
+
+
+
+
+                </p>
+            </div>
+            <div class="column">
+                <a class="button is-pulled-right is-info" href="/">Back Home</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+                        
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+    
+    
+
+
+    
+
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
+
+    
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
+    
+
+    
+</body>
+
 </html>

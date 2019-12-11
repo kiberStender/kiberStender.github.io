@@ -1,95 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-      
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<html>
 
-        <!-- SEO -->
-        <title> kiberBlog </title>
-
-        <!-- Enable responsiveness on mobile devices-->
-        <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1" >
-
-        <!--  css -->
-        <link rel="stylesheet"  href="https:&#x2F;&#x2F;kiberstender.github.io/ergo.css" >
-
-        <!-- fonts -->
-        <!-- preload  -->
-        <link rel="preload" href= href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway" as="style">
-        <link rel="preload"  href= "https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" as="style" >
-        <!-- load -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-      
-    </head>
-
-    <body>
-      
-        
-<input type="checkbox" id="openSidebarMenu" class="openSidebarMenu">
-<label class="menu cross menu--1" for="openSidebarMenu">
-    <svg viewBox="0 0 75 75" xmlns="https://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30" />
-        <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35" />
-        <path class="line--2" d="M0 50h70" />
-        <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65" />
-    </svg>
-</label>
-
-<div id="sidebarMenu">
-    <div class="menu_wrapper">
-        <ul class="sidebarMenuInner">
-            <li>
-                <a href="https:&#x2F;&#x2F;kiberstender.github.io" >kiberBlog</a>
-                <div class="menu_div" ></div>
-            </li>
-            
-            
-            <li><a href="https://github.com/kiberStender" target="_blank" >kiberStender</a><i class="fab fa-github" ></i></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="mailto:kleber.stender@gmail.com?subject=hi" target="_blank">say hello</a><i class="fas fa-envelope" ></i></li>
-            
-            
-        </ul>
-    </div>
-</div>
-
-      
-
-      
-<nav id="overlord" class="overlord" >
-  
-<figure class="mini_logo ">
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io" style="background-image: url(https:&#x2F;&#x2F;kiberstender.github.io/img/profile.svg)"></a>
-</figure>
-<h5>
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io">kiberBlog</a>
-</h5>
-
-</nav>
-
-<section class="post_container">
-  <article>
+<head>
     
-      <h1 class="article_title"><a href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;pt_br&#x2F;hello-world&#x2F;" id="article_link">Olá Mundo</a></h1>
-      
-<ul class="frontmatter frontmatter_page" id="frontmatter">
-    <li>
-        <time class="article_time"  datetime="2019-12-08T12:30:00Z">December 08, 2019</time>
-    </li>
-    <span class="dotDivider"></span>
-    <li> 356 words </li>
-    <span class="dotDivider" ></span>
-    <li> 2 min </li>
-</ul>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-      <h1 id="ola-meu-caro">Olá meu caro</h1>
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>
+        kiberBlog
+    </title>
+
+    
+
+<link id="darkly" class="stylesheet" rel="stylesheet"
+    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
+
+
+    <!-- This script must follow css -->
+    
+
+    
+
+    
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+    
+
+    
+    
+
+    <noscript>
+        <style>
+            .navbar-menu {
+                display: block;
+            }
+
+            .js-only {
+                display: none;
+            }
+        </style>
+    </noscript>
+    
+</head>
+
+<body>
+    
+    
+<!-- START NAV -->
+
+
+    
+
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <a class="navbar-item" href="/">
+                    
+                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
+                        alt="Home">
+                    
+                </a>
+                
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
+                        <span itemprop="name">Categories
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
+                        <span itemprop="name">Tags
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
+                        <span itemprop="name">Authors
+                        </span>
+                    </a>
+                    
+                    
+
+                    
+                    <div class="navbar-item search-container js-only">
+                        <input class="input" id="search" type="search" placeholder="Search">
+
+                        <div class="search-results box">
+                            <div class="search-results__items"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    
+
+<!-- END NAV -->
+<main>
+    <section class="container">
+        <div class="columns is-desktop">
+            <div class="column is-10-desktop is-offset-1-desktop">
+                <article itemscope itemtype="http://schema.org/BlogPosting">
+                    <div class="card article">
+                        <div class="card-content">
+                            
+<header>
+    <div class="has-text-centered">
+        <a href="https://kiberstender.github.io/pt_br/hello-world/">
+            <p class="title article-title">Olá Mundo
+            </p>
+        </a>
+        <div class="tags has-addons level-item">
+            <span class="tag is-rounded">2019-12-08</span>
+                       
+            <span class="tag is-rounded">
+<svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
+    stroke-linejoin="round" stroke-width="6.25%">
+    <circle cx="16" cy="16" r="14" />
+    <path d="M16 8 L16 16 20 20" />
+</svg>
+<span>&nbsp;2 minute read</span>
+</span>
+        </div>
+    </div>
+</header>
+
+                            <div itemprop="articleBody" class="content article-body">
+                                <h1 id="ola-meu-caro">Olá meu caro</h1>
 <p>Esta é apenas uma introdução sobre o que você irá encontrar neste blog.
 Meu nome é Kleber Stender(meus amigos me chamam Kiber, você não é meu amigo, me chame de Kleber)</p>
 <p>O motivo pelo qual este bog foi criado é que uma vez que você adquire certo conhecimento na sua vida, você precisa praticá-lo
@@ -105,42 +170,97 @@ foi ruim e para que não se repitam os mesmos erros. Este projeto é chamado Pro
 em seu blog e eu irei postas as mesmas coisas aqui mas com meu ponto de vista e modo de pensar.</p>
 <p>Além do Projeto Portfel ireo postar outras coisas como meuys estudos de programação funcional e qualquer outra coisa relacioanda a programação que eu me sinta inclinado
 a postar ou que eu ache que será util a alguém de algum jeito.</p>
-<p>Este blog é escrito em duas linguagens por agora: <a href="/">Inglês</a> e <a href="/pt_br">Hue hue Br Br</a>.
+<p>Este blog é escrito em duas linguagens por agora: <a href="https://kiberstender.github.io/">Inglês</a> e <a href="https://kiberstender.github.io/pt_br/">Hue hue Br Br</a>.
 No futuro pretendo escrêve-lo em todos os idiomas que eu souber falar usando-o como uma ferramenta para prática-los.</p>
 
-      
-  </article>
-</section>
+                            </div>
+                        </div>
+                        
+                        
+<footer class="card-footer">
+    <div class="article-footer">
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <p>
+                    Published
+                    
 
-       
+<time datetime="2019-12-08">
+    2019-12-08
+</time>
 
-      <footer>
-        
-          
-<figure class="mini_logo ">
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io" style="background-image: url(https:&#x2F;&#x2F;kiberstender.github.io/img/profile.svg)"></a>
-</figure>
-<h5>
-    <a href="https:&#x2F;&#x2F;kiberstender.github.io">kiberBlog</a>
-</h5>
 
-          
-<ul class="social_list foot_list" >
-    
-    
-    <li class="button extra_small font_faint"><a href="https://github.com/kiberStender" target="_blank" >kiberStender</a><i class="fab fa-github" ></i></li>
-    
-    
-    
-    
-    
-    
-    <li class="button extra_small font_faint"><a href="mailto:kleber.stender@gmail.com?subject=hi" target="_blank">say hello</a><i class="fas fa-envelope" ></i></li>
-    
-    
-</ul>
+                    
 
-        
-      </footer>
-    </body>
+
+                    
+
+
+                    
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/hello/">
+    <span class="tag is-link">hello </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/world/">
+    <span class="tag is-link">world </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/introduction/">
+    <span class="tag is-link">introduction </span>
+</a>
+
+
+
+
+
+
+                </p>
+            </div>
+            <div class="column">
+                <a class="button is-pulled-right is-info" href="/">Back Home</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+                        
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+    
+    
+
+
+    
+
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
+
+    
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
+    
+
+    
+</body>
+
 </html>

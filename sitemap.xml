@@ -83,12 +83,37 @@
         </url>
     
         <url>
+            <loc>https://kiberstender.github.io/tags/chat/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://kiberstender.github.io/tags/hello/</loc>
             
         </url>
     
         <url>
             <loc>https://kiberstender.github.io/tags/introduction/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/spring/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/stomp/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/user-specific/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/websocket/</loc>
             
         </url>
     
