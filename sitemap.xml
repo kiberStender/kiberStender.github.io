@@ -2,123 +2,148 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
         <url>
-            <loc>https://kiberstender.github.io/</loc>
+            <loc>localhost/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/hello-world/</loc>
+            <loc>localhost/authors/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>localhost/authors/kleber-stender/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>localhost/categories/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>localhost/categories/hello/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>localhost/categories/tutorials/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>localhost/hello-world/</loc>
             
                 <lastmod>2019-12-08T12:30:00Z</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/</loc>
+            <loc>localhost/miscelaneous-spring-websocket-stomp-specific-user/</loc>
             
                 <lastmod>2019-12-08T13:00:00Z</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/page/1/</loc>
+            <loc>localhost/page/1/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/project-portfel-first-meeting/</loc>
+            <loc>localhost/project-portfel-first-meeting/</loc>
             
                 <lastmod>2019-12-01</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/project-portfel-second-meeting/</loc>
+            <loc>localhost/project-portfel-second-meeting/</loc>
             
                 <lastmod>2019-12-08</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/</loc>
+            <loc>localhost/pt_br/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/hello-world/</loc>
+            <loc>localhost/pt_br/hello-world/</loc>
             
                 <lastmod>2019-12-08T12:30:00Z</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/miscelaneous-spring-websocket-stomp-specific-user/</loc>
+            <loc>localhost/pt_br/miscelaneous-spring-websocket-stomp-specific-user/</loc>
             
                 <lastmod>2019-12-08T13:00:00Z</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/page/1/</loc>
+            <loc>localhost/pt_br/page/1/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/project-portfel-first-meeting/</loc>
+            <loc>localhost/pt_br/project-portfel-first-meeting/</loc>
             
                 <lastmod>2019-12-01</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/project-portfel-second-meeting/</loc>
+            <loc>localhost/pt_br/project-portfel-second-meeting/</loc>
             
                 <lastmod>2019-12-08</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/</loc>
+            <loc>localhost/tags/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/chat/</loc>
+            <loc>localhost/tags/chat/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/hello/</loc>
+            <loc>localhost/tags/hello/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/introduction/</loc>
+            <loc>localhost/tags/introduction/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/spring/</loc>
+            <loc>localhost/tags/spring/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/stomp/</loc>
+            <loc>localhost/tags/stomp/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/user-specific/</loc>
+            <loc>localhost/tags/user-specific/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/websocket/</loc>
+            <loc>localhost/tags/websocket/</loc>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/world/</loc>
+            <loc>localhost/tags/world/</loc>
             
         </url>
     
