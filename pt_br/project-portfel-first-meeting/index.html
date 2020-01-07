@@ -16,7 +16,7 @@
     
 
 <link id="darkly" class="stylesheet" rel="stylesheet"
-    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
+    href="localhost&#x2F;darkly.css" />
 
 
     <!-- This script must follow css -->
@@ -25,8 +25,8 @@
     
 
     
-    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
-    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+    <script defer type="text/javascript" src="localhost&#x2F;elasticlunr.min.js"></script>
+    <script defer type="text/javascript" src="localhost&#x2F;search_index.en.js"></script>
     
 
     
@@ -61,7 +61,7 @@
                 
                 <a class="navbar-item" href="/">
                     
-                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
+                    <img src="localhost&#x2F;images&#x2F;bulma.png"
                         alt="Home">
                     
                 </a>
@@ -80,7 +80,7 @@
                     
                     <a itemprop="url"
                         class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
+                        href="localhost&#x2F;categories">
                         <span itemprop="name">Categories
                         </span>
                     </a>
@@ -89,7 +89,7 @@
                     
                     <a itemprop="url"
                         class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
+                        href="localhost&#x2F;tags">
                         <span itemprop="name">Tags
                         </span>
                     </a>
@@ -98,7 +98,7 @@
                     
                     <a itemprop="url"
                         class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
+                        href="localhost&#x2F;authors">
                         <span itemprop="name">Authors
                         </span>
                     </a>
@@ -134,12 +134,19 @@
                             
 <header>
     <div class="has-text-centered">
-        <a href="https://kiberstender.github.io/pt_br/project-portfel-first-meeting/">
+        <a href="localhost/pt_br/project-portfel-first-meeting/">
             <p class="title article-title">Projeto Portfel- Primeira reunião
             </p>
         </a>
         <div class="tags has-addons level-item">
-            <span class="tag is-rounded">2019-12-01</span>
+            <span class="tag is-rounded">2020-01-07</span>
+            
+            <span class="tag is-rounded is-primary">
+                    
+                    Kleber Stender
+                    
+                    
+            </span>
                        
             <span class="tag is-rounded">
 <svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
@@ -147,15 +154,34 @@
     <circle cx="16" cy="16" r="14" />
     <path d="M16 8 L16 16 20 20" />
 </svg>
-<span>&nbsp;1 minute read</span>
+<span>&nbsp;2 minute read</span>
 </span>
         </div>
     </div>
 </header>
 
                             <div itemprop="articleBody" class="content article-body">
-                                <h1 id="bem-vindo">Bem vindo</h1>
-<p>Bem-vindo à versão brasileira</p>
+                                <h1 id="intro">Introdução</h1>
+<p>Como eu disse anteriormente no <a href="localhost/pt_br/hello-world/#why">post Olá</a>, eu comecei este projeto com um amigo para que pudessemos documentar nossos passos enquanto aprendemos novas técnicas e aplicamos o que nós já sabemos, ganhando mais experiência, cometendo erros, consertando os erros e assim por diante. Assim podemos ter uma espécie de diário do que aprendemos e como aprendemos para nos servir como guia no futuro.</p>
+<h1 id="whatis">O que é o projeto Portfel ?</h1>
+<p>Portfel é uma palavra em polonês que significa 'carteira'. A idéia é criar uma carteira virtual simples onde você possa gerenciar seu dinheiro como <code>criar</code> carteiras virtuais, <code>depositar</code> e <code>sacar</code> dinheiro delas, emprestar de e para outros usuário e ter um frontend simples. Tudo usuando uma estrutura de aplicação em micro-serviço.</p>
+<h1 id="themeeting">Primeira reunião</h1>
+<p>Na primeira reunião nós criamos um repositório no Github(o link será colocado aqui em breve) and tivermos nossa idéias do que nós queremos que a aplicação faça em uma visão mais ampla.</p>
+<ol>
+<li>Fora decidido que nossa aplicação terá um Serviço de Gerenciamento de Usuários(Algo como um serviço de OAuth)
+<ul>
+<li>Este será um serviço simples para autenticar e autorizar o usuário so ele/ela poderá vagar pela applicação</li>
+</ul>
+</li>
+<li>O Serviço de gerenciamento de Carteira irá permitir o usupario depositar e sacar dinheiro, assim como emprestar e pedir dinheiro emprestado
+<ul>
+<li>Este é o serviço que irá efetivamente executar as ações onde o usuário poderá criar, depositar e sacar dinheiro eemprestar ou pedir emprestado de outros usuário</li>
+</ul>
+</li>
+</ol>
+<p>Nós também adicionamos um idéia futura de incluir algumas ou todas as carteiras em um Blockchain tornando as coisas mais sérias como usar contratos inteligentes da plataforma entre outras coisas, mas por enquanto é apenas uma idéia, nada concreto</p>
+<h1 id="conclusion">Conclusão</h1>
+<p>Sei que é apenas uma curta descrição do projeto e essa foi apenas a primeira reunião. Iremos trabalhar em adicionar mais e mais idéias nas próximas vezes até termos algo útil para podermos iniciar, programar ou apenas desenvolver a documentação em cima disto. Então vejo vocẽ no próximo post. Se quiser saber o ponto de vista de meu amigo sobre essa reunião por favor vá até este link(Assim que ele postar irei atualizar e colocar o link aqui)</p>
 
                             </div>
                         </div>
@@ -169,18 +195,54 @@
                     Published
                     
 
-<time datetime="2019-12-01">
-    2019-12-01
+<time datetime="2020-01-07">
+    2020-01-07
 </time>
 
 
                     
 
+by
+
+<a href="localhost/authors/kleber-stender/">
+    <span class="tag is-primary">Kleber Stender </span>
+</a>
+
+
+
 
                     
 
 
+in <a href="localhost/categories/portfel/">
+    <span class="tag is-success">
+        Portfel
+    </span>
+</a>
+
+
                     
+
+and tagged
+
+<a href="localhost/tags/portfel/">
+    <span class="tag is-link">portfel </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="localhost/tags/project/">
+    <span class="tag is-link">project </span>
+</a>
+
+
+
+
 
 
                 </p>
@@ -206,10 +268,10 @@
 
     
 
-    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
+    <script type="text/javascript" src="localhost&#x2F;js&#x2F;zulma_navbar.js"></script>
 
     
-    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
+    <script type="text/javascript" src="localhost&#x2F;js&#x2F;zulma_search.js"></script>
     
 
     
