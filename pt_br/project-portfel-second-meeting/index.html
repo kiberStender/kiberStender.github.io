@@ -139,7 +139,14 @@
             </p>
         </a>
         <div class="tags has-addons level-item">
-            <span class="tag is-rounded">2019-12-08</span>
+            <span class="tag is-rounded">2020-01-08</span>
+            
+            <span class="tag is-rounded is-primary">
+                    
+                    Kleber Stender
+                    
+                    
+            </span>
                        
             <span class="tag is-rounded">
 <svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
@@ -147,15 +154,39 @@
     <circle cx="16" cy="16" r="14" />
     <path d="M16 8 L16 16 20 20" />
 </svg>
-<span>&nbsp;1 minute read</span>
+<span>&nbsp;3 minute read</span>
 </span>
         </div>
     </div>
 </header>
 
                             <div itemprop="articleBody" class="content article-body">
-                                <h1 id="detalhando-o-gerenciamento-de-usuarios">Detalhando o gerenciamento de usuários</h1>
-<p>Bem-vindo a versao brasileira</p>
+                                <h1 id="intro">Introdução</h1>
+<p>Olá novamente meu querido leitor, este é o 'Log' da segunda reunião sobre o Projeto Portfel, onde eu me amigo <a href="http://cesarb.org">Cesar</a> discutimos com alguns pequenos detalhes o que queremos ou não queremos que nossa aplicação faça. Se você não leu a primeira reunião, por favor leia <a href="https://kiberstender.github.io/pt_br/project-portfel-first-meeting/">aqui</a> antes que comece esta.</p>
+<p>Nesta reunião nós simplesmente discutimos um pouco mais sobre coisas que já discutimos na primera reunião, então como um pequeno spoiler nós detalhamos como o 'Serviço de gerenciamento de Usuário' irá funcionar e como irá interagir com o 'Serviço de gerenciamento de Carteiras' e assim por diante. Para finalizar esta introdução com spoilers nós dicutimos um pouco mais a fundo como nós imaginos que será a estrutura da aplicação como um todo. Então fica ligado (Anos 90 ta pedindo a expressão de volta) e vamos ao ponto.</p>
+<h1 id="a-estrutura-toda">A estrutura toda</h1>
+<p>Foi definido que a aplicação será composta por uma série de <a href="https://www.docker.com/">imagens de Docker</a> orquestradas por uma aplicação <a href="https://docs.docker.com/compose/">Docker Compose</a>. Todos os serviços (exceto comunicação base dados/serviço e comunicação front-end/back-end) irão comunicar-se entre si utilizando <a href="https://kafka.apache.org/">Kafka</a>, porque assim podemos gerenciar os request sem perdê-los em caso de termos muito mais requests do que podemos processar.</p>
+<p>Kafka será discutido com mais detalhes  quando eu postar a reunião sobre criar a imagem Docker do Kafka para nossa applicação, mas em resumo, Kafka é uma aplicação de filas e como uma fila no mundo real nós temos uma aplicação de um lado desta fila, empilhando requests e do outro lado outra aplicação desempilhando esses requests e processando- os, assim quando termina o response, a aplicação irá empilhá-lo em outra fila e assim será desempilhado por outra aplicação que está esperando pelo response do outro lado.</p>
+<p>Além da iamgem do Kafka teremos as seguintes imagens nesta aplicação:</p>
+<ol>
+<li>Imagem do front-end Web</li>
+<li>Imagem da base de dados de Usuário</li>
+<li>Imagem da base de dados da Carteira</li>
+<li>Imagem do serviço back-end de gerencimento de Usuário</li>
+<li>Imagem do serviço back-end de gerencimento de Carteira</li>
+<li>Imagem de serviço REST para conectar o front-end com o back-end</li>
+<li>E a já citada imagem do Kafka</li>
+</ol>
+<h1 id="servico-de-gerenciamento-de-usuario">Serviço de gerenciamento de Usuário</h1>
+<p>Este serviço irá gerenciar a autenticação e autorização do usuário e será composto por 3 partes:</p>
+<ol>
+<li>Uma base de dados MongoDB para armazenar os dados do usuário(que ainda não decidimos ainda quais dados serão armazenados)</li>
+<li>Uma aplicação back-end escrita em Scala para gerenciar autorização e autenticação</li>
+<li>Uma aplicação Front-end para ações de login escrita usando Webpack, (Angular or React) e Scss</li>
+</ol>
+<p>Isto será escrito como um serviço de <a href="https://www.oauth.com/">OAuth</a> e deverá funcionar garantindo acesso a certas áreas baseado nas credenciais do usuário, as sessões deverão expirar depois de X horas e o mais importante é que irá ser seguro e ninguém (incluindo os desenvolvedores ou qualquer outra pessoa trabalhando em outra área de TI da 	'empresa') além do usuário terá acesso aos dados.</p>
+<h1 id="conclusion">Conclusão</h1>
+<p>Mais uma reunião curta com poucos detalhes adicionados. Acredite ou não isso nos tomou 3 horas para definir essas mudanças e no fim apenas definimos que teremos 7 imagens Docker no mínimo sendo controladas pelo Docker Composer. Como sempre, assim que meu amigo postar seu post em seu blog sobre essa reunião irei atualizar esse post e colocar o link para você pode ter uma perspectiva diferente do projeto. Vejo você no próximo post, até.</p>
 
                             </div>
                         </div>
@@ -169,18 +200,54 @@
                     Published
                     
 
-<time datetime="2019-12-08">
-    2019-12-08
+<time datetime="2020-01-08">
+    2020-01-08
 </time>
 
 
                     
 
+by
+
+<a href="https://kiberstender.github.io/authors/kleber-stender/">
+    <span class="tag is-primary">Kleber Stender </span>
+</a>
+
+
+
 
                     
 
 
+in <a href="https://kiberstender.github.io/categories/portfel/">
+    <span class="tag is-success">
+        Portfel
+    </span>
+</a>
+
+
                     
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/portfel/">
+    <span class="tag is-link">portfel </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/project/">
+    <span class="tag is-link">project </span>
+</a>
+
+
+
+
 
 
                 </p>

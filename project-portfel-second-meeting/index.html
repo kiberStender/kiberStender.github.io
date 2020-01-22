@@ -135,11 +135,18 @@
 <header>
     <div class="has-text-centered">
         <a href="https://kiberstender.github.io/project-portfel-second-meeting/">
-            <p class="title article-title">Project Portfel- Second meeting
+            <p class="title article-title">Portfel project- Second meeting
             </p>
         </a>
         <div class="tags has-addons level-item">
-            <span class="tag is-rounded">2019-12-08</span>
+            <span class="tag is-rounded">2020-01-15</span>
+            
+            <span class="tag is-rounded is-primary">
+                    
+                    Kleber Stender
+                    
+                    
+            </span>
                        
             <span class="tag is-rounded">
 <svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
@@ -147,15 +154,39 @@
     <circle cx="16" cy="16" r="14" />
     <path d="M16 8 L16 16 20 20" />
 </svg>
-<span>&nbsp;1 minute read</span>
+<span>&nbsp;3 minute read</span>
 </span>
         </div>
     </div>
 </header>
 
                             <div itemprop="articleBody" class="content article-body">
-                                <h1 id="detailing-user-management">Detailing User management</h1>
-<p>Welcome to English version</p>
+                                <h1 id="intro">Introduction</h1>
+<p>Hello again my dear reader, this is the 'Log' of the second meeting about Portfel project, where me and my friend <a href="http://cesarb.org">Cesar</a> discussed with a little more details what we want or not want our application to do. If you did not read the first meeting post, please read it <a href="https://kiberstender.github.io/project-portfel-first-meeting/">here</a> before you start this one. </p>
+<p>In this meeting we simply discussed a little more what we already discussed in the first meeting, so as a small spoiler we detailed how the 'User Management Service' will work and how it will interact with 'Wallet Management Service' and so on and so forth. To finish this introduction spoilers we discussed a bit further how we imagine will be the sctructure of the application as a whole. So stay tunned (90's called the expression back) and let's go to the point.</p>
+<h1 id="the-whole-structure">The whole structure</h1>
+<p>It was defined that the application will be composed by a series of <a href="https://www.docker.com/">Docker images</a> orchestrated by a <a href="https://docs.docker.com/compose/">Docker Compose</a> application. All services (except database/service communication and frontend/backend communcation) will communicate between each other using <a href="https://kafka.apache.org/">Kafka</a>, because then we can manage the requests without losing any of them in case we have way more requests that we can process. </p>
+<p>Kafka will be discussed with more details when I post the meeting about creating a Kafka docker image for our application, but, in short, Kafka is a queue application and as a queue in real life we will have one application in one side of this queue, queueing requests and in the other side one application dequeueing these requests and processing them so when it finishes the response, the application will queue it in another queue to be dequeued by another application waiting in the other end.</p>
+<p>Besides Kafka image we will have the following docker images in this application:</p>
+<ol>
+<li>Web front-end image</li>
+<li>User database image</li>
+<li>Wallet database image</li>
+<li>User management back-end service image</li>
+<li>Wallet management back-end service image</li>
+<li>A REST service to connect the front-end and back-end image</li>
+<li>The already quoted Kafka image</li>
+</ol>
+<h1 id="user-management-service">User Management Service</h1>
+<p>This service will manages user authentication and authorization and it will composed by 3 parts:</p>
+<ol>
+<li>A MongoDB Database for storing the user data(which we haven't decided yet what data we will store)</li>
+<li>A Backend application written in Scala to manage the authorization and the authentication</li>
+<li>A Front-end application for logging in actions written using Webpack, (Angular or React) and Scss</li>
+</ol>
+<p>This is to be written as an OAuth service so it shall work granting access to certain areas based on an user role, the sessions will expiry after X hours and most important it should be secure so nobody(it includes us the developers and whoever is working in other IT areas in the 'company') besides the user will have access to their data.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Another short meeting with few new details added. Believe it or not it took us almost 3 hours to define these changes and in the end we simply defined that we will have at least 7 Docker images being controlled by Docker Composer. As always, as soon as my friend post his post in his blog about this meeting I'll update this post here and put the link to you so you can have a different perspective about the project. See you in the next post, bye.</p>
 
                             </div>
                         </div>
@@ -169,18 +200,54 @@
                     Published
                     
 
-<time datetime="2019-12-08">
-    2019-12-08
+<time datetime="2020-01-15">
+    2020-01-15
 </time>
 
 
                     
 
+by
+
+<a href="https://kiberstender.github.io/authors/kleber-stender/">
+    <span class="tag is-primary">Kleber Stender </span>
+</a>
+
+
+
 
                     
 
 
+in <a href="https://kiberstender.github.io/categories/portfel/">
+    <span class="tag is-success">
+        Portfel
+    </span>
+</a>
+
+
                     
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/portfel/">
+    <span class="tag is-link">portfel </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/project/">
+    <span class="tag is-link">project </span>
+</a>
+
+
+
+
 
 
                 </p>
