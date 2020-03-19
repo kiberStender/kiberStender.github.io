@@ -65,7 +65,7 @@
         <url>
             <loc>https://kiberstender.github.io/project-portfel-second-meeting/</loc>
             
-                <lastmod>2020-01-15T21:00:00Z</lastmod>
+                <lastmod>2020-01-22T21:00:00Z</lastmod>
             
         </url>
     
@@ -103,12 +103,55 @@
         <url>
             <loc>https://kiberstender.github.io/pt_br/project-portfel-second-meeting/</loc>
             
-                <lastmod>2020-01-08T21:00:00Z</lastmod>
+                <lastmod>2020-01-22T21:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/pt_br/react-post-01-node/</loc>
+            
+                <lastmod>2020-03-18T14:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/pt_br/react-post-02-webpack/</loc>
+            
+                <lastmod>2020-03-18T22:25:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/pt_br/react_post_03_react/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/react-post-01-node/</loc>
+            
+                <lastmod>2020-03-18T14:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/react-post-02-webpack/</loc>
+            
+                <lastmod>2020-03-18T22:25:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/react_post_03_react/</loc>
             
         </url>
     
         <url>
             <loc>https://kiberstender.github.io/tags/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/bootstrap/</loc>
             
         </url>
     
@@ -128,12 +171,32 @@
         </url>
     
         <url>
+            <loc>https://kiberstender.github.io/tags/nodejs/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/npm/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://kiberstender.github.io/tags/portfel/</loc>
             
         </url>
     
         <url>
             <loc>https://kiberstender.github.io/tags/project/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/react/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/scss/</loc>
             
         </url>
     
@@ -149,6 +212,11 @@
     
         <url>
             <loc>https://kiberstender.github.io/tags/user-specific/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/tags/webpack/</loc>
             
         </url>
     

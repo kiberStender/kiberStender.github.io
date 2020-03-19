@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>
+        kiberBlog
+    </title>
+
+    
+
+<link id="darkly" class="stylesheet" rel="stylesheet"
+    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
+
+
+    <!-- This script must follow css -->
+    
+
+    
+
+    
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+    
+
+    
+    
+
+    <noscript>
+        <style>
+            .navbar-menu {
+                display: block;
+            }
+
+            .js-only {
+                display: none;
+            }
+        </style>
+    </noscript>
+    
+</head>
+
+<body>
+    
+    
+<!-- START NAV -->
+
+
+    
+
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <a class="navbar-item" href="/">
+                    
+                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
+                        alt="Home">
+                    
+                </a>
+                
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
+                        <span itemprop="name">Categories
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
+                        <span itemprop="name">Tags
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
+                        <span itemprop="name">Authors
+                        </span>
+                    </a>
+                    
+                    
+
+                    
+                    <div class="navbar-item search-container js-only">
+                        <input class="input" id="search" type="search" placeholder="Search">
+
+                        <div class="search-results box">
+                            <div class="search-results__items"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    
+
+<!-- END NAV -->
+<main>
+    <section class="container">
+        <div class="columns is-desktop">
+            <div class="column is-10-desktop is-offset-1-desktop">
+                <article itemscope itemtype="http://schema.org/BlogPosting">
+                    <div class="card article">
+                        <div class="card-content">
+                            
+<header>
+    <div class="has-text-centered">
+        <a href="https://kiberstender.github.io/react-post-01-node/">
+            <p class="title article-title">Webpack with React and Scss- Part 1: Node
+            </p>
+        </a>
+        <div class="tags has-addons level-item">
+            <span class="tag is-rounded">2020-03-18</span>
+            
+            <span class="tag is-rounded is-primary">
+                    
+                    Kleber Stender
+                    
+                    
+            </span>
+                       
+            <span class="tag is-rounded">
+<svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
+    stroke-linejoin="round" stroke-width="6.25%">
+    <circle cx="16" cy="16" r="14" />
+    <path d="M16 8 L16 16 20 20" />
+</svg>
+<span>&nbsp;11 minute read</span>
+</span>
+        </div>
+    </div>
+</header>
+
+                            <div itemprop="articleBody" class="content article-body">
+                                <h1 id="intro">Introduction</h1>
+<p>Hello dear reader. Sometime ago I was studying how to add ReactJS to one application at work and I've come across this thing named <a href="https://www.webjars.org/">WebJar</a> that, if you, like me, come from Java world might know that this is just a Javascript or Css library packaged in a Java archive (a.k.a jar) so you can manage it using any sort of dependency manager like <a href="https://maven.apache.org/">Maven</a>, <a href="https://gradle.org/">Gradle</a> or <a href="https://www.scala-sbt.org/">SBT</a>. You can see me using it <a href="https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/#frontend">here</a>. This is a very nice feature, but it couples your backend to your frontend a bit, not to mention that when I tried to use something like Babel it was hard to configure.</p>
+<p>So in this post I'm going to start a simple series of posts to do a simple ReactJS application using pure frontend stack with NodeJS, NPM, Webpack, Babel, Scss, Bootstrap and Live reload so you don't need to restart the application everytime you change a comma in your code. And by doing it without any coupling to backend you will be able to add this application to any fullstack application like <a href="https://spring.io/">SpringBoot</a>, <a href="https://www.playframework.com/">PlayFramework</a> and others very easily.</p>
+<h1 id="node_npm"><a href="https://nodejs.org/en/">NodeJS</a> and NPM</h1>
+<p>First, in order to do all of these you need to understand what Node and NPM are, why we are going to need it and of course install it in your machine. </p>
+<h3 id="roughly-summarized-and-not-much-reliable-story-of-node">Roughly summarized (and not much reliable) story of Node</h3>
+<p>In the beggining there was Javascript in your browser, and it was good(Kind of). But Javascript unlike Java is a script language(duh!) and even though it has it's specification dictated by some company and published under the name of <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA</a>, each browser has it's own way to optmize or implement the specifications. Then in 2008 Google released a new engine to make Javascript interpretation faster, more reliable and stable: <a href="https://v8.dev/">V8</a>. While it was very nice in Google Chrome some guys realized that by making some modification to this engine they could use Javascript not only in your browser but in your computer as a general purpose interpreter, similar to Python. These guys named it NodeJS and then a huge dream started to come true: to work using one and only one language across backend and frontend.</p>
+<p>As Maven was already popular in Java world they introduced some similar technology named NPM (Node Package Manager) that does everything Maven does for Java, like download your dependencies, put them in the 'classpath', package, deploy and even publish your application/library. The difference is that you have to install Maven separatedly from Java while NPM comes with Node.</p>
+<p>In the making of this post NodeJs is in it's 13th version and it grew up a lot. Many libraries and features were added. And it became a crucial part of modern frontend even though Node is supposed to be 'The backend'. Because being Node an interpreter it is possible to not only write your Javascript or Css code, with Node you can create new languages(named transpilers) that will be later converted to Javascript like <a href="https://coffeescript.org/">Coffeescript</a> and <a href="https://www.typescriptlang.org/">Typescript</a> or Css like <a href="http://lesscss.org/">Less</a> and <a href="https://sass-lang.com/">Sass</a>. And going a bit further you can have something a little unthinkable before Node like <a href="http://jade-lang.com/">Jade</a>, a language to make HTML less verbose.</p>
+<h3 id="a-little-bit-of-npm">A little bit of NPM</h3>
+<p>As stated earlier, NPM stands for Node Package Manager and it works managing your application like Maven does. To use NPM you simply create a file in the root of your application named <code>package.json</code> with the following (minimal)structure:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+  &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">MyAppName</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#65737e;">//1
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#65737e;">//2
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">description</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">An example package.json</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#65737e;">//3
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: { </span><span style="color:#65737e;">//4
+    </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">run</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node app.js</span><span style="color:#c0c5ce;">&quot;,
+    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">call your test library</span><span style="color:#c0c5ce;">&quot;
+  },
+  &quot;</span><span style="color:#a3be8c;">dependencies</span><span style="color:#c0c5ce;">&quot;: {</span><span style="color:#65737e;">//5
+    </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">a: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#d08770;">1.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">3</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">,</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span style="color:#c0c5ce;">    &quot;</span><span style="color:#a3be8c;">b: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#d08770;">3.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">1</span><span style="color:#c0c5ce;">&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span style="color:#c0c5ce;">  },
+  &quot;</span><span style="color:#a3be8c;">devDependencies</span><span style="color:#c0c5ce;">&quot;: { </span><span style="color:#65737e;">//6
+    </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">c: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#d08770;">1.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">3</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">,</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span style="color:#c0c5ce;">    &quot;</span><span style="color:#a3be8c;">d: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#d08770;">3.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">1</span><span style="color:#c0c5ce;">&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span style="color:#c0c5ce;">  }
+}
+</span></pre>
+<p>There are way more properties you can have in your <code>package.json</code> file, but these ones I'm showing are the most important ones. Let's say they are the ones you cannot ever forget to add. Now explaing each of them separately we have:</p>
+<ol>
+<li>name: This is the name of your application/library</li>
+<li>version: This is the version of your application/library</li>
+<li>description: This is where you put a brief description of what your application/library does. This is useful for others who use your applicationm/library and it is displayed in <a href="https://www.npmjs.com/package/">NPM</a> website</li>
+<li>scripts: This is where you define the commands to build, build:prod, test, run or whatever you find necessary. Like Maven plugins where you tell maven how to run or compile your application</li>
+<li>dependencies: This is where you define a list of libraries your program dependends on, like React, Angular, MomentJS, etc</li>
+<li>devDependencies: This is where you define a list of dependencies that will not be packaged with your code. Imagine you are coding in Coffeescript or Typescript. You don't need to package Coffeescript or Typescript compilers to your code, because in the end everything becomes Javascript. But not only the compiler, for example, Uglyfy is a program that makes your code awful for anybody to read, once it runs it is not needed anymore, so you list it here instead of normal dependencies property.</li>
+</ol>
+<p>After you create this file, NPM will be used mostly for running your application and 'installing' your dependencies. Installing here is between quotation because unlike Maven that you have to manually put all dependencies, NPM provide a nice syntax where you download the dependency package and at the same time add it to your <code>package.json</code> file if you do not have this dependency in your dependency list:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install dependency-a dependency-b
+</span></pre>
+<p>This syntax is to download the latest version of the dependency-a or dependency-b, if you want to specify the version you can:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install dependency@1.2.3 dependency-b@^1.0.0
+</span></pre>
+<p>This <code>^</code> between <code>@</code> and the version means you want the latest version from 1.x.x series, so imagine that today the newest version is 1.1.0, but tomorrow you run this command the newest version is 1.2.0. This will update dependency-b version automatically when downloading it, so you don`t have to look everyday in case you are waiting for an update from 1.x.x series to fix a security bug or perfomance issues.</p>
+<p>And to add dependencies to the property <code>devDependencies</code> you use a similar syntax. Simply add a <code>--save-dev</code> to your <code>npm install</code> command:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> devDependency-a devDependency-b@^1.0.0 devDependency-c@3.0.0
+</span></pre>
+<p>And last but no least, to execute the scripts you created in <code>scripts</code> sections you simply call <code>npm run-script script-name</code>(or a short version <code>npm run script-name</code>)</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> run-script run </span><span style="color:#65737e;">#or npm run run
+</span><span style="color:#c0c5ce;">npm run-script test </span><span style="color:#65737e;">#or npm run test
+</span></pre><h3 id="installing-node-and-npm">Installing Node and NPM</h3>
+<p>I'm not going to detail this process because you can find it very detailed on NodeJS website itself. Go to <a href="https://nodejs.org/en/download/">NodeJS</a> page, choose the appropriate package for your Operating System. If you are using Windows you can simply double click the EXE file and follow the next~next~next~install pattern. If you are on Linux or Mac you can unpackage the tar.xz file you downloaded using any graphical or terminal application you prefer, put the contents in some directory of your choice and then create an Environment Variable named NODE_HOME variable pointing to <code>/path/to/node/</code> and add it to your <code>PATH</code> environment variable:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">......
+NODE_HOME</span><span style="color:#c0c5ce;">=</span><span style="color:#a3be8c;">/path/to/node
+
+</span><span style="color:#bf616a;">PATH</span><span style="color:#c0c5ce;">=$</span><span style="color:#bf616a;">PATH</span><span style="color:#a3be8c;">:</span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">NODE_HOME</span><span style="color:#a3be8c;">/bin
+</span></pre>
+<p>For more details please refer to <a href="https://github.com/nodejs/help/wiki/Installation">this page</a> or <a href="https://nodejs.org/en/download/package-manager/">this one</a>. As I said, NPM comes together, so once you get Node installed NPM will be installed too. Now simply test if everything is Ok:</p>
+<img src="node_npm_check.png" />
+<p>If you prefer, many Linux OSes have package managers and Node is in their repositories so you can install like this:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">sudo</span><span style="color:#c0c5ce;"> pacman</span><span style="color:#bf616a;"> -S</span><span style="color:#c0c5ce;"> nodejs </span><span style="color:#65737e;">#Arch based OSes
+</span><span style="color:#c0c5ce;">sudo apt-get install nodejs </span><span style="color:#65737e;">#Debian based
+</span><span style="color:#c0c5ce;">...# and soon and so forth
+</span></pre><h3 id="starting-the-project">Starting the project</h3>
+<p>Now that you understood the minimum about Node and how to get it running on your machine, let's start our React project as a simple CLI(Command Line Interface) app written in pure JS.
+So first thing you have to do is create our app directory. Let's call it <code>React_App</code>:</p>
+<img src="create_app_dir.png" />
+<p>Now we create our <code>package.json</code>. Very simple one:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+  &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">React-example-app</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">description</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">A simple React frontend application</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
+    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">echo </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">Error: no tests were specified</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;"> &amp;&amp; exit 1</span><span style="color:#c0c5ce;">&quot;
+  }
+}
+</span></pre>
+<p>Next step is to create a <code>src</code> directory and inside this directory create a <code>app.js</code> file in it and as content simply add 'console.log(&quot;Hello World&quot;)':</p>
+<img src="create_src_and_appjs.png"/>
+<p>Ok now we have the minimum for our app. Edit your <code>package.json</code> to add a new script:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+  &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">React-example-app</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">description</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">A simple React frontend application</span><span style="color:#c0c5ce;">&quot;,
+  &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
+    &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span style="color:#c0c5ce;">&quot;, 
+    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">echo </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">Error: no tests were specified</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;"> &amp;&amp; exit 1</span><span style="color:#c0c5ce;">&quot;
+  }
+}
+</span></pre>
+<p>And execute it with the command I already taught you:</p>
+<img src="first_run.png"/>
+<p>If you've seen something similar to the below image, congratulations, you just made your first Node CLI application.</p>
+<h3 id="testing-in-javascript">Testing in Javascript</h3>
+<p>You know, programming is one thing but testing your code to guarantee it does what you really want it to do is a completely different thing, so how one test code in Javascript? In Node? One of the most famous libraries for testing that I know in JS is called <a href="https://mochajs.org/">Mocha</a>. It acts like a simple JUnit if you came from Java World, so you can assert things are what you expect them to be.</p>
+<p>To give a better example let's create a separate class named <code>Greetings</code> in a different package. First create <code>javascript</code> directory inside <code>/src</code>. Inside it create a package(directory) named <code>greetings</code> and finally inside it create a file named <code>Greetings.js</code> and put the given content:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
+  </span><span style="color:#8fa1b3;">constructor</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">name</span><span style="color:#eff1f5;">){
+    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">;
+  }
+  
+  </span><span style="color:#8fa1b3;">greet</span><span style="color:#eff1f5;">(){
+    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">`</span><span style="color:#a3be8c;">Hello Mr/Ms </span><span style="color:#eff1f5;">${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name}</span><span style="color:#c0c5ce;">`</span><span style="color:#eff1f5;">;
+  }
+}
+
+</span><span style="color:#c0c5ce;">module.exports.Greetings = </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">;
+</span></pre>
+<p>Now come back to the root of our app and create a directory named <code>test</code>, inside it create the same structure we have in our <code>src</code>:</p>
+<img src="test_dir.png"/>
+<p>PS: It is not mandatory to follow the same structure, it is just to make it easier to read.</p>
+<p>Next step is to install Mocha in our dev-dependency list:</p>
+<img src="install_mocha.png"/>
+<p>Now we code our tests. I'll write only two. One for success and one for failure, very simple tests as it is just a demonstration. So inside <code>test/javascript/greetings</code> create our <code>GreetingsTest.js</code> file and add the bellow code:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">var </span><span style="color:#c0c5ce;">assert = </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;);
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;);
+
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span style="color:#c0c5ce;">&quot;);
+
+</span><span style="color:#bf616a;">describe</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">Greetings</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
+  </span><span style="color:#bf616a;">describe</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">#greet()</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
+    </span><span style="color:#bf616a;">it</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJSDev&quot;</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
+      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev</span><span style="color:#c0c5ce;">&quot;;
+      assert.</span><span style="color:#bf616a;">equal</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">(), </span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
+    });
+    
+    </span><span style="color:#bf616a;">it</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJSDev &quot;</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
+      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev </span><span style="color:#c0c5ce;">&quot;;
+      assert.</span><span style="color:#bf616a;">notEqual</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">(), </span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
+    });
+  });
+});
+</span></pre>
+<p>Next step is to modify <code>test</code> script in our <code>package.json</code> to execute Mocha for us:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+  ...
+  &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
+    ...
+    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">mocha test/javascript/*</span><span style="color:#c0c5ce;">&quot;
+    ...
+  }
+}
+</span></pre>
+<p>Now next step: Run it!!!</p>
+<img src="run_mocha_tests.png"/>
+<p>If your test was succesfull like mine, nice, let's go the last two steps. First change your <code>src/app.js</code> to 'import' our newly created and test Greetings class:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&quot;);
+
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node Dev</span><span style="color:#c0c5ce;">&quot;);
+
+console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">());
+</span></pre>
+<p>And last step is run it:</p>
+<img src="last_step.png"/>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this post we learned the basic of the basic about creating a Node JS app with simple tests. For now it is a simple CLI app but from here we can evolve it easily to a complex frontend app.
+In the next <a href="https://kiberstender.github.io/react-post-02-webpack/">post</a> we will learn about Webpack. If you came here but you don't speak english or even prefer portguese please check the <a href="https://kiberstender.github.io/pt_br/react-post-01-node/">Brazilian Portuguese version</a> for this post</p>
+
+                            </div>
+                        </div>
+                        
+                        
+<footer class="card-footer">
+    <div class="article-footer">
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <p>
+                    Published
+                    
+
+<time datetime="2020-03-18">
+    2020-03-18
+</time>
+
+
+                    
+
+by
+
+<a href="https://kiberstender.github.io/authors/kleber-stender/">
+    <span class="tag is-primary">Kleber Stender </span>
+</a>
+
+
+
+
+                    
+
+
+in <a href="https://kiberstender.github.io/categories/tutorials/">
+    <span class="tag is-success">
+        Tutorials
+    </span>
+</a>
+
+
+                    
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/nodejs/">
+    <span class="tag is-link">nodejs </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/npm/">
+    <span class="tag is-link">npm </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/react/">
+    <span class="tag is-link">react </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/introduction/">
+    <span class="tag is-link">introduction </span>
+</a>
+
+
+
+
+
+
+                </p>
+            </div>
+            <div class="column">
+                <a class="button is-pulled-right is-info" href="/">Back Home</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+                        
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+    
+    
+
+
+    
+
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
+
+    
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
+    
+
+    
+</body>
+
+</html>
