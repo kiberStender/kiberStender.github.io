@@ -154,7 +154,7 @@
     <circle cx="16" cy="16" r="14" />
     <path d="M16 8 L16 16 20 20" />
 </svg>
-<span>&nbsp;17 minute read</span>
+<span>&nbsp;18 minute read</span>
 </span>
         </div>
     </div>
@@ -392,8 +392,8 @@ module: {
 </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">component</span><span style="color:#c0c5ce;">() {
   </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">element </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;);
 
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">();
-  </span><span style="color:#bf616a;">element</span><span style="color:#c0c5ce;">.innerHTML = </span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">John</span><span style="color:#c0c5ce;">&quot;);
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node Dev</span><span style="color:#c0c5ce;">&quot;);
+  </span><span style="color:#bf616a;">element</span><span style="color:#c0c5ce;">.innerHTML = </span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">();
 
   </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">element</span><span style="color:#c0c5ce;">;
 }
@@ -462,7 +462,7 @@ module:{
 </span></pre>
 <p>Olhe novamente para sua página(se você não tiver parado sua aplicação, caso contrário execute-a novamente) e se o texto estiver agora azul, você conseguiu, você tem uma aplicação frontend totalmente feita com Webpack, Babel, Sass e Boostrap.</p>
 <img src="blue_centralized.png">
-<h3 id="import-path-resolution-resolucao-de-caminho-de-importacao">Import path resolution(Resolução de caminho de importação)</h3>
+<h3 id="path_reso">Import path resolution(Resolução de caminho de importação)</h3>
 <p>Você pode ou não ter notado uma diferença quando se importa o Bootstap e quando se importa nossos arquivos Javascript ou scss. Se você não notou, estamos usando caminho relativo ao importar, isso significa como desenvolvedores temos que saber pnde o arquivo está em relação ao que queremos importar e passar o caminho correto. Ao invés de podermos simplesmente dizer:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
@@ -524,6 +524,31 @@ module.exports = {
 </span></pre>
 <p>Agora você pode executar e tudo terá voltado ao normal:</p>
 <img src="mocha_problem_fixed.png"/>
+<p>Mas ainda som você terá um problema. Um problema que irá enfrentar quando comeãr a criar componentes que herdam entre si. Mocha não consegue encontrar nossos módulos customizados. Lembre-se do que tivermos que fazer para facilitar importação de módulos <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/#path_reso">aqui</a>. Mocha não é capaz de ver isso, para isso precisamos instalar uma coisa chamada <code>mocha-webpack</code>. Isso irá permitir o mocha de ver nossos módulos usando a relucação de caminho:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> mocha-webpack@2.0.0-beta.0
+</span></pre>
+<p>Aqui, observe que é muito importante que você use pelo menos a versão beta que estou a adicionar ou uma versão mais nova. Por que a versão atual não beta (1.1.0) utiliza uma versão antiga da biblioteca do Webpack e isso irá falhar ao carregar nossos arquivos de teste.</p>
+<p>Agora para deixar melhor, iremos mudar o nome de nosso arquivo de <code>GreetingsTest.js</code> para <code>Greetings.test.js</code>. Você irá entender o porque. O próximo passo é melhorar o import deste arquivo:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">import </span><span style="color:#bf616a;">assert </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;;
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;;
+
+
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span style="color:#c0c5ce;">&quot;);
+...
+</span></pre>
+<p>Sim, não precisamos mais passar o caminho inteiro das classes que importamos. E por último mas não menos importate, mudaremos nosso script de test:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">scripts</span><span style="color:#c0c5ce;">: {
+  ...
+  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#bf616a;">mocha</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">webpack </span><span style="color:#c0c5ce;">--</span><span style="color:#bf616a;">webpack</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">config webpack</span><span style="color:#c0c5ce;">.config.js --</span><span style="color:#bf616a;">recursive </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">./test/**/*.test.js</span><span style="color:#c0c5ce;">&#39;&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span style="color:#c0c5ce;">  ...
+}
+...
+</span></pre>
+<p>Agora estamos a chamar o mocha-webpack ao invés do mocha e estamos a passar nosso arquivo webpack.config.js como parâmetro e finalmente estamos a usar expressão regular em nossos testes. Este é o motivo de termos renomeado nosso arquvo para .test. isso facilitará para o mocha-webpack a diferenciar arquivos de teste e classes normais em nosso projeto. Agora você pode executar novamente e ver os testes funcionando como devem.</p>
 <p>E aqui terminamos nosso tutorial de Webpack, espero que tenham aprendido e entendido bem o que ensinei ^^</p>
 <h4 id="disclaimer">* Jamais diga que HTML é uma linguagem em nenhuma entrevista. JAMAIS!</h4>
 <h1 id="conclusao">Conclusão</h1>
