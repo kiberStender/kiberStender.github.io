@@ -251,21 +251,20 @@ O primeiro passo que você precisa dar é criar o diretório de nossa aplicaçã
 <img src="create_src_and_appjs.png"/>
 <p>Ok agora temos o mínimo para nossa aplicação. Edite seu arquivo <code>package.json</code> e adicione um novo script:</p>
 <pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">{
-  &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">React-exemplo-app</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">description</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">Uma simples aplicação frontend com React</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
-    &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span style="color:#c0c5ce;">&quot;, 
-    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">echo </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">Erro: Nenhum teste foi especificado</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;"> &amp;&amp; exit 1</span><span style="color:#c0c5ce;">&quot;
-  }
+<span style="color:#c0c5ce;">...
+&quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
+  ...
+  &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span style="color:#c0c5ce;">&quot;, 
+  ...
 }
+...
 </span></pre>
+<p>PS: Sempre que você ver 3 pontos <code>...</code> isso significa: &quot;Mantenha tudo o que vem antes disso&quot; e se vier depois do que estamos adicionando/modificando, significa: &quot;Mantenha tudo o que vier depois desses três pontos&quot;.</p>
 <p>E execute com o comando que eu já lhe ensinei:</p>
 <img src="first_run.png"/>
 <p>Se você viu algo similar com a imagem acima, parabéns, você acaba de fazer sua primeira aplicação CLI.</p>
 <h3 id="testando-em-javascript">Testando em Javascript</h3>
-<p>Você sabe, programar é uma coisa mas testar seu código para garantir que ele faz o que você quer que ele faz é uma coisa completamente diferente, então como alguém testa código em Javascript? Em Node? Uma das bibliotecas mais famosas que eu conheço em JS é chamada <a href="https://mochajs.org/">Mocha</a>. Ela atua como um JUnit simples se você veio do mundo Java, então você poe atestar se coisas são/estão como você gostaria que estivessem.</p>
+<p>Você sabe, programar é uma coisa mas testar seu código para garantir que ele faz o que você quer que ele faz é uma coisa completamente diferente, então como alguém testa código em Javascript? Em Node? Uma das bibliotecas mais famosas que eu conheço em Javascript é chamada <a href="https://mochajs.org/">Mocha</a>. Ela atua como um JUnit simples se você veio do mundo Java, então você poe atestar se coisas são/estão como você gostaria que estivessem.</p>
 <p>Para dar um melhor exemplo vamos criar uma classe separada de nome <code>Greetings</code> em um pacote diferente. Primeiro criaremos o diretório <code>javascript</code> dentro de <code>/src</code>. Dentro deste diretório (javascript) criamos o pacote(diretório) <code>greetings</code> e finalmente dentro deste criamos um arquivo chamado <code>Greetings.js</code> e colocamos o seguinte conteúdo:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
@@ -284,8 +283,11 @@ O primeiro passo que você precisa dar é criar o diretório de nossa aplicaçã
 <img src="test_dir.png"/>
 <p>PS: Não é obrigatório seguir a mesma estrutura, isso é apenas para facilitar a leitura.</p>
 <p>O próximo passo é instalar o Mocha in nossa lista de dev-dependency:</p>
-<img src="install_mocha.png"/>
-<p>Agora escreveremos nossos testes. Irei escrever apenas dois. Um para sucesso e outro para falha, testes bem simples pois é apenas uma demonstração. Então, dentro de <code>test/javascript/greetings</code> crie nosso arquivo <code>GreetingsTest.js</code> e adicione o código abaixo:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> mocha@7.1.1
+</span></pre>
+<p>PS: Para garantir que seu código irá ser executado igual ao meu, por favor instale tudo que irei lista na mesma verão que estou a usar</p>
+<p>Agora escreveremos nossos testes. Irei escrever apenas dois. Um para sucesso e outro para falha, testes bem simples pois é apenas uma demonstração. Então, dentro de <code>test/javascript/greetings</code> crie nosso arquivo <code>Greetings.test.js</code> e adicione o código abaixo:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">var </span><span style="color:#c0c5ce;">assert = </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;);
 </span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;);

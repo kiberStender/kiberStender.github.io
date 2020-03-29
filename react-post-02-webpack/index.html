@@ -169,7 +169,7 @@
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> webpack@4.42.0 webpack-cli@3.3.11 webpack-dev-server@3.10.3
 </span></pre>
-<p>Check your <code>package.json</code> file. NPM added new <code>devDependency</code> for you and it should contain a new property like this:</p>
+<p>Check your <code>package.json</code> file. NPM added new <code>devDependency</code> for you and it should contain new propertys like these:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">devDependencies</span><span style="color:#c0c5ce;">&quot;: {
@@ -181,7 +181,7 @@
 }
 ...
 </span></pre>
-<p>You might notice that in your app root a directory named <code>node_modules</code> was created. This directory contains the dependencies NPM downloaded for you and you can ignore it using your <code>.gitignore</code> file and/or <code>.dockerignore</code> because NPM will take care of if and re-create it if you delete, so no worries.</p>
+<p>You might notice that in your app root a directory named <code>node_modules</code> was created. This directory contains the dependencies NPM downloaded for you and you can ignore it using your <code>.gitignore</code> file and/or <code>.dockerignore</code> because NPM will take care of if and re-download it if you delete when you execute <code>npm install</code>, so no worries.</p>
 <p>Not only this, but a new file was created in the root of your directory, named <code>package-lock.json</code>. This file is similar to <code>package.json</code> but with a small difference: It lists all the dependencies trees, making it easier for NPM to install the dependencies later and to verify if there is any conflict, like if <code>package.json</code> is the human readable version and <code>package-lock.json</code> is the machine readable version. It is always created automatically for you when you run <code>npm install</code>. </p>
 <p>Explaning the libs we just installed we have:</p>
 <ol>
@@ -202,17 +202,19 @@ module.exports = {
   devtool: &#39;</span><span style="color:#a3be8c;">source-map</span><span style="color:#c0c5ce;">&#39;
 };
 </span></pre>
-<p>PS: The creation of the file <code>webpack.config.js</code> is necessary only if you need to customise your build, usually if you plan to use default webpack there is no need to create such file, I'm just reinforcing here that there is a bug that forces you to create the file even if you won't use anything non default. For this example application we would create the file anywat</p>
+<p>PS: The creation of the file <code>webpack.config.js</code> is necessary only if you need to customise your build, usually if you plan to use default webpack there is no need to create such file, I'm just reinforcing here that there is a bug that forces you to create the file even if you won't use anything non default. For this example application we would create the file anyway</p>
 <p>As you can see, this is a veeeeery simple config. The problem in the version 4.42.0 is that for some reason when you don't have the above file when you run webpack it complains that it cannot find <code>./src</code>. Until it is solved I will keep it here for whoever is reading to know that this problem exists so it can be helpful.</p>
 <p>Now add to the scripts field a new command:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
-  &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
+<p>PS: Whenever you see three dots <code>...</code> it means &quot;keep whatever comes before this&quot; or if it comes after what we are adding/modifying, it means &quot;keep whatever comes after these dots&quot;</p>
 <p>Now execute your script and you should see something similar to this:</p>
 <img src="webpack_first_run.png">
 <p>This warning is there because as I mentioned in the beggining, Webpack has support for production and development environments, so when you don't specify which environment you are using it fallbacks to production and emit this warning to let you know that you need to specify the missing info. You can modify you script section in <code>package.json</code> and create two build commands like that:</p>
@@ -221,7 +223,8 @@ module.exports = {
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
   &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode development</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">build:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode production</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">build:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode production</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
@@ -246,17 +249,15 @@ console.log(`Time now: ${moment(new Date()).format()}`);
 <p>Now go to <code>app.js</code> and change it to the following:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;
-
-</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node Dev</span><span style="color:#c0c5ce;">&quot;);
-
-console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">());
+...
 </span></pre>
-<p>If you want to run the app now you can add a new command to <code>scripts</code>:</p>
+<p>If you want to run the app now you can edit <code>execute</code> command in <code>scripts</code>:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
-  &quot;</span><span style="color:#a3be8c;">run</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node ./dist/main.js</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node ./dist/main.js</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
@@ -264,18 +265,18 @@ console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce
 <img src="app_first_run.png">
 <p>And you have a more updated syntax. Instead of using <code>require</code> function, you now can use import/export.</p>
 <h1 id="customised-build-configuration">Customised build configuration</h1>
-<p>In <code>webpack.config.js</code> file you specify all the things you want to build in your application, like, compiling Typescript to Javascript, SASS to CCSS, copy the files from one directory to another (Imagine you are working with Spring for example, instead of putting everything in the <code>dist</code> you copy to <code>/src/main/resources/static/</code>) and other sort of nice things we will see. In <code>entry</code> you can change where Webpack will look for your first Javascript file(instead of looking for <code>app.js</code> inside <code>src</code> you can change it to look for <code>index.js</code>inside <code>js</code> for example) and in <code>output</code> you can change where to put the processed files and the final processed file name. In <code>devtools</code> we are simply telling Webpack to create a map file for all of your javscript files, making it easier for browsers to debug and interpret you code.</p>
+<p>In <code>webpack.config.js</code> file you specify all the things you want to build in your application, like, compiling Typescript to Javascript, SASS to CSS, copy the files from one directory to another (Imagine you are working with Spring for example, instead of putting everything in the <code>dist</code> you copy to <code>/src/main/resources/static/</code>) and other sort of nice things we will see. In <code>entry</code> you can change where Webpack will look for your first Javascript file(instead of looking for <code>app.js</code> inside <code>src</code> you can change it to look for <code>index.js</code>inside <code>js</code> for example) and in <code>output</code> you can change where to put the processed files and the final processed file name. In <code>devtools</code> we are simply telling Webpack to create a map file for all of your javscript files, making it easier for browsers to debug and interpret you code.</p>
 <h2 id="loaders">Loaders</h2>
 <p>After a basic configuration (In my case I simply kept the default configuration for now), you have to understand a concept Webpack brings to us: The concept of Loaders. </p>
-<p>Loaders are apps that operates in some files (defined by you) and do transformation, validation, modification in these files. So for exemple, nowadays we have at least 3 major versions of Javascript: ES5, ES6 and ES2018. Both of them have differences and some browsers have partially implemented them. So let's say you want to use all new syntax from ES2018 but you are affraid that not all your users use updated browsers or even that browsers does not have a good and stable implementation in some features you are interested in(like import/export). 
-A good solution we have today is to use <a href="babeljs.io/">Babel</a>. Babel is a transpiler from Javascript to Javascript, so you can code in ES2018 and compile (or in this case transpile) to an older version of Javascript that browsers have already mastered. In order to do that you have create a loader in your Webpack config. So first thing, add Babel as a <code>devDependency</code>:</p>
+<p>Loaders are apps that operates in some files (defined by you) and do transformation, validation, modification in these files. So for exemple, nowadays we have at least 3 major versions of Javascript: ES5, ES6 and ES2018. Both of them have differences and some browsers have partially implemented them. So let's say you want to use all new syntax from ES2018 but you are affraid that not all your users use updated browsers or even that browsers does not have a good and stable implementation of some features you are interested in(like import/export). 
+A good solution we have today is to use <a href="babeljs.io/">Babel</a>. Babel is a transpiler from Javascript to Javascript, so you can code in ES2018 and compile (or in this case transpile) to an older version of Javascript that browsers have already mastered. In order to do that you have to create a loader in your Webpack config. So first thing, add Babel as a <code>devDependency</code>:</p>
 <pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> babel-loader@8.0.6 @babel/core@7.8.4 @babel/preset-env@7.8.4
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> babel-loader@8.1.0 @babel/core@7.9.0 @babel/preset-env@7.9.0
 </span></pre>
 <p>Now change your webpack config file to add the loader:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">devtool</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">source-map</span><span style="color:#c0c5ce;">&#39;
+</span><span style="color:#bf616a;">devtool</span><span style="color:#c0c5ce;">: &#39;</span><span style="color:#a3be8c;">source-map</span><span style="color:#c0c5ce;">&#39;,
 module: {
   rules: [
     {
@@ -314,7 +315,8 @@ module.exports = {
   module:{...},
   plugins: [
     new </span><span style="color:#bf616a;">HtmlWebpackPlugin</span><span style="color:#c0c5ce;">({template: &#39;</span><span style="color:#a3be8c;">./src/index.html</span><span style="color:#c0c5ce;">&#39;})
-  ]
+  ].
+  ...
 }
 ...
 </span></pre>
@@ -352,7 +354,8 @@ module: {
        use: {
          loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span style="color:#c0c5ce;">&#39;
        }
-     }
+     },
+     ...
   ]
 }
 ...
@@ -380,13 +383,14 @@ module: {
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
   &quot;</span><span style="color:#a3be8c;">live</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode development</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">live:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">live:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
 <p>Run it and you will see this:</p>
 <img src="live_reload_running.png">
-<p>Go to <code>http://localhost:8080</code> and see your page opened with a simple Title: <code>Getting started</code> and the rest of the page white. Let's put some action in it. Change your <code>app.js</code> file content to:</p>
+<p>Go to <a href="http://localhost:8080">http://localhost:8080</a> and see your page opened with a simple Title: <code>Getting started</code> and the rest of the page white. Let's put some action in it. Change your <code>app.js</code> file content to:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
 
@@ -433,26 +437,28 @@ module:{
   color: $a_color; //Using the variable
 }
 </span></pre>
-<p>Then go to your <code>index.html</code> file and change our <code>#root</code> div to this:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">root</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">class</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;&lt;/</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;
-...
-</span></pre>
-<p>Now the last chage: go to your <code>app.js</code> file and import our scss file:</p>
+<p>Go to your <code>app.js</code> file. First thing you will do is import our <code>app.scss</code> file:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./js/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
 </span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./styles/app.scss</span><span style="color:#c0c5ce;">&quot;;
 ...
 </span></pre>
+<p>Now in the function <code>component</code> right after you create the new <code>div</code>, add the following line:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">const element </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;);
+  
+</span><span style="color:#bf616a;">element</span><span style="color:#c0c5ce;">.classList.</span><span style="color:#96b5b4;">add</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;);
+...
+</span></pre>
 <p>PS: Yes for CSS, SASS or LESS files, when importing them you don't add &quot;from&quot; keyword</p>
-<p>Now if ou haven't stopped the application restart it or run it (npm run live) otherwise. If your text now is red, congratulations, you succeded in adding SASS pre proprocessor in your app:</p>
+<p>Keep the rest as it was. Now if you haven't stopped the application restart it or run it (npm run live) otherwise. If your text now is red, congratulations, you succeded in adding SASS pre proprocessor in your app:</p>
 <img src="red_page_scss.png">
 <p>Now let's add Bootstrap. Install the dependencies: </p>
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install bootstrap@4.4.1 jquery@3.4.1
 </span></pre>
-<p>You might notice these are our first non-devDependencies in the whole project, because we need them at runtime. <a href="https://jquery.com/">jQuery</a> is there because Bootstrap needs this library to work, we will not use jQuery for anything in this tutorial. Now to test if this worked add the following changes to your <code>app.scss</code> file:</p>
+<p>You might notice these are our first non-devDependencies in the whole project, because we need them at runtime. <a href="https://jquery.com/">jQuery</a> is there because Bootstrap needs this library to work, we will not use jQuery for anything in this tutorial. Now to test if this worked, add the following changes to your <code>app.scss</code> file:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">@import &#39;~bootstrap&#39;;
 
@@ -476,7 +482,7 @@ module:{
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">../javascript/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
 </span></pre>
-<p>Even though this is just an extra dot to add, imagine how awful it would be if you change this new module to a different level/directory in a huge project, you will have to fix all import urls in this file. So to improve it and make Webpack work for us instead let's add module resolution:</p>
+<p>Even though this is just an extra dot to add, imagine how awful it would be if you changed this new module to a different level/directory in a huge project, you will have to fix all import urls in this file. So to improve it and make Webpack work for us instead let's add module resolution:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 module.exports = {
@@ -485,7 +491,7 @@ module.exports = {
   module:{...},
   resolve: {
     modules: [path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &#39;</span><span style="color:#a3be8c;">src/javascript</span><span style="color:#c0c5ce;">&#39;), path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &#39;</span><span style="color:#a3be8c;">src/styles</span><span style="color:#c0c5ce;">&#39;), &#39;</span><span style="color:#a3be8c;">node_modules</span><span style="color:#c0c5ce;">&#39;]
-  }
+  },
   plugins: [...]
 }
 
@@ -500,37 +506,12 @@ module.exports = {
 <h3 id="testing-in-javascript-with-webpack">Testing in Javascript with Webpack</h3>
 <p>If you have tried to run our old tests you will see that we have a problem now. We changed old <code>require</code> syntax in our <code>Greeting.js</code> file to use <code>export</code> syntax and Mocha does not know what to do:</p>
 <img src="mocha_problem.png"/>
-<p>To fix that we can install a dependency named <code>esm</code> and pass it in our <code>test</code> script in <code>package.json</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm install </span><span style="color:#c0c5ce;">--</span><span style="color:#bf616a;">save</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">dev esm</span><span style="color:#c0c5ce;">@</span><span style="color:#d08770;">3.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">25</span><span style="color:#c0c5ce;">
-</span></pre>
-<p>Then:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">scripts</span><span style="color:#c0c5ce;">: {
-  ...
-  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">mocha -r esm test/javascript/*</span><span style="color:#c0c5ce;">&quot;
-  ...
-}
-...
-</span></pre>
-<p>Now we change our <code>GreetingsTest.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">assert </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;;
-
-
-</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span style="color:#c0c5ce;">&quot;);
-...
-</span></pre>
-<p>Now you can run it and everything will come back to normal:</p>
-<img src="mocha_problem_fixed.png"/>
-<p>But then you will still have a problem. A problem you will face once you start creating other components that inherit from each other. Mocha is not able to find our customized modules. Remember all we had to do to make it easier to import our modules <a href="https://kiberstender.github.io/react-post-02-webpack/#path_reso">here</a>. Mocha is not able to see that, so we need to install something called <code>mocha-webpack</code>. This will allow mocha to see our modules using the path resolution:</p>
+<p>To fix that, you have to install another mocha module. This module will not only fix our actual problem but a problem you will face once you start creating other components that inherit from each other. Mocha is not able to find our customized modules. Remember all we had to do to make it easier to import our modules <a href="https://kiberstender.github.io/react-post-02-webpack/#path_reso">here</a>. Mocha is not able to see that, so we need to install something called <code>mocha-webpack</code>. This will allow mocha to see our modules using the path resolution:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> mocha-webpack@2.0.0-beta.0
 </span></pre>
 <p>Here, notice that it is very important to use at least the beta version I'm adding here or a newer version. Because the actual non beta version (1.1.0) uses old Webpack library and it fails to load our test files.</p>
-<p>Now to make it nicer, we will change our test file name from <code>GreetingsTest.js</code> to <code>Greetings.test.js</code>. You will understand why. Next step is to improve this file import statement:</p>
+<p>Next step is to improve this file import statement:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">assert </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;;
 </span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;;
@@ -544,16 +525,17 @@ module.exports = {
 <span style="color:#c0c5ce;">...
 </span><span style="color:#bf616a;">scripts</span><span style="color:#c0c5ce;">: {
   ...
-  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#bf616a;">mocha</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">webpack </span><span style="color:#c0c5ce;">--</span><span style="color:#bf616a;">webpack</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">config webpack</span><span style="color:#c0c5ce;">.config.js --</span><span style="color:#bf616a;">recursive </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">./test/**/*.test.js</span><span style="color:#c0c5ce;">&#39;&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span style="color:#c0c5ce;">  ...
+  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">mocha-webpack --webpack-config webpack.config.js --mode production --recursive &#39;./test/**/*.test.js&#39;</span><span style="color:#c0c5ce;">&quot;
+  ...
 }
 ...
 </span></pre>
-<p>Now calling mocha-webpack instead of mocha and passing our webpack.config.js file as a parameter and finally our tests using regular expression. That's why we renamed our file to be .test, it will make it easier for mocha-webpack to differentiate tests from normal classes in our project. Now you can run it again and see your tests working as they should.</p>
+<p>Now calling mocha-webpack instead of mocha and passing our webpack.config.js file as a parameter and finally our tests using regular expression. Now you can run it again and see your tests working as they should.</p>
+<img src="mocha_webpack_working.png" />
 <p>And here we finish Webpack tutorial, I hope you have learned and understood well everything I taught ^^</p>
 <h4 id="disclaimer">* Don't you ever say HTML is a language in an interview. EVER!</h4>
 <h1 id="conclusion">Conclusion</h1>
-<p>In this post we learned how Webpack work and how it can helps us improve productivity. We added SASS, Boostrap and Babel with new Javascript syntax support. We improved ou tests and finally made our CLI become a frontend app. Next step will be adding React to our application finishing the tutorial. If you for some reason speaks portguese and feel that you would understand this post better in this language feel free to go the <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/">Brazilian Portuguese version</a> of this page. See you in the next post.</p>
+<p>In this post we learned how Webpack work and how it can helps us improve productivity. We added SASS, Boostrap and Babel with new Javascript syntax support. We improved ou tests and finally made our CLI become a frontend app. Next step will be adding React to our application finishing the tutorial. If you for some reason speaks portguese and feel that you would understand this post better in this language feel free to go the <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/">Brazilian Portuguese version</a> of this page. See you in the next <a href="https://kiberstender.github.io/react-post-03-react-beggining/">post</a>.</p>
 
                             </div>
                         </div>

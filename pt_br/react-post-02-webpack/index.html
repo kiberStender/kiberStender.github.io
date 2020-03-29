@@ -169,7 +169,7 @@
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> webpack@4.42.0 webpack-cli@3.3.11 webpack-dev-server@3.10.3
 </span></pre>
-<p>Veja seu arquivo <code>package.json</code>. O NPM adicionou uma nova <code>devDependency</code> para você e ela deve ter uma nova propriedade como esta:</p>
+<p>Veja seu arquivo <code>package.json</code>. O NPM adicionou uma nova <code>devDependency</code> para você e ela deve ter uma novas propriedades como estas:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">devDependencies</span><span style="color:#c0c5ce;">&quot;: {
@@ -181,7 +181,7 @@
 }
 ...
 </span></pre>
-<p>Você talvez percebeu que na raiz de sua aplicação foi criado um diretório chamado <code>node_modules</code>. Este diretório contem as dependências que o NPM baixou para você e você pode ignorá-lo usando o arquivo <code>.gitignore</code> e/ou o arquivo <code>.dockerignore</code> porque o NPM irá sempre cuidar desse diretório e recriá-lo se você o deletar, então não se preocupe com ele.</p>
+<p>Você talvez percebeu que na raiz de sua aplicação foi criado um diretório chamado <code>node_modules</code>. Este diretório contem as dependências que o NPM baixou para você e você pode ignorá-lo usando o arquivo <code>.gitignore</code> e/ou o arquivo <code>.dockerignore</code> porque o NPM irá sempre cuidar desse diretório e baixá-lo novamente se você o deletar e executar o comando <code>npm install</code>, então não se preocupe com ele.</p>
 <p>Não apenas isso, mas um novo arquivo fora criado na raíz de sua aplicação, chamado <code>package-lock.json</code>. Este arquivo é similar ao <code>package.json</code> mas com uma diferença: Ele lista toda a árvore de dependências, tornando mais fácil para o NPM instalar as dependências e depois verificar se há conflitos, como se <code>package.json</code> fosse a versão legível para humanos e o <code>package-lock.json</code> é a versão legível para máquinas. Ele sempre será criado automaticamente para você quando você rodar <code>npm install</code>.</p>
 <p>Explicando o que a gente acaba de instalar temos:</p>
 <ol>
@@ -209,10 +209,12 @@ module.exports = {
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
-  &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
+<p>PS: Sempre que você ver 3 pontos <code>...</code> isso significa Mantenha tudo o que vem antes disso&quot; e se vier depois do que estamos adicionando/modificando isso significa, &quot;Mantenha tudo o que vier depois desses três pontos&quot;.</p>
 <p>Agora execute o script e você deverá ver algo semelhante a imagem:</p>
 <img src="webpack_first_run.png">
 <p>Este aviso está aí porque como eu mencionei no começo, o Webpack tem suporte para ambientes de produção e desenvolvimento, logo, quando você não especifica qual ambiente você está usando ele vai para o padrão que é produção e emite este aviso para que você saiba que precisa especificar a informação esquecida. Você pode modificar seu script em <code>package.json</code> e criar dois comandos de build como estes:</p>
@@ -221,7 +223,8 @@ module.exports = {
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
   &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode development</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">build:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode production</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">build:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode production</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
@@ -246,17 +249,15 @@ console.log(`Time now: ${moment(new Date()).format()}`);
 <p>Agora vá até o arquivo <code>app.js</code> e mude-o para o seguinte:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;
-
-</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node Dev</span><span style="color:#c0c5ce;">&quot;);
-
-console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">());
+...
 </span></pre>
-<p>Se você quiser executar a aplicação agora você pode adicionar um novo comando aos <code>scripts</code>:</p>
+<p>Se você quiser executar a aplicação agora você pode editar o comando <code>execute</code> em <code>scripts</code>:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">...
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
-  &quot;</span><span style="color:#a3be8c;">run</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node ./dist/main.js</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node ./dist/main.js</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
@@ -269,7 +270,7 @@ console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce
 <p>Depois de uma configuração básica(No meu caso eu simplesmente mantive a configuração padrão por agora), você precisa entender um conceito que o Webpack nos traz: O coneito de Loaders(Carregadores).</p>
 <p>Loaders são aplicações que operam em alguns arquivos(definidos por você) and que transformam, validam, modificam estes arquivos. Por exemplo, hoje em dia temos pelo menos 3 versões grandes de Javascript: ES5, ES6 e ES2018. Todas elas tem diferenças e em alguns navegadores as implementaram parcialmente. Então vamos dizer que você quer usar toda a nova síntaxe do ES2018 mas você não tem certeza se todos os seus usuários possuem navegadores atualizados ou mesmo se os navegadores possuem implementação estável de algumas das coisas que você está interessado em usar (como import/export). Uma boa solução que temos hoje é usar <a href="babeljs.io/">Babel</a>. Babel é um transpilador de Javascript para Javascript, então você pode programar em ES2018 e compilar (ou neste caso transpilar) para uma versão mais velha de Javascript cujos navegadores já dominam. Para fazer isso você precisa criar um loader em seu arquivo de configuração do Webpack. A primeia coisa no entanto, é adicionar o Babel as nossas <code>devDependency</code>:</p>
 <pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> babel-loader@8.0.6 @babel/core@7.8.4 @babel/preset-env@7.8.4
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> babel-loader@8.1.0 @babel/core@7.9.0 @babel/preset-env@7.9.0
 </span></pre>
 <p>Agora mude seu arquivo de configuração do Webpack para adicionar o loader:</p>
 <pre style="background-color:#2b303b;">
@@ -313,7 +314,8 @@ module.exports = {
   module:{...},
   plugins: [
     new </span><span style="color:#bf616a;">HtmlWebpackPlugin</span><span style="color:#c0c5ce;">({template: &#39;</span><span style="color:#a3be8c;">./src/index.html</span><span style="color:#c0c5ce;">&#39;})
-  ]
+  ],
+  ...
 }
 ...
 </span></pre>
@@ -351,7 +353,8 @@ module: {
        use: {
          loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span style="color:#c0c5ce;">&#39;
        }
-     }
+     },
+     ...
   ]
 }
 ...
@@ -379,13 +382,14 @@ module: {
 &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
   ...
   &quot;</span><span style="color:#a3be8c;">live</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode development</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">live:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span style="color:#c0c5ce;">&quot;
+  &quot;</span><span style="color:#a3be8c;">live:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span style="color:#c0c5ce;">&quot;,
+  ...
 }
 ...
 </span></pre>
 <p>Execute e veja o seguinte:</p>
 <img src="live_reload_running.png">
-<p>Vá até <code>http://localhost:8080</code> e veja sua página aberta com o Título: <code>Getting started</code> e o resto da página em branco. Vamos colocar alguma ação nisso. Atualize seu arquivo <code>app.js</code> com o conteúdo:</p>
+<p>Vá até <a href="http://localhost:8080">http://localhost:8080</a> e veja sua página aberta com o Título: <code>Getting started</code> e o resto da página em branco. Vamos colocar alguma ação nisso. Atualize seu arquivo <code>app.js</code> com o conteúdo:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
 
@@ -402,7 +406,7 @@ document.</span><span style="color:#bf616a;">querySelector</span><span style="co
 </span></pre>
 <p>Sem parar sua aplicação, cheque seu terminal após salvar o arquivo <code>app.js</code> e irá ver o Webpack recompilando/transpilando os arquivos que você moduficou(neste caso apenas <code>app.js</code>), agora vá até seu navegador e sem pressional nada a página em branco irá te mostrar a imagem abaixo:</p>
 <img src="frontend_running.png">
-<p>Like it did in the terminal.</p>
+<p>Assim como eu fiz no terminal.</p>
 <h3 id="mas-e-o-css">Mas e o CSS?</h3>
 <p>Como em Javascript nós temos muitos transpiladores(Typescript, Coffescript, Javascript mesmo em diferentes versões) em CSS nós temos dois principais transpiladores(chamados pré-processadores)<a href="http://lesscss.org/">LESS</a> e <a href="https://sass-lang.com/">SASS</a>. Neste tutorial eu irei usar SASS porque eu irei usar <a href="https://getbootstrap.com/">Boostrap</a> e Bootstrap é feito usando SASS, logo por usar ambos juntos temos uma síntaxe mais poderosa para usar do Bootstrap(como o fato de SASS permitir a criação de funções e por isso você pode usar as funções pré-definidas no Bootstrap). Se você por alguma razão não quer usar SASS mas ainda quer usar Bootstrap, não se preocupe, ainda é possível, mas você terá que compilar o Bootstrap para CSS e aí sim usar em seus arquivos LESS ou CSS puro sem problema. Sem mais delongas vamos começar a configurar o SASS instalando todas as nossas dependências:</p>
 <pre style="background-color:#2b303b;">
@@ -432,26 +436,28 @@ module:{
   color: $a_color; //Usando a varável
 }
 </span></pre>
-<p>Agora vá para seu arquivo <code>index.html</code> e modifique nossa div <code>#root</code> para: </p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">root</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">class</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;&lt;/</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;
-...
-</span></pre>
-<p>Agora a última modificação: vá para seu arquivo <code>app.js</code> e importe nosso arquivo scss:</p>
+<p>Vá para o seu arquivo <code>app.js</code>. Primeira coisa que fará será importar nosso arquivo <code>app.scss</code>:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./js/greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
 </span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">./styles/app.scss</span><span style="color:#c0c5ce;">&quot;;
 ...
 </span></pre>
+<p>Agora na função <code>component</code> logo após criar a nova <code>div</code>, adicione a seguinte linha:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">const element </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;);
+  
+</span><span style="color:#bf616a;">element</span><span style="color:#c0c5ce;">.classList.</span><span style="color:#96b5b4;">add</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;);
+...
+</span></pre>
 <p>PS: Sim para arquivos CSS, SASS ou LESS, quando os estamos importando não usamos a keyword &quot;from&quot;</p>
-<p>Agora se você não parou a aplicação reinicie- a ou inicie- a(npm run live) caso contrário. Se seu texto agora é vermelho, parabéns, você conseguiu adicionar o pré-processador SASS em sua aplicação:</p>
+<p>Mantenha o resto como estava. Agora se você não parou a aplicação reinicie- a ou inicie- a(npm run live) caso contrário. Se seu texto agora é vermelho, parabéns, você conseguiu adicionar o pré-processador SASS em sua aplicação:</p>
 <img src="red_page_scss.png">
 <p>Agora vamos adicionar o Bootstrap. Instale as dependências:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install bootstrap@4.4.1 jquery@3.4.1
 </span></pre>
-<p>Você irá notar que estas são nossas primeiras non-devDependencies no projeto todo, isso porque precisamos delas em tempo de execução. <a href="https://jquery.com/">jQuery</a> está aqui apenas porque Boostrap precisa desta biblioteca, nós não iremos usar jQuery em nada neste tutorial. Agora para testarmos se funciona adicione as seguintes mudanças em seu arquivo <code>app.scss</code>:</p>
+<p>Você irá notar que estas são nossas primeiras non-devDependencies no projeto todo, isso porque precisamos delas em tempo de execução. <a href="https://jquery.com/">jQuery</a> está aqui apenas porque Boostrap precisa desta biblioteca, nós não iremos usar jQuery em nada neste tutorial. Agora para testarmos se funciona, adicione as seguintes mudanças em seu arquivo <code>app.scss</code>:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#c0c5ce;">@import &#39;~bootstrap&#39;;
 
@@ -484,7 +490,7 @@ module.exports = {
   module:{...},
   resolve: {
     modules: [path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &#39;</span><span style="color:#a3be8c;">src/js</span><span style="color:#c0c5ce;">&#39;), path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &#39;</span><span style="color:#a3be8c;">src/styles</span><span style="color:#c0c5ce;">&#39;), &#39;</span><span style="color:#a3be8c;">node_modules</span><span style="color:#c0c5ce;">&#39;]
-  }
+  },
   plugins: [...]
 }
 
@@ -499,37 +505,12 @@ module.exports = {
 <h3 id="testando-em-javascript-com-webpack">Testando em Javascript com Webpack</h3>
 <p>Se você tentou executar nossos testes irá ver que temos um problema agora. Nós mudamos a velha síntaxe <code>require</code> em nosso arquivo <code>Greeting.js</code> para usar <code>export</code> e o Mocha não sabe o que fazer:</p>
 <img src="mocha_problem.png"/>
-<p>Para resolver este problema nós podemos instalar uma dependência chamada <code>esm</code>e passá- la como parâmetro em nosso script <code>test</code> em <code>package.json</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm install </span><span style="color:#c0c5ce;">--</span><span style="color:#bf616a;">save</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">dev esm</span><span style="color:#c0c5ce;">@</span><span style="color:#d08770;">3.2</span><span style="color:#c0c5ce;">.</span><span style="background-color:#bf616a;color:#2b303b;">25</span><span style="color:#c0c5ce;">
-</span></pre>
-<p>Então:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">scripts</span><span style="color:#c0c5ce;">: {
-  ...
-  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">mocha -r esm test/javascript/*</span><span style="color:#c0c5ce;">&quot;
-  ...
-}
-...
-</span></pre>
-<p>Agora por último mas não menos importante, mudamos nosso arquivo <code>GreetingsTest.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">assert </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;;
-
-
-</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span style="color:#c0c5ce;">&quot;);
-...
-</span></pre>
-<p>Agora você pode executar e tudo terá voltado ao normal:</p>
-<img src="mocha_problem_fixed.png"/>
-<p>Mas ainda som você terá um problema. Um problema que irá enfrentar quando comeãr a criar componentes que herdam entre si. Mocha não consegue encontrar nossos módulos customizados. Lembre-se do que tivermos que fazer para facilitar importação de módulos <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/#path_reso">aqui</a>. Mocha não é capaz de ver isso, para isso precisamos instalar uma coisa chamada <code>mocha-webpack</code>. Isso irá permitir o mocha de ver nossos módulos usando a relucação de caminho:</p>
+<p>Para corrigir isso, você precisa instalar outro módulo da biblioteca mocha. Este módulo não só irá resolver nosso problema atual como também um problema que irá enfrentar quando começar a criar componentes que herdam entre si. Mocha não consegue encontrar nossos módulos customizados. Lembre-se do que tivermos que fazer para facilitar importação de módulos <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/#path_reso">aqui</a>. Mocha não é capaz de ver isso, para isso precisamos instalar uma coisa chamada <code>mocha-webpack</code>. Isso irá permitir o mocha de ver nossos módulos usando a relucação de caminho:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> mocha-webpack@2.0.0-beta.0
 </span></pre>
 <p>Aqui, observe que é muito importante que você use pelo menos a versão beta que estou a adicionar ou uma versão mais nova. Por que a versão atual não beta (1.1.0) utiliza uma versão antiga da biblioteca do Webpack e isso irá falhar ao carregar nossos arquivos de teste.</p>
-<p>Agora para deixar melhor, iremos mudar o nome de nosso arquivo de <code>GreetingsTest.js</code> para <code>Greetings.test.js</code>. Você irá entender o porque. O próximo passo é melhorar o import deste arquivo:</p>
+<p>O próximo passo é melhorar o import deste arquivo:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">import </span><span style="color:#bf616a;">assert </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;;
 </span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;;
@@ -543,16 +524,17 @@ module.exports = {
 <span style="color:#c0c5ce;">...
 </span><span style="color:#bf616a;">scripts</span><span style="color:#c0c5ce;">: {
   ...
-  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#bf616a;">mocha</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">webpack </span><span style="color:#c0c5ce;">--</span><span style="color:#bf616a;">webpack</span><span style="color:#c0c5ce;">-</span><span style="color:#bf616a;">config webpack</span><span style="color:#c0c5ce;">.config.js --</span><span style="color:#bf616a;">recursive </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">./test/**/*.test.js</span><span style="color:#c0c5ce;">&#39;&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span style="color:#c0c5ce;">  ...
+  &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">mocha-webpack --webpack-config webpack.config.js --mode production --recursive &#39;./test/**/*.test.js&#39;</span><span style="color:#c0c5ce;">&quot;
+  ...
 }
 ...
 </span></pre>
-<p>Agora estamos a chamar o mocha-webpack ao invés do mocha e estamos a passar nosso arquivo webpack.config.js como parâmetro e finalmente estamos a usar expressão regular em nossos testes. Este é o motivo de termos renomeado nosso arquvo para .test. isso facilitará para o mocha-webpack a diferenciar arquivos de teste e classes normais em nosso projeto. Agora você pode executar novamente e ver os testes funcionando como devem.</p>
+<p>Agora estamos a chamar o mocha-webpack ao invés do mocha e estamos a passar nosso arquivo webpack.config.js como parâmetro e finalmente estamos a usar expressão regular em nossos testes. Agora você pode executar novamente e ver os testes funcionando como devem.</p>
+<img src="mocha_webpack_working.png" />
 <p>E aqui terminamos nosso tutorial de Webpack, espero que tenham aprendido e entendido bem o que ensinei ^^</p>
 <h4 id="disclaimer">* Jamais diga que HTML é uma linguagem em nenhuma entrevista. JAMAIS!</h4>
 <h1 id="conclusao">Conclusão</h1>
-<p>Nesta postagem aprendemos como Webpack funciona e como ele pode nos ajudar a melhorar produtividade. Adiciomos SASS, Bootstrap e Babel com support a nova síntaxe the Javascript. Melhoramos nossos testes e finalmente transformamos nossa aplicação CLI em um frontend. O próximo passo será adicionar React à nossa aplicação finalizando o tutorial. Sinta- se livre para acessar a versão original desta postagem em inglês <a href="https://kiberstender.github.io/react-post-02-webpack/">inglês</a>. Te vejo na próxima postagem.</p>
+<p>Nesta postagem aprendemos como Webpack funciona e como ele pode nos ajudar a melhorar produtividade. Adiciomos SASS, Bootstrap e Babel com support a nova síntaxe the Javascript. Melhoramos nossos testes e finalmente transformamos nossa aplicação CLI em um frontend. O próximo passo será adicionar React à nossa aplicação finalizando o tutorial. Sinta- se livre para acessar a versão original desta postagem em inglês <a href="https://kiberstender.github.io/react-post-02-webpack/">inglês</a>. Te vejo na próxima <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/">postagem</a>.</p>
 
                             </div>
                         </div>

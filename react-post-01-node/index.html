@@ -251,21 +251,20 @@ So first thing you have to do is create our app directory. Let's call it <code>R
 <img src="create_src_and_appjs.png"/>
 <p>Ok now we have the minimum for our app. Edit your <code>package.json</code> to add a new script:</p>
 <pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">{
-  &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">React-example-app</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">description</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">A simple React frontend application</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
-    &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span style="color:#c0c5ce;">&quot;, 
-    &quot;</span><span style="color:#a3be8c;">test</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">echo </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">Error: no tests were specified</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;"> &amp;&amp; exit 1</span><span style="color:#c0c5ce;">&quot;
-  }
+<span style="color:#c0c5ce;">...
+&quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
+  ...
+  &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span style="color:#c0c5ce;">&quot;, 
+  ...
 }
+...
 </span></pre>
+<p>PS: Whenever you see three dots <code>...</code> it means: &quot;Keep whatever comes before this&quot; or if it comes after what we are adding/modifying, it means: &quot;Keep whatever comes after these dots&quot;.</p>
 <p>And execute it with the command I already taught you:</p>
 <img src="first_run.png"/>
 <p>If you've seen something similar to the below image, congratulations, you just made your first Node CLI application.</p>
 <h3 id="testing-in-javascript">Testing in Javascript</h3>
-<p>You know, programming is one thing but testing your code to guarantee it does what you really want it to do is a completely different thing, so how one test code in Javascript? In Node? One of the most famous libraries for testing that I know in JS is called <a href="https://mochajs.org/">Mocha</a>. It acts like a simple JUnit if you came from Java World, so you can assert things are what you expect them to be.</p>
+<p>You know, programming is one thing but testing your code to guarantee it does what you really want it to do is a completely different thing, so how one test code in Javascript? In Node? One of the most famous libraries for testing that I know in Javascript is called <a href="https://mochajs.org/">Mocha</a>. It acts like a simple JUnit if you came from Java World, so you can assert things are what you expect them to be.</p>
 <p>To give a better example let's create a separate class named <code>Greetings</code> in a different package. First create <code>javascript</code> directory inside <code>/src</code>. Inside it create a package(directory) named <code>greetings</code> and finally inside it create a file named <code>Greetings.js</code> and put the given content:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
@@ -284,8 +283,11 @@ So first thing you have to do is create our app directory. Let's call it <code>R
 <img src="test_dir.png"/>
 <p>PS: It is not mandatory to follow the same structure, it is just to make it easier to read.</p>
 <p>Next step is to install Mocha in our dev-dependency list:</p>
-<img src="install_mocha.png"/>
-<p>Now we code our tests. I'll write only two. One for success and one for failure, very simple tests as it is just a demonstration. So inside <code>test/javascript/greetings</code> create our <code>GreetingsTest.js</code> file and add the bellow code:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> mocha@7.1.1
+</span></pre>
+<p>PS: To guarantee your code will run like mine, please install everything I will list in the same version as I am using.</p>
+<p>Now we code our tests. I'll write only two. One for success and one for failure, very simple tests as it is just a demonstration. So inside <code>test/javascript/greetings</code> create our <code>Greetings.test.js</code> file and add the bellow code:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">var </span><span style="color:#c0c5ce;">assert = </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">assert</span><span style="color:#c0c5ce;">&#39;);
 </span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&#39;);
@@ -319,7 +321,7 @@ So first thing you have to do is create our app directory. Let's call it <code>R
 </span></pre>
 <p>Now next step: Run it!!!</p>
 <img src="run_mocha_tests.png"/>
-<p>If your test was succesfull like mine, nice, let's go the last two steps. First change your <code>src/app.js</code> to 'import' our newly created and test Greetings class:</p>
+<p>If your test was succesfull like mine, nice, let's go to the last two steps. First change your <code>src/app.js</code> to 'import' our newly created and test Greetings class:</p>
 <pre style="background-color:#2b303b;">
 <span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings.js</span><span style="color:#c0c5ce;">&quot;);
 

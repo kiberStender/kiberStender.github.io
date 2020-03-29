@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>
+        kiberBlog
+    </title>
+
+    
+
+<link id="darkly" class="stylesheet" rel="stylesheet"
+    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
+
+
+    <!-- This script must follow css -->
+    
+
+    
+
+    
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
+    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+    
+
+    
+    
+
+    <noscript>
+        <style>
+            .navbar-menu {
+                display: block;
+            }
+
+            .js-only {
+                display: none;
+            }
+        </style>
+    </noscript>
+    
+</head>
+
+<body>
+    
+    
+<!-- START NAV -->
+
+
+    
+
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <a class="navbar-item" href="/">
+                    
+                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
+                        alt="Home">
+                    
+                </a>
+                
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
+                        <span itemprop="name">Categories
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
+                        <span itemprop="name">Tags
+                        </span>
+                    </a>
+                    
+                    
+                    
+                    <a itemprop="url"
+                        class="navbar-item "
+                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
+                        <span itemprop="name">Authors
+                        </span>
+                    </a>
+                    
+                    
+
+                    
+                    <div class="navbar-item search-container js-only">
+                        <input class="input" id="search" type="search" placeholder="Search">
+
+                        <div class="search-results box">
+                            <div class="search-results__items"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    
+
+<!-- END NAV -->
+<main>
+    <section class="container">
+        <div class="columns is-desktop">
+            <div class="column is-10-desktop is-offset-1-desktop">
+                <article itemscope itemtype="http://schema.org/BlogPosting">
+                    <div class="card article">
+                        <div class="card-content">
+                            
+<header>
+    <div class="has-text-centered">
+        <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/">
+            <p class="title article-title">Webpack com React e Scss- Parte 3: React
+            </p>
+        </a>
+        <div class="tags has-addons level-item">
+            <span class="tag is-rounded">2020-03-29</span>
+            
+            <span class="tag is-rounded is-primary">
+                    
+                    Kleber Stender
+                    
+                    
+            </span>
+                       
+            <span class="tag is-rounded">
+<svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
+    stroke-linejoin="round" stroke-width="6.25%">
+    <circle cx="16" cy="16" r="14" />
+    <path d="M16 8 L16 16 20 20" />
+</svg>
+<span>&nbsp;18 minute read</span>
+</span>
+        </div>
+    </div>
+</header>
+
+                            <div itemprop="articleBody" class="content article-body">
+                                <h1 id="intro">Introdução</h1>
+<p>Olá querido leitor/leitora. Esta é a terceira parte de nossa séria de ReactJS. Após aprendermos Node JS and Webpack, você está apto a aprender o que é, por que e como usar ReactJS. Sente-se e relaxe. Como dito anteriormente esta é a terceira parte de um tutorial e nas outras partes iniciamos um simples projeto. Eu recomendo você ler a <a href="https://kiberstender.github.io/pt_br/react-post-01-node/">primeira</a> e a <a href="https://kiberstender.github.io/pt_br/react-post-02-webpack/">segunda</a> partes antes de começar a ler esta parte.</p>
+<h1 id="react">React JS</h1>
+<p>Finalmente chamos a tópico principal desta série: React JS. O que exatamente faz o <a href="https://reactjs.org/">React JS</a> que merece sua atenção? Irei mostrar dois trechos de código a você e então quero que você tente descobrir qual executa mais rápido:</p>
+<ol>
+<li><pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">let </span><span style="color:#bf616a;">arr </span><span style="color:#c0c5ce;">= [</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">6</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">7</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">8</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">9</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">11</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">12</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">13</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">14</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">15</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">18</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">19</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">];
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ul </span><span style="color:#c0c5ce;">= document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#a_ul</span><span style="color:#c0c5ce;">&quot;); </span><span style="color:#65737e;">// uma lista não ordenada &lt;ul id=&quot;a_ul&quot;&gt;&lt;ul/&gt;
+
+</span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">item </span><span style="color:#c0c5ce;">of </span><span style="color:#bf616a;">arr</span><span style="color:#c0c5ce;">) {
+</span><span style="color:#c0c5ce;">  </span><span style="color:#bf616a;">ul</span><span style="color:#c0c5ce;">.innerHTML += `</span><span style="color:#a3be8c;">&lt;li&gt;</span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">item</span><span style="color:#c0c5ce;">}</span><span style="color:#a3be8c;">&lt;/li&gt;</span><span style="color:#c0c5ce;">`;
+</span><span style="color:#c0c5ce;">}
+</span></pre></li>
+<li><pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">let </span><span style="color:#bf616a;">arr </span><span style="color:#c0c5ce;">= [
+</span><span style="color:#c0c5ce;">  </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">6</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">7</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">8</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">9</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">10</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">11</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">12</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">13</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">14</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">15</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">17</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">18</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">19</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">20</span><span style="color:#c0c5ce;">,
+</span><span style="color:#c0c5ce;">  </span><span style="color:#d08770;">21</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">22</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">23</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">24</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">25</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">26</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">27</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">28</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">29</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">30</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">31</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">32</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">33</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">34</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">35</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">36</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">37</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">38</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">39</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">40</span><span style="color:#c0c5ce;">,
+</span><span style="color:#c0c5ce;">  </span><span style="color:#d08770;">41</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">42</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">43</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">44</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">45</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">46</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">47</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">48</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">49</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">50</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">51</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">52</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">53</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">54</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">55</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">56</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">57</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">58</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">59</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">60</span><span style="color:#c0c5ce;">,
+</span><span style="color:#c0c5ce;">  </span><span style="color:#d08770;">61</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">62</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">63</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">64</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">65</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">66</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">67</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">68</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">69</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">70</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">71</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">72</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">73</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">74</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">75</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">76</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">77</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">78</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">79</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">80</span><span style="color:#c0c5ce;">,
+</span><span style="color:#c0c5ce;">  </span><span style="color:#d08770;">81</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">82</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">83</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">84</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">85</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">86</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">87</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">88</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">89</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">90</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">91</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">92</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">93</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">94</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">95</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">96</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">97</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">98</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">99</span><span style="color:#c0c5ce;">,</span><span style="color:#d08770;">100
+</span><span style="color:#c0c5ce;">];
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ul </span><span style="color:#c0c5ce;">= document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#a_ul</span><span style="color:#c0c5ce;">&quot;); </span><span style="color:#65737e;">// uma lista não ordenada &lt;ul id=&quot;a_ul&quot;&gt;&lt;ul/&gt;
+
+</span><span style="color:#bf616a;">ul</span><span style="color:#c0c5ce;">.innerHTML = </span><span style="color:#bf616a;">arr</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">reduce</span><span style="color:#c0c5ce;">((acc, item) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">`</span><span style="color:#a3be8c;">{acc}&lt;li&gt;</span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">item</span><span style="color:#c0c5ce;">}</span><span style="color:#a3be8c;">&lt;/li&gt;</span><span style="color:#c0c5ce;">`, &quot;&quot;)
+</span></pre></li>
+</ol>
+<p>Se você não está muito bem familiarizado com Javascript irá dizer que o primeiro pedaço é mais rápido, porque tem apenas 21 itens. A questão aqui é: <code>innerHTML</code> não é uma simples variável. Qualquer alteração à ela dispara operações de <a href="https://en.wikipedia.org/wiki/Input/output">I/O(Input/Output)(Entrada/Saída)</a> em seu navegador. I/O é uma operação cara e não somente isso mas diferente de quando se altera o valor de uma variável, fazer I/O pode falhar devido a muitos possiveis problemas(como ter um atraso  no proceso devido a falta de recursos como cpu e memória no momento e o navegador cancelar sua operação de I/O) e dada a decisão de fazer como uma variável ao invés de uma função, não é visível ao desenvolvedor que isso poderá falhar e erros podem acontecer por desatenção.</p>
+<p>Ao executar o primeiro trecho de código nós estamos disparando 21 operações de I/O enquanto que no segundo trecho, apesar de termos um loop maior (101 itens) nós somente fazer operação de I/O.</p>
+<h1 id="whatdoes">E o que o React tem haver com isso?</h1>
+<p>React trabalha com a idéia de controlar o número de operações IO que você faz ao não te permitir fazer isso. Mas como o React sabe quando fazer I/O e quando não fazer? React faz comparações de variáveis, logo a qualquer momento que uma variável muda algo React dispara uma re-renderização em somente as partes de seu código que são afetadas por aquele valor que mudou. Para controlar isso, React quer que você não mude variáveis diretamente:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">let </span><span style="color:#bf616a;">a </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">10
+</span><span style="color:#bf616a;">a </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">5 </span><span style="color:#65737e;">// Não faça isso
+</span></pre>
+<p>React tem uma 'interface' onde tem uma função/método de nome <code>setState</code> e ao usar esta função, você controla a renderização or deixa o React saber quando a variável mudou e disparar a operação re-renderização(mais desse assunto depois). Ao fazer isso, React sempre sabe quando e quantas operações de I/O a serem executadas, porque ele controla o que ele chama de <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/#components">Componentes</a> e quaisquer Componentes dentro do Componente que disparou o <code>setState</code> serão atualizados também. </p>
+<p>Ao invés de fazer um I/O por Componente ele faz o que a função <code>reduce</code> faz em um array, processando tudo em uma única leva de processamento retornando ao fim um único object para o React fazer o I/O.</p>
+<h1 id="adicionando-react-em-nosso-projeto">Adicionando React em nosso projeto</h1>
+<p>Agora, antes que eu vá mais fundo na explicação, vamos re-escrever nosso simples &quot;Hello Wolrd&quot;. A primceira coisa que temos de fazer é adicionar React in nossa list de dependências. React é um framework assim como Bootstrap, logo estamos apenas adicionando-o a lista de dependências normais e não a lista de dev:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install react@16.13.0 react-dom@16.13.0
+</span></pre>
+<p>PS: Para garantir que tudo irá rodar no futuro como está a funcionar agora, por favor instale as dependências na mesma versão que estou a colocar aqui</p>
+<p>O React em si está dentro da biblioteca <code>react</code>, por agora vamos não focar em <code>react-dom</code> pois só iremos usá-lo para iniciar a aplicação. Agora vá a seu arquivo <code>/src/javascript/greetings/Greetings.js</code> e mude-o para o dado exemplo:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">import </span><span style="color:#bf616a;">React </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">react</span><span style="color:#c0c5ce;">&quot;;</span><span style="color:#65737e;">//1
+
+</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{</span><span style="color:#65737e;">//2  
+  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {</span><span style="color:#65737e;">//3
+    </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(
+      </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">, {id:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, className:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">}, </span><span style="color:#c0c5ce;">`</span><span style="color:#a3be8c;">Hello Mr/Ms </span><span style="color:#eff1f5;">${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">`
+    </span><span style="color:#eff1f5;">); </span><span style="color:#65737e;">//4
+  </span><span style="color:#eff1f5;">}
+}
+</span></pre>
+<p>Vamos a explicação:</p>
+<ol>
+<li>A primeira coisa que você faz é importar o React no código</li>
+<li>Então faça nossa classe Greeting extender de React.Component e teremos metódos legais para cuidar dos ciclos de vida(Explicarei isso depois)</li>
+<li>Mudamos nosso método <code>greet</code> de nome para <code>render</code>(Este é um dos ciclos de vida do React que mencionei)</li>
+<li>Finalmente, retornamos um objeto que representa um elemento virtual usando <code>React.createElement</code>. Perceba que agora estamos a <code>this.props.name</code> ao invés <code>this.name</code>. Eplicarei isso depois</li>
+<li>Observe que eu não criei um construtor, nem declarei a variável <code>this.state</code> que mencionei anteriormente. Não iremos precisar disso agora porque não atualizaremos nada ainda</li>
+</ol>
+<p>Por fim, vá até seu arquivo <code>app.js</code> e mude-o para:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">import </span><span style="color:#bf616a;">React </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">react</span><span style="color:#c0c5ce;">&quot;; </span><span style="color:#65737e;">//1
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">ReactDOM </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">react-dom</span><span style="color:#c0c5ce;">&quot;; </span><span style="color:#65737e;">//2
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
+</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">app.scss</span><span style="color:#c0c5ce;">&quot;;
+
+</span><span style="color:#ebcb8b;">ReactDOM</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">render</span><span style="color:#c0c5ce;">( </span><span style="color:#65737e;">//3
+  </span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">, {name: &#39;</span><span style="color:#a3be8c;">John Titor</span><span style="color:#c0c5ce;">&#39;}, </span><span style="color:#d08770;">null</span><span style="color:#c0c5ce;">), </span><span style="color:#65737e;">//4
+  </span><span style="color:#c0c5ce;">document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;) </span><span style="color:#65737e;">//5
+</span><span style="color:#c0c5ce;">);
+</span></pre>
+<p>Explicação:</p>
+<ol>
+<li>Como previamente, importe React para nosso código</li>
+<li>Agora import ReactDOM. Este é o 'motor' do React. Isto é que faz o React funcionar como funciona. Se você tem conhecimento em Java, imagine a classe Thread. Apenas instanciá- la não irá fazê-la funcionar. Você precisa chamar o método <code>start</code>  e precisará especificar um <code>Executor</code>(geralmente <code>GlobalExecutor</code>) e por fim sua Thread <code>será executada</code>(se houverem recursos para tal). Se você não é um desenvolvedor Java ou não é familiarizado com a classe Thread, React Dom é o que inicia sua aplicação React e controla os ciclos de vida.</li>
+<li>Aqui é onde iniciamos nossa aplicação criando um elemento virtual(No nosso caso nosso recém-criado Componente Greetings)</li>
+<li>Aqui é onde passamos valores externos para nosso Componente passando o objeto <code>{name: 'John Titor'}</code>. Esta é a menira que passamos o nome que queremos renderizar em  nosso Componente Greetings. E o usamos na forma de <code>this.props.name</code>(ou <code>this.props.(name you gave in to the field in the object)</code>dentro de nossa class Greetings. Mais detalhes depois</li>
+<li>Aqui dizemos onde queremos que nossa aplicação será renderizada. Se por alguma razão você quer ter uma segunda aplicação você pode simplesmente chamar <code>ReactDOM.render</code> novamente passando um <code>document.querySelector(&quot;another_element&quot;)</code> diferente.</li>
+</ol>
+<p>E voi là. Para garantir a você que está funcionando e não é um cache, eu mudei &quot;Node Dev&quot; para &quot;John Titor&quot;. Então verifique, se você ver um nome diferente, você terá certeza que fez tudo corretamente.</p>
+<img src="react_john_titor.png">
+<p>Veja o HTML puro que fora gerado:</p>
+<img src="generated_code_react.png">
+<p>E agora você pode ter React JS em seu projeto. Como pode ver, React não é um frameworl para embelezar sua aplicação, como por exemplo, quando você está a aprender JQuery. Mesmo que você possa usar JQuery sem adicionar CSS dinamicamente, isso é contra-intuitivo. React é feito para você focar na estrutura de seu HTML e como dinamicamemte modificar valores diminuindo ao máximo possível operações de I/O. Se você comparar ao JQuery que faz I/O quase o tempo todo, React é focado em melhorar a performance enquanto mantém seu código (mais) legível.</p>
+<h1 id="babel_jsx">JSX</h1>
+<p>Espere um minuto... O que é essa síntaxe estranha? Isto provavelmente não é o que você viu até então quando as pessoas falavam de React. O que você provavelmente viu é isso:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">import </span><span style="color:#bf616a;">React </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">react</span><span style="color:#c0c5ce;">&quot;;
+
+</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {
+    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;</span><span style="color:#bf616a;">Hello Mr</span><span style="color:#c0c5ce;">/</span><span style="color:#bf616a;">Ms </span><span style="color:#eff1f5;">{</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">?&lt;/</span><span style="color:#96b5b4;">div&gt;
+  }
+}
+</span></pre>
+<p>Como obter isso? Esta síntaxe HTML no meio do seu Javascript é chamada <a href="https://reactjs.org/docs/jsx-in-depth.html">JSX</a>. É uma linguagem trsnspilada no meio do seu Javascript transpilado que é transformada nesta 'estranha' síntaxe que você viu acima. Para ter essa síntaxe em seu código tornando mais fácil escrever e ler, você precisa somente adicionar outro 'preset' na sua configuração do Babel (no arquivo <code>webpack.config.js</code>). Primeiro instale o preset do react do Babel:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> @babel/preset-react@7.9.4
+</span></pre>
+<p>Agora vá até <code>webpack.config.js</code> e adicione o recém instalado preset à nossa configuração:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">options</span><span style="color:#c0c5ce;">: {
+  presets: [&#39;</span><span style="color:#a3be8c;">@babel/preset-env</span><span style="color:#c0c5ce;">&#39;, &#39;</span><span style="color:#a3be8c;">@babel/preset-react</span><span style="color:#c0c5ce;">&#39;] </span><span style="color:#65737e;">// Apenas adicione &#39;@babel/preset-react&#39;
+</span><span style="color:#c0c5ce;">}
+...
+</span></pre>
+<p>PS: Toda vez que você ver três pontos <code>...</code>, isso significa: &quot;mantenha o que vier antes disso&quot;. Ou se vier depois do que estamos a adicionar/modificar, significa: &quot;mantenha o que estiver após os três pontos&quot;.</p>
+<p>Agora você pode começar a escrever JSX HTML dentro de seus arquivos Javascript e o Babel irá transpilar corretamente.</p>
+<ol>
+<li><code>app.js</code><pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#ebcb8b;">ReactDOM</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">render</span><span style="color:#c0c5ce;">(
+</span><span style="color:#c0c5ce;">  &lt;</span><span style="color:#bf616a;">Greetings name</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">John Titor</span><span style="color:#c0c5ce;">&quot; /&gt;,
+</span><span style="color:#c0c5ce;">  document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;)
+</span><span style="color:#c0c5ce;">);
+</span></pre></li>
+<li><code>javascript/greetings/Greetings.js</code><pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">render</span><span style="color:#c0c5ce;">(){
+</span><span style="color:#c0c5ce;">  </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;</span><span style="color:#bf616a;">Hello Mr</span><span style="color:#c0c5ce;">/</span><span style="color:#bf616a;">Ms </span><span style="color:#c0c5ce;">{</span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.props.name}&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#96b5b4;">}
+</span><span style="color:#d08770;">...
+</span></pre></li>
+</ol>
+<h1 id="react-createelement-e-jsx">React.createElement e JSX</h1>
+<p>Entender como o JSX é transformado em <code>React.createElement</code> pode nos ajudar a entender algumas informações que veremos com mais detalhes nos próximos tópicos. Primeiro veremos o protótipo de <code>createElement</code>:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(
+  </span><span style="color:#bf616a;">tipo</span><span style="color:#c0c5ce;">,
+  [</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">],
+  [...</span><span style="color:#bf616a;">filhos</span><span style="color:#c0c5ce;">]
+)
+</span><span style="color:#65737e;">// Using it
+</span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(
+  &#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;,
+  {prop1:&quot;</span><span style="color:#a3be8c;">string</span><span style="color:#c0c5ce;">&quot;, prop2:</span><span style="color:#bf616a;">uma_variavel</span><span style="color:#c0c5ce;">},
+  &quot;</span><span style="color:#a3be8c;">filho1</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">filho2</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">span</span><span style="color:#c0c5ce;">&#39;, {id:&quot;</span><span style="color:#a3be8c;">abc</span><span style="color:#c0c5ce;">&quot;}, &#39;</span><span style="color:#a3be8c;">texto</span><span style="color:#c0c5ce;">&#39;)
+)
+
+</span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(
+  </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">,
+  {nome:&quot;</span><span style="color:#a3be8c;">Dev</span><span style="color:#c0c5ce;">&quot;},
+  &quot;</span><span style="color:#a3be8c;">filho1</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">filho2</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">UmComponente</span><span style="color:#c0c5ce;">, {id:&quot;</span><span style="color:#a3be8c;">abc</span><span style="color:#c0c5ce;">&quot;})
+)
+</span></pre>
+<ol>
+<li>tipo: Uma String ou objeto que contém o component que estamos a instanciar. Para qualquer Tag nativa de HTML, você o passa como uma String assim como 'div', 'span', 'article', etc. Para seus próprios Componentes como nosso Greetings, você o passar não como uma String mas como uma 'definição de classe anônima' ou um tipo se preferir</li>
+<li>props: É um objeto literal <code>{}</code> contendo os valores que você quer passar para seu Component instanciado. No protótipo está envolto de [] não porque é um array, mas para dizer que é opcional</li>
+<li>filhos: É um array vargas que você passa o que você quiser, contanto que seja serializável para String. Geralmente Componentes customizados não têm filhos. Não é uma regra, é apenas que normalmente não se aninha coisas dentro de seu Componente de fora do arquivo que o define. No protótipo está envolto de [] não porque é um array, mas para dizer que é opcional</li>
+</ol>
+<p>Agora a representação JSX:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div prop1</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">string</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">prop2</span><span style="color:#c0c5ce;">={</span><span style="color:#bf616a;">uma_variavel</span><span style="color:#c0c5ce;">}&gt;
+  </span><span style="color:#bf616a;">filho1
+  filho2
+  </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">span id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">abc</span><span style="color:#c0c5ce;">&quot;&gt;</span><span style="color:#bf616a;">texto</span><span style="color:#c0c5ce;">&lt;/</span><span style="color:#96b5b4;">span&gt;
+&lt;</span><span style="color:#c0c5ce;">/</span><span style="color:#96b5b4;">d</span><span style="color:#b48ead;">i</span><span style="color:#96b5b4;">v</span><span style="color:#c0c5ce;">&gt;
+
+&lt;</span><span style="color:#bf616a;">Greetings name</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">Dev</span><span style="color:#c0c5ce;">&quot;&gt;
+  </span><span style="color:#bf616a;">filho1
+  filho2
+  </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">UmComponent id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">abc</span><span style="color:#c0c5ce;">&quot;/&gt;
+&lt;/</span><span style="color:#96b5b4;">Greetings&gt;
+</span></pre><h1 id="components">Componentes do React</h1>
+<p>Eu disse <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/#whatdoes">anteriormente</a> que o React tem algo chamado <a href="https://reactjs.org/docs/react-component.html">Componente</a>. Mas o que é um Componente: Um Componente pode ser duas coiasas:</p>
+<ol>
+<li>Uma função que retorna JSX/React.createElement:<pre style="background-color:#2b303b;">
+<span style="color:#65737e;">//1
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">Greeter</span><span style="color:#c0c5ce;">(props){
+</span><span style="color:#c0c5ce;">  </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;&gt;{props.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#96b5b4;">}
+</span><span style="color:#c0c5ce;">//</span><span style="color:#bf616a;">ou
+</span><span style="color:#65737e;">//2
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">Greeter</span><span style="color:#c0c5ce;">(props){
+</span><span style="color:#c0c5ce;">  </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;, {id:&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;}, `${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.greet} ${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} ${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}`);
+</span><span style="color:#c0c5ce;">}
+</span></pre>ou<pre style="background-color:#2b303b;">
+<span style="color:#65737e;">//3
+</span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">Greeter </span><span style="color:#c0c5ce;">= (props) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;&gt;{props.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#c0c5ce;">//</span><span style="color:#bf616a;">ou
+</span><span style="color:#65737e;">//4
+</span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">Greeter </span><span style="color:#c0c5ce;">= (props) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#ebcb8b;">React</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;, {id:&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;}, `${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.greet} ${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} ${</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}`);
+</span></pre></li>
+<li>Uma classe que herda de <code>React.Component</code> ou <code>React.PureComponent</code> e tem um método <code>render</code> que retorna JSX/React.createElement<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greeter </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">constructor</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">props</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">super</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">props</span><span style="color:#eff1f5;">)
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;">{this.props.</span><span style="color:#bf616a;">greet</span><span style="color:#eff1f5;">} {</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.treatment} {</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#96b5b4;">  }
+</span><span style="color:#96b5b4;">}
+</span><span style="color:#c0c5ce;">//</span><span style="color:#bf616a;">or
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greeter </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">constructor</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">props</span><span style="color:#eff1f5;">){
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">super</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">props</span><span style="color:#eff1f5;">)
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">, {id:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">}, </span><span style="color:#c0c5ce;">`</span><span style="color:#eff1f5;">${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.greet} ${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.treatment} ${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">`</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}
+</span></pre>PS: Se você não está a adicionar nada além do chamado de <code>super</code> em seu construtor, é opcional escrevê- lo:<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greeter </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;</span><span style="color:#eff1f5;">{this.props.</span><span style="color:#bf616a;">greet</span><span style="color:#eff1f5;">} {</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.treatment} {</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#96b5b4;">  }
+</span><span style="color:#96b5b4;">}
+</span><span style="color:#c0c5ce;">//</span><span style="color:#bf616a;">ou
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greeter </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">() {
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">, {id:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">}, </span><span style="color:#c0c5ce;">`</span><span style="color:#eff1f5;">${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.greet} ${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.treatment} ${</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name}</span><span style="color:#c0c5ce;">`</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}
+</span></pre></li>
+</ol>
+<p>Vá até <code>src/javascript/</code> e crie um novo pacote/diretório chamado <code>greeter</code> e dentro disto crie um arquivo de nome <code>Greeter.js</code> e copie sua implementação de Component favorita acima e cole- a no recém criado arquivo. Por uma questão de simplicidade irei usar o exemplo 3:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">import </span><span style="color:#bf616a;">React </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">react</span><span style="color:#c0c5ce;">&quot;
+
+</span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">Greeter </span><span style="color:#c0c5ce;">= (props) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;{props.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}&lt;/</span><span style="color:#96b5b4;">div&gt;
+
+export default Greeter
+</span></pre>
+<p>Mesmo que pareça não estarmos a usar o <code>React</code>, não remova o comando import porque se você lembrar, quando transpilado, o JSX se transoformará em <code>React.createElement</code>. Agora mude seu <code>src/javascript/greetings/Greetings.js</code>:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">import Greeter from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greeter/Greeter</span><span style="color:#c0c5ce;">&quot;
+
+</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{</span><span style="color:#65737e;">//2  
+  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">(){
+    </span><span style="color:#b48ead;">return </span><span style="color:#eff1f5;">(
+      </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;
+        &lt;</span><span style="color:#bf616a;">Greeter greet</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">Hello</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">treatment</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">Mr/Ms</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">name</span><span style="color:#c0c5ce;">=</span><span style="color:#eff1f5;">{this.props.</span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">} </span><span style="color:#c0c5ce;">/&gt;
+      &lt;/</span><span style="color:#96b5b4;">div&gt;
+    )
+  }
+}
+</span></pre>
+<p>PS: Por causa da natureza interpretada do Javascript, você não pode pular linhas depois de um <code>return</code> caso contrário o interpretador retornará <code>undefined</code>. Logo se a expressão em JSX é muito grande envolva- a em parênteses e daí poderá pular quantas linhas quiser/precisar.</p>
+<p>Ou: </p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">import Greeter from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greeter/Greeter</span><span style="color:#c0c5ce;">&quot;
+
+</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#b48ead;">extends </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#a3be8c;">Component </span><span style="color:#eff1f5;">{
+  </span><span style="color:#8fa1b3;">render</span><span style="color:#eff1f5;">(){
+    </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(
+      </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#eff1f5;">, 
+      {id:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, className:</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">}, 
+      </span><span style="color:#ebcb8b;">React</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">Greeter</span><span style="color:#eff1f5;">, {greet: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Hello</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, treatment: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Mr/Ms</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, name: </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.props.name})
+    )
+  }
+}
+</span></pre>
+<p>Tudo isso para lhe dizer que um Componente é apenas você criando sua própria Tag HTML. Ao fazê- lo, cada Componente que você cria é parte de sua aplicação, tornando assim mais fácil compor estas partes no final, como se fosse apenas um grande arquivo HTML. Se você executar agora, irá perceber que novamente nada mudou no resultado final, mas veja o HTML gerado:</p>
+<img src="generated_code_code2.png"/>
+<h3 id="componente-feito-em-function-vs-feito-classe">Componente feito em Function vs feito Classe</h3>
+<p>A vantagem em ter um Componente feito em uma função é que, torna- se menos verboso e rápido de ser escrito, veja os exemplos <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/#components">1, 2, 3 e 4(especialmente 3 e 4)</a>. Geralmente você irá usar desta forma quando tiver um simples Componente, como nosso Greet, que somente mostra alguma coisa e não possui interações com o usuário como quando se cria uma Cabeçalho, Rodapé ou qualquer parte estática de sua aplicação que não irá mudar por ações internas do próprio Componente.</p>
+<p>Por outro lado ter um Componente como uma classe, irá lhe garantir mais controle sobre seu Componente, pois você terá suporte dos ciclos de vida do React<!--([leia mais aqui](@/react_post_04_react_end/index.pt_br.md#lifecycle))--> e mudança de estados usando <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/#whatisstate">this.setState</a>. Você perde na quantidade de code escrito, mas ganha no nível de melhorias e otimização de seu Componente.</p>
+<p>De qualquer forma, para mudar de classe para função ou  vice-versa não é tão difícil, então se você não está seguro qual a melhor abordagem a se usar, vá com a abordagem de classe, se você ver que seu Componente é apenas mudar por fora(via <code>props</code>), ou você não precisar melhorar/usar ciclos de vida, você pode facilmente mudar para a abordagem de função depois.</p>
+<h1 id="props">O que são esses &quot;props&quot;?</h1>
+<p><a href="https://reactjs.org/docs/components-and-props.html">Props</a> é a abreviação de &quot;Propriedades&quot;. Pense em seu Componente como se fosse uma função, os <code>props</code> são seus parâmetros, mas ao invés de passà los por posição como você normalmente faz em uma função, aqui você usa os nomeia para passá- los em qualquer posição.</p>
+<p>Uma vez que você passa um <code>props</code> em seu JSX ou <code>React.createElement</code> você poderá acessá- lo dentro de sua classe/função que declarou seu Componente usando <code>props.[o exato mesmo nome]</code> que você declarou fora da classe/função quando instanciou- o. Você pode passar literalmente qualquer coisa via <code>props</code>: funções, strings, int, double, objetos complexos, qualquer coisa que o javascript permite vocẽ por em um objeto, porque se você se lembrar como passamos <code>props</code> na função <code>createElement</code>, é justamente um objeto literal. Veja o exemplo abaixo:</p>
+<p>Declarando</p>
+<img src="props_declaring.png"/>
+<p>Instanciando</p>
+<img src="props_instance.png"/>
+<p>Observe que <code>props.greet</code> na primeira iamgem está a ser populaddo na segunda imagem via <code>greet=&quot;Hello&quot;</code>. Se você esquecer de popular desta forma, seu <code>props.greet</code> terá como valor <code>undefined</code> em sua classe/função. Logo, lembre-se sempre de ou proteger seus <code>props</code> com algum if else ou sempre popule seus <code>props</code> corretamente quando instanciar seu Componente. Veja um exemplo de como proteger seus Componente contra variáveis de valor <code>undefined</code>:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">const </span><span style="color:#8fa1b3;">Greeter </span><span style="color:#c0c5ce;">= (props) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greeter-component</span><span style="color:#c0c5ce;">&quot;&gt;{props.greet ? props.greet : &quot;</span><span style="color:#a3be8c;">Hello</span><span style="color:#c0c5ce;">&quot;} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.treatment} {</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">.name}&lt;/</span><span style="color:#96b5b4;">div&gt;
+</span><span style="color:#d08770;">...
+</span></pre>
+<p>Deste jeito, quem quer que esteja a usar seu Componente Greeter e esquecer de popular <code>greet</code>, o Componente irá assumir que o valor é &quot;Hello&quot;.</p>
+<h1 id="whatisstate">So the state is ... ?</h1>
+<p>Enquanto os <code>props</code> são valores extermnos passados a seu Component via um Componente pai, eles são complementante imutáveis e mudá- los dentro de seu Componente não irá disparar nenhuma re-renderização. Logo como podemos mutar valores para interagir como nossos usuários? Como mencionado no <a href="https://kiberstender.github.io/pt_br/react-post-03-react-beggining/#whatdoes">ínicio</a>, React tem uma função de nome <a href="https://reactjs.org/docs/react-component.html#setstate">setState</a> para lidar com mutações que somente estão disponíveis se seu Componente é uma classe que herda de <code>React.Component</code> ou <code>React.PureComponent</code>. Você precisa criar uma variável de nome <code>state</code>(e tenha atenção para não dar outro nome, tem que ser <code>state</code>) e esta variável deverá ser um objeto contento, se possívelm apenas valores (como String, Int, Double, classes complexas represetando um valor como Date) ou qualquer coisa que pode ser comparável:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">constructor</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">super</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">)
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.state = {
+    greet: &quot;&quot;,
+    treatment: &quot;&quot;,
+    title: &quot;&quot;,
+    aNumber: </span><span style="color:#d08770;">0
+  </span><span style="color:#c0c5ce;">}
+}
+...
+</span></pre>
+<p>E para mudar um dos valores que você tem você usa <code>setState</code> deste forma:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">minhaFuncaoParaMudarGreet</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">newGreet</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">({greet: </span><span style="color:#bf616a;">newGreet</span><span style="color:#c0c5ce;">})
+}
+...
+</span></pre>
+<p>Ou:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">minhaFuncaoQueIncrementa</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">value</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">(state </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">({aNumber: </span><span style="color:#bf616a;">state</span><span style="color:#c0c5ce;">.aNumber + </span><span style="color:#bf616a;">value</span><span style="color:#c0c5ce;">}))
+}
+...
+</span></pre>
+<p>Ou:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">minhaFuncaoQueMudaGreetEIncrementaANumber</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">newGreet</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">aNumberToIncrement</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">((state, props) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">({aNumber: </span><span style="color:#bf616a;">state</span><span style="color:#c0c5ce;">.aNumber + </span><span style="color:#bf616a;">aNumberToIncrement</span><span style="color:#c0c5ce;">, greet: </span><span style="color:#bf616a;">newGreet</span><span style="color:#c0c5ce;">}))
+}
+...
+</span></pre>
+<p>Independente do que você escolher(passar objeto simples ou passar função anônima) este comando irá disparar o React para comparar o antigo valor de <code>greet</code> com <code>newGreet</code> e <code>aNumber</code> com o novo valor para checar se há diferenças. Se houverem diferenças, React re-renderizará seu Componente e todos os filhos dentro dele. Atente-se a esta parte <code>React re-renderizará seu Componente e todos os filhos dentro dele</code>. Então se você não quebrar sua aplicação em tantos pequenos Componentes quanto puder, você poderá ter problemas de performance por ter muitas coisas para re-renderizar toda vez que mudar uma única variável.</p>
+<h3 id="a-mudar-treatment">A mudar <code>treatment</code></h3>
+<p>Todos esses exemplos de como mudar valores dentro de <code>this.state</code> são maravilhosos mas, como realmente se faz o mundo real? Vamos adicionar um <code>input</code> para permitir que o usuário digite o que quiser que seja mostrado no &quot;campo treatment&quot; ao invés de &quot;Mr/Ms&quot;. Inputs em React são Componentes simples que exigem que você faça o bind/attachment/implementação do listener <code>onChange</code> e opcionalmente faça o bind/attachment de uma variável no props <code>value</code>. Bind/Attach são os termos usados para descrever a ação de passar uma variável para algum prop em um dado Componente, neste caso um <code>input</code>. Este listener <code>onChange</code> é apenas uma variável com a assinatura:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">onChange</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">event</span><span style="color:#c0c5ce;">: </span><span style="color:#bf616a;">Event</span><span style="color:#c0c5ce;">): void
+</span></pre>
+<p>Vamos modificar nosso <code>src/javascript/greetings/Greetings.js</code> um poucopara que você tenha um exemplo:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+  </span><span style="color:#bf616a;">constructor</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">){
+    </span><span style="color:#bf616a;">super</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">props</span><span style="color:#c0c5ce;">);
+    </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.state = {
+      treatment: &quot;&quot;
+    }
+  }
+  
+  </span><span style="color:#bf616a;">whenTreatmentChanges</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">){
+    </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">({treatment: </span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">})
+  }
+  
+  </span><span style="color:#bf616a;">render</span><span style="color:#c0c5ce;">(){
+    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">(
+      &lt;</span><span style="color:#bf616a;">div id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">a-class-that-changes-font-to-red</span><span style="color:#c0c5ce;">&quot;&gt;
+        &lt;</span><span style="color:#bf616a;">div className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">row</span><span style="color:#c0c5ce;">&quot;&gt;
+          &lt;</span><span style="color:#bf616a;">div className</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">col-1</span><span style="color:#c0c5ce;">&quot;&gt;</span><span style="color:#bf616a;">Treatment</span><span style="color:#c0c5ce;">&lt;/</span><span style="color:#96b5b4;">div&gt;
+          &lt;div className=&quot;col-2&quot;&gt;
+            &lt;input value={this</span><span style="color:#d08770;">.</span><span style="color:#96b5b4;">state</span><span style="color:#d08770;">.</span><span style="color:#96b5b4;">treatment} onChange={event =&gt; this</span><span style="color:#d08770;">.</span><span style="color:#96b5b4;">whenTreatmentChanges(event</span><span style="color:#d08770;">.</span><span style="color:#96b5b4;">target</span><span style="color:#d08770;">.</span><span style="color:#96b5b4;">value)} </span><span style="color:#c0c5ce;">/&gt;
+          &lt;/</span><span style="color:#96b5b4;">div&gt;
+        &lt;</span><span style="color:#c0c5ce;">/</span><span style="color:#96b5b4;">d</span><span style="color:#b48ead;">i</span><span style="color:#96b5b4;">v</span><span style="color:#c0c5ce;">&gt;
+        &lt;</span><span style="color:#bf616a;">Greeter greet</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">Hello</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#bf616a;">treatment</span><span style="color:#c0c5ce;">={this.state.</span><span style="color:#bf616a;">treatment</span><span style="color:#c0c5ce;">} </span><span style="color:#bf616a;">name</span><span style="color:#c0c5ce;">={this.props.</span><span style="color:#bf616a;">name</span><span style="color:#c0c5ce;">} /&gt;
+      &lt;/</span><span style="color:#96b5b4;">div&gt;
+    )
+  }
+</span><span style="color:#d08770;">...
+</span></pre><img src="change_treatment.png"/>
+<h3 id="setstate-callback">setState callback</h3>
+<p><code>setState</code> é uma função assíncrona, então se você quiser mudar algo uma linha abaixo da chamada da mesma esperando que já terá os novos valores isso não funcionará. Logo se você precisa disparar alguma coisa exatamente quando <code>setState</code> terminar de atualizar sua variável <code>state</code>, você poderá oassar uma função anônimo como segundo parâmettro de <code>setState</code>:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">whenTreatmentChanges</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">({treatment: </span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">})
+  console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.state.treatment) </span><span style="color:#65737e;">// printa o valor antigo de treatment
+</span><span style="color:#c0c5ce;">}
+...
+</span></pre>
+<p>Isto irá mostrar o valor antigo porque como explicado, <code>setState</code> é assíncrona, então para corretamente fazer algo após <code>setState</code> terminar de atualizar você precisa fazer da seguinte forma:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">...
+</span><span style="color:#bf616a;">whenTreatmentChanges</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">){
+  </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">setState</span><span style="color:#c0c5ce;">({treatment: </span><span style="color:#bf616a;">newValue</span><span style="color:#c0c5ce;">}, () </span><span style="color:#b48ead;">=&gt; </span><span style="color:#c0c5ce;">console.</span><span style="color:#96b5b4;">log</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.state.treatment)) </span><span style="color:#65737e;">// printa o valor atualizado de treatment
+</span><span style="color:#c0c5ce;">}
+...
+</span></pre><h1 id="conclusao">Conclusão</h1>
+<p>Vamos parar por aqui, porque isto está a ficar muito grande. Logo para não perder detalhes, estou a deixar o lado mais complexo do React para a próxima postagem <!--[postagem](@/react_post_04_react_end/index.pt_br.md)-->. Você aprendeu nesta postagem(Eu espero ^^) como adicionar React em seu projeto, como ter JSX e quais são as diferenças ao não usá- lo, o que são props, o que são Componentes e quantos tipos de Componentes podemos ter e como lidar com mutação de estado.</p>
+<p>Nós quase não escrevemos códgo aqui, tivemos muitas mais explicações que exemplos, mas isso foi o suficiente para que você tenha um bom começo em React. Daqui pra frente, você será capaz de escrever uma aplicação em React mesmo se não ler a próxima postagem(por favor leia xD). Caso esteja curioso pela versão original em inglês clique <a href="https://kiberstender.github.io/react-post-03-react-beggining/">aqui</a> e nos vemos na próxima.</p>
+
+                            </div>
+                        </div>
+                        
+                        
+<footer class="card-footer">
+    <div class="article-footer">
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <p>
+                    Published
+                    
+
+<time datetime="2020-03-29">
+    2020-03-29
+</time>
+
+
+                    
+
+by
+
+<a href="https://kiberstender.github.io/authors/kleber-stender/">
+    <span class="tag is-primary">Kleber Stender </span>
+</a>
+
+
+
+
+                    
+
+
+in <a href="https://kiberstender.github.io/categories/tutorials/">
+    <span class="tag is-success">
+        Tutorials
+    </span>
+</a>
+
+
+                    
+
+and tagged
+
+<a href="https://kiberstender.github.io/tags/webpack/">
+    <span class="tag is-link">webpack </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/react/">
+    <span class="tag is-link">react </span>
+</a>
+
+
+
+,
+
+
+
+
+<a href="https://kiberstender.github.io/tags/scss/">
+    <span class="tag is-link">scss </span>
+</a>
+
+
+
+and
+
+
+
+
+<a href="https://kiberstender.github.io/tags/introduction/">
+    <span class="tag is-link">introduction </span>
+</a>
+
+
+
+
+
+
+                </p>
+            </div>
+            <div class="column">
+                <a class="button is-pulled-right is-info" href="/">Back Home</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+                        
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+    
+    
+
+
+    
+
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
+
+    
+    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
+    
+
+    
+</body>
+
+</html>
