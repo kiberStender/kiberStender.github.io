@@ -51,6 +51,13 @@
         </url>
     
         <url>
+            <loc>https://kiberstender.github.io/node-js-introduction/</loc>
+            
+                <lastmod>2020-05-03T23:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
             <loc>https://kiberstender.github.io/page/1/</loc>
             
         </url>
@@ -89,6 +96,13 @@
         </url>
     
         <url>
+            <loc>https://kiberstender.github.io/pt_br/node-js-introduction/</loc>
+            
+                <lastmod>2020-05-03T23:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
             <loc>https://kiberstender.github.io/pt_br/page/1/</loc>
             
         </url>
@@ -108,54 +122,16 @@
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/react-post-01-node/</loc>
+            <loc>https://kiberstender.github.io/pt_br/webpack-frontend/</loc>
             
-                <lastmod>2020-03-18T14:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/react-post-02-webpack/</loc>
-            
-                <lastmod>2020-03-18T22:25:00Z</lastmod>
+                <lastmod>2020-05-16T22:00:00Z</lastmod>
             
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/pt_br/react-post-03-react-beggining/</loc>
+            <loc>https://kiberstender.github.io/pt_br/webpack-introduction/</loc>
             
-                <lastmod>2020-03-29T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/react_post_04_react_end/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/react-post-01-node/</loc>
-            
-                <lastmod>2020-03-18T14:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/react-post-02-webpack/</loc>
-            
-                <lastmod>2020-03-18T22:25:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/react-post-03-react-beggining/</loc>
-            
-                <lastmod>2020-03-29T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/react_post_04_react_end/</loc>
+                <lastmod>2020-05-05T23:00:00Z</lastmod>
             
         </url>
     
@@ -205,11 +181,6 @@
         </url>
     
         <url>
-            <loc>https://kiberstender.github.io/tags/react/</loc>
-            
-        </url>
-    
-        <url>
             <loc>https://kiberstender.github.io/tags/scss/</loc>
             
         </url>
@@ -241,6 +212,20 @@
     
         <url>
             <loc>https://kiberstender.github.io/tags/world/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/webpack-frontend/</loc>
+            
+                <lastmod>2020-05-16T22:00:00Z</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://kiberstender.github.io/webpack-introduction/</loc>
+            
+                <lastmod>2020-05-05T23:00:00Z</lastmod>
             
         </url>
     
