@@ -1,279 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" class="dark light">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="base" content="https:&#x2F;&#x2F;kiberstender.github.io">
-
-    
-
-    
-    
-    
-    <title>
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://kiberstender.github.io name=base><title>
          Webpack- Uma introdução completa
         
-    </title>
-
-        
-            <meta property="og:title" content="Webpack- Uma introdução completa" />
-        
-     
-
-     
-         
-     
-
-     
-         
-    
-
-    
-    
-
-    
-    
-        <link href=https://kiberstender.github.io/fonts.css rel="stylesheet" />
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-
-    
-    <link rel="alternate" type="application/atom+xml" title="" href="https://kiberstender.github.io/atom.xml">
-
-
-    
-    
-        <link rel="stylesheet" type="text/css" href=https://kiberstender.github.io/theme/light.css />
-        <link rel="stylesheet" type="text/css" href="https://kiberstender.github.io/theme/dark.css" media="(prefers-color-scheme: dark)" />
-    
-
-    <!-- Set the correct theme in the script -->
-
-    
-        <script src=https://kiberstender.github.io/js/themetoggle.js></script>
-
-        
-            <script>
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    setTheme("dark");
-                } else {
-                    setTheme("light");
-                }
-            </script>
-        
-    
-
-
-    <link rel="stylesheet" type="text/css" media="screen" href=https://kiberstender.github.io/main.css />
-
-    
-
-    </head>
-
-
-<body>
-    <div class="content">
-        <header>
-    <div class="main">
-        
-            <a href=https:&#x2F;&#x2F;kiberstender.github.io></a>
-        
-
-
-        <div class="socials">
-            
-        </div>
-    </div>
-
-    <nav>
-        
-
-        
-
-        
-    </nav>
-</header>
-
-
-        
-        
-    
-<main>
-    <article>
-        <div class="title">
-            
-            
-    <div class="page-header">
-        Webpack- Uma introdução completa<span class="primary-color" style="font-size: 1.6em">.</span>
-    </div>
-
-
-                <div class="meta">
-                    
-                        Posted on <time>2020-05-05</time>
-                    
-
-                    
-
-                    
-
-                    
-                        :: 3164 Words
-                    
-
-                    
-                    
-                            <span class="tags-label"> :: Tags:</span>
-                            <span class="tags">
-                                    <a href="https://kiberstender.github.io/pt_br/tags/webpack/" class="post-tag">webpack</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/pt_br/tags/introduction/" class="post-tag">introduction</a>
-                                
-                            </span>
-                    
-
-                    
-                    
-
-                    
-
-                </div>
-        </div>
-
-        
-
-        
-        
-
-        <section class="body">
-            <h1 id="intro">Introdução</h1>
-<p>Quando estudar desenvolvimento frontend, você pode observará que geralmente <a href="https://nodejs.org/en/">Node</a> e <a href="https://www.npmjs.com/">NPM</a> não são suficientes e você irá ver pessoas a usar outras aplicações para lidar com arquivos Javascript, HTML, CSS para facilitar a dividsão em várias partes, permitindo você focar em como essas peças individuais irão criar sua aplicação toda. Elas são chamadas Task runners(Executores de tarefas), por que eles fazem exatamente o que o nome sugere: executam tarefas ... nos seus arquivos, transformando -os de uma linguagem para outra (<a href="https://www.typescriptlang.org/">Typescript</a> -&gt; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Javascript</a>), checando se sua síntaxe está correta(Aplicar <a href="https://jslint.com/">JSLint</a>) ou mesmo tornando seu código em produção bem feio e ininteligível e difícil para outras pessoas copiarem o que você fez (<a href="https://www.uglifyjs.net/">Uglificar</a> seu código). Os mais famosos que você irá encontrar no mercado são: <a href="https://gruntjs.com/">Grunt</a>, <a href="https://gulpjs.com/">Gulp</a> e <a href="https://webpack.js.org/">Webppack</a>.</p>
-<p>Esta postagem irá focar na introdução do Webpack. Irei continuar o desenvolvimento de um projeto em Javascript que comecei em outra postagem (<a href="https://kiberstender.github.io/pt_br/node-js-introduction/">NodeJS- Uma introdução bem simples</a>), logo se você não leu, por favor considere fazê- lo antes de começar esta postagem ou se preferir você pode clonar o projeto e ir para a <em>branch</em> específica da postagem:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">git</span><span> clone https://bitbucket.org/kiberStender/node_app.git
-</span><span style="color:#96b5b4;">cd</span><span> node_app/
-</span><span style="color:#bf616a;">git</span><span> checkout</span><span style="color:#bf616a;"> --track</span><span> origin/nodejs_introduction
-</span></code></pre>
-<p>Não irei explicar o que já está explicado na outra postagem e irei assumir que você já está familiarizado com Javascript e NodeJS.</p>
-<h1 id="webpack">Webpack</h1>
-<p>Esta aplicação, assim como o nome sugere, é focada em empacotar coisas ou como eles afirmar em seu website: agrupar(bundle) coisas. Conforme seu frontend cresce você se verá com a decisão de ter arquivos imensos para gerenciar mais facilmente o escopo em suas páginas HTML(o que é péssimo, pois se torna difícil não acoplar as coisas já que estão no mesmo arquivo) ou um monte de arquivos pequenos e problemas para adicioná- los na ordem correta ou mesmo lembrar de adicioná- los a sua página HTML. Assim Webpack vem para nos ajudar ofereendo soluções para gerenciar seu projeto, lhe permitindo manter o uso de arquivos desacoplados e os empacotar em um único arquivo no final tornando mais fácil a inclusão em sua página HTML. E isso não é a única possibilidade, já que o Webpsck pode ajudar- te produzindo pequenos agrupamentos de arquivos(<em>bundles</em>), caso seu "arquivo único" ter mais de 244 Kib, tornando assim mais fácil para os navegadores baixá- los em pedaços paralelos acelerando o carregamento de sua página. Estes fazem parte dos recursos que o Webpack "faz de graça" para você, mas existem outros recursos que você pode adicionar, extendendo as funcionalidades do Webpack ao usar os Loaders(Carregadores) e os Plugins.</p>
-<h1 id="como-isso-funciona">Como isso funciona?</h1>
-<p>Enquanto o NPM é como o <a href="https://maven.apache.org/">Maven</a> para o Node, você pode listar e baixar suas dependências, Webpack é onde você diz o que fazer com essas dependências. Quando você lista <code>devDependencies</code> em seu arquivo <code>package.json</code>, estas são (em sua maioria) aplicações <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a>(Command Line Interface/Interface de linha de commando), ou seja, aplicações que rodam em terminal/prompt cmd e estas em particular, você pode usar para fazer transformações em seu código, como escrever tudo em Typescript e logo após converter para Javascript. Enquanto você poderia fazer isso manualmente ao instalar o compiladorr Typescript como faria com compilador Java, Webpack lhe permite criar funções que agem em seu código, como se em modo automatizado. Webpack também possui um modo de produção/desenvolvimento onde ele faz por padrão algumas coisas para você, como <em>uglificar</em> seu código automaticamente quando em modo de produção ou <em>minificá- lo</em> removendo espaços em branco desnecessários.</p>
-<h1 id="install_and_configuring">Instalação e configuração</h1>
-<p>Para garantir que este post funcionará no futuro, instale tudo na mesma versão que coloco aqui:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> webpack@4.43.0 webpack-cli@3.3.11
-</span></code></pre>
-<p>Confira seu arquivo <code>package.json</code>. NPM adicionou uma nova <code>devDependency</code> para você e deve conter novas bibliotecas:</p>
-<img src="diff_adding_webpack.png" />
-<p>Explicando o que a gente acaba de instalar temos:</p>
-<ol>
-<li><code>Webpack</code>: API para usar dentro de sua aplicação Node que ajuda a customizar o "build". Logo se você quiser criar seu próprio jeito de construir ou agrupar sua aplicação, você pode usar esta biblioteca para acelerar seu processo lhe permitindo focar nas coisas que o Webpack talvez não tenha</li>
-<li><code>Webpack-cli</code> Aplicação CLI que faz a mesma coisa que o Webpack mas você não precisa importar o Webpack em sua aplicação, você "passa" sua aplicação como parâmetro para o Webpack-Cli e o resto é trabalho da biblioteca Webpack</li>
-</ol>
-<p>Webpack possui um comportamento padrão que, quando você o executa, ele irá procurar por um arquivo chamado <code>index.js</code> dentro do diretório <code>/src</code> e irá criar um arquivo novo de nome <code>main.js</code> e o colocará em um diretório chamado <code>dist</code> na raíz de sua aplicação. Por esta razão, iremos mudar nosso <code>/src/app.js</code> para <code>/src/index.js</code>. Agora adicione um novo commando em <code>scripts</code> chamado <code>build</code> em seu arquivo <code>package.json</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
-</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+    </title><meta content="Webpack- Uma introdução completa" property=og:title><link href=https://kiberstender.github.io/fonts.css rel=stylesheet><link href=https://kiberstender.github.io/atom.xml rel=alternate type=application/atom+xml><link href=https://kiberstender.github.io/theme/light.css rel=stylesheet><link href=https://kiberstender.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://kiberstender.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://kiberstender.github.io/main.css media=screen rel=stylesheet><body><div class=content><header><div class=main><a href=https://kiberstender.github.io></a><div class=socials><a class=social href=https://github.com/kiberStender rel=me> <img alt=github src=https://kiberstender.github.io/icons/social/github.svg> </a></div></div><nav><a href=https://kiberstender.github.io/tags style=margin-left:.25em>/tags</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img alt=Light id=sun-icon src=https://kiberstender.github.io/icons/sun.svg style=filter:invert()> <img alt=Dark id=moon-icon src=https://kiberstender.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></nav></header><main><article><div class=title><div class=page-header>Webpack- Uma introdução completa<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2020-05-05</time> :: 3164 Words <span class=tags-label> :: Tags:</span><span class=tags> <a class=post-tag href=https://kiberstender.github.io/pt_br/tags/webpack/>webpack</a>, <a class=post-tag href=https://kiberstender.github.io/pt_br/tags/introduction/>introduction</a> </span></div></div><section class=body><h1 id=intro>Introdução</h1><p>Quando estudar desenvolvimento frontend, você pode observará que geralmente <a href=https://nodejs.org/en/>Node</a> e <a href=https://www.npmjs.com/>NPM</a> não são suficientes e você irá ver pessoas a usar outras aplicações para lidar com arquivos Javascript, HTML, CSS para facilitar a dividsão em várias partes, permitindo você focar em como essas peças individuais irão criar sua aplicação toda. Elas são chamadas Task runners(Executores de tarefas), por que eles fazem exatamente o que o nome sugere: executam tarefas ... nos seus arquivos, transformando -os de uma linguagem para outra (<a href=https://www.typescriptlang.org/>Typescript</a> -> <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript>Javascript</a>), checando se sua síntaxe está correta(Aplicar <a href=https://jslint.com/>JSLint</a>) ou mesmo tornando seu código em produção bem feio e ininteligível e difícil para outras pessoas copiarem o que você fez (<a href=https://www.uglifyjs.net/>Uglificar</a> seu código). Os mais famosos que você irá encontrar no mercado são: <a href=https://gruntjs.com/>Grunt</a>, <a href=https://gulpjs.com/>Gulp</a> e <a href=https://webpack.js.org/>Webppack</a>.<p>Esta postagem irá focar na introdução do Webpack. Irei continuar o desenvolvimento de um projeto em Javascript que comecei em outra postagem (<a href=https://kiberstender.github.io/pt_br/node-js-introduction/>NodeJS- Uma introdução bem simples</a>), logo se você não leu, por favor considere fazê- lo antes de começar esta postagem ou se preferir você pode clonar o projeto e ir para a <em>branch</em> específica da postagem:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>git</span><span> clone https://bitbucket.org/kiberStender/node_app.git
+</span><span style=color:#96b5b4>cd</span><span> node_app/
+</span><span style=color:#bf616a>git</span><span> checkout</span><span style=color:#bf616a> --track</span><span> origin/nodejs_introduction
+</span></code></pre><p>Não irei explicar o que já está explicado na outra postagem e irei assumir que você já está familiarizado com Javascript e NodeJS.<h1 id=webpack>Webpack</h1><p>Esta aplicação, assim como o nome sugere, é focada em empacotar coisas ou como eles afirmar em seu website: agrupar(bundle) coisas. Conforme seu frontend cresce você se verá com a decisão de ter arquivos imensos para gerenciar mais facilmente o escopo em suas páginas HTML(o que é péssimo, pois se torna difícil não acoplar as coisas já que estão no mesmo arquivo) ou um monte de arquivos pequenos e problemas para adicioná- los na ordem correta ou mesmo lembrar de adicioná- los a sua página HTML. Assim Webpack vem para nos ajudar ofereendo soluções para gerenciar seu projeto, lhe permitindo manter o uso de arquivos desacoplados e os empacotar em um único arquivo no final tornando mais fácil a inclusão em sua página HTML. E isso não é a única possibilidade, já que o Webpsck pode ajudar- te produzindo pequenos agrupamentos de arquivos(<em>bundles</em>), caso seu "arquivo único" ter mais de 244 Kib, tornando assim mais fácil para os navegadores baixá- los em pedaços paralelos acelerando o carregamento de sua página. Estes fazem parte dos recursos que o Webpack "faz de graça" para você, mas existem outros recursos que você pode adicionar, extendendo as funcionalidades do Webpack ao usar os Loaders(Carregadores) e os Plugins.<h1 id=como-isso-funciona>Como isso funciona?</h1><p>Enquanto o NPM é como o <a href=https://maven.apache.org/>Maven</a> para o Node, você pode listar e baixar suas dependências, Webpack é onde você diz o que fazer com essas dependências. Quando você lista <code>devDependencies</code> em seu arquivo <code>package.json</code>, estas são (em sua maioria) aplicações <a href=https://en.wikipedia.org/wiki/Command-line_interface>CLI</a>(Command Line Interface/Interface de linha de commando), ou seja, aplicações que rodam em terminal/prompt cmd e estas em particular, você pode usar para fazer transformações em seu código, como escrever tudo em Typescript e logo após converter para Javascript. Enquanto você poderia fazer isso manualmente ao instalar o compiladorr Typescript como faria com compilador Java, Webpack lhe permite criar funções que agem em seu código, como se em modo automatizado. Webpack também possui um modo de produção/desenvolvimento onde ele faz por padrão algumas coisas para você, como <em>uglificar</em> seu código automaticamente quando em modo de produção ou <em>minificá- lo</em> removendo espaços em branco desnecessários.<h1 id=install_and_configuring>Instalação e configuração</h1><p>Para garantir que este post funcionará no futuro, instale tudo na mesma versão que coloco aqui:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> --save-dev</span><span> webpack@4.43.0 webpack-cli@3.3.11
+</span></code></pre><p>Confira seu arquivo <code>package.json</code>. NPM adicionou uma nova <code>devDependency</code> para você e deve conter novas bibliotecas:</p><img src=diff_adding_webpack.png><p>Explicando o que a gente acaba de instalar temos:<ol><li><code>Webpack</code>: API para usar dentro de sua aplicação Node que ajuda a customizar o "build". Logo se você quiser criar seu próprio jeito de construir ou agrupar sua aplicação, você pode usar esta biblioteca para acelerar seu processo lhe permitindo focar nas coisas que o Webpack talvez não tenha<li><code>Webpack-cli</code> Aplicação CLI que faz a mesma coisa que o Webpack mas você não precisa importar o Webpack em sua aplicação, você "passa" sua aplicação como parâmetro para o Webpack-Cli e o resto é trabalho da biblioteca Webpack</ol><p>Webpack possui um comportamento padrão que, quando você o executa, ele irá procurar por um arquivo chamado <code>index.js</code> dentro do diretório <code>/src</code> e irá criar um arquivo novo de nome <code>main.js</code> e o colocará em um diretório chamado <code>dist</code> na raíz de sua aplicação. Por esta razão, iremos mudar nosso <code>/src/app.js</code> para <code>/src/index.js</code>. Agora adicione um novo commando em <code>scripts</code> chamado <code>build</code> em seu arquivo <code>package.json</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
+</span><span>"</span><span style=color:#a3be8c>scripts</span><span>": {
 </span><span>  ...
-</span><span>  &quot;</span><span style="color:#a3be8c;">build</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">webpack</span><span>&quot;,
+</span><span>  "</span><span style=color:#a3be8c>build</span><span>": "</span><span style=color:#a3be8c>webpack</span><span>",
 </span><span>  ...
 </span><span>}
 </span><span>...
-</span></code></pre>
-<p>PS: Sempre que você ver 3 pontos <code>...</code> isso significa: "Mantenha tudo o que vem antes disso" e se vier depois do que estamos adicionando/modificando isso significa: "Mantenha tudo o que vier depois desses três pontos"</p>
-<p>Agora execute seu script e você deverá ver algo similar a isto:</p>
-<img src="webpack_first_run.png">
-<h3 id="os-warnings-avisos">Os <em>warnings</em>(avisos)</h3>
-<p>Nós temos 2(dois) avisos principais nesta mensagem:</p>
-<ol>
-<li><code>WARNING in configuration</code>: Este aviso está aqui porque, como mencionei no ínicio, Webpack possui suporte para ambientes de produção e desenvolvimento, logo quando você não especifica qual ambiente você está usando, Webpack ativa o modo de produção e emite um aviso para que você saiba que você precisa especificar as informações faltantes. Você pode modificar sua seção <code>scripts</code> em <code>package.json</code>, ao editar <code>build</code> e adicionar o novo <code>build:prod</code>:<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
-</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+</span></code></pre><p>PS: Sempre que você ver 3 pontos <code>...</code> isso significa: "Mantenha tudo o que vem antes disso" e se vier depois do que estamos adicionando/modificando isso significa: "Mantenha tudo o que vier depois desses três pontos"<p>Agora execute seu script e você deverá ver algo similar a isto:</p><img src=webpack_first_run.png><h3 id=os-warnings-avisos>Os <em>warnings</em>(avisos)</h3><p>Nós temos 2(dois) avisos principais nesta mensagem:<ol><li><code>WARNING in configuration</code>: Este aviso está aqui porque, como mencionei no ínicio, Webpack possui suporte para ambientes de produção e desenvolvimento, logo quando você não especifica qual ambiente você está usando, Webpack ativa o modo de produção e emite um aviso para que você saiba que você precisa especificar as informações faltantes. Você pode modificar sua seção <code>scripts</code> em <code>package.json</code>, ao editar <code>build</code> e adicionar o novo <code>build:prod</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
+</span><span>"</span><span style=color:#a3be8c>scripts</span><span>": {
 </span><span>  ...
-</span><span>  &quot;</span><span style="color:#a3be8c;">build</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode development</span><span>&quot;,
-</span><span>  &quot;</span><span style="color:#a3be8c;">build:prod</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">webpack --mode production</span><span>&quot;,
+</span><span>  "</span><span style=color:#a3be8c>build</span><span>": "</span><span style=color:#a3be8c>webpack --mode development</span><span>",
+</span><span>  "</span><span style=color:#a3be8c>build:prod</span><span>": "</span><span style=color:#a3be8c>webpack --mode production</span><span>",
 </span><span>  ...
 </span><span>}
 </span><span>...
-</span></code></pre>
-</li>
-<li><code>WARNING in asset/entrypoint/webpack performance</code>: Estes avisos estão aqui porque o Webpack é mais focado em melhorias de aplicação de frontend. Assim para fazer o frontend carregar mais rapidamente seus arquivos, eles devem ser menores que 244 Kib, Por isso ele te aponta duas possíveis soluções: usar a síntaxe <code>import/export</code>ou usar as dicas de <a href="https://webpack.js.org/guides/code-splitting/">https://webpack.js.org/guides/code-splitting/</a>. Isto é somente para performance da aplicação, pois quanto menores os <em>bundles</em> mais rápidos eles são baixados e usando carregamento preguiçoso(lazy loading) os arquivos não serão carregados na memória a menos que seja necessário. Este é um tópico muito avançado e deve ser coberto em uma postagem dedicada</li>
-</ol>
-<p>Após modificar <code>build</code> e adicionar <code>build:prod</code>, se você executar o comando <code>build</code> não verá nenhum aviso:</p>
-<img src="webpack_second_run.png">
-<p>Mas, se executar <code>build:prod</code> poderá observar o problema com arquivo grande por causa da forma que estamos agrupando <code>momentjs</code>:</p>
-<img src="webpack_prod_run.png">
-<p>Como temos uma aplicação CLI por agora, não iremos 'consertar' este problema pois o mesmo não nos atrapalha, a menos que fosse uma biblioteca, aí teríamos que encontrar uma forma de diminuir o tamanho para não afetar a performance da aplicação de nossos usuários. E ainda pior se isto fosse um frontend. Claro que o tamanhom sugerido é 244 Kib e nós temos 263 Kib, logo não irá afetar tanto assim, mas se isso fosse um frontend sério ou uma biblioteca teríamos sim que melhorar isso.</p>
-<p>Se conferir a raíz de nossa aplicação poderá notar, como eu havia dito anteriormento, um novo diretório de nome <code>dist</code>. Este diretório contém um arquivo chamado <code>main.js</code>. Para executar nossa aplicação agora, você precisar editar o comando <code>execute</code> em <code>scripts</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
-</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+</span></code></pre><li><code>WARNING in asset/entrypoint/webpack performance</code>: Estes avisos estão aqui porque o Webpack é mais focado em melhorias de aplicação de frontend. Assim para fazer o frontend carregar mais rapidamente seus arquivos, eles devem ser menores que 244 Kib, Por isso ele te aponta duas possíveis soluções: usar a síntaxe <code>import/export</code>ou usar as dicas de <a href=https://webpack.js.org/guides/code-splitting/>https://webpack.js.org/guides/code-splitting/</a>. Isto é somente para performance da aplicação, pois quanto menores os <em>bundles</em> mais rápidos eles são baixados e usando carregamento preguiçoso(lazy loading) os arquivos não serão carregados na memória a menos que seja necessário. Este é um tópico muito avançado e deve ser coberto em uma postagem dedicada</ol><p>Após modificar <code>build</code> e adicionar <code>build:prod</code>, se você executar o comando <code>build</code> não verá nenhum aviso:</p><img src=webpack_second_run.png><p>Mas, se executar <code>build:prod</code> poderá observar o problema com arquivo grande por causa da forma que estamos agrupando <code>momentjs</code>:</p><img src=webpack_prod_run.png><p>Como temos uma aplicação CLI por agora, não iremos 'consertar' este problema pois o mesmo não nos atrapalha, a menos que fosse uma biblioteca, aí teríamos que encontrar uma forma de diminuir o tamanho para não afetar a performance da aplicação de nossos usuários. E ainda pior se isto fosse um frontend. Claro que o tamanhom sugerido é 244 Kib e nós temos 263 Kib, logo não irá afetar tanto assim, mas se isso fosse um frontend sério ou uma biblioteca teríamos sim que melhorar isso.<p>Se conferir a raíz de nossa aplicação poderá notar, como eu havia dito anteriormento, um novo diretório de nome <code>dist</code>. Este diretório contém um arquivo chamado <code>main.js</code>. Para executar nossa aplicação agora, você precisar editar o comando <code>execute</code> em <code>scripts</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
+</span><span>"</span><span style=color:#a3be8c>scripts</span><span>": {
 </span><span>  ...
-</span><span>  &quot;</span><span style="color:#a3be8c;">execute</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">node dist/main.js</span><span>&quot;,
+</span><span>  "</span><span style=color:#a3be8c>execute</span><span>": "</span><span style=color:#a3be8c>node dist/main.js</span><span>",
 </span><span>  ...
 </span><span>}
 </span><span>...
-</span></code></pre>
-<p>Agora você pode executar sua aplicação "Hello, Mr/Ms Node Dev" novamente:</p>
-<img src="app_first_run.png">
-<p>Não se esquela de adicionar <code>/dist</code> ao arquivo <code>.gitignore</code> ou qualquer outro arquivo de ignorar que por ventura possa ter:</p>
-<pre data-lang="properties" style="background-color:#2b303b;color:#c0c5ce;" class="language-properties "><code class="language-properties" data-lang="properties"><span>...
+</span></code></pre><p>Agora você pode executar sua aplicação "Hello, Mr/Ms Node Dev" novamente:</p><img src=app_first_run.png><p>Não se esquela de adicionar <code>/dist</code> ao arquivo <code>.gitignore</code> ou qualquer outro arquivo de ignorar que por ventura possa ter:<pre class=language-properties data-lang=properties style=color:#c0c5ce;background-color:#2b303b><code class=language-properties data-lang=properties><span>...
 </span><span>dist/
 </span><span>...
-</span></code></pre>
-<h1 id="configuracao-de-build-customizada">Configuração de build customizada</h1>
-<p>Eu disse anteriormente que o comportamento padrão do Webpack é procurar por um arquivo de nome "index.js" dentro de <code>/src</code> e isso dispara a configuração padrão do Webpack para processar seu projeto. Mas existem coisas que a configuração padrão não faz por você, como processar arquivos HTML, arquivos CSS ou transpiladores como Typescript, Coffeescript, etc. Para tê- los você precisa configurar o Webpack manualmente e para fazê- lo você deve criar uma arquivo chamado <code>webpack.config.js</code> dentro do raíz de sua aplicação.</p>
-<p>No arquivo <code>webpack.config.js</code> você especifica todas as coisas que você quer <em>buildar</em> em sua aplicação. Como, compilar Typescript para Javascript(Eu sei, sou muito obcecado com Typescript), <a href="https://sass-lang.com/">SASS</a> para CSS, copiar arquivos de um diretório para outro(Imagine que esteja a trabalhar com Spring por exemplo, após todo o processo, você copia de <code>dist</code> para <code>/src/main/resources/static/</code>) e outras coisas legais que nós iremos ver. Crie o arquivo <code>webpack.config.js</code> e copie o exemplo abaixo que possui a mesma configuração padrão que se tem quando vc não possui o arquivo:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">path </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">path</span><span>&quot;);
+</span></code></pre><h1 id=configuracao-de-build-customizada>Configuração de build customizada</h1><p>Eu disse anteriormente que o comportamento padrão do Webpack é procurar por um arquivo de nome "index.js" dentro de <code>/src</code> e isso dispara a configuração padrão do Webpack para processar seu projeto. Mas existem coisas que a configuração padrão não faz por você, como processar arquivos HTML, arquivos CSS ou transpiladores como Typescript, Coffeescript, etc. Para tê- los você precisa configurar o Webpack manualmente e para fazê- lo você deve criar uma arquivo chamado <code>webpack.config.js</code> dentro do raíz de sua aplicação.<p>No arquivo <code>webpack.config.js</code> você especifica todas as coisas que você quer <em>buildar</em> em sua aplicação. Como, compilar Typescript para Javascript(Eu sei, sou muito obcecado com Typescript), <a href=https://sass-lang.com/>SASS</a> para CSS, copiar arquivos de um diretório para outro(Imagine que esteja a trabalhar com Spring por exemplo, após todo o processo, você copia de <code>dist</code> para <code>/src/main/resources/static/</code>) e outras coisas legais que nós iremos ver. Crie o arquivo <code>webpack.config.js</code> e copie o exemplo abaixo que possui a mesma configuração padrão que se tem quando vc não possui o arquivo:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>path </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>path</span><span>");
 </span><span>
 </span><span>module.exports = {
-</span><span>  entry: &quot;</span><span style="color:#a3be8c;">./src/index.js</span><span>&quot;, </span><span style="color:#65737e;">//1
-</span><span>  output: { </span><span style="color:#65737e;">//2
-</span><span>    filename: &quot;</span><span style="color:#a3be8c;">main.js</span><span>&quot;,
-</span><span>    path: </span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, &quot;</span><span style="color:#a3be8c;">dist</span><span>&quot;)
+</span><span>  entry: "</span><span style=color:#a3be8c>./src/index.js</span><span>", </span><span style=color:#65737e>//1
+</span><span>  output: { </span><span style=color:#65737e>//2
+</span><span>    filename: "</span><span style=color:#a3be8c>main.js</span><span>",
+</span><span>    path: </span><span style=color:#bf616a>path</span><span>.</span><span style=color:#96b5b4>resolve</span><span>(__dirname, "</span><span style=color:#a3be8c>dist</span><span>")
 </span><span>  },
-</span><span>  devtool: &quot;</span><span style="color:#a3be8c;">source-map</span><span>&quot; </span><span style="color:#65737e;">//3
+</span><span>  devtool: "</span><span style=color:#a3be8c>source-map</span><span>" </span><span style=color:#65737e>//3
 </span><span>};
-</span></code></pre>
-<ol>
-<li><code>entry</code>: Aqui é onde se diz ao Webpack qual seu arquivo "principal". Aquele que inicia sua aplicação toda. Webpack foi feito para ser usado com <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA(Single Page Application/Aplicação de Página Única)</a>. mas isso não tem impede de fazer uma MPA(Multiple Page Application/Aplicação de Múltiplas Páginas) normal. É só que ele é mais focado em SPA. Por padrão Webpack procura por <code>/src/index.js</code>, mas aqui você pode mudar isso para qualquer arquivo que você prefira e em qualquer lugar que ele esteja. Pode ser <code>/src/app.js</code> ou <code>/myapp/src/my_main_file.js</code>, você decide</li>
-<li><code>output</code>: Aqui você define as opções do <em>bundle</em>(agrupamento). Geralmente nós temos apenas um arquivo, <code>main.js</code> e dizemos ao Webpack que queremos colocá- lo em um diretório chamado <code>dist</code>, que será criado caso não exista. Se você não gostar desta localização você é livre para dizer onde quer que este diretório esteja e qual o nome você quer pôr. Assim você pode ignorar este diretório em seu arquivo <code>.gitignore</code>, <code>dockerignore</code> ou qualquer arquivo de ignorar que você possa estar usando. Existem outras opções aqui para você configurar sua aplicação para ter mais <em>bundles</em> se precisar acelerar o <em>download</em> ou problemas similares</li>
-<li><code>devtool</code>: Este campo controla como processar o mapeamento do código (source mapping) para melhor depurar. Estou a usar o valor <code>source-map</code> que significa, crie o arquivo "'my_js_filename'.js.map", ajudando o navegador a depurar sua aplicação. Você pode encontrar mais informações <a href="https://webpack.js.org/configuration/devtool/">aqui</a></li>
-</ol>
-<p>Como pode ver, esta é uma configuração muiiiiiiiiito simples.</p>
-<h2 id="plugins">Plugins</h2>
-<p>Um plugin é uma extensão feita especificamente para o Webpack. Por causa disso, ela pode modificar seus arquivos adicionando e removendo coisas ao invés de simplemente ler seu arquivo e criar um arquivo novo modificado. Além do fato de alguns deles poderem permitir você escolher em qual fase do ciclo de vida da construção você quer executá- lo. Para adicionar um plugin você tem que primeiro usar o NPM para instalar(ou escrever seu próprio plugin =D), importar em seu arquivo <code>webpack.config.js</code>, então instanciar e escrever o campo <code>plugin</code> para avisar o Webpack que você quer usá- lo como verá abaixo:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">path </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">path</span><span>&quot;);
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">MeuPlugin </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">meuPlugin</span><span>&quot;);
+</span></code></pre><ol><li><code>entry</code>: Aqui é onde se diz ao Webpack qual seu arquivo "principal". Aquele que inicia sua aplicação toda. Webpack foi feito para ser usado com <a href=https://en.wikipedia.org/wiki/Single-page_application>SPA(Single Page Application/Aplicação de Página Única)</a>. mas isso não tem impede de fazer uma MPA(Multiple Page Application/Aplicação de Múltiplas Páginas) normal. É só que ele é mais focado em SPA. Por padrão Webpack procura por <code>/src/index.js</code>, mas aqui você pode mudar isso para qualquer arquivo que você prefira e em qualquer lugar que ele esteja. Pode ser <code>/src/app.js</code> ou <code>/myapp/src/my_main_file.js</code>, você decide<li><code>output</code>: Aqui você define as opções do <em>bundle</em>(agrupamento). Geralmente nós temos apenas um arquivo, <code>main.js</code> e dizemos ao Webpack que queremos colocá- lo em um diretório chamado <code>dist</code>, que será criado caso não exista. Se você não gostar desta localização você é livre para dizer onde quer que este diretório esteja e qual o nome você quer pôr. Assim você pode ignorar este diretório em seu arquivo <code>.gitignore</code>, <code>dockerignore</code> ou qualquer arquivo de ignorar que você possa estar usando. Existem outras opções aqui para você configurar sua aplicação para ter mais <em>bundles</em> se precisar acelerar o <em>download</em> ou problemas similares<li><code>devtool</code>: Este campo controla como processar o mapeamento do código (source mapping) para melhor depurar. Estou a usar o valor <code>source-map</code> que significa, crie o arquivo "'my_js_filename'.js.map", ajudando o navegador a depurar sua aplicação. Você pode encontrar mais informações <a href=https://webpack.js.org/configuration/devtool/>aqui</a></ol><p>Como pode ver, esta é uma configuração muiiiiiiiiito simples.<h2 id=plugins>Plugins</h2><p>Um plugin é uma extensão feita especificamente para o Webpack. Por causa disso, ela pode modificar seus arquivos adicionando e removendo coisas ao invés de simplemente ler seu arquivo e criar um arquivo novo modificado. Além do fato de alguns deles poderem permitir você escolher em qual fase do ciclo de vida da construção você quer executá- lo. Para adicionar um plugin você tem que primeiro usar o NPM para instalar(ou escrever seu próprio plugin =D), importar em seu arquivo <code>webpack.config.js</code>, então instanciar e escrever o campo <code>plugin</code> para avisar o Webpack que você quer usá- lo como verá abaixo:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>path </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>path</span><span>");
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>MeuPlugin </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>meuPlugin</span><span>");
 </span><span>
 </span><span>module.exports = {
 </span><span>  entry: ...,
 </span><span>  output: ...,
 </span><span>  devtool: ...,
 </span><span>  plugins: [
-</span><span>    new MeuPlugin(</span><span style="color:#bf616a;">params_se_tiver_algum</span><span>, ...)
+</span><span>    new MeuPlugin(</span><span style=color:#bf616a>params_se_tiver_algum</span><span>, ...)
 </span><span>  ]
 </span><span>};
-</span></code></pre>
-<h3 id="auto-deletar-arquivo-auto-gerados-para-evitar-cache-antigo">Auto deletar arquivo auto gerados para evitar cache antigo</h3>
-<p>Um dos problemas mais chato no mundo do desenvolvimento são caches antigos. Você está programando como uma locomotiva, completamente motivado com a quantidade de idéias na sua cabeça e então você executa seu código novo e Boom... nada muda em sua aplicação. Você recompila, atualiza a página em seu navegador, abre em modo Incognito e nada, página antiga estática na sua frente. Você deleta parte do seu código para forçar um erro e nada. Então lembra do cache, deletá- o e sua aplicação está a executar o código novo. O código que você mudou 1000 vezes a tentar encontrar o que estava errado após 3 dias a depurar.</p>
-<p>Uma das formas de prevenir cache é não ter arquivos antigos e para deletá- los você pode adicionar o plugin <a href="https://www.npmjs.com/package/clean-webpack-plugin">Clean Webpack plugin</a>. Este plugin deleta tudo o que está na properiedade <code>output.path</code> em nosso arquivo <code>webpack.config.js</code>. Ele deleta o conteúdo, não o diretório. Para usá- lo primeiro o instalamos:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> -save-dev</span><span> clean-webpack-plugin@3.0.0
-</span></code></pre>
-<p>Agora importamos em nosso arquivo <code>webpack.config.js</code> e adicionamos a propriedade do tipo array <code>plugins</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">path </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">path</span><span>&quot;);
-</span><span style="color:#b48ead;">const </span><span>{ </span><span style="color:#bf616a;">CleanWebpackPlugin </span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">clean-webpack-plugin</span><span>&quot;);
+</span></code></pre><h3 id=auto-deletar-arquivo-auto-gerados-para-evitar-cache-antigo>Auto deletar arquivo auto gerados para evitar cache antigo</h3><p>Um dos problemas mais chato no mundo do desenvolvimento são caches antigos. Você está programando como uma locomotiva, completamente motivado com a quantidade de idéias na sua cabeça e então você executa seu código novo e Boom... nada muda em sua aplicação. Você recompila, atualiza a página em seu navegador, abre em modo Incognito e nada, página antiga estática na sua frente. Você deleta parte do seu código para forçar um erro e nada. Então lembra do cache, deletá- o e sua aplicação está a executar o código novo. O código que você mudou 1000 vezes a tentar encontrar o que estava errado após 3 dias a depurar.<p>Uma das formas de prevenir cache é não ter arquivos antigos e para deletá- los você pode adicionar o plugin <a href=https://www.npmjs.com/package/clean-webpack-plugin>Clean Webpack plugin</a>. Este plugin deleta tudo o que está na properiedade <code>output.path</code> em nosso arquivo <code>webpack.config.js</code>. Ele deleta o conteúdo, não o diretório. Para usá- lo primeiro o instalamos:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> -save-dev</span><span> clean-webpack-plugin@3.0.0
+</span></code></pre><p>Agora importamos em nosso arquivo <code>webpack.config.js</code> e adicionamos a propriedade do tipo array <code>plugins</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>path </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>path</span><span>");
+</span><span style=color:#b48ead>const </span><span>{ </span><span style=color:#bf616a>CleanWebpackPlugin </span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>clean-webpack-plugin</span><span>");
 </span><span>
 </span><span>module.exports = {
 </span><span>  entry: ...,
@@ -283,11 +63,7 @@
 </span><span>    new CleanWebpackPlugin()
 </span><span>  ]
 </span><span>};
-</span></code></pre>
-<p>Agora nosso problema está resolvido. A qualquer momento que você executar <code>build</code> ou <code>build:prod</code>, antes de iniciar a compilação da aplicação o plugin irá deletar o conteúdo de <code>/dist</code> e assim você sempre terá as versões mais novas dos arquivos sendo geradas.</p>
-<h2 id="loaders">Loaders</h2>
-<p>Loaders(Carregadores) são aplicações que não foram criadas especificamente para Webpack para aplicar transformações, validações ou modificações em alguns arquivos de seu projeto. Como por exemplo, transpiladores Typescript(eu te disse), Coffeescript e SASS. Eles foram criados para você usá- los como quiser do jeito que quiser, independente de plataforma. Logo para usá- los no Webpack você deverá encontrar ou criar um <em>loader</em>, uma pequena extensão para Webpack que ensine como executar estas aplicações CLI dando seus arquivos como parâmetro de entrada. Após isso o <em>loader</em> será criado e importado para seu projeto, e em seu arquivo <code>webpack.config.js</code> você pode dizer quais arquivos serão aplicados a estess <em>loaders</em> e quais parâmetros você quer prover. Geralmente você especifica os arquvivos usando uma <a href="https://en.wikipedia.org/wiki/Regular_expression">regexp/expressão regular</a> para pegá- los pela extensão de arquivo como <code>/\.(js|jsx)$/</code> ou <code>/\.ts$/</code>. Para adicionar <em>loaders</em> você precisar adicionar uma propriedade nova chamada <code>module</code> e um array de <code>regras</code> como no exemplo abaixo:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>module.exports = {
+</span></code></pre><p>Agora nosso problema está resolvido. A qualquer momento que você executar <code>build</code> ou <code>build:prod</code>, antes de iniciar a compilação da aplicação o plugin irá deletar o conteúdo de <code>/dist</code> e assim você sempre terá as versões mais novas dos arquivos sendo geradas.<h2 id=loaders>Loaders</h2><p>Loaders(Carregadores) são aplicações que não foram criadas especificamente para Webpack para aplicar transformações, validações ou modificações em alguns arquivos de seu projeto. Como por exemplo, transpiladores Typescript(eu te disse), Coffeescript e SASS. Eles foram criados para você usá- los como quiser do jeito que quiser, independente de plataforma. Logo para usá- los no Webpack você deverá encontrar ou criar um <em>loader</em>, uma pequena extensão para Webpack que ensine como executar estas aplicações CLI dando seus arquivos como parâmetro de entrada. Após isso o <em>loader</em> será criado e importado para seu projeto, e em seu arquivo <code>webpack.config.js</code> você pode dizer quais arquivos serão aplicados a estess <em>loaders</em> e quais parâmetros você quer prover. Geralmente você especifica os arquvivos usando uma <a href=https://en.wikipedia.org/wiki/Regular_expression>regexp/expressão regular</a> para pegá- los pela extensão de arquivo como <code>/\.(js|jsx)$/</code> ou <code>/\.ts$/</code>. Para adicionar <em>loaders</em> você precisar adicionar uma propriedade nova chamada <code>module</code> e um array de <code>regras</code> como no exemplo abaixo:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>module.exports = {
 </span><span>  entry: ...,
 </span><span>  output: ...,
 </span><span>  devtool: ...,
@@ -295,112 +71,84 @@
 </span><span>  module: {
 </span><span>    rules: [
 </span><span>      {
-</span><span>        test: /</span><span style="color:#96b5b4;">\.ts</span><span style="color:#b48ead;">$</span><span>/
-</span><span>        </span><span style="color:#bf616a;">use</span><span>: {
-</span><span>          loader: &quot;</span><span style="color:#a3be8c;">typescript-loader</span><span>&quot;
+</span><span>        test: /</span><span style=color:#96b5b4>\.ts</span><span style=color:#b48ead>$</span><span>/
+</span><span>        </span><span style=color:#bf616a>use</span><span>: {
+</span><span>          loader: "</span><span style=color:#a3be8c>typescript-loader</span><span>"
 </span><span>        }
 </span><span>      }
 </span><span>    ]
 </span><span>  }
 </span><span>};
-</span></code></pre>
-<h3 id="babel">Babel</h3>
-<p>Hoje em dia temos pelo menos 3(três) versões de Javascript: <a href="https://www.w3schools.com/js/js_es5.asp">ES5</a>, <a href="http://es6-features.org/">ES6</a> e <a href="https://www.ecma-international.org/ecma-262/9.0/index.html">ES2018</a>. Ambos têm suas diferenças e alguns navegadores os implementaram parcialmente. Então vamos dizer que você quer usar toda a nova síntaxe do ES2018 mas está com medo de que nem todos os seus usuários usam navegadores atualizados ou mesmo que os navegadores nao têm uma boa implementação dos recursos que você está interessado(como import/export).</p>
-<p>Uma boa solução que temos hoje é usar <a href="https://kiberstender.github.io/pt_br/webpack-introduction/babeljs.io/">Babel</a>. Babel é um tranpilador de Javascript para Javascript, assim você pode programar em ES2018 e compilar(ou neste caso transpilar) para uma versão mais antiga de Javascript que os navegadores ou mesmo o NodeJs já dominou. Para fazer isso, você precisa especificar o <em>loader</em>  em sua configuração do Webpack. Então a primeira coisa a ser feita é adicionar o Babel:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> babel-loader@8.1.0 @babel/core@7.9.0 @babel/preset-env@7.9.0
-</span></code></pre>
-<p>Agora mude sua configuração do Webpack para adicionar o <em>loader</em>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span></code></pre><h3 id=babel>Babel</h3><p>Hoje em dia temos pelo menos 3(três) versões de Javascript: <a href=https://www.w3schools.com/js/js_es5.asp>ES5</a>, <a href=http://es6-features.org/>ES6</a> e <a href=https://www.ecma-international.org/ecma-262/9.0/index.html>ES2018</a>. Ambos têm suas diferenças e alguns navegadores os implementaram parcialmente. Então vamos dizer que você quer usar toda a nova síntaxe do ES2018 mas está com medo de que nem todos os seus usuários usam navegadores atualizados ou mesmo que os navegadores nao têm uma boa implementação dos recursos que você está interessado(como import/export).<p>Uma boa solução que temos hoje é usar <a href=https://kiberstender.github.io/pt_br/webpack-introduction/babeljs.io/>Babel</a>. Babel é um tranpilador de Javascript para Javascript, assim você pode programar em ES2018 e compilar(ou neste caso transpilar) para uma versão mais antiga de Javascript que os navegadores ou mesmo o NodeJs já dominou. Para fazer isso, você precisa especificar o <em>loader</em> em sua configuração do Webpack. Então a primeira coisa a ser feita é adicionar o Babel:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> --save-dev</span><span> babel-loader@8.1.0 @babel/core@7.9.0 @babel/preset-env@7.9.0
+</span></code></pre><p>Agora mude sua configuração do Webpack para adicionar o <em>loader</em>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
 </span><span>module: {
 </span><span>  rules: [
 </span><span>    {
-</span><span>      test: /</span><span style="color:#96b5b4;">\.(js</span><span>|</span><span style="color:#96b5b4;">jsx)</span><span style="color:#b48ead;">$</span><span>/,
-</span><span>      exclude: /</span><span style="color:#96b5b4;">node_modules</span><span>/, </span><span style="color:#65737e;">// We don&#39;t want babel to try to transpile all js file, only the ones in our project
-</span><span>      use: [&quot;</span><span style="color:#a3be8c;">babel-loader</span><span>&quot;]
+</span><span>      test: /</span><span style=color:#96b5b4>\.(js</span><span>|</span><span style=color:#96b5b4>jsx)</span><span style=color:#b48ead>$</span><span>/,
+</span><span>      exclude: /</span><span style=color:#96b5b4>node_modules</span><span>/, </span><span style=color:#65737e>// We don't want babel to try to transpile all js file, only the ones in our project
+</span><span>      use: ["</span><span style=color:#a3be8c>babel-loader</span><span>"]
 </span><span>    }
 </span><span>  ]
 </span><span>}
 </span><span>...
-</span></code></pre>
-<p>O prórximo passo é criar um arquivo de configuração para o Babel na raíz de seu projeto chamado <code>babel.config.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>module.exports = {
+</span></code></pre><p>O prórximo passo é criar um arquivo de configuração para o Babel na raíz de seu projeto chamado <code>babel.config.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>module.exports = {
 </span><span>  presets: [
 </span><span>    [
-</span><span>      &quot;</span><span style="color:#a3be8c;">@babel/preset-env</span><span>&quot;,
+</span><span>      "</span><span style=color:#a3be8c>@babel/preset-env</span><span>",
 </span><span>      {
 </span><span>        targets: {
-</span><span>          node: &quot;</span><span style="color:#a3be8c;">current</span><span>&quot;,
+</span><span>          node: "</span><span style=color:#a3be8c>current</span><span>",
 </span><span>        }
 </span><span>      }
 </span><span>    ]
 </span><span>  ]
 </span><span>};
-</span></code></pre>
-<p>Agora podemos mudar nossas expressões <code>require/module.export</code> em nossa aplicação para <code>import/export</code>. Vamos primeiro começar com <code>/src/javascript/greetings/DateTimeGreeting.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">moment </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">moment</span><span>&quot;;
+</span></code></pre><p>Agora podemos mudar nossas expressões <code>require/module.export</code> em nossa aplicação para <code>import/export</code>. Vamos primeiro começar com <code>/src/javascript/greetings/DateTimeGreeting.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>moment </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>moment</span><span>";
 </span><span>
-</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">DateTimeGreetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greetDateTime</span><span>(</span><span style="color:#bf616a;">dateFormat</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">São: ${</span><span style="color:#8fa1b3;">moment</span><span style="color:#a3be8c;">().</span><span style="color:#8fa1b3;">format</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">dateFormat</span><span style="color:#a3be8c;">)}</span><span>`</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>Sim, você tem que remover <code>module.exports.DateTimeGreetings = DateTimeGreetings;</code>. Agora atualize <code>/src/javascript/greetings/Greeting.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./DateTimeGreetings.js</span><span>&quot;;
+</span><span style=color:#b48ead>export default class </span><span style=color:#ebcb8b>DateTimeGreetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greetDateTime</span><span>(</span><span style=color:#bf616a>dateFormat</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>`</span><span style=color:#a3be8c>São: ${</span><span style=color:#8fa1b3>moment</span><span style=color:#a3be8c>().</span><span style=color:#8fa1b3>format</span><span style=color:#a3be8c>(</span><span style=color:#bf616a>dateFormat</span><span style=color:#a3be8c>)}</span><span>`</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>Sim, você tem que remover <code>module.exports.DateTimeGreetings = DateTimeGreetings;</code>. Agora atualize <code>/src/javascript/greetings/Greeting.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./DateTimeGreetings.js</span><span>";
 </span><span>
-</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span>...</span><span style="color:#65737e;">// Mantenha o contrutor como ele é
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greet</span><span>()</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">Hello Mr/Ms ${</span><span style="color:#bf616a;">this</span><span style="color:#a3be8c;">.name}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">${</span><span style="color:#bf616a;">this</span><span style="color:#a3be8c;">.</span><span style="color:#bf616a;">dateTimeGreeter</span><span style="color:#a3be8c;">.</span><span style="color:#8fa1b3;">greetDateTime</span><span style="color:#a3be8c;">(</span><span>&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;</span><span style="color:#a3be8c;">)}</span><span>`</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>Sim você tem que remover <code>module.exports.Greetings = Greetings;</code>. Agora a última mudança é em <code>/src/index.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings.js</span><span>&quot;;
+</span><span style=color:#b48ead>export default class </span><span style=color:#ebcb8b>Greetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span>...</span><span style=color:#65737e>// Mantenha o contrutor como ele é
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greet</span><span>()</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>`</span><span style=color:#a3be8c>Hello Mr/Ms ${</span><span style=color:#bf616a>this</span><span style=color:#a3be8c>.name}</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>${</span><span style=color:#bf616a>this</span><span style=color:#a3be8c>.</span><span style=color:#bf616a>dateTimeGreeter</span><span style=color:#a3be8c>.</span><span style=color:#8fa1b3>greetDateTime</span><span style=color:#a3be8c>(</span><span>"</span><span style=color:#a3be8c>MMMM Do YYYY, h:mm:ss a</span><span>"</span><span style=color:#a3be8c>)}</span><span>`</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>Sim você tem que remover <code>module.exports.Greetings = Greetings;</code>. Agora a última mudança é em <code>/src/index.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./javascript/greetings/Greetings.js</span><span>";
 </span><span>...
-</span></code></pre>
-<p>O motivo pelo qual eu não esta a usar <code>import/export</code> antes, era que a versão do Node que estou a usar neste projeto(Node v12.14.1)) não usporta essa síntaxe. Ao invés de esperar o Node adicionar esta functionalidade, bael nos ajuda convertendo <code>import/export</code> para a velha síntaxe que estávamos a usar anteriormente <code>require/module.exports</code>. Mas não somente <code>import/export</code> fora adicionado. O que diz ao Babel qual versão do Javascript estamos a usar e para qual queremos que seja compilada, é o <code>preset</code>. Ao usar <code>@babel/preset</code>, estamos a delegar para quem criou este preset a seleção de quansi versão de Javascript queremos sair e para qual queremos chegar. Com este preset nós temos <code>import/export</code>, <code>const, let</code>, <code>object destructuring</code> e muitos outras coisas legais. Você pode cirar seu próprio preset se quiser, basta seguir este <a href="https://babeljs.io/docs/en/presets">link</a>.</p>
-<h3 id="path_reso">Import path resolution(Resolução de caminho de importação)</h3>
-<p>Você pode ter notado ou não uma diferença quando importamos o <code>momentjs</code> e quando importamos nossos arquivos <code>Greetings.js</code>/<code>DateTimeGreetings</code>. Se você não percebeu, estamos a usar importação relativa, ou seja, nós como desenvolvedores, devemos saber onde o arquivo que queremos importar está em relação ao arquivo que irá importá- lo e passar o caminho correto. Ao invés de simplesmente usarmos:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
-</span></code></pre>
-<p>Temos que usar assim:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span>&quot;;
-</span></code></pre>
-<p>Agora imagine que nossa classe Greetings recebe uma instância de uma outra classe. Vamos criar uma classe Person(Pessoa) para melhor ilustrar. Vá até <code>/src/javascript</code> e cri um novo diretório/pacote chamado <code>person</code> e dentro dele crie um novo arquivo chamado <code>Person.js</code> e colocar o seguinte conteúdo:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Person </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">surname</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name </span><span>= </span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">; </span><span style="color:#65737e;">//Nome
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">surname </span><span>= </span><span style="color:#bf616a;">surname</span><span style="color:#eff1f5;">; </span><span style="color:#65737e;">//Sobrenome
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>Agora importaremos essa classe em ambos os arquivos <code>/src/index.js</code> e <code>/src/javascript/greetings/Greeting.js</code>. Primeiro em <code>/src/javascript/greetings/Greeting.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./DateTimeGreetings.js</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">../person/Person</span><span>&quot;
+</span></code></pre><p>O motivo pelo qual eu não esta a usar <code>import/export</code> antes, era que a versão do Node que estou a usar neste projeto(Node v12.14.1)) não usporta essa síntaxe. Ao invés de esperar o Node adicionar esta functionalidade, bael nos ajuda convertendo <code>import/export</code> para a velha síntaxe que estávamos a usar anteriormente <code>require/module.exports</code>. Mas não somente <code>import/export</code> fora adicionado. O que diz ao Babel qual versão do Javascript estamos a usar e para qual queremos que seja compilada, é o <code>preset</code>. Ao usar <code>@babel/preset</code>, estamos a delegar para quem criou este preset a seleção de quansi versão de Javascript queremos sair e para qual queremos chegar. Com este preset nós temos <code>import/export</code>, <code>const, let</code>, <code>object destructuring</code> e muitos outras coisas legais. Você pode cirar seu próprio preset se quiser, basta seguir este <a href=https://babeljs.io/docs/en/presets>link</a>.<h3 id=path_reso>Import path resolution(Resolução de caminho de importação)</h3><p>Você pode ter notado ou não uma diferença quando importamos o <code>momentjs</code> e quando importamos nossos arquivos <code>Greetings.js</code>/<code>DateTimeGreetings</code>. Se você não percebeu, estamos a usar importação relativa, ou seja, nós como desenvolvedores, devemos saber onde o arquivo que queremos importar está em relação ao arquivo que irá importá- lo e passar o caminho correto. Ao invés de simplesmente usarmos:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/Greetings</span><span>";
+</span></code></pre><p>Temos que usar assim:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./javascript/greetings/Greetings</span><span>";
+</span></code></pre><p>Agora imagine que nossa classe Greetings recebe uma instância de uma outra classe. Vamos criar uma classe Person(Pessoa) para melhor ilustrar. Vá até <code>/src/javascript</code> e cri um novo diretório/pacote chamado <code>person</code> e dentro dele crie um novo arquivo chamado <code>Person.js</code> e colocar o seguinte conteúdo:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>export default class </span><span style=color:#ebcb8b>Person </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>constructor</span><span>(</span><span style=color:#bf616a>name</span><span style=color:#eff1f5>, </span><span style=color:#bf616a>surname</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.name </span><span>= </span><span style=color:#bf616a>name</span><span style=color:#eff1f5>; </span><span style=color:#65737e>//Nome
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>surname </span><span>= </span><span style=color:#bf616a>surname</span><span style=color:#eff1f5>; </span><span style=color:#65737e>//Sobrenome
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>Agora importaremos essa classe em ambos os arquivos <code>/src/index.js</code> e <code>/src/javascript/greetings/Greeting.js</code>. Primeiro em <code>/src/javascript/greetings/Greeting.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./DateTimeGreetings.js</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Person </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>../person/Person</span><span>"
 </span><span>
-</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">person </span><span>= new </span><span style="color:#eff1f5;">Person(</span><span>&quot;</span><span style="color:#a3be8c;">Unnamed</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Person</span><span>&quot;</span><span style="color:#eff1f5;">)</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">person </span><span>= </span><span style="color:#bf616a;">person</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">dateTimeGreeter </span><span>= new </span><span style="color:#eff1f5;">DateTimeGreetings();
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greet</span><span>()</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{</span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">surname</span><span style="color:#eff1f5;">} </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">person</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">Hello Mr/Ms ${</span><span style="color:#bf616a;">name</span><span style="color:#a3be8c;">} ${</span><span style="color:#bf616a;">surname</span><span style="color:#a3be8c;">}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">${</span><span style="color:#bf616a;">this</span><span style="color:#a3be8c;">.</span><span style="color:#bf616a;">dateTimeGreeter</span><span style="color:#a3be8c;">.</span><span style="color:#8fa1b3;">greetDateTime</span><span style="color:#a3be8c;">(</span><span>&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;</span><span style="color:#a3be8c;">)}</span><span>`</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>Agora em <code>/src/index.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./javascript/person/Person</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings</span><span>&quot;;
+</span><span style=color:#b48ead>export default class </span><span style=color:#ebcb8b>Greetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>constructor</span><span>(</span><span style=color:#bf616a>person </span><span>= new </span><span style=color:#eff1f5>Person(</span><span>"</span><span style=color:#a3be8c>Unnamed</span><span>"</span><span style=color:#eff1f5>, </span><span>"</span><span style=color:#a3be8c>Person</span><span>"</span><span style=color:#eff1f5>)</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>person </span><span>= </span><span style=color:#bf616a>person</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>dateTimeGreeter </span><span>= new </span><span style=color:#eff1f5>DateTimeGreetings();
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greet</span><span>()</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>const </span><span style=color:#eff1f5>{</span><span style=color:#bf616a>name</span><span style=color:#eff1f5>, </span><span style=color:#bf616a>surname</span><span style=color:#eff1f5>} </span><span>= </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>person</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>`</span><span style=color:#a3be8c>Hello Mr/Ms ${</span><span style=color:#bf616a>name</span><span style=color:#a3be8c>} ${</span><span style=color:#bf616a>surname</span><span style=color:#a3be8c>}</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>${</span><span style=color:#bf616a>this</span><span style=color:#a3be8c>.</span><span style=color:#bf616a>dateTimeGreeter</span><span style=color:#a3be8c>.</span><span style=color:#8fa1b3>greetDateTime</span><span style=color:#a3be8c>(</span><span>"</span><span style=color:#a3be8c>MMMM Do YYYY, h:mm:ss a</span><span>"</span><span style=color:#a3be8c>)}</span><span>`</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>Agora em <code>/src/index.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>Person </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./javascript/person/Person</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>./javascript/greetings/Greetings</span><span>";
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">p </span><span>= new Person(&quot;</span><span style="color:#a3be8c;">Node</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span>&quot;);
-</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetDev </span><span>= new Greetings(</span><span style="color:#bf616a;">p</span><span>);
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>p </span><span>= new Person("</span><span style=color:#a3be8c>Node</span><span>", "</span><span style=color:#a3be8c>Dev</span><span>");
+</span><span style=color:#b48ead>let </span><span style=color:#bf616a>greetDev </span><span>= new Greetings(</span><span style=color:#bf616a>p</span><span>);
 </span><span>...
-</span></code></pre>
-<p>Você vê a diferença? Quanto mais arquivo você tiver, pior será se por exemplo no futuro mudarmos de <code>/src/javascript/person</code> para algo como <code>/src/javascript/models/person</code>, por que então teremos que mudar em todos os lugares que importam a classe <code>Person</code> e qualquer coisa que <code>Person</code> importa também(caso no futuro essa classe importe algo). Assim para melhorar isto e fazer com o Webpack trabalhe para nós, vamos adicionar resolução de módulo:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span></code></pre><p>Você vê a diferença? Quanto mais arquivo você tiver, pior será se por exemplo no futuro mudarmos de <code>/src/javascript/person</code> para algo como <code>/src/javascript/models/person</code>, por que então teremos que mudar em todos os lugares que importam a classe <code>Person</code> e qualquer coisa que <code>Person</code> importa também(caso no futuro essa classe importe algo). Assim para melhorar isto e fazer com o Webpack trabalhe para nós, vamos adicionar resolução de módulo:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
 </span><span>module.exports = {
 </span><span>  entry: ...,
 </span><span>  output: {...},
@@ -408,99 +156,53 @@
 </span><span>  plugins: [...],
 </span><span>  module:{...},
 </span><span>  resolve: {
-</span><span>    modules: [</span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, &quot;</span><span style="color:#a3be8c;">src/javascript</span><span>&quot;), &quot;</span><span style="color:#a3be8c;">node_modules</span><span>&quot;]
+</span><span>    modules: [</span><span style=color:#bf616a>path</span><span>.</span><span style=color:#96b5b4>resolve</span><span>(__dirname, "</span><span style=color:#a3be8c>src/javascript</span><span>"), "</span><span style=color:#a3be8c>node_modules</span><span>"]
 </span><span>  }
 </span><span>}
 </span><span>
-</span></code></pre>
-<p>Agora estamos a dizer: Para qualquer módulo que eu importar, primeiro procure em <code>/src/javascript</code> e depois se não encontrar, procure em <code>node_modules</code>. E agora mude seu arquivo <code>/src/index.js</code> para isto:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
+</span></code></pre><p>Agora estamos a dizer: Para qualquer módulo que eu importar, primeiro procure em <code>/src/javascript</code> e depois se não encontrar, procure em <code>node_modules</code>. E agora mude seu arquivo <code>/src/index.js</code> para isto:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>Person </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>person/Person</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/Greetings</span><span>";
 </span><span>...
-</span></code></pre>
-<p>E seu <code>/src/javascript/greetings/Greetings.js</code> para:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/DateTimeGreetings</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
+</span></code></pre><p>E seu <code>/src/javascript/greetings/Greetings.js</code> para:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/DateTimeGreetings</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Person </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>person/Person</span><span>";
 </span><span>
-</span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
+</span><span style=color:#b48ead>export default class </span><span style=color:#ebcb8b>Greetings </span><span style=color:#eff1f5>{
 </span><span>...
-</span></code></pre>
-<p>Você vê como as coisas estão mais normalizadas agora? Isso é porque tudo está a usar <code>/src/javascript</code> como referência ao invés do arquivo que você está importando.]</p>
-<h1 id="testando-em-javascript-com-webpack">Testando em Javascript com Webpack</h1>
-<p>Se você tentou executar nossos velhos testes, você viu que temos um problema agora. Nós mudamos da antiga síntaxe <code>require/module.exports</code> em nossos arquivos <code>Greeting.js</code>/<code>DateTimeGreetings.js</code> para usar a síntaxe <code>import/export</code> mas não em nossos testes:</p>
-<img src="tests_problem.png"/>
-<p>Para resolver isso, temos que fazer 3(três) coisas:</p>
-<ol>
-<li>
-<p>Mudar todos <code>require</code> to <code>import</code>. Vamos começar com <code>/test/javascript/greetings/DateTimeGreetings.js</code></p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/DateTimeGreetings</span><span>&quot;;
+</span></code></pre><p>Você vê como as coisas estão mais normalizadas agora? Isso é porque tudo está a usar <code>/src/javascript</code> como referência ao invés do arquivo que você está importando.]<h1 id=testando-em-javascript-com-webpack>Testando em Javascript com Webpack</h1><p>Se você tentou executar nossos velhos testes, você viu que temos um problema agora. Nós mudamos da antiga síntaxe <code>require/module.exports</code> em nossos arquivos <code>Greeting.js</code>/<code>DateTimeGreetings.js</code> para usar a síntaxe <code>import/export</code> mas não em nossos testes:</p><img src=tests_problem.png><p>Para resolver isso, temos que fazer 3(três) coisas:<ol><li><p>Mudar todos <code>require</code> to <code>import</code>. Vamos começar com <code>/test/javascript/greetings/DateTimeGreetings.js</code></p> <pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>sinon </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>sinon</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/DateTimeGreetings</span><span>";
 </span><span>...
-</span></code></pre>
-<p>Agora, mude <code>/test/javascript/greetings/Greetings.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/DateTimeGreetings</span><span>&quot;;
+</span></code></pre> <p>Agora, mude <code>/test/javascript/greetings/Greetings.js</code>:</p> <pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>sinon </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>sinon</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/Greetings</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/DateTimeGreetings</span><span>";
 </span><span>...
-</span></code></pre>
-</li>
-<li>
-<p>Se você tentar executar os testes agora, verá que eles não conseguem encontram os módulos <code>greetings/Greetings.js</code> e <code>greetings/DateTimeGreetings.js</code>. Isto é devido ao fato de que o Jest não tem conhecimento de nossa Resolução de caminho no Webpack.Para resolver isso, iremos criar um novo arquivo na raíz de nosso projeto, chamdo <code>jest.config.js</code> e neste arquivo iremos configurar resolução de módulos assim como fizemos no Webpack:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>   module.exports = {
-</span><span>     &quot;</span><span style="color:#a3be8c;">moduleDirectories</span><span>&quot;:[&quot;</span><span style="color:#a3be8c;">src/javascript</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">node_modules</span><span>&quot;]
+</span></code></pre><li><p>Se você tentar executar os testes agora, verá que eles não conseguem encontram os módulos <code>greetings/Greetings.js</code> e <code>greetings/DateTimeGreetings.js</code>. Isto é devido ao fato de que o Jest não tem conhecimento de nossa Resolução de caminho no Webpack.Para resolver isso, iremos criar um novo arquivo na raíz de nosso projeto, chamdo <code>jest.config.js</code> e neste arquivo iremos configurar resolução de módulos assim como fizemos no Webpack:</p> <pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>   module.exports = {
+</span><span>     "</span><span style=color:#a3be8c>moduleDirectories</span><span>":["</span><span style=color:#a3be8c>src/javascript</span><span>", "</span><span style=color:#a3be8c>node_modules</span><span>"]
 </span><span>   }
-</span></code></pre>
-</li>
-<li>
-<p>A última mudançã é consertar <code>/test/javascript/greetings/Greetings.js</code>, porque nós adicionar uma nova classe <code>Person</code> para substituir a <code>String</code> simples que tínhamos no primeiro parâmetro do construtor de <code>Greetings</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">DateTimeGreetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/DateTimeGreetings</span><span>&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
+</span></code></pre><li><p>A última mudançã é consertar <code>/test/javascript/greetings/Greetings.js</code>, porque nós adicionar uma nova classe <code>Person</code> para substituir a <code>String</code> simples que tínhamos no primeiro parâmetro do construtor de <code>Greetings</code>:</p> <pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>import </span><span style=color:#bf616a>sinon </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>sinon</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Greetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/Greetings</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>DateTimeGreetings </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>greetings/DateTimeGreetings</span><span>";
+</span><span style=color:#b48ead>import </span><span style=color:#bf616a>Person </span><span style=color:#b48ead>from </span><span>"</span><span style=color:#a3be8c>person/Person</span><span>";
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span>= new Person(&quot;</span><span style="color:#a3be8c;">NodeJS</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span>&quot;);
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetDev </span><span>= new Greetings(</span><span style="color:#bf616a;">person</span><span>);
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>person </span><span>= new Person("</span><span style=color:#a3be8c>NodeJS</span><span>", "</span><span style=color:#a3be8c>Dev</span><span>");
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>greetDev </span><span>= new Greetings(</span><span style=color:#bf616a>person</span><span>);
 </span><span>...
 </span><span>
-</span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#65737e;">//GIVEN
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;;      
-</span><span>  </span><span style="color:#65737e;">//WHEN
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
-</span><span>  </span><span style="color:#65737e;">//THEN
-</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toEqual</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span style=color:#8fa1b3>test</span><span>(`</span><span style=color:#a3be8c>should return "Hello Mr/Ms NodeJS Dev</span><span style=color:#96b5b4>\\</span><span style=color:#a3be8c>nIt is: April 30rd 2020, 10:20:00 pm"</span><span>`, </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#65737e>//GIVEN
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJS Dev</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>It is: April 30rd 2020, 10:20:00 pm</span><span>";      
+</span><span>  </span><span style=color:#65737e>//WHEN
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();
+</span><span>  </span><span style=color:#65737e>//THEN
+</span><span>  </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toEqual</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>});
 </span><span>
-</span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#65737e;">//GIVEN
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;;      
-</span><span>  </span><span style="color:#65737e;">//WHEN
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
-</span><span>  </span><span style="color:#65737e;">//THEN
-</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#bf616a;">not</span><span>.</span><span style="color:#8fa1b3;">toEqual</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span style=color:#8fa1b3>test</span><span>(`</span><span style=color:#a3be8c>should not return "Hello Mr/Ms NodeJS Dev </span><span style=color:#96b5b4>\\</span><span style=color:#a3be8c>nIt is: April 30rd 2020, 10:20:00 pm"</span><span>`, </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#65737e>//GIVEN
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJS Dev </span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>It is: April 30rd 2020, 10:20:00 pm</span><span>";      
+</span><span>  </span><span style=color:#65737e>//WHEN
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();
+</span><span>  </span><span style=color:#65737e>//THEN
+</span><span>  </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#bf616a>not</span><span>.</span><span style=color:#8fa1b3>toEqual</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>});
 </span><span>...
-</span></code></pre>
-</li>
-</ol>
-<p>Sim, nós não precisamo passar o caminho completo para as classes que estamos importando mais. Agora você pode executar e ver seus testes fincionando como devem:</p>
-<img src="tests_webpack_working.png" />
-<p>E aqui terminaos o tutorial básico de Webpack, eu espero que você tenho aprendido e entendido bem tudo o que eu ensinei ^^</p>
-<h1 id="conclusao">Conclusão</h1>
-<p>Nesta postagem aprendemos como Webpack funciona e como ele pode nos ajudar a melhorar produtividade. Aprendemos o que são Plugins e Loaders, adicionamos Babel, Resolução de caminho e melhoramos nossa suite de testes. Se algo não ficou muito claro ou se preferir ler o código, por favor va até o <a href="https://bitbucket.org/kiberStender/node_app/">repositório do bitbucket</a>, clone- o e após faça o checkout da <em>branch</em> <code>webpack_introduction</code>. Sinta- se livre para acessar a versão original desta postagem em <a href="https://kiberstender.github.io/webpack-introduction/">inglês</a></p>
-
-        </section>
-    </article>
-</main>
-
-
-
-        
-            
-        
-
-        
-    </div>
-</body>
-
-</html>
+</span></code></pre></ol><p>Sim, nós não precisamo passar o caminho completo para as classes que estamos importando mais. Agora você pode executar e ver seus testes fincionando como devem:</p><img src=tests_webpack_working.png><p>E aqui terminaos o tutorial básico de Webpack, eu espero que você tenho aprendido e entendido bem tudo o que eu ensinei ^^<h1 id=conclusao>Conclusão</h1><p>Nesta postagem aprendemos como Webpack funciona e como ele pode nos ajudar a melhorar produtividade. Aprendemos o que são Plugins e Loaders, adicionamos Babel, Resolução de caminho e melhoramos nossa suite de testes. Se algo não ficou muito claro ou se preferir ler o código, por favor va até o <a href=https://bitbucket.org/kiberStender/node_app/>repositório do bitbucket</a>, clone- o e após faça o checkout da <em>branch</em> <code>webpack_introduction</code>. Sinta- se livre para acessar a versão original desta postagem em <a href=https://kiberstender.github.io/webpack-introduction/>inglês</a></section></article></main></div>
