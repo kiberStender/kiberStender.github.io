@@ -1,232 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-        <url>
-            <loc>https://kiberstender.github.io/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/authors/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/authors/kleber-stender/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/categories/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/categories/hello/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/categories/portfel/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/categories/tutorials/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/hello-world/</loc>
-            
-                <lastmod>2019-12-08T12:30:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/</loc>
-            
-                <lastmod>2019-12-15T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/node-js-introduction/</loc>
-            
-                <lastmod>2020-05-03T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/page/1/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/project-portfel-first-meeting/</loc>
-            
-                <lastmod>2020-01-07T21:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/project-portfel-second-meeting/</loc>
-            
-                <lastmod>2020-01-22T21:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/hello-world/</loc>
-            
-                <lastmod>2019-12-08T12:30:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/miscelaneous-spring-websocket-stomp-specific-user/</loc>
-            
-                <lastmod>2019-12-15T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/node-js-introduction/</loc>
-            
-                <lastmod>2020-05-03T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/page/1/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/project-portfel-first-meeting/</loc>
-            
-                <lastmod>2020-01-07T21:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/project-portfel-second-meeting/</loc>
-            
-                <lastmod>2020-01-22T21:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/webpack-frontend/</loc>
-            
-                <lastmod>2020-05-16T22:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/pt_br/webpack-introduction/</loc>
-            
-                <lastmod>2020-05-05T23:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/bootstrap/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/chat/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/hello/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/introduction/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/nodejs/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/npm/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/portfel/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/project/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/scss/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/spring/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/stomp/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/user-specific/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/webpack/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/websocket/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/tags/world/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/webpack-frontend/</loc>
-            
-                <lastmod>2020-05-16T22:00:00Z</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://kiberstender.github.io/webpack-introduction/</loc>
-            
-                <lastmod>2020-05-05T23:00:00Z</lastmod>
-            
-        </url>
-    
+    <url>
+        <loc>https://kiberstender.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/authors/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/authors/kleber-stender/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/categories/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/categories/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/categories/tutorials/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/hello-world/</loc>
+        <lastmod>2019-12-08T12:30:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/</loc>
+        <lastmod>2019-12-15T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/node-js-introduction/</loc>
+        <lastmod>2020-05-03T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/authors/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/authors/kleber-stender/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/categories/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/categories/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/categories/tutorials/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/hello-world/</loc>
+        <lastmod>2019-12-08T12:30:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/miscelaneous-spring-websocket-stomp-specific-user/</loc>
+        <lastmod>2019-12-15T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/node-js-introduction/</loc>
+        <lastmod>2020-05-03T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/react-introduction/</loc>
+        <lastmod>2020-05-23T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/bootstrap/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/chat/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/introduction/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/nodejs/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/npm/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/scss/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/spring/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/stomp/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/user-specific/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/webpack/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/websocket/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/world/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/webpack-frontend/</loc>
+        <lastmod>2020-05-16T22:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/webpack-introduction/</loc>
+        <lastmod>2020-05-05T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/react-introduction/</loc>
+        <lastmod>2020-05-23T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/bootstrap/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/chat/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/introduction/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/nodejs/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/npm/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/scss/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/spring/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/stomp/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/user-specific/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/webpack/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/websocket/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/world/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/webpack-frontend/</loc>
+        <lastmod>2020-05-16T22:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/webpack-introduction/</loc>
+        <lastmod>2020-05-05T23:00:00Z</lastmod>
+    </url>
 </urlset>
