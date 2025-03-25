@@ -1,681 +1,396 @@
-<!DOCTYPE html>
-<html lang="en" class="dark light">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="base" content="https:&#x2F;&#x2F;kiberstender.github.io">
-
-    
-
-    
-    
-    
-    <title>
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://kiberstender.github.io name=base><title>
          Spring Websocket and Stomp- How to send data to a single user
         
-    </title>
-
-        
-            <meta property="og:title" content="Spring Websocket and Stomp- How to send data to a single user" />
-        
-     
-
-     
-         
-             <meta property="og:description" content="A blog to spread my ideas" />
-         
-     
-
-     
-         
-             <meta name="description" content="A blog to spread my ideas" />
-         
-    
-
-    
-    
-
-    
-    
-        <link href=https://kiberstender.github.io/fonts.css rel="stylesheet" />
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-
-    
-    <link rel="alternate" type="application/atom+xml" title="kiberBlog" href="https://kiberstender.github.io/atom.xml">
-
-
-    
-    
-        <link rel="stylesheet" type="text/css" href=https://kiberstender.github.io/theme/light.css />
-        <link rel="stylesheet" type="text/css" href="https://kiberstender.github.io/theme/dark.css" media="(prefers-color-scheme: dark)" />
-    
-
-    <!-- Set the correct theme in the script -->
-
-    
-        <script src=https://kiberstender.github.io/js/themetoggle.js></script>
-
-        
-            <script>
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    setTheme("dark");
-                } else {
-                    setTheme("light");
-                }
-            </script>
-        
-    
-
-
-    <link rel="stylesheet" type="text/css" media="screen" href=https://kiberstender.github.io/main.css />
-
-    
-
-    </head>
-
-
-<body>
-    <div class="content">
-        <header>
-    <div class="main">
-        
-            <a href=https:&#x2F;&#x2F;kiberstender.github.io>kiberBlog</a>
-        
-
-
-        <div class="socials">
-            
-        </div>
-    </div>
-
-    <nav>
-        
-
-        
-
-        
-    </nav>
-</header>
-
-
-        
-        
-    
-<main>
-    <article>
-        <div class="title">
-            
-            
-    <div class="page-header">
-        Spring Websocket and Stomp- How to send data to a single user<span class="primary-color" style="font-size: 1.6em">.</span>
-    </div>
-
-
-                <div class="meta">
-                    
-                        Posted on <time>2019-12-15</time>
-                    
-
-                    
-
-                    
-
-                    
-                        :: 3211 Words
-                    
-
-                    
-                    
-                            <span class="tags-label"> :: Tags:</span>
-                            <span class="tags">
-                                    <a href="https://kiberstender.github.io/tags/spring/" class="post-tag">spring</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/websocket/" class="post-tag">websocket</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/stomp/" class="post-tag">stomp</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/chat/" class="post-tag">chat</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/user-specific/" class="post-tag">user-specific</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/introduction/" class="post-tag">introduction</a>
-                                
-                            </span>
-                    
-
-                    
-                    
-
-                    
-
-                </div>
-        </div>
-
-        
-
-        
-        
-
-        <section class="body">
-            <h1 id="introduction">Introduction</h1>
-<p>Looking for a way to dispatch data to users using Spring WebSocket controlling when to send to everybody or to an user in specific, I've come across many examples using Spring Security. Spring security is not a bad thing, completely the opposite, it is very useful and needed in any application, but Spring it requires some effort in this kind of task I'm doing that is unnecessary as Spring forces the user to login so it can manage each user easily for you. Years ago I did the same thing(A application using WebSocket) for a college degree article using <a href="https://www.playframework.com/documentation/2.1.x/Home">Play framework 2.1</a> and I did not need to add any kind of security for controlling the user so here I did not want to configure security as well, not at least with Spring Security. After 2 weeks of looking I finally found a <a href="https://www.it-swarm.net/pt/java/enviando-mensagem-para-um-usuario-especifico-no-spring-websocket/1045036791/">thread</a> in a brazilian forum teaching it in a simple way using <a href="http://stomp.github.io/stomp-specification-1.1.html">STOMP</a>. As it took me so much time to find it and it was the only working example I found, I decided to write this post giving a few more explanation because this forum thread only fix the user request problem and not teach how to start from ground zero and make your own WebSocket service yourself. So in this post I'll try to teach you how to make a simple Webchat using Spring WebSocket with STOMP without thinking about Spring Security.</p>
-<h2 id="websocket-definition">WebSocket definition</h2>
-<p>A WebSocket is a connection between an user and the server that only closes when the user requests it or when something happens to the server that forces it to disconnects the user(be it hardware problem, the user being banned for doing innapropriate actions or the server losing connection). Another thing is, unlike a normal Http connection that is one way, that means, you request something and the server answers you using the same connection, in a WebSocket the connection is both ways, so you have one connection and a pool of users connected to the same place. So whatever request the server receives, all connected users will receive the response. Then what is WebSocket used for? For large stream of data such as video and audio like youtube, making it easy to buffer small parts of the video instead of sending it whole to the user. In normal connection you had to keep sending the video to the user and the more time it took for the video to load in the user browser or whatever device being used, the bigger the chance of timeout, not mentioning the overhead to keep this connection opened. More info <a href="https://javascript.info/websocket">here</a>.</p>
-<h2 id="the-problem-and-the-solution">The problem ... and the solution</h2>
-<p>Wait... I said that there is a 'pool of users' connected to the server and wherever request is sent all users will receive the response, so how does it fit in a 'controlling when to send to everybody or to an user in specific'? Well ... of course, this is a program, a machine code, you can have control over the connections. Each connection is seen as a session by the WebSocket server, so you can send specific data to a specific user by using STOMP. STOMP just do for WebSocket what REST did to Http. You specify url-like structures bound to some class or function and whoever is connected to the WebSocket server can subscribe to these 'url' and listen so other users can send data at any moment and only who's listening to the specific route will receive this data.</p>
-<h1 id="implementing">Implementing</h1>
-<p>To start you need to be familiar with Java 7(or newer), Spring boot, WebSocket and STOMP. Thanks guys the tutorial is finished you already know what you need ^^.</p>
-<p>Just kidding =D (it looks like some websites right bael...), but yeah the minimum here is knowledge in Java, Spring and Maven or Gradle(Even though I will use both for demonstration I won't explain how they work and I will focus more on Maven), I'll try to make it easy explaning Spring things in as much details as possible, so if you never used Spring don't worry, you will still not know anything after this post, I mean, don't worry you will know at least how to set it up for a basic project.</p>
-<h2 id="first-things-first">First things first</h2>
-<p>Be sure that you have Java and Maven (or Gradle) installed. Create a directory (like spring_websocket_specific_user for example).</p>
-<p>If you are using Maven create a file pom.xml in the root of your directory and copy the following to the file:</p>
-<pre data-lang="xml" style="background-color:#2b303b;color:#c0c5ce;" class="language-xml "><code class="language-xml" data-lang="xml"><span>&lt;?</span><span style="color:#bf616a;">xml </span><span style="color:#d08770;">version</span><span>=&quot;</span><span style="color:#a3be8c;">1.0</span><span>&quot; </span><span style="color:#d08770;">encoding</span><span>=&quot;</span><span style="color:#a3be8c;">UTF-8</span><span>&quot;?&gt;
-</span><span>&lt;</span><span style="color:#bf616a;">project </span><span style="color:#d08770;">xmlns</span><span>=&quot;</span><span style="color:#a3be8c;">http://maven.apache.org/POM/4.0.0</span><span>&quot; </span><span style="color:#d08770;">xmlns:xsi</span><span>=&quot;</span><span style="color:#a3be8c;">http://www.w3.org/2001/XMLSchema-instance</span><span>&quot;
-</span><span>    </span><span style="color:#d08770;">xsi:schemaLocation</span><span>=&quot;</span><span style="color:#a3be8c;">http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd</span><span>&quot;&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">modelVersion</span><span>&gt;4.0.0&lt;/</span><span style="color:#bf616a;">modelVersion</span><span>&gt;
+    </title><meta content="Spring Websocket and Stomp- How to send data to a single user" property=og:title><meta content="A blog to spread my ideas" property=og:description><meta content="A blog to spread my ideas" name=description><link href=https://kiberstender.github.io/fonts.css rel=stylesheet><link href=https://kiberstender.github.io/atom.xml rel=alternate title=kiberBlog type=application/atom+xml><link href=https://kiberstender.github.io/theme/light.css rel=stylesheet><link href=https://kiberstender.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://kiberstender.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://kiberstender.github.io/main.css media=screen rel=stylesheet><body><div class=content><header><div class=main><a href=https://kiberstender.github.io>kiberBlog</a><div class=socials><a class=social href=https://github.com/kiberStender rel=me> <img alt=github src=https://kiberstender.github.io/icons/social/github.svg> </a></div></div><nav><a href=https://kiberstender.github.io/tags style=margin-left:.25em>/tags</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img alt=Light id=sun-icon src=https://kiberstender.github.io/icons/sun.svg style=filter:invert()> <img alt=Dark id=moon-icon src=https://kiberstender.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></nav></header><main><article><div class=title><div class=page-header>Spring Websocket and Stomp- How to send data to a single user<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2019-12-15</time> :: 3211 Words <span class=tags-label> :: Tags:</span><span class=tags> <a class=post-tag href=https://kiberstender.github.io/tags/spring/>spring</a>, <a class=post-tag href=https://kiberstender.github.io/tags/websocket/>websocket</a>, <a class=post-tag href=https://kiberstender.github.io/tags/stomp/>stomp</a>, <a class=post-tag href=https://kiberstender.github.io/tags/chat/>chat</a>, <a class=post-tag href=https://kiberstender.github.io/tags/user-specific/>user-specific</a>, <a class=post-tag href=https://kiberstender.github.io/tags/introduction/>introduction</a> </span></div></div><section class=body><h1 id=introduction>Introduction</h1><p>Looking for a way to dispatch data to users using Spring WebSocket controlling when to send to everybody or to an user in specific, I've come across many examples using Spring Security. Spring security is not a bad thing, completely the opposite, it is very useful and needed in any application, but Spring it requires some effort in this kind of task I'm doing that is unnecessary as Spring forces the user to login so it can manage each user easily for you. Years ago I did the same thing(A application using WebSocket) for a college degree article using <a href=https://www.playframework.com/documentation/2.1.x/Home>Play framework 2.1</a> and I did not need to add any kind of security for controlling the user so here I did not want to configure security as well, not at least with Spring Security. After 2 weeks of looking I finally found a <a href=https://www.it-swarm.net/pt/java/enviando-mensagem-para-um-usuario-especifico-no-spring-websocket/1045036791/>thread</a> in a brazilian forum teaching it in a simple way using <a href=http://stomp.github.io/stomp-specification-1.1.html>STOMP</a>. As it took me so much time to find it and it was the only working example I found, I decided to write this post giving a few more explanation because this forum thread only fix the user request problem and not teach how to start from ground zero and make your own WebSocket service yourself. So in this post I'll try to teach you how to make a simple Webchat using Spring WebSocket with STOMP without thinking about Spring Security.<h2 id=websocket-definition>WebSocket definition</h2><p>A WebSocket is a connection between an user and the server that only closes when the user requests it or when something happens to the server that forces it to disconnects the user(be it hardware problem, the user being banned for doing innapropriate actions or the server losing connection). Another thing is, unlike a normal Http connection that is one way, that means, you request something and the server answers you using the same connection, in a WebSocket the connection is both ways, so you have one connection and a pool of users connected to the same place. So whatever request the server receives, all connected users will receive the response. Then what is WebSocket used for? For large stream of data such as video and audio like youtube, making it easy to buffer small parts of the video instead of sending it whole to the user. In normal connection you had to keep sending the video to the user and the more time it took for the video to load in the user browser or whatever device being used, the bigger the chance of timeout, not mentioning the overhead to keep this connection opened. More info <a href=https://javascript.info/websocket>here</a>.<h2 id=the-problem-and-the-solution>The problem ... and the solution</h2><p>Wait... I said that there is a 'pool of users' connected to the server and wherever request is sent all users will receive the response, so how does it fit in a 'controlling when to send to everybody or to an user in specific'? Well ... of course, this is a program, a machine code, you can have control over the connections. Each connection is seen as a session by the WebSocket server, so you can send specific data to a specific user by using STOMP. STOMP just do for WebSocket what REST did to Http. You specify url-like structures bound to some class or function and whoever is connected to the WebSocket server can subscribe to these 'url' and listen so other users can send data at any moment and only who's listening to the specific route will receive this data.<h1 id=implementing>Implementing</h1><p>To start you need to be familiar with Java 7(or newer), Spring boot, WebSocket and STOMP. Thanks guys the tutorial is finished you already know what you need ^^.<p>Just kidding =D (it looks like some websites right bael...), but yeah the minimum here is knowledge in Java, Spring and Maven or Gradle(Even though I will use both for demonstration I won't explain how they work and I will focus more on Maven), I'll try to make it easy explaning Spring things in as much details as possible, so if you never used Spring don't worry, you will still not know anything after this post, I mean, don't worry you will know at least how to set it up for a basic project.<h2 id=first-things-first>First things first</h2><p>Be sure that you have Java and Maven (or Gradle) installed. Create a directory (like spring_websocket_specific_user for example).<p>If you are using Maven create a file pom.xml in the root of your directory and copy the following to the file:<pre class=language-xml data-lang=xml style=color:#c0c5ce;background-color:#2b303b><code class=language-xml data-lang=xml><span>&LT?</span><span style=color:#bf616a>xml </span><span style=color:#d08770>version</span><span>="</span><span style=color:#a3be8c>1.0</span><span>" </span><span style=color:#d08770>encoding</span><span>="</span><span style=color:#a3be8c>UTF-8</span><span>"?>
+</span><span><</span><span style=color:#bf616a>project </span><span style=color:#d08770>xmlns</span><span>="</span><span style=color:#a3be8c>http://maven.apache.org/POM/4.0.0</span><span>" </span><span style=color:#d08770>xmlns:xsi</span><span>="</span><span style=color:#a3be8c>http://www.w3.org/2001/XMLSchema-instance</span><span>"
+</span><span>    </span><span style=color:#d08770>xsi:schemaLocation</span><span>="</span><span style=color:#a3be8c>http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd</span><span>">
+</span><span>    <</span><span style=color:#bf616a>modelVersion</span><span>>4.0.0&LT/</span><span style=color:#bf616a>modelVersion</span><span>>
 </span><span>
-</span><span>    &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.websocket.spring&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;spring_websocket_specific_user&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">version</span><span>&gt;0.1.0&lt;/</span><span style="color:#bf616a;">version</span><span>&gt;
+</span><span>    <</span><span style=color:#bf616a>groupId</span><span>>org.websocket.spring&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>    <</span><span style=color:#bf616a>artifactId</span><span>>spring_websocket_specific_user&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>    <</span><span style=color:#bf616a>version</span><span>>0.1.0&LT/</span><span style=color:#bf616a>version</span><span>>
 </span><span>
-</span><span>    &lt;</span><span style="color:#bf616a;">parent</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;spring-boot-starter-parent&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">version</span><span>&gt;2.2.1.RELEASE&lt;/</span><span style="color:#bf616a;">version</span><span>&gt;
-</span><span>    &lt;/</span><span style="color:#bf616a;">parent</span><span>&gt;
+</span><span>    <</span><span style=color:#bf616a>parent</span><span>>
+</span><span>        <</span><span style=color:#bf616a>groupId</span><span>>org.springframework.boot&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>        <</span><span style=color:#bf616a>artifactId</span><span>>spring-boot-starter-parent&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>        <</span><span style=color:#bf616a>version</span><span>>2.2.1.RELEASE&LT/</span><span style=color:#bf616a>version</span><span>>
+</span><span>    &LT/</span><span style=color:#bf616a>parent</span><span>>
 </span><span>
-</span><span>    &lt;</span><span style="color:#bf616a;">dependencies</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;spring-boot-starter-websocket&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;spring-boot-starter-test&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">scope</span><span>&gt;test&lt;/</span><span style="color:#bf616a;">scope</span><span>&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;com.jayway.jsonpath&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;json-path&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">scope</span><span>&gt;test&lt;/</span><span style="color:#bf616a;">scope</span><span>&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>    &lt;/</span><span style="color:#bf616a;">dependencies</span><span>&gt;
+</span><span>    <</span><span style=color:#bf616a>dependencies</span><span>>
+</span><span>        <</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>          <</span><span style=color:#bf616a>groupId</span><span>>org.springframework.boot&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>          <</span><span style=color:#bf616a>artifactId</span><span>>spring-boot-starter-websocket&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>        &LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>        <</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>            <</span><span style=color:#bf616a>groupId</span><span>>org.springframework.boot&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>            <</span><span style=color:#bf616a>artifactId</span><span>>spring-boot-starter-test&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>            <</span><span style=color:#bf616a>scope</span><span>>test&LT/</span><span style=color:#bf616a>scope</span><span>>
+</span><span>        &LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>        <</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>            <</span><span style=color:#bf616a>groupId</span><span>>com.jayway.jsonpath&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>            <</span><span style=color:#bf616a>artifactId</span><span>>json-path&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>            <</span><span style=color:#bf616a>scope</span><span>>test&LT/</span><span style=color:#bf616a>scope</span><span>>
+</span><span>        &LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>    &LT/</span><span style=color:#bf616a>dependencies</span><span>>
 </span><span>
-</span><span>    &lt;</span><span style="color:#bf616a;">properties</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">java.version</span><span>&gt;1.8&lt;/</span><span style="color:#bf616a;">java.version</span><span>&gt;
-</span><span>    &lt;/</span><span style="color:#bf616a;">properties</span><span>&gt;
+</span><span>    <</span><span style=color:#bf616a>properties</span><span>>
+</span><span>        <</span><span style=color:#bf616a>java.version</span><span>>1.8&LT/</span><span style=color:#bf616a>java.version</span><span>>
+</span><span>    &LT/</span><span style=color:#bf616a>properties</span><span>>
 </span><span>
-</span><span>    &lt;</span><span style="color:#bf616a;">build</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">plugins</span><span>&gt;
-</span><span>            &lt;</span><span style="color:#bf616a;">plugin</span><span>&gt;
-</span><span>                &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.springframework.boot&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>                &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;spring-boot-maven-plugin&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>            &lt;/</span><span style="color:#bf616a;">plugin</span><span>&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">plugins</span><span>&gt;
-</span><span>    &lt;/</span><span style="color:#bf616a;">build</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">project</span><span>&gt;
-</span></code></pre>
-<p>If you are using Gradle create a file build.gradle in the root of your directory and copy this:</p>
-<pre data-lang="groovy" style="background-color:#2b303b;color:#c0c5ce;" class="language-groovy "><code class="language-groovy" data-lang="groovy"><span>buildscript {
+</span><span>    <</span><span style=color:#bf616a>build</span><span>>
+</span><span>        <</span><span style=color:#bf616a>plugins</span><span>>
+</span><span>            <</span><span style=color:#bf616a>plugin</span><span>>
+</span><span>                <</span><span style=color:#bf616a>groupId</span><span>>org.springframework.boot&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>                <</span><span style=color:#bf616a>artifactId</span><span>>spring-boot-maven-plugin&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>            &LT/</span><span style=color:#bf616a>plugin</span><span>>
+</span><span>        &LT/</span><span style=color:#bf616a>plugins</span><span>>
+</span><span>    &LT/</span><span style=color:#bf616a>build</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>project</span><span>>
+</span></code></pre><p>If you are using Gradle create a file build.gradle in the root of your directory and copy this:<pre class=language-groovy data-lang=groovy style=color:#c0c5ce;background-color:#2b303b><code class=language-groovy data-lang=groovy><span>buildscript {
 </span><span>    repositories {
 </span><span>        mavenCentral()
 </span><span>    }
 </span><span>    dependencies {
-</span><span>        classpath(&quot;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE</span><span>&quot;)
+</span><span>        classpath("</span><span style=color:#a3be8c>org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE</span><span>")
 </span><span>    }
 </span><span>}
 </span><span>
-</span><span>apply </span><span style="color:#d08770;">plugin</span><span>: &#39;</span><span style="color:#a3be8c;">java</span><span>&#39;
-</span><span>apply </span><span style="color:#d08770;">plugin</span><span>: &#39;</span><span style="color:#a3be8c;">eclipse</span><span>&#39;
-</span><span>apply </span><span style="color:#d08770;">plugin</span><span>: &#39;</span><span style="color:#a3be8c;">idea</span><span>&#39;
-</span><span>apply </span><span style="color:#d08770;">plugin</span><span>: &#39;</span><span style="color:#a3be8c;">org.springframework.boot</span><span>&#39;
-</span><span>apply </span><span style="color:#d08770;">plugin</span><span>: &#39;</span><span style="color:#a3be8c;">io.spring.dependency-management</span><span>&#39;
+</span><span>apply </span><span style=color:#d08770>plugin</span><span>: '</span><span style=color:#a3be8c>java</span><span>'
+</span><span>apply </span><span style=color:#d08770>plugin</span><span>: '</span><span style=color:#a3be8c>eclipse</span><span>'
+</span><span>apply </span><span style=color:#d08770>plugin</span><span>: '</span><span style=color:#a3be8c>idea</span><span>'
+</span><span>apply </span><span style=color:#d08770>plugin</span><span>: '</span><span style=color:#a3be8c>org.springframework.boot</span><span>'
+</span><span>apply </span><span style=color:#d08770>plugin</span><span>: '</span><span style=color:#a3be8c>io.spring.dependency-management</span><span>'
 </span><span>
 </span><span>bootJar {
-</span><span>    baseName = &#39;</span><span style="color:#a3be8c;">spring_websocket_specific_user</span><span>&#39;
-</span><span>    version =  &#39;</span><span style="color:#a3be8c;">0.1.0</span><span>&#39;
+</span><span>    baseName = '</span><span style=color:#a3be8c>spring_websocket_specific_user</span><span>'
+</span><span>    version =  '</span><span style=color:#a3be8c>0.1.0</span><span>'
 </span><span>}
 </span><span>
 </span><span>repositories {
 </span><span>    mavenCentral()
 </span><span>}
 </span><span>
-</span><span>sourceCompatibility = </span><span style="color:#d08770;">1.8
-</span><span>targetCompatibility = </span><span style="color:#d08770;">1.8
+</span><span>sourceCompatibility = </span><span style=color:#d08770>1.8
+</span><span>targetCompatibility = </span><span style=color:#d08770>1.8
 </span><span>
 </span><span>dependencies {
-</span><span>    compile(&quot;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-starter-websocket</span><span>&quot;)
-</span><span>    testCompile(&#39;</span><span style="color:#a3be8c;">org.springframework.boot:spring-boot-starter-test</span><span>&#39;)
+</span><span>    compile("</span><span style=color:#a3be8c>org.springframework.boot:spring-boot-starter-websocket</span><span>")
+</span><span>    testCompile('</span><span style=color:#a3be8c>org.springframework.boot:spring-boot-starter-test</span><span>')
 </span><span>}
-</span></code></pre>
-<p>These files will manage Spring dependencies for you downloading everything you'll need to make Spring work. Now, 4 dirs one inside the other: src, then main then java then websocket</p>
-<p>Maven representation</p>
-<img src="/imgs/tree_maven.png" />
-<p>Gradle representation</p>
-<img src="/imgs/tree_gradle.png" />
-<h2 id="creating-your-main-class">Creating your Main class</h2>
-<p>Now let's create the class who will start your program.</p>
-<p>Go to /src/main/java/websocket and create a file named Main.java and add the following</p>
-<pre data-lang="java" style="background-color:#2b303b;color:#c0c5ce;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#b48ead;">package </span><span>websocket;
+</span></code></pre><p>These files will manage Spring dependencies for you downloading everything you'll need to make Spring work. Now, 4 dirs one inside the other: src, then main then java then websocket<p>Maven representation</p><img src=/imgs/tree_maven.png><p>Gradle representation</p><img src=/imgs/tree_gradle.png><h2 id=creating-your-main-class>Creating your Main class</h2><p>Now let's create the class who will start your program.<p>Go to /src/main/java/websocket and create a file named Main.java and add the following<pre class=language-java data-lang=java style=color:#c0c5ce;background-color:#2b303b><code class=language-java data-lang=java><span style=color:#b48ead>package </span><span>websocket;
 </span><span>
-</span><span style="color:#b48ead;">import </span><span>org.springframework.boot.</span><span style="color:#ebcb8b;">SpringApplication</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.boot.autoconfigure.</span><span style="color:#ebcb8b;">SpringBootApplication</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.boot.</span><span style=color:#ebcb8b>SpringApplication</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.boot.autoconfigure.</span><span style=color:#ebcb8b>SpringBootApplication</span><span>;
 </span><span>
-</span><span>@</span><span style="color:#bf616a;">SpringBootApplication
-</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">Main </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public static void </span><span style="color:#8fa1b3;">main</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String</span><span style="color:#b48ead;">[] </span><span style="color:#bf616a;">args</span><span style="color:#eff1f5;">) {
-</span><span style="color:#eff1f5;">    </span><span style="color:#ebcb8b;">SpringApplication</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">run</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">Main</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">class</span><span style="color:#eff1f5;">, args);
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>Now you can run it to test if everything works</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">mvn</span><span> spring-boot:run
-</span></code></pre>
-<p>or</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">gradle</span><span> bootRun
-</span></code></pre>
-<p>If everything went fine you will see something similar to this:</p>
-<img src="/imgs/spring_success_start.png" />
-<h2 id="let-s-create-our-websocket">Let's create our WebSocket</h2>
-<p>Navigate back to /src/main/java and create the packages org.websocket.spring.config and org.websocket.spring.controller</p>
-<img src="/imgs/package_creation.png" />
-<p>PS: Before we proceed, be sure that everything you've done so far is correct and you have a working Spring application. You can tell if you have it by looking at the picture above.
-Don't try the rest of the steps if it is not running at this point. Otherwise it will be hard for you to know what is wrong and it will be worse as more you progress.</p>
-<p>Now let's keep going ...</p>
-<p>Create a new file named WebSocketConfig.java in /src/main/java/org/websocket/spring/config and add the following</p>
-<pre data-lang="java" style="background-color:#2b303b;color:#c0c5ce;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#b48ead;">package </span><span>org.websocket.spring.config;
+</span><span>@</span><span style=color:#bf616a>SpringBootApplication
+</span><span style=color:#b48ead>public class </span><span style=color:#ebcb8b>Main </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public static void </span><span style=color:#8fa1b3>main</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>String</span><span style=color:#b48ead>[] </span><span style=color:#bf616a>args</span><span style=color:#eff1f5>) {
+</span><span style=color:#eff1f5>    </span><span style=color:#ebcb8b>SpringApplication</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>run</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>Main</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>class</span><span style=color:#eff1f5>, args);
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>Now you can run it to test if everything works<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>mvn</span><span> spring-boot:run
+</span></code></pre><p>or<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>gradle</span><span> bootRun
+</span></code></pre><p>If everything went fine you will see something similar to this:</p><img src=/imgs/spring_success_start.png><h2 id=let-s-create-our-websocket>Let's create our WebSocket</h2><p>Navigate back to /src/main/java and create the packages org.websocket.spring.config and org.websocket.spring.controller</p><img src=/imgs/package_creation.png><p>PS: Before we proceed, be sure that everything you've done so far is correct and you have a working Spring application. You can tell if you have it by looking at the picture above. Don't try the rest of the steps if it is not running at this point. Otherwise it will be hard for you to know what is wrong and it will be worse as more you progress.<p>Now let's keep going ...<p>Create a new file named WebSocketConfig.java in /src/main/java/org/websocket/spring/config and add the following<pre class=language-java data-lang=java style=color:#c0c5ce;background-color:#2b303b><code class=language-java data-lang=java><span style=color:#b48ead>package </span><span>org.websocket.spring.config;
 </span><span>
-</span><span style="color:#b48ead;">import </span><span>org.springframework.context.annotation.</span><span style="color:#ebcb8b;">Configuration</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.messaging.simp.config.</span><span style="color:#ebcb8b;">MessageBrokerRegistry</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.web.socket.config.annotation.</span><span style="color:#ebcb8b;">EnableWebSocketMessageBroker</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.web.socket.config.annotation.</span><span style="color:#ebcb8b;">StompEndpointRegistry</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.web.socket.config.annotation.</span><span style="color:#ebcb8b;">WebSocketMessageBrokerConfigurer</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.context.annotation.</span><span style=color:#ebcb8b>Configuration</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.messaging.simp.config.</span><span style=color:#ebcb8b>MessageBrokerRegistry</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.web.socket.config.annotation.</span><span style=color:#ebcb8b>EnableWebSocketMessageBroker</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.web.socket.config.annotation.</span><span style=color:#ebcb8b>StompEndpointRegistry</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.web.socket.config.annotation.</span><span style=color:#ebcb8b>WebSocketMessageBrokerConfigurer</span><span>;
 </span><span>
-</span><span>@</span><span style="color:#bf616a;">Configuration
-</span><span>@</span><span style="color:#bf616a;">EnableWebSocketMessageBroker
-</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">WebSocketConfig </span><span style="color:#b48ead;">implements </span><span style="color:#a3be8c;">WebSocketMessageBrokerConfigurer </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">Override
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public void </span><span style="color:#8fa1b3;">configureMessageBroker</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">MessageBrokerRegistry </span><span style="color:#bf616a;">config</span><span style="color:#eff1f5;">) {
-</span><span style="color:#eff1f5;">    config.</span><span style="color:#bf616a;">enableSimpleBroker</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/user</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">/topic</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">/queue</span><span>&quot;</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">    config.</span><span style="color:#bf616a;">setApplicationDestinationPrefixes</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/app</span><span>&quot;</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">Override
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public void </span><span style="color:#8fa1b3;">registerStompEndpoints</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">StompEndpointRegistry </span><span style="color:#bf616a;">registry</span><span style="color:#eff1f5;">) {
-</span><span style="color:#eff1f5;">    registry.</span><span style="color:#bf616a;">addEndpoint</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/websocket-chat</span><span>&quot;</span><span style="color:#eff1f5;">).</span><span style="color:#bf616a;">withSockJS</span><span style="color:#eff1f5;">();
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<h2 id="spring-built-in-support">Spring built-in support</h2>
-<p>STOMP is just a protocol to make it easier for us sending messages to the server. Before STOMP we had to create data classes full of enums to know which request type it was, perform correct processing flow and return appropriate response because we had only one endpoint in the WebSocket. With STOMP we can create 'internal urls' for actions very similar to Queue applications(Rabbit MQ, Zero MQ, etc), with the difference that when no client is listening to RabitMQ and some data i sent to the Queue, RabbitMQ stores it until someone connects and consumes it, while with STOMP, if nobody is listening to the url and some data is sent, nobody will ever consume that data. So based in the url you can bind a function (like you do with Rest Urls). For this purpose Spring has something nice for us, it pre-defines 3 types of URL: <code>/topic</code>, <code>/queue</code> and <code>/user</code>.</p>
-<ul>
-<li>/topic- By creating any endpoint that starts with this root (like /topic/newMember or /topic/disconnectedMember) Spring will send the messages to any connected user in the WebSocket</li>
-<li>/queue- By creating any endpoint that starts with this root (like /queue/register or /queue/unregister) Spring will send the messages only to the user who requested it, like a normal HTTP url. Imagine you want to register to our chat and if you are eligible you want to receive the list of the other connected users but the other users already have this list, so you don't want to send them anything.</li>
-<li>/user- By creating any endpoint that starts with this root (like /user/{username}/msg) Spring will send the messages only to the user in the brackets(<code>{username}</code>). Notice that when we implement the /user routes we won't need user <code>{username}</code>, it was just to ilustrate my example.</li>
-</ul>
-<h2 id="configuration-file-explanation">Configuration file explanation</h2>
-<p>We created a Spring Configuration class with the annotation <code>@Configuration</code> to configure the base of our WebSockets endpoints. For <code>enableSimpleBroker</code> we set the three 'Spring built-in helpers': <code>/user</code>, <code>/queue</code>, <code>/topic</code> because we will need all of them. <code>/user</code> to redirect specific user chat messages, <code>/queue</code> to register and unregister our user and <code>/topic</code> to spread the word that a new user has entered or left the room.</p>
-<p>The <code>/app</code> in <code>setApplicationDestinationPrefixes</code> method call is a random name you can give to segregate your WebSocket routes from normal Http routes. Last but not least: <code>addEndpoint</code> call creates our WebSocket in the url we pass as a parameter to connect to our WebSocket in our example you have to use the following string: <code>ws://localhost:9000/websocket-chat</code>(only if you are using an outside WebSocket client app, because in our Javascript internal client we only need to use <code>/websocket-chat</code>).</p>
-<p>Now let's create the data class where we will store the message, who send and who should receive it. Just create a class named WebSocketMessage and add the following(I created this class in the package /src/main/java/org/websocket/spring/controller):</p>
-<pre data-lang="java" style="background-color:#2b303b;color:#c0c5ce;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#b48ead;">package </span><span>org.websocket.spring.controller;
+</span><span>@</span><span style=color:#bf616a>Configuration
+</span><span>@</span><span style=color:#bf616a>EnableWebSocketMessageBroker
+</span><span style=color:#b48ead>public class </span><span style=color:#ebcb8b>WebSocketConfig </span><span style=color:#b48ead>implements </span><span style=color:#a3be8c>WebSocketMessageBrokerConfigurer </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>Override
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public void </span><span style=color:#8fa1b3>configureMessageBroker</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>MessageBrokerRegistry </span><span style=color:#bf616a>config</span><span style=color:#eff1f5>) {
+</span><span style=color:#eff1f5>    config.</span><span style=color:#bf616a>enableSimpleBroker</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/user</span><span>"</span><span style=color:#eff1f5>, </span><span>"</span><span style=color:#a3be8c>/topic</span><span>"</span><span style=color:#eff1f5>, </span><span>"</span><span style=color:#a3be8c>/queue</span><span>"</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>    config.</span><span style=color:#bf616a>setApplicationDestinationPrefixes</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/app</span><span>"</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>Override
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public void </span><span style=color:#8fa1b3>registerStompEndpoints</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>StompEndpointRegistry </span><span style=color:#bf616a>registry</span><span style=color:#eff1f5>) {
+</span><span style=color:#eff1f5>    registry.</span><span style=color:#bf616a>addEndpoint</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/websocket-chat</span><span>"</span><span style=color:#eff1f5>).</span><span style=color:#bf616a>withSockJS</span><span style=color:#eff1f5>();
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><h2 id=spring-built-in-support>Spring built-in support</h2><p>STOMP is just a protocol to make it easier for us sending messages to the server. Before STOMP we had to create data classes full of enums to know which request type it was, perform correct processing flow and return appropriate response because we had only one endpoint in the WebSocket. With STOMP we can create 'internal urls' for actions very similar to Queue applications(Rabbit MQ, Zero MQ, etc), with the difference that when no client is listening to RabitMQ and some data i sent to the Queue, RabbitMQ stores it until someone connects and consumes it, while with STOMP, if nobody is listening to the url and some data is sent, nobody will ever consume that data. So based in the url you can bind a function (like you do with Rest Urls). For this purpose Spring has something nice for us, it pre-defines 3 types of URL: <code>/topic</code>, <code>/queue</code> and <code>/user</code>.<ul><li>/topic- By creating any endpoint that starts with this root (like /topic/newMember or /topic/disconnectedMember) Spring will send the messages to any connected user in the WebSocket<li>/queue- By creating any endpoint that starts with this root (like /queue/register or /queue/unregister) Spring will send the messages only to the user who requested it, like a normal HTTP url. Imagine you want to register to our chat and if you are eligible you want to receive the list of the other connected users but the other users already have this list, so you don't want to send them anything.<li>/user- By creating any endpoint that starts with this root (like /user/{username}/msg) Spring will send the messages only to the user in the brackets(<code>{username}</code>). Notice that when we implement the /user routes we won't need user <code>{username}</code>, it was just to ilustrate my example.</ul><h2 id=configuration-file-explanation>Configuration file explanation</h2><p>We created a Spring Configuration class with the annotation <code>@Configuration</code> to configure the base of our WebSockets endpoints. For <code>enableSimpleBroker</code> we set the three 'Spring built-in helpers': <code>/user</code>, <code>/queue</code>, <code>/topic</code> because we will need all of them. <code>/user</code> to redirect specific user chat messages, <code>/queue</code> to register and unregister our user and <code>/topic</code> to spread the word that a new user has entered or left the room.<p>The <code>/app</code> in <code>setApplicationDestinationPrefixes</code> method call is a random name you can give to segregate your WebSocket routes from normal Http routes. Last but not least: <code>addEndpoint</code> call creates our WebSocket in the url we pass as a parameter to connect to our WebSocket in our example you have to use the following string: <code>ws://localhost:9000/websocket-chat</code>(only if you are using an outside WebSocket client app, because in our Javascript internal client we only need to use <code>/websocket-chat</code>).<p>Now let's create the data class where we will store the message, who send and who should receive it. Just create a class named WebSocketMessage and add the following(I created this class in the package /src/main/java/org/websocket/spring/controller):<pre class=language-java data-lang=java style=color:#c0c5ce;background-color:#2b303b><code class=language-java data-lang=java><span style=color:#b48ead>package </span><span>org.websocket.spring.controller;
 </span><span>
-</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">WebSocketMessage </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public final </span><span style="color:#ebcb8b;">String </span><span style="color:#eff1f5;">toWhom;
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public final </span><span style="color:#ebcb8b;">String </span><span style="color:#eff1f5;">fromWho;
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public final </span><span style="color:#ebcb8b;">String </span><span style="color:#eff1f5;">message;
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public </span><span style="color:#8fa1b3;">WebSocketMessage</span><span style="color:#eff1f5;">(</span><span style="color:#b48ead;">final </span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">toWhom</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">final </span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">fromWho</span><span style="color:#eff1f5;">, </span><span style="color:#b48ead;">final </span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">message</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.toWhom  </span><span>=</span><span style="color:#eff1f5;"> toWhom;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.fromWho </span><span>=</span><span style="color:#eff1f5;"> fromWho;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.message </span><span>=</span><span style="color:#eff1f5;"> message;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>No much explanation is needed(I guess), in a Real World situation of course you would create the basic hashCode, equals and toString, maybe even getters and setters, I prefer the immutable approach, but this is just an example so let's not bother with so much details. So let's create our Spring Controller. Just go to /src/main/java/org/websocket/spring/controller again and create WebSocketController.java file and add the following:</p>
-<pre data-lang="java" style="background-color:#2b303b;color:#c0c5ce;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#b48ead;">package </span><span>org.websocket.spring.controller;
+</span><span style=color:#b48ead>public class </span><span style=color:#ebcb8b>WebSocketMessage </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public final </span><span style=color:#ebcb8b>String </span><span style=color:#eff1f5>toWhom;
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public final </span><span style=color:#ebcb8b>String </span><span style=color:#eff1f5>fromWho;
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public final </span><span style=color:#ebcb8b>String </span><span style=color:#eff1f5>message;
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public </span><span style=color:#8fa1b3>WebSocketMessage</span><span style=color:#eff1f5>(</span><span style=color:#b48ead>final </span><span style=color:#ebcb8b>String </span><span style=color:#bf616a>toWhom</span><span style=color:#eff1f5>, </span><span style=color:#b48ead>final </span><span style=color:#ebcb8b>String </span><span style=color:#bf616a>fromWho</span><span style=color:#eff1f5>, </span><span style=color:#b48ead>final </span><span style=color:#ebcb8b>String </span><span style=color:#bf616a>message</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.toWhom  </span><span>=</span><span style=color:#eff1f5> toWhom;
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.fromWho </span><span>=</span><span style=color:#eff1f5> fromWho;
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.message </span><span>=</span><span style=color:#eff1f5> message;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>No much explanation is needed(I guess), in a Real World situation of course you would create the basic hashCode, equals and toString, maybe even getters and setters, I prefer the immutable approach, but this is just an example so let's not bother with so much details. So let's create our Spring Controller. Just go to /src/main/java/org/websocket/spring/controller again and create WebSocketController.java file and add the following:<pre class=language-java data-lang=java style=color:#c0c5ce;background-color:#2b303b><code class=language-java data-lang=java><span style=color:#b48ead>package </span><span>org.websocket.spring.controller;
 </span><span>
-</span><span style="color:#b48ead;">import </span><span>java.util.</span><span style="color:#ebcb8b;">Set</span><span>;
-</span><span style="color:#b48ead;">import </span><span>java.util.</span><span style="color:#ebcb8b;">HashSet</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.messaging.handler.annotation.</span><span style="color:#ebcb8b;">MessageMapping</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.messaging.handler.annotation.</span><span style="color:#ebcb8b;">SendTo</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.messaging.simp.annotation.</span><span style="color:#ebcb8b;">SendToUser</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.messaging.simp.</span><span style="color:#ebcb8b;">SimpMessagingTemplate</span><span>;
-</span><span style="color:#b48ead;">import </span><span>org.springframework.stereotype.</span><span style="color:#ebcb8b;">Controller</span><span>;
+</span><span style=color:#b48ead>import </span><span>java.util.</span><span style=color:#ebcb8b>Set</span><span>;
+</span><span style=color:#b48ead>import </span><span>java.util.</span><span style=color:#ebcb8b>HashSet</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.messaging.handler.annotation.</span><span style=color:#ebcb8b>MessageMapping</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.messaging.handler.annotation.</span><span style=color:#ebcb8b>SendTo</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.messaging.simp.annotation.</span><span style=color:#ebcb8b>SendToUser</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.messaging.simp.</span><span style=color:#ebcb8b>SimpMessagingTemplate</span><span>;
+</span><span style=color:#b48ead>import </span><span>org.springframework.stereotype.</span><span style=color:#ebcb8b>Controller</span><span>;
 </span><span>
-</span><span>@</span><span style="color:#bf616a;">Controller
-</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">WebSocketController </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">private final </span><span style="color:#ebcb8b;">SimpMessagingTemplate </span><span style="color:#eff1f5;">simpMessagingTemplate;   </span><span style="color:#65737e;">//1
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">private final </span><span style="color:#ebcb8b;">Set</span><span style="color:#eff1f5;">&lt;</span><span style="color:#ebcb8b;">String</span><span style="color:#eff1f5;">&gt; connectedUsers;     </span><span style="color:#65737e;">//2
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public </span><span style="color:#8fa1b3;">WebSocketController</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">SimpMessagingTemplate </span><span style="color:#bf616a;">simpMessagingTemplate</span><span style="color:#eff1f5;">){ 
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.simpMessagingTemplate </span><span>=</span><span style="color:#eff1f5;"> simpMessagingTemplate; </span><span style="color:#65737e;">//1
-</span><span style="color:#eff1f5;">    connectedUsers </span><span>= </span><span style="color:#b48ead;">new </span><span style="color:#ebcb8b;">HashSet</span><span style="color:#eff1f5;">&lt;&gt;();  </span><span style="color:#65737e;">//2
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">MessageMapping</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/register</span><span>&quot;</span><span style="color:#eff1f5;">)  </span><span style="color:#65737e;">//3
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">SendToUser</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/queue/newMember</span><span>&quot;</span><span style="color:#eff1f5;">)
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public </span><span style="color:#ebcb8b;">Set</span><span style="color:#eff1f5;">&lt;</span><span style="color:#ebcb8b;">String</span><span style="color:#eff1f5;">&gt; </span><span style="color:#8fa1b3;">registerUser</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">webChatUsername</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span>!</span><span style="color:#eff1f5;">connectedUsers.</span><span style="color:#bf616a;">contains</span><span style="color:#eff1f5;">(webChatUsername)) {
-</span><span style="color:#eff1f5;">      connectedUsers.</span><span style="color:#bf616a;">add</span><span style="color:#eff1f5;">(webChatUsername);
-</span><span style="color:#eff1f5;">      simpMessagingTemplate.</span><span style="color:#bf616a;">convertAndSend</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/topic/newMember</span><span>&quot;</span><span style="color:#eff1f5;">, webChatUsername); </span><span style="color:#65737e;">//4
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> connectedUsers;
-</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return new </span><span style="color:#ebcb8b;">HashSet</span><span style="color:#eff1f5;">&lt;&gt;();
-</span><span style="color:#eff1f5;">    }
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">MessageMapping</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/unregister</span><span>&quot;</span><span style="color:#eff1f5;">)  </span><span style="color:#65737e;">//5
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">SendTo</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/topic/disconnectedUser</span><span>&quot;</span><span style="color:#eff1f5;">)
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public </span><span style="color:#ebcb8b;">String </span><span style="color:#8fa1b3;">unregisterUser</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">webChatUsername</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">    connectedUsers.</span><span style="color:#bf616a;">remove</span><span style="color:#eff1f5;">(webChatUsername);
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return</span><span style="color:#eff1f5;"> webChatUsername;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">
-</span><span style="color:#eff1f5;">  @</span><span style="color:#bf616a;">MessageMapping</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">/message</span><span>&quot;</span><span style="color:#eff1f5;">)  </span><span style="color:#65737e;">//6
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">public void </span><span style="color:#8fa1b3;">greeting</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">WebSocketMessage </span><span style="color:#bf616a;">message</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">    simpMessagingTemplate.</span><span style="color:#bf616a;">convertAndSendToUser</span><span style="color:#eff1f5;">(message.toWhom, </span><span>&quot;</span><span style="color:#a3be8c;">/msg</span><span>&quot;</span><span style="color:#eff1f5;">, message);
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span></code></pre>
-<p>I put comments listing the interesting points here:</p>
-<ol>
-<li>Starting from version 4 (I'm not sure) Spring does not need <code>@Autowired</code> to inject objects anymore if you want to initialize them in the constructor. It makes it perfect for creating immutable components or at least decrease variables mutability, so what I did was inject an object of the type <code>SimpMessagingTemplate</code>. This object is what will hellp us to redirect our messages to the correct user.</li>
-<li>In order to show to the other users who is currently connected so you don't need to guess the user name you want to send a message, I created the Set object that will hold the name of the connected users.</li>
-<li>I created this route to register our user when he connects to our WebSocket. You'll see in the javascript part that this is not automatic, you have to send a message to the url <code>/app/register</code> right after you are connected. The <code>@SendToUser("/queue/newMember")</code> create the endpoint our user will subscribe to (or listen in other words) so when he/she register to our WebSocket the answer/response (whatever the function returns, in this case the Set of connected users) will be sent only to him/her, because if you notice, it is a <code>/queue</code> endpoint.</li>
-<li>I just check if the user already exists in our 'Database' and if so I return an empty Set(you will understand why in the JS part). Otherwise I call <code>simpMessagingTemplate.convertAndSend("/topic/newMember", webChatUsername);</code> to warn the other users that someone just entered the room and then return the list of all users to new connected user. Notice that we are just sending a message to a <code>/topic</code> endpoint, so everybody will receive it.</li>
-<li>Here it's the opposite of our previous function. One user decided to disconnect, so we remove him/her from our 'Database' and then return his/her name to a <code>/topic</code> endpoint to the rest of the users know he/she left. See that here instead of using the <code>simp</code> object I used Spring annotation <code>SendTo</code>, it has the same effect as the function <code>convertAndSend</code> in the <code>SimpMessagingTemplate</code> class. The difference is we can have compiler advantage, because we say what we want to send to the endpoint in the function signature, while in the <code>convertAndSend</code> the parameter is an Object. I used the different approach in the previous function because one cannot send data to two endpoints in one function using the return mechanism, so I returned to the <code>/queue</code> using the language syntax return and used <code>convertAndSend</code> to the <code>/topic</code> endpoint.</li>
-<li>And here is where the magic happens. Here we receive a message from the user and using our class <code>WebSocketMessage</code> and extract to whom this message should be sent. In theory the annotation <code>@SendToUser</code> could do the trick to us and redirect the message to the right recipient but to achieve this I learned in all my researches that you have to configure Spring Security, so the framework will log in the user and create a Principal instance for each connected user and using this Principal object it would know to which user redirect the message. I might be wrong but all the time I tried without Spring Security it did not work. So what that brazilian post I mentioned in the begining said was to ignore this annotation and use the method <code>convertAndSendToUser</code> from the class <code>SimpMessagingTemplate</code> and as you will see if you follow the whole tutorial, it works.</li>
-</ol>
-<p>Now we have to tell Spring that these classes are Spring components and thus Spring should instantiate them for us, so we will modify our Main class a bit and add Spring component scanner and tell the packages that Spring should scan and do it's magic. So add <code>@ComponentScan({"org.websocket.spring"})</code> in our <code>Main</code> class:</p>
-<pre data-lang="java" style="background-color:#2b303b;color:#c0c5ce;" class="language-java "><code class="language-java" data-lang="java"><span>...
-</span><span style="color:#b48ead;">import </span><span>org.springframework.context.annotation.</span><span style="color:#ebcb8b;">ComponentScan</span><span>;
+</span><span>@</span><span style=color:#bf616a>Controller
+</span><span style=color:#b48ead>public class </span><span style=color:#ebcb8b>WebSocketController </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>private final </span><span style=color:#ebcb8b>SimpMessagingTemplate </span><span style=color:#eff1f5>simpMessagingTemplate;   </span><span style=color:#65737e>//1
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>private final </span><span style=color:#ebcb8b>Set</span><span style=color:#eff1f5><</span><span style=color:#ebcb8b>String</span><span style=color:#eff1f5>> connectedUsers;     </span><span style=color:#65737e>//2
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public </span><span style=color:#8fa1b3>WebSocketController</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>SimpMessagingTemplate </span><span style=color:#bf616a>simpMessagingTemplate</span><span style=color:#eff1f5>){ 
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.simpMessagingTemplate </span><span>=</span><span style=color:#eff1f5> simpMessagingTemplate; </span><span style=color:#65737e>//1
+</span><span style=color:#eff1f5>    connectedUsers </span><span>= </span><span style=color:#b48ead>new </span><span style=color:#ebcb8b>HashSet</span><span style=color:#eff1f5><>();  </span><span style=color:#65737e>//2
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>MessageMapping</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/register</span><span>"</span><span style=color:#eff1f5>)  </span><span style=color:#65737e>//3
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>SendToUser</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/queue/newMember</span><span>"</span><span style=color:#eff1f5>)
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public </span><span style=color:#ebcb8b>Set</span><span style=color:#eff1f5><</span><span style=color:#ebcb8b>String</span><span style=color:#eff1f5>> </span><span style=color:#8fa1b3>registerUser</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>String </span><span style=color:#bf616a>webChatUsername</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>if</span><span style=color:#eff1f5>(</span><span>!</span><span style=color:#eff1f5>connectedUsers.</span><span style=color:#bf616a>contains</span><span style=color:#eff1f5>(webChatUsername)) {
+</span><span style=color:#eff1f5>      connectedUsers.</span><span style=color:#bf616a>add</span><span style=color:#eff1f5>(webChatUsername);
+</span><span style=color:#eff1f5>      simpMessagingTemplate.</span><span style=color:#bf616a>convertAndSend</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/topic/newMember</span><span>"</span><span style=color:#eff1f5>, webChatUsername); </span><span style=color:#65737e>//4
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>return</span><span style=color:#eff1f5> connectedUsers;
+</span><span style=color:#eff1f5>    } </span><span style=color:#b48ead>else </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>return new </span><span style=color:#ebcb8b>HashSet</span><span style=color:#eff1f5><>();
+</span><span style=color:#eff1f5>    }
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>MessageMapping</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/unregister</span><span>"</span><span style=color:#eff1f5>)  </span><span style=color:#65737e>//5
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>SendTo</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/topic/disconnectedUser</span><span>"</span><span style=color:#eff1f5>)
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public </span><span style=color:#ebcb8b>String </span><span style=color:#8fa1b3>unregisterUser</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>String </span><span style=color:#bf616a>webChatUsername</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>    connectedUsers.</span><span style=color:#bf616a>remove</span><span style=color:#eff1f5>(webChatUsername);
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return</span><span style=color:#eff1f5> webChatUsername;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>
+</span><span style=color:#eff1f5>  @</span><span style=color:#bf616a>MessageMapping</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>/message</span><span>"</span><span style=color:#eff1f5>)  </span><span style=color:#65737e>//6
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>public void </span><span style=color:#8fa1b3>greeting</span><span style=color:#eff1f5>(</span><span style=color:#ebcb8b>WebSocketMessage </span><span style=color:#bf616a>message</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>    simpMessagingTemplate.</span><span style=color:#bf616a>convertAndSendToUser</span><span style=color:#eff1f5>(message.toWhom, </span><span>"</span><span style=color:#a3be8c>/msg</span><span>"</span><span style=color:#eff1f5>, message);
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span></code></pre><p>I put comments listing the interesting points here:<ol><li>Starting from version 4 (I'm not sure) Spring does not need <code>@Autowired</code> to inject objects anymore if you want to initialize them in the constructor. It makes it perfect for creating immutable components or at least decrease variables mutability, so what I did was inject an object of the type <code>SimpMessagingTemplate</code>. This object is what will hellp us to redirect our messages to the correct user.<li>In order to show to the other users who is currently connected so you don't need to guess the user name you want to send a message, I created the Set object that will hold the name of the connected users.<li>I created this route to register our user when he connects to our WebSocket. You'll see in the javascript part that this is not automatic, you have to send a message to the url <code>/app/register</code> right after you are connected. The <code>@SendToUser("/queue/newMember")</code> create the endpoint our user will subscribe to (or listen in other words) so when he/she register to our WebSocket the answer/response (whatever the function returns, in this case the Set of connected users) will be sent only to him/her, because if you notice, it is a <code>/queue</code> endpoint.<li>I just check if the user already exists in our 'Database' and if so I return an empty Set(you will understand why in the JS part). Otherwise I call <code>simpMessagingTemplate.convertAndSend("/topic/newMember", webChatUsername);</code> to warn the other users that someone just entered the room and then return the list of all users to new connected user. Notice that we are just sending a message to a <code>/topic</code> endpoint, so everybody will receive it.<li>Here it's the opposite of our previous function. One user decided to disconnect, so we remove him/her from our 'Database' and then return his/her name to a <code>/topic</code> endpoint to the rest of the users know he/she left. See that here instead of using the <code>simp</code> object I used Spring annotation <code>SendTo</code>, it has the same effect as the function <code>convertAndSend</code> in the <code>SimpMessagingTemplate</code> class. The difference is we can have compiler advantage, because we say what we want to send to the endpoint in the function signature, while in the <code>convertAndSend</code> the parameter is an Object. I used the different approach in the previous function because one cannot send data to two endpoints in one function using the return mechanism, so I returned to the <code>/queue</code> using the language syntax return and used <code>convertAndSend</code> to the <code>/topic</code> endpoint.<li>And here is where the magic happens. Here we receive a message from the user and using our class <code>WebSocketMessage</code> and extract to whom this message should be sent. In theory the annotation <code>@SendToUser</code> could do the trick to us and redirect the message to the right recipient but to achieve this I learned in all my researches that you have to configure Spring Security, so the framework will log in the user and create a Principal instance for each connected user and using this Principal object it would know to which user redirect the message. I might be wrong but all the time I tried without Spring Security it did not work. So what that brazilian post I mentioned in the begining said was to ignore this annotation and use the method <code>convertAndSendToUser</code> from the class <code>SimpMessagingTemplate</code> and as you will see if you follow the whole tutorial, it works.</ol><p>Now we have to tell Spring that these classes are Spring components and thus Spring should instantiate them for us, so we will modify our Main class a bit and add Spring component scanner and tell the packages that Spring should scan and do it's magic. So add <code>@ComponentScan({"org.websocket.spring"})</code> in our <code>Main</code> class:<pre class=language-java data-lang=java style=color:#c0c5ce;background-color:#2b303b><code class=language-java data-lang=java><span>...
+</span><span style=color:#b48ead>import </span><span>org.springframework.context.annotation.</span><span style=color:#ebcb8b>ComponentScan</span><span>;
 </span><span>
-</span><span>@</span><span style="color:#bf616a;">SpringBootApplication
-</span><span>@</span><span style="color:#bf616a;">ComponentScan</span><span>({&quot;</span><span style="color:#a3be8c;">org.websocket.spring</span><span>&quot;})
-</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">Main </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">...
-</span></code></pre>
-<p>Done, now Spring will initiate our @Controller class automatically making our WebSocket backend complete. Very simple right? Well we could finish it here, but I'll make a simple frontend to make it more complete.</p>
-<h1 id="frontend">Frontend</h1>
-<p>For frontend I will be even simpler than I was in the backend. I won't use any kind of framework(React.js, Angular, jQuery, anything) but two libraries: SockJs-client and stomp-websocket. The rest will be pure vanilla Javascript. SockJs and Stomp-Websocket gives us am eaiser way to control our WebSocket client and the latter adds STOMP, so we don't have to manually do anything when connected to our WebSocket server. To add SockJs and Stomp-Websocket I will use Webjars instead of manually download the js files and put them in our resources directory. So just add this two depencies in our build file:</p>
-<p>Maven</p>
-<pre data-lang="xml" style="background-color:#2b303b;color:#c0c5ce;" class="language-xml "><code class="language-xml" data-lang="xml"><span>&lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.webjars&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;webjars-locator-core&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>&lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.webjars&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;sockjs-client&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">version</span><span>&gt;1.0.2&lt;/</span><span style="color:#bf616a;">version</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>&lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.webjars&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;stomp-websocket&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">version</span><span>&gt;2.3.3&lt;/</span><span style="color:#bf616a;">version</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span></code></pre>
-<p>Gradle</p>
-<pre data-lang="groovy" style="background-color:#2b303b;color:#c0c5ce;" class="language-groovy "><code class="language-groovy" data-lang="groovy"><span>compile(&quot;</span><span style="color:#a3be8c;">org.webjars:webjars-locator-core</span><span>&quot;)
-</span><span>compile(&quot;</span><span style="color:#a3be8c;">org.webjars:sockjs-client:1.0.2</span><span>&quot;)
-</span><span>compile(&quot;</span><span style="color:#a3be8c;">org.webjars:stomp-websocket:2.3.3</span><span>&quot;)
-</span></code></pre>
-<p>If you have never used nor heard about Webjar it is just javascript libraries packaged in a Java jar package, so you can manage them as normal dependecies via maven, gradle or whatever. Whenever you add these libraries you still have to add them in your HTML file old style:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>....
-</span><span>&lt;</span><span style="color:#bf616a;">script </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">/webjar/sockjs-client/1.0.2/sock.min.js</span><span>&quot;/&gt;
+</span><span>@</span><span style=color:#bf616a>SpringBootApplication
+</span><span>@</span><span style=color:#bf616a>ComponentScan</span><span>({"</span><span style=color:#a3be8c>org.websocket.spring</span><span>"})
+</span><span style=color:#b48ead>public class </span><span style=color:#ebcb8b>Main </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>...
+</span></code></pre><p>Done, now Spring will initiate our @Controller class automatically making our WebSocket backend complete. Very simple right? Well we could finish it here, but I'll make a simple frontend to make it more complete.<h1 id=frontend>Frontend</h1><p>For frontend I will be even simpler than I was in the backend. I won't use any kind of framework(React.js, Angular, jQuery, anything) but two libraries: SockJs-client and stomp-websocket. The rest will be pure vanilla Javascript. SockJs and Stomp-Websocket gives us am eaiser way to control our WebSocket client and the latter adds STOMP, so we don't have to manually do anything when connected to our WebSocket server. To add SockJs and Stomp-Websocket I will use Webjars instead of manually download the js files and put them in our resources directory. So just add this two depencies in our build file:<p>Maven<pre class=language-xml data-lang=xml style=color:#c0c5ce;background-color:#2b303b><code class=language-xml data-lang=xml><span><</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>  <</span><span style=color:#bf616a>groupId</span><span>>org.webjars&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>artifactId</span><span>>webjars-locator-core&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span><span><</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>  <</span><span style=color:#bf616a>groupId</span><span>>org.webjars&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>artifactId</span><span>>sockjs-client&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>version</span><span>>1.0.2&LT/</span><span style=color:#bf616a>version</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span><span><</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>  <</span><span style=color:#bf616a>groupId</span><span>>org.webjars&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>artifactId</span><span>>stomp-websocket&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>version</span><span>>2.3.3&LT/</span><span style=color:#bf616a>version</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span></code></pre><p>Gradle<pre class=language-groovy data-lang=groovy style=color:#c0c5ce;background-color:#2b303b><code class=language-groovy data-lang=groovy><span>compile("</span><span style=color:#a3be8c>org.webjars:webjars-locator-core</span><span>")
+</span><span>compile("</span><span style=color:#a3be8c>org.webjars:sockjs-client:1.0.2</span><span>")
+</span><span>compile("</span><span style=color:#a3be8c>org.webjars:stomp-websocket:2.3.3</span><span>")
+</span></code></pre><p>If you have never used nor heard about Webjar it is just javascript libraries packaged in a Java jar package, so you can manage them as normal dependecies via maven, gradle or whatever. Whenever you add these libraries you still have to add them in your HTML file old style:<pre class=language-html data-lang=html style=color:#c0c5ce;background-color:#2b303b><code class=language-html data-lang=html><span>....
+</span><span><</span><span style=color:#bf616a>script </span><span style=color:#d08770>src</span><span>="</span><span style=color:#a3be8c>/webjar/sockjs-client/1.0.2/sock.min.js</span><span>"/>
 </span><span>....
-</span></code></pre>
-<p>As it is annoying to everytime we change the library version we have to go to our HTML files and change the src to reflect the new version I added <code>locator-core</code> Webjar, it helps us removing the verbose to add the version so if you update it, you will not have to change your HTML file:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>....
-</span><span>&lt;</span><span style="color:#bf616a;">script </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">/webjar/sockjs-client/sock.min.js</span><span>&quot;/&gt;
+</span></code></pre><p>As it is annoying to everytime we change the library version we have to go to our HTML files and change the src to reflect the new version I added <code>locator-core</code> Webjar, it helps us removing the verbose to add the version so if you update it, you will not have to change your HTML file:<pre class=language-html data-lang=html style=color:#c0c5ce;background-color:#2b303b><code class=language-html data-lang=html><span>....
+</span><span><</span><span style=color:#bf616a>script </span><span style=color:#d08770>src</span><span>="</span><span style=color:#a3be8c>/webjar/sockjs-client/sock.min.js</span><span>"/>
 </span><span>....
-</span></code></pre>
-<p>Webjar does not work only with Javascript but with CSS as well. I am going to use Bootstrap CSS not make it beautiful but to make everything aligned and understandable. So add another dependency in your Build file:</p>
-<p>Maven</p>
-<pre data-lang="xml" style="background-color:#2b303b;color:#c0c5ce;" class="language-xml "><code class="language-xml" data-lang="xml"><span>&lt;</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">groupId</span><span>&gt;org.webjars&lt;/</span><span style="color:#bf616a;">groupId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">artifactId</span><span>&gt;bootstrap&lt;/</span><span style="color:#bf616a;">artifactId</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">version</span><span>&gt;3.3.7&lt;/</span><span style="color:#bf616a;">version</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">dependency</span><span>&gt;
-</span></code></pre>
-<p>Gradle</p>
-<pre data-lang="groovy" style="background-color:#2b303b;color:#c0c5ce;" class="language-groovy "><code class="language-groovy" data-lang="groovy"><span>compile(&quot;</span><span style="color:#a3be8c;">org.webjars:bootstrap:3.3.7</span><span>&quot;)
-</span></code></pre>
-<p>I will create only the basics for sending and receiving messages and I won't explain any Javascript language syntax detail or HTML. The only explanation you will have in this section is which objects you have to instantiate, which methods to use and why are we using these so you can do your own modifications easily to adequate to your reality. So let's create our index.html file inside /src/main/resources/static directory and add the following:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">html</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">head</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">meta </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">viewport</span><span>&quot; </span><span style="color:#d08770;">content</span><span>=&quot;</span><span style="color:#a3be8c;">width=device-width, initial-scale=1</span><span>&quot;&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">title</span><span>&gt;Webchat WebSocket&lt;/</span><span style="color:#bf616a;">title</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">link </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">/webjars/bootstrap/css/bootstrap.min.css</span><span>&quot; </span><span style="color:#d08770;">rel</span><span>=&quot;</span><span style="color:#a3be8c;">stylesheet</span><span>&quot;&gt;
-</span><span>  &lt;/</span><span style="color:#bf616a;">head</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre><p>Webjar does not work only with Javascript but with CSS as well. I am going to use Bootstrap CSS not make it beautiful but to make everything aligned and understandable. So add another dependency in your Build file:<p>Maven<pre class=language-xml data-lang=xml style=color:#c0c5ce;background-color:#2b303b><code class=language-xml data-lang=xml><span><</span><span style=color:#bf616a>dependency</span><span>>
+</span><span>  <</span><span style=color:#bf616a>groupId</span><span>>org.webjars&LT/</span><span style=color:#bf616a>groupId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>artifactId</span><span>>bootstrap&LT/</span><span style=color:#bf616a>artifactId</span><span>>
+</span><span>  <</span><span style=color:#bf616a>version</span><span>>3.3.7&LT/</span><span style=color:#bf616a>version</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>dependency</span><span>>
+</span></code></pre><p>Gradle<pre class=language-groovy data-lang=groovy style=color:#c0c5ce;background-color:#2b303b><code class=language-groovy data-lang=groovy><span>compile("</span><span style=color:#a3be8c>org.webjars:bootstrap:3.3.7</span><span>")
+</span></code></pre><p>I will create only the basics for sending and receiving messages and I won't explain any Javascript language syntax detail or HTML. The only explanation you will have in this section is which objects you have to instantiate, which methods to use and why are we using these so you can do your own modifications easily to adequate to your reality. So let's create our index.html file inside /src/main/resources/static directory and add the following:<pre class=language-html data-lang=html style=color:#c0c5ce;background-color:#2b303b><code class=language-html data-lang=html><span><</span><span style=color:#bf616a>html</span><span>>
+</span><span>  <</span><span style=color:#bf616a>head</span><span>>
+</span><span>    <</span><span style=color:#bf616a>meta </span><span style=color:#d08770>name</span><span>="</span><span style=color:#a3be8c>viewport</span><span>" </span><span style=color:#d08770>content</span><span>="</span><span style=color:#a3be8c>width=device-width, initial-scale=1</span><span>">
+</span><span>    <</span><span style=color:#bf616a>title</span><span>>Webchat WebSocket&LT/</span><span style=color:#bf616a>title</span><span>>
+</span><span>    <</span><span style=color:#bf616a>link </span><span style=color:#d08770>href</span><span>="</span><span style=color:#a3be8c>/webjars/bootstrap/css/bootstrap.min.css</span><span>" </span><span style=color:#d08770>rel</span><span>="</span><span style=color:#a3be8c>stylesheet</span><span>">
+</span><span>  &LT/</span><span style=color:#bf616a>head</span><span>>
+</span><span>  <</span><span style=color:#bf616a>body</span><span>>
 </span><span>  
-</span><span>    &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">main-content</span><span>&quot; </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">container</span><span>&quot;&gt;
-</span><span>      &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row text-center</span><span>&quot;&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">h2</span><span>&gt;WebChat WebSocket&lt;/</span><span style="color:#bf616a;">h2</span><span>&gt;
-</span><span>      &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>    <</span><span style=color:#bf616a>div </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>main-content</span><span>" </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>container</span><span>">
+</span><span>      <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row text-center</span><span>">
+</span><span>        <</span><span style=color:#bf616a>h2</span><span>>WebChat WebSocket&LT/</span><span style=color:#bf616a>h2</span><span>>
+</span><span>      &LT/</span><span style=color:#bf616a>div</span><span>>
 </span><span>
-</span><span>      &lt;</span><span style="color:#bf616a;">br</span><span>/&gt;
+</span><span>      <</span><span style=color:#bf616a>br</span><span>/>
 </span><span>
-</span><span>      &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row text-center</span><span>&quot;&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">col-md-4</span><span>&quot;&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">label </span><span style="color:#d08770;">for</span><span>=&quot;</span><span style="color:#a3be8c;">webchat_username</span><span>&quot;&gt;Username:&lt;/</span><span style="color:#bf616a;">label</span><span>&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">type</span><span>=&quot;</span><span style="color:#a3be8c;">text</span><span>&quot; </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">webchat_username</span><span>&quot; </span><span style="color:#d08770;">placeholder</span><span>=&quot;</span><span style="color:#a3be8c;">Put your username here...</span><span>&quot;/&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">col-md-1</span><span>&quot;&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">type</span><span>=&quot;</span><span style="color:#a3be8c;">button</span><span>&quot; </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">btn</span><span>&quot; </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">webchat_connect</span><span>&quot; </span><span style="color:#d08770;">value</span><span>=&quot;</span><span style="color:#a3be8c;">Connect</span><span>&quot;/&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">col-md-1</span><span>&quot;&gt;
-</span><span>          &lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">type</span><span>=&quot;</span><span style="color:#a3be8c;">button</span><span>&quot; </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">btn</span><span>&quot; </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">webchat_disconnect</span><span>&quot; </span><span style="color:#d08770;">value</span><span>=&quot;</span><span style="color:#a3be8c;">Disconnect</span><span>&quot; </span><span style="color:#d08770;">disabled</span><span>=&quot;</span><span style="color:#a3be8c;">true</span><span>&quot;/&gt;
-</span><span>        &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>      &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>      <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row text-center</span><span>">
+</span><span>        <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>col-md-4</span><span>">
+</span><span>          <</span><span style=color:#bf616a>label </span><span style=color:#d08770>for</span><span>="</span><span style=color:#a3be8c>webchat_username</span><span>">Username:&LT/</span><span style=color:#bf616a>label</span><span>>
+</span><span>          <</span><span style=color:#bf616a>input </span><span style=color:#d08770>type</span><span>="</span><span style=color:#a3be8c>text</span><span>" </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>webchat_username</span><span>" </span><span style=color:#d08770>placeholder</span><span>="</span><span style=color:#a3be8c>Put your username here...</span><span>"/>
+</span><span>        &LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>        <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>col-md-1</span><span>">
+</span><span>          <</span><span style=color:#bf616a>input </span><span style=color:#d08770>type</span><span>="</span><span style=color:#a3be8c>button</span><span>" </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>btn</span><span>" </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>webchat_connect</span><span>" </span><span style=color:#d08770>value</span><span>="</span><span style=color:#a3be8c>Connect</span><span>"/>
+</span><span>        &LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>        <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>col-md-1</span><span>">
+</span><span>          <</span><span style=color:#bf616a>input </span><span style=color:#d08770>type</span><span>="</span><span style=color:#a3be8c>button</span><span>" </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>btn</span><span>" </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>webchat_disconnect</span><span>" </span><span style=color:#d08770>value</span><span>="</span><span style=color:#a3be8c>Disconnect</span><span>" </span><span style=color:#d08770>disabled</span><span>="</span><span style=color:#a3be8c>true</span><span>"/>
+</span><span>        &LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>      &LT/</span><span style=color:#bf616a>div</span><span>>
 </span><span>
-</span><span>      &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row</span><span>&quot;&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row text-center</span><span>&quot;&gt;&lt;</span><span style="color:#bf616a;">h2</span><span>&gt;Connected Users List&lt;/</span><span style="color:#bf616a;">h2</span><span>&gt;&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>        &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">chat_user_list</span><span>&quot; </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>      &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>      <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row</span><span>">
+</span><span>        <</span><span style=color:#bf616a>div </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row text-center</span><span>"><</span><span style=color:#bf616a>h2</span><span>>Connected Users List&LT/</span><span style=color:#bf616a>h2</span><span>>&LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>        <</span><span style=color:#bf616a>div </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>chat_user_list</span><span>" </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row</span><span>">&LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>      &LT/</span><span style=color:#bf616a>div</span><span>>
 </span><span>    
-</span><span>      &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">chat_list</span><span>&quot; </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">row</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>      <</span><span style=color:#bf616a>div </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>chat_list</span><span>" </span><span style=color:#d08770>class</span><span>="</span><span style=color:#a3be8c>row</span><span>">&LT/</span><span style=color:#bf616a>div</span><span>>
 </span><span>      
-</span><span>      &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">alerts</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
-</span><span>    &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>      <</span><span style=color:#bf616a>div </span><span style=color:#8fa1b3>id</span><span>="</span><span style=color:#a3be8c>alerts</span><span>">&LT/</span><span style=color:#bf616a>div</span><span>>
+</span><span>    &LT/</span><span style=color:#bf616a>div</span><span>>
 </span><span>    
-</span><span>    &lt;</span><span style="color:#bf616a;">script </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">/webjars/sockjs-client/sockjs.min.js</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">script</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">script </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">/webjars/stomp-websocket/stomp.min.js</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">script</span><span>&gt;
-</span><span>    &lt;</span><span style="color:#bf616a;">script </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">/js/index.js</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">script</span><span>&gt;
-</span><span>  &lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">html</span><span>&gt;
-</span></code></pre>
-<p>Now we are going to create our Javascript index.js file inside /src/main/resources/static/js and add the following:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>(</span><span style="color:#b48ead;">function</span><span>(){
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">select</span><span>(</span><span style="color:#bf616a;">str</span><span>){
-</span><span>    </span><span style="color:#b48ead;">return </span><span>document.</span><span style="color:#96b5b4;">querySelector</span><span>(</span><span style="color:#bf616a;">str</span><span>);
+</span><span>    <</span><span style=color:#bf616a>script </span><span style=color:#d08770>src</span><span>="</span><span style=color:#a3be8c>/webjars/sockjs-client/sockjs.min.js</span><span>">&LT/</span><span style=color:#bf616a>script</span><span>>
+</span><span>    <</span><span style=color:#bf616a>script </span><span style=color:#d08770>src</span><span>="</span><span style=color:#a3be8c>/webjars/stomp-websocket/stomp.min.js</span><span>">&LT/</span><span style=color:#bf616a>script</span><span>>
+</span><span>    <</span><span style=color:#bf616a>script </span><span style=color:#d08770>src</span><span>="</span><span style=color:#a3be8c>/js/index.js</span><span>">&LT/</span><span style=color:#bf616a>script</span><span>>
+</span><span>  &LT/</span><span style=color:#bf616a>body</span><span>>
+</span><span>&LT/</span><span style=color:#bf616a>html</span><span>>
+</span></code></pre><p>Now we are going to create our Javascript index.js file inside /src/main/resources/static/js and add the following:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>(</span><span style=color:#b48ead>function</span><span>(){
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>select</span><span>(</span><span style=color:#bf616a>str</span><span>){
+</span><span>    </span><span style=color:#b48ead>return </span><span>document.</span><span style=color:#96b5b4>querySelector</span><span>(</span><span style=color:#bf616a>str</span><span>);
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">alertMessage</span><span>(</span><span style="color:#bf616a;">message</span><span>, </span><span style="color:#bf616a;">type</span><span>){
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">alerts </span><span>= </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#alerts</span><span>&quot;);
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>alertMessage</span><span>(</span><span style=color:#bf616a>message</span><span>, </span><span style=color:#bf616a>type</span><span>){
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>alerts </span><span>= </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#alerts</span><span>");
 </span><span>
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">el </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">p</span><span>&quot;)
-</span><span>    </span><span style="color:#bf616a;">el</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>= </span><span style="color:#bf616a;">message
-</span><span>    </span><span style="color:#bf616a;">el</span><span>.</span><span style="color:#bf616a;">classList</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">type</span><span>)
-</span><span>    </span><span style="color:#bf616a;">alerts</span><span>.</span><span style="color:#96b5b4;">append</span><span>(</span><span style="color:#bf616a;">el</span><span>)
-</span><span>    </span><span style="color:#96b5b4;">setTimeout</span><span>(() </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">alerts</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>= &#39;&#39;, </span><span style="color:#d08770;">5000</span><span>)
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>el </span><span>= document.</span><span style=color:#96b5b4>createElement</span><span>("</span><span style=color:#a3be8c>p</span><span>")
+</span><span>    </span><span style=color:#bf616a>el</span><span>.</span><span style=color:#bf616a>innerHTML </span><span>= </span><span style=color:#bf616a>message
+</span><span>    </span><span style=color:#bf616a>el</span><span>.</span><span style=color:#bf616a>classList</span><span>.</span><span style=color:#96b5b4>add</span><span>(</span><span style=color:#bf616a>type</span><span>)
+</span><span>    </span><span style=color:#bf616a>alerts</span><span>.</span><span style=color:#96b5b4>append</span><span>(</span><span style=color:#bf616a>el</span><span>)
+</span><span>    </span><span style=color:#96b5b4>setTimeout</span><span>(() </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>alerts</span><span>.</span><span style=color:#bf616a>innerHTML </span><span>= '', </span><span style=color:#d08770>5000</span><span>)
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">drawChat</span><span>(</span><span style="color:#bf616a;">chatUsername</span><span>){
-</span><span>    </span><span style="color:#b48ead;">return </span><span>`</span><span style="color:#a3be8c;">&lt;div class=&quot;row text-center&quot;&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">  &lt;h3&gt;Chat with ${</span><span style="color:#bf616a;">chatUsername</span><span style="color:#a3be8c;">}&lt;/h3&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">&lt;/div&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">&lt;div id=&quot;chat_messages_${</span><span style="color:#bf616a;">chatUsername</span><span style="color:#a3be8c;">}&quot; class=&quot;row&quot;&gt;&lt;/div&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">&lt;br/&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">&lt;div class=&quot;row&quot;&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">  &lt;div class=&quot;col-md-4&quot;&gt;&lt;textarea id=&quot;chat_input_${</span><span style="color:#bf616a;">chatUsername</span><span style="color:#a3be8c;">}&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">  &lt;div class=&quot;col-md-1&quot;&gt;&lt;input type=&quot;button&quot; id=&quot;chat_send_to_${</span><span style="color:#bf616a;">chatUsername</span><span style="color:#a3be8c;">}&quot; value=&quot;Send&quot;/&gt;&lt;/div&gt;</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">&lt;/div&gt;</span><span>`
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>drawChat</span><span>(</span><span style=color:#bf616a>chatUsername</span><span>){
+</span><span>    </span><span style=color:#b48ead>return </span><span>`</span><span style=color:#a3be8c>&LTdiv class="row text-center"></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>  &LTh3>Chat with ${</span><span style=color:#bf616a>chatUsername</span><span style=color:#a3be8c>}&LT/h3></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>&LT/div></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>&LTdiv id="chat_messages_${</span><span style=color:#bf616a>chatUsername</span><span style=color:#a3be8c>}" class="row">&LT/div></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>&LTbr/></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>&LTdiv class="row"></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>  &LTdiv class="col-md-4">&LTtextarea id="chat_input_${</span><span style=color:#bf616a>chatUsername</span><span style=color:#a3be8c>}">&LT/textarea>&LT/div></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>  &LTdiv class="col-md-1">&LTinput type="button" id="chat_send_to_${</span><span style=color:#bf616a>chatUsername</span><span style=color:#a3be8c>}" value="Send"/>&LT/div></span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>&LT/div></span><span>`
 </span><span>  }
 </span><span>
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">getChat</span><span>(</span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">chatName</span><span>){
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">chatRoom </span><span>= </span><span style="color:#bf616a;">chatList</span><span>.</span><span style="color:#96b5b4;">querySelector</span><span>(`</span><span style="color:#a3be8c;">#chat_${</span><span style="color:#bf616a;">chatName</span><span style="color:#a3be8c;">}</span><span>`)
-</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">chatRoom </span><span>=== </span><span style="color:#d08770;">null</span><span>){
-</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">el </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;)
-</span><span>      </span><span style="color:#bf616a;">el</span><span>.id = `</span><span style="color:#a3be8c;">chat_${</span><span style="color:#bf616a;">chatName</span><span style="color:#a3be8c;">}</span><span>`
-</span><span>      </span><span style="color:#bf616a;">el</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>= </span><span style="color:#8fa1b3;">drawChat</span><span>(</span><span style="color:#bf616a;">chatName</span><span>)
-</span><span>      </span><span style="color:#bf616a;">el</span><span>.</span><span style="color:#bf616a;">classList</span><span>.</span><span style="color:#96b5b4;">add</span><span>(&#39;</span><span style="color:#a3be8c;">row</span><span>&#39;)
-</span><span>      </span><span style="color:#bf616a;">chatList</span><span>.</span><span style="color:#96b5b4;">append</span><span>(</span><span style="color:#bf616a;">el</span><span>)
-</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">el</span><span>;
-</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
-</span><span>      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">chatRoom
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>getChat</span><span>(</span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>chatName</span><span>){
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>chatRoom </span><span>= </span><span style=color:#bf616a>chatList</span><span>.</span><span style=color:#96b5b4>querySelector</span><span>(`</span><span style=color:#a3be8c>#chat_${</span><span style=color:#bf616a>chatName</span><span style=color:#a3be8c>}</span><span>`)
+</span><span>    </span><span style=color:#b48ead>if</span><span>(</span><span style=color:#bf616a>chatRoom </span><span>=== </span><span style=color:#d08770>null</span><span>){
+</span><span>      </span><span style=color:#b48ead>let </span><span style=color:#bf616a>el </span><span>= document.</span><span style=color:#96b5b4>createElement</span><span>("</span><span style=color:#a3be8c>div</span><span>")
+</span><span>      </span><span style=color:#bf616a>el</span><span>.id = `</span><span style=color:#a3be8c>chat_${</span><span style=color:#bf616a>chatName</span><span style=color:#a3be8c>}</span><span>`
+</span><span>      </span><span style=color:#bf616a>el</span><span>.</span><span style=color:#bf616a>innerHTML </span><span>= </span><span style=color:#8fa1b3>drawChat</span><span>(</span><span style=color:#bf616a>chatName</span><span>)
+</span><span>      </span><span style=color:#bf616a>el</span><span>.</span><span style=color:#bf616a>classList</span><span>.</span><span style=color:#96b5b4>add</span><span>('</span><span style=color:#a3be8c>row</span><span>')
+</span><span>      </span><span style=color:#bf616a>chatList</span><span>.</span><span style=color:#96b5b4>append</span><span>(</span><span style=color:#bf616a>el</span><span>)
+</span><span>      </span><span style=color:#b48ead>return </span><span style=color:#bf616a>el</span><span>;
+</span><span>    } </span><span style=color:#b48ead>else </span><span>{
+</span><span>      </span><span style=color:#b48ead>return </span><span style=color:#bf616a>chatRoom
 </span><span>    }
 </span><span>  }
 </span><span>
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">clickSendButton</span><span>(</span><span style="color:#bf616a;">chatRoom</span><span>, </span><span style="color:#bf616a;">toWhom</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>) {
-</span><span>    </span><span style="color:#bf616a;">chatRoom</span><span>.</span><span style="color:#96b5b4;">querySelector</span><span>(`</span><span style="color:#a3be8c;">#chat_send_to_${</span><span style="color:#bf616a;">toWhom</span><span style="color:#a3be8c;">}</span><span>`).</span><span style="color:#96b5b4;">addEventListener</span><span>(&#39;</span><span style="color:#a3be8c;">click</span><span>&#39;, () </span><span style="color:#b48ead;">=&gt; </span><span>{
-</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">msgInput </span><span>= </span><span style="color:#bf616a;">chatRoom</span><span>.</span><span style="color:#96b5b4;">querySelector</span><span>(`</span><span style="color:#a3be8c;">#chat_input_${</span><span style="color:#bf616a;">toWhom</span><span style="color:#a3be8c;">}</span><span>`)
-</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">msg </span><span>= </span><span style="color:#bf616a;">msgInput</span><span>.value;
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>clickSendButton</span><span>(</span><span style=color:#bf616a>chatRoom</span><span>, </span><span style=color:#bf616a>toWhom</span><span>, </span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>) {
+</span><span>    </span><span style=color:#bf616a>chatRoom</span><span>.</span><span style=color:#96b5b4>querySelector</span><span>(`</span><span style=color:#a3be8c>#chat_send_to_${</span><span style=color:#bf616a>toWhom</span><span style=color:#a3be8c>}</span><span>`).</span><span style=color:#96b5b4>addEventListener</span><span>('</span><span style=color:#a3be8c>click</span><span>', () </span><span style=color:#b48ead>=> </span><span>{
+</span><span>      </span><span style=color:#b48ead>let </span><span style=color:#bf616a>msgInput </span><span>= </span><span style=color:#bf616a>chatRoom</span><span>.</span><span style=color:#96b5b4>querySelector</span><span>(`</span><span style=color:#a3be8c>#chat_input_${</span><span style=color:#bf616a>toWhom</span><span style=color:#a3be8c>}</span><span>`)
+</span><span>      </span><span style=color:#b48ead>let </span><span style=color:#bf616a>msg </span><span>= </span><span style=color:#bf616a>msgInput</span><span>.value;
 </span><span>
-</span><span>      </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">msg </span><span>&amp;&amp; </span><span style="color:#bf616a;">msg </span><span>!== &#39;&#39;) {
-</span><span>        </span><span style="color:#8fa1b3;">stompClientSendMessage</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/app/message</span><span>&#39;, JSON.</span><span style="color:#96b5b4;">stringify</span><span>({
-</span><span>          toWhom: </span><span style="color:#bf616a;">toWhom</span><span>,
-</span><span>          fromWho: </span><span style="color:#bf616a;">username</span><span>,
-</span><span>          message: </span><span style="color:#bf616a;">msg
+</span><span>      </span><span style=color:#b48ead>if </span><span>(</span><span style=color:#bf616a>msg </span><span>&& </span><span style=color:#bf616a>msg </span><span>!== '') {
+</span><span>        </span><span style=color:#8fa1b3>stompClientSendMessage</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/app/message</span><span>', JSON.</span><span style=color:#96b5b4>stringify</span><span>({
+</span><span>          toWhom: </span><span style=color:#bf616a>toWhom</span><span>,
+</span><span>          fromWho: </span><span style=color:#bf616a>username</span><span>,
+</span><span>          message: </span><span style=color:#bf616a>msg
 </span><span>        }))
-</span><span>        </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">messages </span><span>= </span><span style="color:#bf616a;">chatRoom</span><span>.</span><span style="color:#96b5b4;">querySelector</span><span>(`</span><span style="color:#a3be8c;">#chat_messages_${</span><span style="color:#bf616a;">toWhom</span><span style="color:#a3be8c;">}</span><span>`);
-</span><span>        </span><span style="color:#bf616a;">messages</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>+= `</span><span style="color:#a3be8c;">&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-md-1&quot;&gt;Me:&lt;/div&gt;&lt;div class=&quot;col-md-8&quot;&gt;${</span><span style="color:#bf616a;">msg</span><span style="color:#a3be8c;">}&lt;/div&gt;&lt;/div&gt;</span><span>`
-</span><span>        </span><span style="color:#bf616a;">msgInput</span><span>.value = &#39;&#39;
-</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
-</span><span>        </span><span style="color:#8fa1b3;">alertMessage</span><span>(`</span><span style="color:#a3be8c;">Message to user [${</span><span style="color:#bf616a;">toWhom</span><span style="color:#a3be8c;">}] cannot be empty !!!</span><span>`, &quot;</span><span style="color:#a3be8c;">bg-danger</span><span>&quot;)
+</span><span>        </span><span style=color:#b48ead>let </span><span style=color:#bf616a>messages </span><span>= </span><span style=color:#bf616a>chatRoom</span><span>.</span><span style=color:#96b5b4>querySelector</span><span>(`</span><span style=color:#a3be8c>#chat_messages_${</span><span style=color:#bf616a>toWhom</span><span style=color:#a3be8c>}</span><span>`);
+</span><span>        </span><span style=color:#bf616a>messages</span><span>.</span><span style=color:#bf616a>innerHTML </span><span>+= `</span><span style=color:#a3be8c>&LTdiv class="row">&LTdiv class="col-md-1">Me:&LT/div>&LTdiv class="col-md-8">${</span><span style=color:#bf616a>msg</span><span style=color:#a3be8c>}&LT/div>&LT/div></span><span>`
+</span><span>        </span><span style=color:#bf616a>msgInput</span><span>.value = ''
+</span><span>      } </span><span style=color:#b48ead>else </span><span>{
+</span><span>        </span><span style=color:#8fa1b3>alertMessage</span><span>(`</span><span style=color:#a3be8c>Message to user [${</span><span style=color:#bf616a>toWhom</span><span style=color:#a3be8c>}] cannot be empty !!!</span><span>`, "</span><span style=color:#a3be8c>bg-danger</span><span>")
 </span><span>      }
-</span><span>    }, </span><span style="color:#d08770;">true</span><span>)
+</span><span>    }, </span><span style=color:#d08770>true</span><span>)
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">displayMessage</span><span>(</span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>, {</span><span style="color:#bf616a;">fromWho</span><span>, </span><span style="color:#bf616a;">message</span><span>}){
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">chatRoom </span><span>= </span><span style="color:#8fa1b3;">getChat</span><span>(</span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">fromWho</span><span>);
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">messages </span><span>= </span><span style="color:#bf616a;">chatRoom</span><span>.</span><span style="color:#96b5b4;">querySelector</span><span>(`</span><span style="color:#a3be8c;">#chat_messages_${</span><span style="color:#bf616a;">fromWho</span><span style="color:#a3be8c;">}</span><span>`);
-</span><span>    </span><span style="color:#bf616a;">messages</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>+= `</span><span style="color:#a3be8c;">&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-md-1&quot;&gt;${</span><span style="color:#bf616a;">fromWho</span><span style="color:#a3be8c;">}:&lt;/div&gt;&lt;div class=&quot;col-md-8&quot;&gt;${</span><span style="color:#bf616a;">message</span><span style="color:#a3be8c;">}&lt;/div&gt;&lt;/div&gt;</span><span>`
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>displayMessage</span><span>(</span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>, {</span><span style=color:#bf616a>fromWho</span><span>, </span><span style=color:#bf616a>message</span><span>}){
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>chatRoom </span><span>= </span><span style=color:#8fa1b3>getChat</span><span>(</span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>fromWho</span><span>);
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>messages </span><span>= </span><span style=color:#bf616a>chatRoom</span><span>.</span><span style=color:#96b5b4>querySelector</span><span>(`</span><span style=color:#a3be8c>#chat_messages_${</span><span style=color:#bf616a>fromWho</span><span style=color:#a3be8c>}</span><span>`);
+</span><span>    </span><span style=color:#bf616a>messages</span><span>.</span><span style=color:#bf616a>innerHTML </span><span>+= `</span><span style=color:#a3be8c>&LTdiv class="row">&LTdiv class="col-md-1">${</span><span style=color:#bf616a>fromWho</span><span style=color:#a3be8c>}:&LT/div>&LTdiv class="col-md-8">${</span><span style=color:#bf616a>message</span><span style=color:#a3be8c>}&LT/div>&LT/div></span><span>`
 </span><span>
-</span><span>    </span><span style="color:#8fa1b3;">clickSendButton</span><span>(</span><span style="color:#bf616a;">chatRoom</span><span>, </span><span style="color:#bf616a;">fromWho</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>)
+</span><span>    </span><span style=color:#8fa1b3>clickSendButton</span><span>(</span><span style=color:#bf616a>chatRoom</span><span>, </span><span style=color:#bf616a>fromWho</span><span>, </span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>)
 </span><span>
 </span><span>  }
 </span><span>
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">displayUserList</span><span>(</span><span style="color:#bf616a;">userList</span><span>, </span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>){
-</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">lis </span><span>= </span><span style="color:#bf616a;">userList</span><span>.length === </span><span style="color:#d08770;">0 </span><span>? &quot;</span><span style="color:#a3be8c;">It looks like you are the only one in the chat room !!!</span><span>&quot; : </span><span style="color:#bf616a;">userList
-</span><span>        .</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">acc</span><span>, </span><span style="color:#bf616a;">item</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>`</span><span style="color:#a3be8c;">${</span><span style="color:#bf616a;">acc</span><span style="color:#a3be8c;">}&lt;li id=&quot;user_${</span><span style="color:#bf616a;">item</span><span style="color:#a3be8c;">}&quot;&gt;&lt;a href=&quot;#chat_${</span><span style="color:#bf616a;">item</span><span style="color:#a3be8c;">}&quot;&gt;${</span><span style="color:#bf616a;">item</span><span style="color:#a3be8c;">}&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;</span><span>`, &quot;&quot;)
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>displayUserList</span><span>(</span><span style=color:#bf616a>userList</span><span>, </span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>stompClient</span><span>){
+</span><span>    </span><span style=color:#b48ead>const </span><span style=color:#bf616a>lis </span><span>= </span><span style=color:#bf616a>userList</span><span>.length === </span><span style=color:#d08770>0 </span><span>? "</span><span style=color:#a3be8c>It looks like you are the only one in the chat room !!!</span><span>" : </span><span style=color:#bf616a>userList
+</span><span>        .</span><span style=color:#8fa1b3>reduce</span><span>((</span><span style=color:#bf616a>acc</span><span>, </span><span style=color:#bf616a>item</span><span>) </span><span style=color:#b48ead>=> </span><span>`</span><span style=color:#a3be8c>${</span><span style=color:#bf616a>acc</span><span style=color:#a3be8c>}&LTli id="user_${</span><span style=color:#bf616a>item</span><span style=color:#a3be8c>}">&LTa href="#chat_${</span><span style=color:#bf616a>item</span><span style=color:#a3be8c>}">${</span><span style=color:#bf616a>item</span><span style=color:#a3be8c>}&LT/a>&LT/a>&LT/li></span><span>`, "")
 </span><span>
-</span><span>    </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#chat_user_list</span><span>&quot;).</span><span style="color:#bf616a;">innerHTML </span><span>= `</span><span style="color:#a3be8c;">&lt;ul&gt;${</span><span style="color:#bf616a;">lis</span><span style="color:#a3be8c;">}&lt;/ul&gt;</span><span>`
+</span><span>    </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#chat_user_list</span><span>").</span><span style=color:#bf616a>innerHTML </span><span>= `</span><span style=color:#a3be8c>&LTul>${</span><span style=color:#bf616a>lis</span><span style=color:#a3be8c>}&LT/ul></span><span>`
 </span><span>
-</span><span>    </span><span style="color:#bf616a;">userList</span><span>.</span><span style="color:#96b5b4;">forEach</span><span>(</span><span style="color:#bf616a;">item </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">select</span><span>(`</span><span style="color:#a3be8c;">#chat_user_list #user_${</span><span style="color:#bf616a;">item</span><span style="color:#a3be8c;">}</span><span>`).</span><span style="color:#96b5b4;">addEventListener</span><span>(&#39;</span><span style="color:#a3be8c;">click</span><span>&#39;, () </span><span style="color:#b48ead;">=&gt; </span><span>{
-</span><span>      </span><span style="color:#8fa1b3;">clickSendButton</span><span>(</span><span style="color:#8fa1b3;">getChat</span><span>(</span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">item</span><span>), </span><span style="color:#bf616a;">item</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>);
-</span><span>    }, </span><span style="color:#d08770;">true</span><span>))
-</span><span>  }
-</span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">stompSubscribe</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">endpoint</span><span>, </span><span style="color:#bf616a;">callback</span><span>){ </span><span style="color:#65737e;">//8
-</span><span>    </span><span style="color:#bf616a;">stompClient</span><span>.</span><span style="color:#8fa1b3;">subscribe</span><span>(</span><span style="color:#bf616a;">endpoint</span><span>, </span><span style="color:#bf616a;">callback</span><span>)
-</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">stompClient
+</span><span>    </span><span style=color:#bf616a>userList</span><span>.</span><span style=color:#96b5b4>forEach</span><span>(</span><span style=color:#bf616a>item </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>select</span><span>(`</span><span style=color:#a3be8c>#chat_user_list #user_${</span><span style=color:#bf616a>item</span><span style=color:#a3be8c>}</span><span>`).</span><span style=color:#96b5b4>addEventListener</span><span>('</span><span style=color:#a3be8c>click</span><span>', () </span><span style=color:#b48ead>=> </span><span>{
+</span><span>      </span><span style=color:#8fa1b3>clickSendButton</span><span>(</span><span style=color:#8fa1b3>getChat</span><span>(</span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>item</span><span>), </span><span style=color:#bf616a>item</span><span>, </span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>);
+</span><span>    }, </span><span style=color:#d08770>true</span><span>))
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">stompClientSendMessage</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">endpoint</span><span>, </span><span style="color:#bf616a;">message</span><span>){ </span><span style="color:#65737e;">// 9
-</span><span>    </span><span style="color:#bf616a;">stompClient</span><span>.</span><span style="color:#96b5b4;">send</span><span>(</span><span style="color:#bf616a;">endpoint</span><span>, {}, </span><span style="color:#bf616a;">message</span><span>)
-</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">stompClient
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>stompSubscribe</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>endpoint</span><span>, </span><span style=color:#bf616a>callback</span><span>){ </span><span style=color:#65737e>//8
+</span><span>    </span><span style=color:#bf616a>stompClient</span><span>.</span><span style=color:#8fa1b3>subscribe</span><span>(</span><span style=color:#bf616a>endpoint</span><span>, </span><span style=color:#bf616a>callback</span><span>)
+</span><span>    </span><span style=color:#b48ead>return </span><span style=color:#bf616a>stompClient
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">disconnect</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">connectBtn</span><span>, </span><span style="color:#bf616a;">disconnectBtn</span><span>, </span><span style="color:#bf616a;">clicked </span><span>= </span><span style="color:#d08770;">false</span><span>){
-</span><span>    </span><span style="color:#bf616a;">connectBtn</span><span>.disabled = </span><span style="color:#d08770;">false
-</span><span>    </span><span style="color:#bf616a;">disconnectBtn</span><span>.disabled = </span><span style="color:#d08770;">true
-</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">clicked</span><span>){
-</span><span>      </span><span style="color:#8fa1b3;">stompClientSendMessage</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/app/unregister</span><span>&#39;, </span><span style="color:#bf616a;">username</span><span>)
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>stompClientSendMessage</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>endpoint</span><span>, </span><span style=color:#bf616a>message</span><span>){ </span><span style=color:#65737e>// 9
+</span><span>    </span><span style=color:#bf616a>stompClient</span><span>.</span><span style=color:#96b5b4>send</span><span>(</span><span style=color:#bf616a>endpoint</span><span>, {}, </span><span style=color:#bf616a>message</span><span>)
+</span><span>    </span><span style=color:#b48ead>return </span><span style=color:#bf616a>stompClient
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>disconnect</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>connectBtn</span><span>, </span><span style=color:#bf616a>disconnectBtn</span><span>, </span><span style=color:#bf616a>clicked </span><span>= </span><span style=color:#d08770>false</span><span>){
+</span><span>    </span><span style=color:#bf616a>connectBtn</span><span>.disabled = </span><span style=color:#d08770>false
+</span><span>    </span><span style=color:#bf616a>disconnectBtn</span><span>.disabled = </span><span style=color:#d08770>true
+</span><span>    </span><span style=color:#b48ead>if</span><span>(</span><span style=color:#bf616a>clicked</span><span>){
+</span><span>      </span><span style=color:#8fa1b3>stompClientSendMessage</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/app/unregister</span><span>', </span><span style=color:#bf616a>username</span><span>)
 </span><span>    }
-</span><span>    </span><span style="color:#bf616a;">stompClient</span><span>.</span><span style="color:#96b5b4;">disconnect</span><span>() </span><span style="color:#65737e;">//6-1
+</span><span>    </span><span style=color:#bf616a>stompClient</span><span>.</span><span style=color:#96b5b4>disconnect</span><span>() </span><span style=color:#65737e>//6-1
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">connect</span><span>(</span><span style="color:#bf616a;">username</span><span>){ </span><span style="color:#65737e;">//1-1
-</span><span>    </span><span style="color:#b48ead;">return </span><span>new Promise((</span><span style="color:#bf616a;">resolve</span><span>, </span><span style="color:#bf616a;">reject</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
-</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">stompClient </span><span>= </span><span style="color:#bf616a;">Stomp</span><span>.</span><span style="color:#8fa1b3;">over</span><span>(new SockJS(&#39;</span><span style="color:#a3be8c;">/websocket-chat</span><span>&#39;))
-</span><span>      </span><span style="color:#bf616a;">stompClient</span><span>.</span><span style="color:#8fa1b3;">connect</span><span>({}, (</span><span style="color:#bf616a;">frame</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">resolve</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>))
+</span><span>  </span><span style=color:#b48ead>function </span><span style=color:#8fa1b3>connect</span><span>(</span><span style=color:#bf616a>username</span><span>){ </span><span style=color:#65737e>//1-1
+</span><span>    </span><span style=color:#b48ead>return </span><span>new Promise((</span><span style=color:#bf616a>resolve</span><span>, </span><span style=color:#bf616a>reject</span><span>) </span><span style=color:#b48ead>=> </span><span>{
+</span><span>      </span><span style=color:#b48ead>let </span><span style=color:#bf616a>stompClient </span><span>= </span><span style=color:#bf616a>Stomp</span><span>.</span><span style=color:#8fa1b3>over</span><span>(new SockJS('</span><span style=color:#a3be8c>/websocket-chat</span><span>'))
+</span><span>      </span><span style=color:#bf616a>stompClient</span><span>.</span><span style=color:#8fa1b3>connect</span><span>({}, (</span><span style=color:#bf616a>frame</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>resolve</span><span>(</span><span style=color:#bf616a>stompClient</span><span>))
 </span><span>    })
 </span><span>  }
 </span><span>  
-</span><span>  </span><span style="color:#65737e;">//To guarantee that our page is completely loaded before we execute anything
-</span><span>  window.</span><span style="color:#96b5b4;">addEventListener</span><span>(&#39;</span><span style="color:#a3be8c;">load</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">event</span><span>){
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">chatUsersList </span><span>= [];
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">chatList </span><span>= </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#chat_list</span><span>&quot;);
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">connectButton </span><span>= </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#webchat_connect</span><span>&quot;);
-</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">disconnectButton </span><span>= </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#webchat_disconnect</span><span>&quot;);
+</span><span>  </span><span style=color:#65737e>//To guarantee that our page is completely loaded before we execute anything
+</span><span>  window.</span><span style=color:#96b5b4>addEventListener</span><span>('</span><span style=color:#a3be8c>load</span><span>', </span><span style=color:#b48ead>function</span><span>(</span><span style=color:#bf616a>event</span><span>){
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>chatUsersList </span><span>= [];
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>chatList </span><span>= </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#chat_list</span><span>");
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>connectButton </span><span>= </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#webchat_connect</span><span>");
+</span><span>    </span><span style=color:#b48ead>let </span><span style=color:#bf616a>disconnectButton </span><span>= </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#webchat_disconnect</span><span>");
 </span><span>
-</span><span>    </span><span style="color:#bf616a;">connectButton</span><span>.</span><span style="color:#96b5b4;">addEventListener</span><span>(&#39;</span><span style="color:#a3be8c;">click</span><span>&#39;, () </span><span style="color:#b48ead;">=&gt; </span><span>{
-</span><span>      </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">username </span><span>= </span><span style="color:#8fa1b3;">select</span><span>(&quot;</span><span style="color:#a3be8c;">#webchat_username</span><span>&quot;).value;
+</span><span>    </span><span style=color:#bf616a>connectButton</span><span>.</span><span style=color:#96b5b4>addEventListener</span><span>('</span><span style=color:#a3be8c>click</span><span>', () </span><span style=color:#b48ead>=> </span><span>{
+</span><span>      </span><span style=color:#b48ead>let </span><span style=color:#bf616a>username </span><span>= </span><span style=color:#8fa1b3>select</span><span>("</span><span style=color:#a3be8c>#webchat_username</span><span>").value;
 </span><span>
-</span><span>      </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">username </span><span>== </span><span style="color:#d08770;">null </span><span>|| </span><span style="color:#bf616a;">username </span><span>=== &#39;&#39;){
-</span><span>        </span><span style="color:#8fa1b3;">alertMessage</span><span>(&#39;</span><span style="color:#a3be8c;">Name cannot be empty!!!</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">bg-danger</span><span>&#39;)
-</span><span>      } </span><span style="color:#b48ead;">else </span><span>{
-</span><span>        </span><span style="color:#8fa1b3;">connect</span><span>(</span><span style="color:#bf616a;">username</span><span>) </span><span style="color:#65737e;">//1
-</span><span>            .</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">stompSubscribe</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/user/queue/newMember</span><span>&#39;, (</span><span style="color:#bf616a;">data</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{ </span><span style="color:#65737e;">//2
-</span><span>              </span><span style="color:#bf616a;">chatUsersList </span><span>= JSON.</span><span style="color:#96b5b4;">parse</span><span>(</span><span style="color:#bf616a;">data</span><span>.body)
-</span><span>              </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">chatUsersList</span><span>.length &gt; </span><span style="color:#d08770;">0</span><span>){
-</span><span>                </span><span style="color:#8fa1b3;">displayUserList</span><span>(</span><span style="color:#bf616a;">chatUsersList</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">x </span><span>!= </span><span style="color:#bf616a;">username</span><span>), </span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>)
-</span><span>              } </span><span style="color:#b48ead;">else </span><span>{
-</span><span>                </span><span style="color:#8fa1b3;">alertMessage</span><span>(&quot;</span><span style="color:#a3be8c;">Username already exists!!!</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bg-danger</span><span>&quot;)
-</span><span>                </span><span style="color:#8fa1b3;">disconnect</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">connectButton</span><span>, </span><span style="color:#bf616a;">disconnectButton</span><span>)
+</span><span>      </span><span style=color:#b48ead>if</span><span>(</span><span style=color:#bf616a>username </span><span>== </span><span style=color:#d08770>null </span><span>|| </span><span style=color:#bf616a>username </span><span>=== ''){
+</span><span>        </span><span style=color:#8fa1b3>alertMessage</span><span>('</span><span style=color:#a3be8c>Name cannot be empty!!!</span><span>', '</span><span style=color:#a3be8c>bg-danger</span><span>')
+</span><span>      } </span><span style=color:#b48ead>else </span><span>{
+</span><span>        </span><span style=color:#8fa1b3>connect</span><span>(</span><span style=color:#bf616a>username</span><span>) </span><span style=color:#65737e>//1
+</span><span>            .</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>stompSubscribe</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/user/queue/newMember</span><span>', (</span><span style=color:#bf616a>data</span><span>) </span><span style=color:#b48ead>=> </span><span>{ </span><span style=color:#65737e>//2
+</span><span>              </span><span style=color:#bf616a>chatUsersList </span><span>= JSON.</span><span style=color:#96b5b4>parse</span><span>(</span><span style=color:#bf616a>data</span><span>.body)
+</span><span>              </span><span style=color:#b48ead>if</span><span>(</span><span style=color:#bf616a>chatUsersList</span><span>.length > </span><span style=color:#d08770>0</span><span>){
+</span><span>                </span><span style=color:#8fa1b3>displayUserList</span><span>(</span><span style=color:#bf616a>chatUsersList</span><span>.</span><span style=color:#8fa1b3>filter</span><span>(</span><span style=color:#bf616a>x </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>x </span><span>!= </span><span style=color:#bf616a>username</span><span>), </span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>stompClient</span><span>)
+</span><span>              } </span><span style=color:#b48ead>else </span><span>{
+</span><span>                </span><span style=color:#8fa1b3>alertMessage</span><span>("</span><span style=color:#a3be8c>Username already exists!!!</span><span>", "</span><span style=color:#a3be8c>bg-danger</span><span>")
+</span><span>                </span><span style=color:#8fa1b3>disconnect</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>connectButton</span><span>, </span><span style=color:#bf616a>disconnectButton</span><span>)
 </span><span>              }
-</span><span>            })).</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">stompSubscribe</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/topic/newMember</span><span>&#39;, (</span><span style="color:#bf616a;">data</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{  </span><span style="color:#65737e;">// 3
-</span><span>              </span><span style="color:#bf616a;">chatUsersList</span><span>.</span><span style="color:#96b5b4;">push</span><span>(</span><span style="color:#bf616a;">data</span><span>.body);
-</span><span>              </span><span style="color:#8fa1b3;">displayUserList</span><span>(</span><span style="color:#bf616a;">chatUsersList</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">x </span><span>!= </span><span style="color:#bf616a;">username</span><span>), </span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>)
-</span><span>            })).</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">stompClientSendMessage</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/app/register</span><span>&#39;, </span><span style="color:#bf616a;">username</span><span>)) </span><span style="color:#65737e;">// 4
-</span><span>            .</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">stompSubscribe</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, `</span><span style="color:#a3be8c;">/user/${</span><span style="color:#bf616a;">username</span><span style="color:#a3be8c;">}/msg</span><span>`, (</span><span style="color:#bf616a;">data</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{
-</span><span>              </span><span style="color:#8fa1b3;">displayMessage</span><span>(</span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>, JSON.</span><span style="color:#96b5b4;">parse</span><span>(</span><span style="color:#bf616a;">data</span><span>.body))
+</span><span>            })).</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>stompSubscribe</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/topic/newMember</span><span>', (</span><span style=color:#bf616a>data</span><span>) </span><span style=color:#b48ead>=> </span><span>{  </span><span style=color:#65737e>// 3
+</span><span>              </span><span style=color:#bf616a>chatUsersList</span><span>.</span><span style=color:#96b5b4>push</span><span>(</span><span style=color:#bf616a>data</span><span>.body);
+</span><span>              </span><span style=color:#8fa1b3>displayUserList</span><span>(</span><span style=color:#bf616a>chatUsersList</span><span>.</span><span style=color:#8fa1b3>filter</span><span>(</span><span style=color:#bf616a>x </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>x </span><span>!= </span><span style=color:#bf616a>username</span><span>), </span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>stompClient</span><span>)
+</span><span>            })).</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>stompClientSendMessage</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/app/register</span><span>', </span><span style=color:#bf616a>username</span><span>)) </span><span style=color:#65737e>// 4
+</span><span>            .</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>stompSubscribe</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, `</span><span style=color:#a3be8c>/user/${</span><span style=color:#bf616a>username</span><span style=color:#a3be8c>}/msg</span><span>`, (</span><span style=color:#bf616a>data</span><span>) </span><span style=color:#b48ead>=> </span><span>{
+</span><span>              </span><span style=color:#8fa1b3>displayMessage</span><span>(</span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>, JSON.</span><span style=color:#96b5b4>parse</span><span>(</span><span style=color:#bf616a>data</span><span>.body))
 </span><span>            }))
-</span><span>            .</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{ </span><span style="color:#65737e;">//5
-</span><span>              </span><span style="color:#bf616a;">connectButton</span><span>.disabled = </span><span style="color:#d08770;">true</span><span>;
-</span><span>              </span><span style="color:#bf616a;">disconnectButton</span><span>.disabled = </span><span style="color:#d08770;">false</span><span>;
-</span><span>              </span><span style="color:#bf616a;">disconnectButton</span><span>.</span><span style="color:#96b5b4;">addEventListener</span><span>(&#39;</span><span style="color:#a3be8c;">click</span><span>&#39;, () </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">disconnect</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">connectButton</span><span>, </span><span style="color:#bf616a;">disconnectButton</span><span>, </span><span style="color:#d08770;">true</span><span>), </span><span style="color:#d08770;">true</span><span>); </span><span style="color:#65737e;">// 6
-</span><span>              </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">stompClient</span><span>;
-</span><span>            }).</span><span style="color:#96b5b4;">then</span><span>((</span><span style="color:#bf616a;">stompClient</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#8fa1b3;">stompSubscribe</span><span>(</span><span style="color:#bf616a;">stompClient</span><span>, &#39;</span><span style="color:#a3be8c;">/topic/disconnectedUser</span><span>&#39;, (</span><span style="color:#bf616a;">data</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>{ </span><span style="color:#65737e;">// 7
-</span><span>              </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">userWhoLeft </span><span>= </span><span style="color:#bf616a;">data</span><span>.body;
-</span><span>              </span><span style="color:#bf616a;">chatUsersList </span><span>= </span><span style="color:#bf616a;">chatUsersList</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">x </span><span>!= </span><span style="color:#bf616a;">userWhoLeft</span><span>);
-</span><span>              </span><span style="color:#8fa1b3;">displayUserList</span><span>(</span><span style="color:#bf616a;">chatUsersList</span><span>.</span><span style="color:#8fa1b3;">filter</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">x </span><span>!= </span><span style="color:#bf616a;">username</span><span>), </span><span style="color:#bf616a;">chatList</span><span>, </span><span style="color:#bf616a;">username</span><span>, </span><span style="color:#bf616a;">stompClient</span><span>);
-</span><span>              </span><span style="color:#8fa1b3;">alertMessage</span><span>(`</span><span style="color:#a3be8c;">User [${</span><span style="color:#bf616a;">userWhoLeft</span><span style="color:#a3be8c;">}] left the chat room!!!</span><span>`, &quot;</span><span style="color:#a3be8c;">bg-success</span><span>&quot;)
+</span><span>            .</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span>{ </span><span style=color:#65737e>//5
+</span><span>              </span><span style=color:#bf616a>connectButton</span><span>.disabled = </span><span style=color:#d08770>true</span><span>;
+</span><span>              </span><span style=color:#bf616a>disconnectButton</span><span>.disabled = </span><span style=color:#d08770>false</span><span>;
+</span><span>              </span><span style=color:#bf616a>disconnectButton</span><span>.</span><span style=color:#96b5b4>addEventListener</span><span>('</span><span style=color:#a3be8c>click</span><span>', () </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>disconnect</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>connectButton</span><span>, </span><span style=color:#bf616a>disconnectButton</span><span>, </span><span style=color:#d08770>true</span><span>), </span><span style=color:#d08770>true</span><span>); </span><span style=color:#65737e>// 6
+</span><span>              </span><span style=color:#b48ead>return </span><span style=color:#bf616a>stompClient</span><span>;
+</span><span>            }).</span><span style=color:#96b5b4>then</span><span>((</span><span style=color:#bf616a>stompClient</span><span>) </span><span style=color:#b48ead>=> </span><span style=color:#8fa1b3>stompSubscribe</span><span>(</span><span style=color:#bf616a>stompClient</span><span>, '</span><span style=color:#a3be8c>/topic/disconnectedUser</span><span>', (</span><span style=color:#bf616a>data</span><span>) </span><span style=color:#b48ead>=> </span><span>{ </span><span style=color:#65737e>// 7
+</span><span>              </span><span style=color:#b48ead>const </span><span style=color:#bf616a>userWhoLeft </span><span>= </span><span style=color:#bf616a>data</span><span>.body;
+</span><span>              </span><span style=color:#bf616a>chatUsersList </span><span>= </span><span style=color:#bf616a>chatUsersList</span><span>.</span><span style=color:#8fa1b3>filter</span><span>(</span><span style=color:#bf616a>x </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>x </span><span>!= </span><span style=color:#bf616a>userWhoLeft</span><span>);
+</span><span>              </span><span style=color:#8fa1b3>displayUserList</span><span>(</span><span style=color:#bf616a>chatUsersList</span><span>.</span><span style=color:#8fa1b3>filter</span><span>(</span><span style=color:#bf616a>x </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>x </span><span>!= </span><span style=color:#bf616a>username</span><span>), </span><span style=color:#bf616a>chatList</span><span>, </span><span style=color:#bf616a>username</span><span>, </span><span style=color:#bf616a>stompClient</span><span>);
+</span><span>              </span><span style=color:#8fa1b3>alertMessage</span><span>(`</span><span style=color:#a3be8c>User [${</span><span style=color:#bf616a>userWhoLeft</span><span style=color:#a3be8c>}] left the chat room!!!</span><span>`, "</span><span style=color:#a3be8c>bg-success</span><span>")
 </span><span>            }))
 </span><span>      }
-</span><span>      }, </span><span style="color:#d08770;">true</span><span>)
+</span><span>      }, </span><span style=color:#d08770>true</span><span>)
 </span><span>  });
 </span><span>})();
-</span></code></pre>
-<p>As I previously said, I won't explain JS details here, I will only focus in the WebSocket stuff, but if you don't know what starts everything you won't understand a thing here, so the entry point of everything is <code>window.addEventListener('load', function(event)</code>. Everything above it is just function declaration. So now I will do the samne as before and put comments showing the important things using numbers:</p>
-<ol>
-<li>First things first. After checking the username to see if it's valid or not we connect to our WebSocket, if you look at the function <code>connect</code> you'll see that it's very simple. Just give the url to our WebSocket server, the one we configured in the WebSocketConfig java class: <code>/websocket-chat</code>.</li>
-<li>Now we wil start to subscribe to endpoints enabling us to receive messages. The first endpoint we will subscribe is the newMember one to find out if we were <code>registered</code> or not. Remember I said it's not automatic and we should send a message to register? So, before sending this message we have to subscribe to the 'return' endpoint otherwise the message will be sent in a moment we are not listening to it. Another point here, if you look at the Java function I return an empty list if the username already exists. This is just me saying: 'Your username already exists, try another one'. You can do this differently, you can create a class representing failure or success for example, but what you cannot do is return 'null'. I tried, it does not work, the server never sends the message.</li>
-<li>In order to keep receiving alerts when other users connect we subscribe to the <code>/topic</code> version of the above endpoint. If you remember, the <code>/queue/newMember</code> will return us a list with all connected users, and the <code>/topic</code> one only the name of whoever connected. Another difference is that because we use <code>/queue</code> we will only receive once the whole list of users, so to keep up to date we need the <code>/topic</code> one. You might notice that I do not check when we connect to ignore our name, so feel free to fix this bug ^^</li>
-<li>Now that we subscribed to the endpoint that will tell us if we were registered to the chat room or not, we can finally register. So I sent a message to <code>/app/register</code> and actually register</li>
-<li>Here I'm disabling the connect button so you don`t accidentally reconnect and enabling the disconnect one.</li>
-<li>Here I'm attaching a function to disconnect us when we click in the disconnect button.</li>
-<li>Here is a simple reaction to when someone leave the chat.</li>
-<li>Here you can see how simple it is to subscribe to a endpoint, you only need to call <code>subscribe</code> method in the StompClient and pass the endpoint you want to subscribe and the callback to react to it's messages.</li>
-<li>The same goes to how simple it is to send a message to any endpoint. Just call the method <code>send</code> in the StompClient and pass the endpoint and the message itself. Check if the message needs to be converted before sending, like JSON.stringify or whatever.</li>
-</ol>
-<p>The rest is just me trying to make it easier for you to adapt it to whatever you need. Run it and feel free to curse or cumpliment me when I add comments to this blog ^^
-if you want to check the source code please refer to this <a href="https://github.com/kiberStender/spring_websocket_webchat">URL</a></p>
-<p>Best regards, thanks for your time, I hope I helped you in anyway. Bye</p>
-
-        </section>
-    </article>
-</main>
-
-
-
-        
-            
-        
-
-        
-    </div>
-</body>
-
-</html>
+</span></code></pre><p>As I previously said, I won't explain JS details here, I will only focus in the WebSocket stuff, but if you don't know what starts everything you won't understand a thing here, so the entry point of everything is <code>window.addEventListener('load', function(event)</code>. Everything above it is just function declaration. So now I will do the samne as before and put comments showing the important things using numbers:<ol><li>First things first. After checking the username to see if it's valid or not we connect to our WebSocket, if you look at the function <code>connect</code> you'll see that it's very simple. Just give the url to our WebSocket server, the one we configured in the WebSocketConfig java class: <code>/websocket-chat</code>.<li>Now we wil start to subscribe to endpoints enabling us to receive messages. The first endpoint we will subscribe is the newMember one to find out if we were <code>registered</code> or not. Remember I said it's not automatic and we should send a message to register? So, before sending this message we have to subscribe to the 'return' endpoint otherwise the message will be sent in a moment we are not listening to it. Another point here, if you look at the Java function I return an empty list if the username already exists. This is just me saying: 'Your username already exists, try another one'. You can do this differently, you can create a class representing failure or success for example, but what you cannot do is return 'null'. I tried, it does not work, the server never sends the message.<li>In order to keep receiving alerts when other users connect we subscribe to the <code>/topic</code> version of the above endpoint. If you remember, the <code>/queue/newMember</code> will return us a list with all connected users, and the <code>/topic</code> one only the name of whoever connected. Another difference is that because we use <code>/queue</code> we will only receive once the whole list of users, so to keep up to date we need the <code>/topic</code> one. You might notice that I do not check when we connect to ignore our name, so feel free to fix this bug ^^<li>Now that we subscribed to the endpoint that will tell us if we were registered to the chat room or not, we can finally register. So I sent a message to <code>/app/register</code> and actually register<li>Here I'm disabling the connect button so you don`t accidentally reconnect and enabling the disconnect one.<li>Here I'm attaching a function to disconnect us when we click in the disconnect button.<li>Here is a simple reaction to when someone leave the chat.<li>Here you can see how simple it is to subscribe to a endpoint, you only need to call <code>subscribe</code> method in the StompClient and pass the endpoint you want to subscribe and the callback to react to it's messages.<li>The same goes to how simple it is to send a message to any endpoint. Just call the method <code>send</code> in the StompClient and pass the endpoint and the message itself. Check if the message needs to be converted before sending, like JSON.stringify or whatever.</ol><p>The rest is just me trying to make it easier for you to adapt it to whatever you need. Run it and feel free to curse or cumpliment me when I add comments to this blog ^^ if you want to check the source code please refer to this <a href=https://github.com/kiberStender/spring_websocket_webchat>URL</a><p>Best regards, thanks for your time, I hope I helped you in anyway. Bye</section></article></main></div>

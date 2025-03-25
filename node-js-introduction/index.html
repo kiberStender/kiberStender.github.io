@@ -1,605 +1,300 @@
-<!DOCTYPE html>
-<html lang="en" class="dark light">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="base" content="https:&#x2F;&#x2F;kiberstender.github.io">
-
-    
-
-    
-    
-    
-    <title>
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://kiberstender.github.io name=base><title>
          NodeJS- A very simple introduction
         
-    </title>
-
-        
-            <meta property="og:title" content="NodeJS- A very simple introduction" />
-        
-     
-
-     
-         
-             <meta property="og:description" content="A blog to spread my ideas" />
-         
-     
-
-     
-         
-             <meta name="description" content="A blog to spread my ideas" />
-         
-    
-
-    
-    
-
-    
-    
-        <link href=https://kiberstender.github.io/fonts.css rel="stylesheet" />
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-
-    
-    <link rel="alternate" type="application/atom+xml" title="kiberBlog" href="https://kiberstender.github.io/atom.xml">
-
-
-    
-    
-        <link rel="stylesheet" type="text/css" href=https://kiberstender.github.io/theme/light.css />
-        <link rel="stylesheet" type="text/css" href="https://kiberstender.github.io/theme/dark.css" media="(prefers-color-scheme: dark)" />
-    
-
-    <!-- Set the correct theme in the script -->
-
-    
-        <script src=https://kiberstender.github.io/js/themetoggle.js></script>
-
-        
-            <script>
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    setTheme("dark");
-                } else {
-                    setTheme("light");
-                }
-            </script>
-        
-    
-
-
-    <link rel="stylesheet" type="text/css" media="screen" href=https://kiberstender.github.io/main.css />
-
-    
-
-    </head>
-
-
-<body>
-    <div class="content">
-        <header>
-    <div class="main">
-        
-            <a href=https:&#x2F;&#x2F;kiberstender.github.io>kiberBlog</a>
-        
-
-
-        <div class="socials">
-            
-        </div>
-    </div>
-
-    <nav>
-        
-
-        
-
-        
-    </nav>
-</header>
-
-
-        
-        
-    
-<main>
-    <article>
-        <div class="title">
-            
-            
-    <div class="page-header">
-        NodeJS- A very simple introduction<span class="primary-color" style="font-size: 1.6em">.</span>
-    </div>
-
-
-                <div class="meta">
-                    
-                        Posted on <time>2020-05-03</time>
-                    
-
-                    
-
-                    
-
-                    
-                        :: 3466 Words
-                    
-
-                    
-                    
-                            <span class="tags-label"> :: Tags:</span>
-                            <span class="tags">
-                                    <a href="https://kiberstender.github.io/tags/nodejs/" class="post-tag">nodejs</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/npm/" class="post-tag">npm</a>, 
-                                
-                                    <a href="https://kiberstender.github.io/tags/introduction/" class="post-tag">introduction</a>
-                                
-                            </span>
-                    
-
-                    
-                    
-
-                    
-
-                </div>
-        </div>
-
-        
-
-        
-        
-
-        <section class="body">
-            <h1 id="intro">Introduction</h1>
-<p>In the beginning of 2010 decade, the world started looking to Javascript again. With the popularity of <a href="https://jquery.com/">JQuery</a> and the improvents of Ajax (<a href="https://en.wikipedia.org/wiki/Ajax_(programming)">Assynchornous Javascript and XML</a>), now you would not need to put Java/PHP/{any other backend language} code in the middle of your HTML file to generate dynamic stuff that comes from the backend. You can fetch data from wherever server you want and use JQuery to update a single part of your page without full refresh making it looks instantaneous. Because now, you don't need to fetch  a whole HTML page but small JSON/XML texts.</p>
-<p>As Javascript was becoming popular the syntax and base library started to receive refactories, like the addition of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">Import</a>/<a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export">Export</a> syntax, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">Async</a> function, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">Await</a> operator, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow</a> functions, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Spread</a> syntax, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest</a> parameters and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring</a> assignment. All of these new features and other ones I haven't added here, made Javascript way better than it was in the past and brought attention to it again.</p>
-<h1 id="roughly-summarized-and-not-much-reliable-story-of-node">Roughly summarized (and not much reliable) story of Node</h1>
-<p>In the beginning there was Javascript in your browser, and it was good(Kind of). But Javascript unlike Java, is a script language(Duh!) and even though it has it's specification dictated by some company and published under the name of <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA</a>, each browser has it's own way to optmize or implement the specifications. Then in 2008, Google released <a href="https://v8.dev/">V8</a>. While it was very nice on Google Chrome, "some guys" realized that by making some modification to this engine they could use Javascript not only in the browser but also as a general purpose interpreter, similar to <a href="https://www.python.org/">Python</a>. "These guys" named it <a href="https://nodejs.org/en/">NodeJS</a>.</p>
-<h3 id="a-little-bit-of-npm">A little bit of NPM</h3>
-<p>Like what <a href="https://maven.apache.org/">Maven</a> does for Java, they introduced some similar technology named <a href="https://www.npmjs.com/">NPM</a>(Node Package Manager) that  download your dependencies, put them in the 'classpath', package, deploy and even publish your application/library. The difference is that you have to install Maven separatedly from Java while NPM comes with Node.</p>
-<p>To use NPM you simply create a file in the root of your application named <code>package.json</code> with the following (minimal)structure:</p>
-<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
-</span><span>  &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">MyAppName</span><span>&quot;, </span><span style="color:#65737e;">//1
-</span><span>  &quot;</span><span style="color:#a3be8c;">version</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span>&quot;, </span><span style="color:#65737e;">//2
-</span><span>  &quot;</span><span style="color:#a3be8c;">description</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">An example package.json</span><span>&quot;, </span><span style="color:#65737e;">//3
-</span><span>  &quot;</span><span style="color:#a3be8c;">engines</span><span>&quot;: { </span><span style="color:#65737e;">//4
-</span><span>    &quot;</span><span style="color:#a3be8c;">node</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">&gt;=4.0.0</span><span>&quot;,
-</span><span>    &quot;</span><span style="color:#a3be8c;">npm</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">&gt;=4.0.0</span><span>&quot;
+    </title><meta content="NodeJS- A very simple introduction" property=og:title><meta content="A blog to spread my ideas" property=og:description><meta content="A blog to spread my ideas" name=description><link href=https://kiberstender.github.io/fonts.css rel=stylesheet><link href=https://kiberstender.github.io/atom.xml rel=alternate title=kiberBlog type=application/atom+xml><link href=https://kiberstender.github.io/theme/light.css rel=stylesheet><link href=https://kiberstender.github.io/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://kiberstender.github.io/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://kiberstender.github.io/main.css media=screen rel=stylesheet><body><div class=content><header><div class=main><a href=https://kiberstender.github.io>kiberBlog</a><div class=socials><a class=social href=https://github.com/kiberStender rel=me> <img alt=github src=https://kiberstender.github.io/icons/social/github.svg> </a></div></div><nav><a href=https://kiberstender.github.io/tags style=margin-left:.25em>/tags</a><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img alt=Light id=sun-icon src=https://kiberstender.github.io/icons/sun.svg style=filter:invert()> <img alt=Dark id=moon-icon src=https://kiberstender.github.io/icons/moon.svg> </a><script>updateItemToggleTheme()</script></nav></header><main><article><div class=title><div class=page-header>NodeJS- A very simple introduction<span class=primary-color style=font-size:1.6em>.</span></div><div class=meta>Posted on <time>2020-05-03</time> :: 3466 Words <span class=tags-label> :: Tags:</span><span class=tags> <a class=post-tag href=https://kiberstender.github.io/tags/nodejs/>nodejs</a>, <a class=post-tag href=https://kiberstender.github.io/tags/npm/>npm</a>, <a class=post-tag href=https://kiberstender.github.io/tags/introduction/>introduction</a> </span></div></div><section class=body><h1 id=intro>Introduction</h1><p>In the beginning of 2010 decade, the world started looking to Javascript again. With the popularity of <a href=https://jquery.com/>JQuery</a> and the improvents of Ajax (<a href=https://en.wikipedia.org/wiki/Ajax_(programming)>Assynchornous Javascript and XML</a>), now you would not need to put Java/PHP/{any other backend language} code in the middle of your HTML file to generate dynamic stuff that comes from the backend. You can fetch data from wherever server you want and use JQuery to update a single part of your page without full refresh making it looks instantaneous. Because now, you don't need to fetch a whole HTML page but small JSON/XML texts.<p>As Javascript was becoming popular the syntax and base library started to receive refactories, like the addition of <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>Promises</a>, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import>Import</a>/<a href=https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>Export</a> syntax, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>Async</a> function, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await>Await</a> operator, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>Arrow</a> functions, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>Spread</a> syntax, <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters>Rest</a> parameters and <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>Destructuring</a> assignment. All of these new features and other ones I haven't added here, made Javascript way better than it was in the past and brought attention to it again.<h1 id=roughly-summarized-and-not-much-reliable-story-of-node>Roughly summarized (and not much reliable) story of Node</h1><p>In the beginning there was Javascript in your browser, and it was good(Kind of). But Javascript unlike Java, is a script language(Duh!) and even though it has it's specification dictated by some company and published under the name of <a href=https://www.ecma-international.org/publications/standards/Ecma-262.htm>ECMA</a>, each browser has it's own way to optmize or implement the specifications. Then in 2008, Google released <a href=https://v8.dev/>V8</a>. While it was very nice on Google Chrome, "some guys" realized that by making some modification to this engine they could use Javascript not only in the browser but also as a general purpose interpreter, similar to <a href=https://www.python.org/>Python</a>. "These guys" named it <a href=https://nodejs.org/en/>NodeJS</a>.<h3 id=a-little-bit-of-npm>A little bit of NPM</h3><p>Like what <a href=https://maven.apache.org/>Maven</a> does for Java, they introduced some similar technology named <a href=https://www.npmjs.com/>NPM</a>(Node Package Manager) that download your dependencies, put them in the 'classpath', package, deploy and even publish your application/library. The difference is that you have to install Maven separatedly from Java while NPM comes with Node.<p>To use NPM you simply create a file in the root of your application named <code>package.json</code> with the following (minimal)structure:<pre class=language-json data-lang=json style=color:#c0c5ce;background-color:#2b303b><code class=language-json data-lang=json><span>{
+</span><span>  "</span><span style=color:#a3be8c>name</span><span>": "</span><span style=color:#a3be8c>MyAppName</span><span>", </span><span style=color:#65737e>//1
+</span><span>  "</span><span style=color:#a3be8c>version</span><span>": "</span><span style=color:#a3be8c>0.0.1-snapshot</span><span>", </span><span style=color:#65737e>//2
+</span><span>  "</span><span style=color:#a3be8c>description</span><span>": "</span><span style=color:#a3be8c>An example package.json</span><span>", </span><span style=color:#65737e>//3
+</span><span>  "</span><span style=color:#a3be8c>engines</span><span>": { </span><span style=color:#65737e>//4
+</span><span>    "</span><span style=color:#a3be8c>node</span><span>": "</span><span style=color:#a3be8c>>=4.0.0</span><span>",
+</span><span>    "</span><span style=color:#a3be8c>npm</span><span>": "</span><span style=color:#a3be8c>>=4.0.0</span><span>"
 </span><span>  },
-</span><span>  &quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: { </span><span style="color:#65737e;">//5
-</span><span>    &quot;</span><span style="color:#a3be8c;">run</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">node app.js</span><span>&quot;,
-</span><span>    &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">call your test library</span><span>&quot;
+</span><span>  "</span><span style=color:#a3be8c>scripts</span><span>": { </span><span style=color:#65737e>//5
+</span><span>    "</span><span style=color:#a3be8c>run</span><span>": "</span><span style=color:#a3be8c>node app.js</span><span>",
+</span><span>    "</span><span style=color:#a3be8c>test</span><span>": "</span><span style=color:#a3be8c>call your test library</span><span>"
 </span><span>  },
-</span><span>  &quot;</span><span style="color:#a3be8c;">dependencies</span><span>&quot;: {</span><span style="color:#65737e;">//6
-</span><span>    &quot;</span><span style="color:#a3be8c;">a: </span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">1.2.3</span><span>&quot;</span><span style="color:#a3be8c;">,</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span>    &quot;</span><span style="color:#a3be8c;">b: </span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">3.2.1</span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span>  "</span><span style=color:#a3be8c>dependencies</span><span>": {</span><span style=color:#65737e>//6
+</span><span>    "</span><span style=color:#a3be8c>a: </span><span>"</span><span style=color:#2b303b;background-color:#bf616a>1.2.3</span><span>"</span><span style=color:#a3be8c>,</span><span style=color:#2b303b;background-color:#bf616a>
+</span><span>    "</span><span style=color:#a3be8c>b: </span><span>"</span><span style=color:#2b303b;background-color:#bf616a>3.2.1</span><span>"</span><span style=color:#2b303b;background-color:#bf616a>
 </span><span>  },
-</span><span>  &quot;</span><span style="color:#a3be8c;">devDependencies</span><span>&quot;: { </span><span style="color:#65737e;">//7
-</span><span>    &quot;</span><span style="color:#a3be8c;">c: </span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">1.2.3</span><span>&quot;</span><span style="color:#a3be8c;">,</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span>    &quot;</span><span style="color:#a3be8c;">d: </span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">3.2.1</span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span>  "</span><span style=color:#a3be8c>devDependencies</span><span>": { </span><span style=color:#65737e>//7
+</span><span>    "</span><span style=color:#a3be8c>c: </span><span>"</span><span style=color:#2b303b;background-color:#bf616a>1.2.3</span><span>"</span><span style=color:#a3be8c>,</span><span style=color:#2b303b;background-color:#bf616a>
+</span><span>    "</span><span style=color:#a3be8c>d: </span><span>"</span><span style=color:#2b303b;background-color:#bf616a>3.2.1</span><span>"</span><span style=color:#2b303b;background-color:#bf616a>
 </span><span>  }
 </span><span>}
-</span></code></pre>
-<p>There are way more properties you can have in your <code>package.json</code> file, but these ones I'm showing, are the most important ones(with the excpetion of <code>engines</code>):</p>
-<ol>
-<li><code>name</code>: This is the name of your application/library</li>
-<li><code>version</code>: This is the version of your application/library</li>
-<li><code>description</code>: This is where you put a brief description of what your application/library does. This is useful for others who use your applicationm/library and it is displayed in NPM website</li>
-<li><code>engines</code>: This field is meant to warn the user about which is the best version for your code to run, so you can use any combination of numbers and comparison operators(==, &gt;, &lt;, &gt;=, &lt;=) in the sub fields <code>node</code> and <code>npm</code> that satisfies the condition for your code to run. Like, in the above example I'm saying that if whoever runs my program do not have at least node v12 or higher and npm v6 or higher, the application might not run correctly. "Might" because it does not prevent the application to try to run, it will emit a warning but nothing more. if you want it to not run if conditions are not met, you can create in the root of your app a file named <code>.npmrc</code> and put <code>engine-strict=true</code> inside it. <code>.npmrc</code> has more functionalities but, for this post this one is just enough</li>
-<li><code>scripts</code>: This is where you define the commands to build, build:prod, test, run or whatever you find necessary. Like Maven plugins where you tell maven how to run or compile your application</li>
-<li><code>dependencies</code>: This is where you define a list of libraries your program dependends on, like <a href="https://reactjs.org/">React</a>, <a href="https://angularjs.org/">Angular</a>, <a href="https://momentjs.com/">MomentJS</a>, etc</li>
-<li><code>devDependencies</code>: This is where you define a list of dependencies that will not be packaged with your code. Imagine you are coding in <a href="https://coffeescript.org/">Coffeescript</a> or <a href="https://www.typescriptlang.org/">Typescript</a>. You don't need to package their compilers to your code, because in the end everything becomes Javascript. But not only compilers, for example, <a href="https://www.npmjs.com/package/uglify-js">Uglyfy</a> is a program that makes your code awful for anybody to read, once it runs it is not needed anymore, so you list it here instead of normal dependencies property.</li>
-</ol>
-<p>After you create this file, NPM will be used mostly for running your application and 'installing' your dependencies. Installing here is between quotation because unlike Maven, that you have to manually put all dependencies, NPM provide a nice syntax where you download the dependency package and at the same time add it to your <code>package.json</code> file if you do not have this dependency in your dependency list:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install dependency-a dependency-b
-</span></code></pre>
-<p>This syntax is to download the latest version of the dependency-a or dependency-b, if you want to specify the version you can:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install dependency@1.2.3 dependency-b@^1.0.0
-</span></code></pre>
-<p>This <code>^</code> between <code>@</code> and the version means you want the latest version from 1.x.x series, so imagine that today the newest version is 1.1.0, but tomorrow you run this command the newest version is 1.2.0. This will update dependency-b version automatically when downloading it, so you don't have to look everyday in case you are waiting for an update from 1.x.x series to fix a security bug or perfomance issue.</p>
-<p>And to add dependencies to the property <code>devDependencies</code> you use a similar syntax. Simply add a <code>--save-dev</code> to your <code>npm install</code> command:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> devDependency-a devDependency-b@^1.0.0 devDependency-c@3.0.0
-</span></code></pre>
-<p>And last but no least, to execute the scripts you created in <code>scripts</code> sections you simply call <code>npm run-script script-name</code>(or a short version <code>npm run script-name</code>)</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> run-script run </span><span style="color:#65737e;">#or npm run run
-</span><span style="color:#bf616a;">npm</span><span> run-script test </span><span style="color:#65737e;">#or npm run test
-</span></code></pre>
-<h1 id="installing-node-and-npm">Installing Node and NPM</h1>
-<p>I'm not going to detail this process because you can find it very detailed on NodeJS website itself. Go to <a href="https://nodejs.org/en/download/">NodeJS</a> page, choose the appropriate package for your Operating System. If you are using Windows you can simply double click the EXE file and follow the next~next~next~install pattern. If you are on Linux or Mac you can unpackage the tar.xz file you downloaded using any graphical or terminal application you prefer, put the contents in some directory of your choice and then create an Environment Variable named NODE_HOME variable pointing to <code>/path/to/node/</code> and add it to your <code>PATH</code> environment variable:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">...
-</span><span style="color:#bf616a;">NODE_HOME</span><span>=</span><span style="color:#a3be8c;">/path/to/node
+</span></code></pre><p>There are way more properties you can have in your <code>package.json</code> file, but these ones I'm showing, are the most important ones(with the excpetion of <code>engines</code>):<ol><li><code>name</code>: This is the name of your application/library<li><code>version</code>: This is the version of your application/library<li><code>description</code>: This is where you put a brief description of what your application/library does. This is useful for others who use your applicationm/library and it is displayed in NPM website<li><code>engines</code>: This field is meant to warn the user about which is the best version for your code to run, so you can use any combination of numbers and comparison operators(==, >, <, >=, <=) in the sub fields <code>node</code> and <code>npm</code> that satisfies the condition for your code to run. Like, in the above example I'm saying that if whoever runs my program do not have at least node v12 or higher and npm v6 or higher, the application might not run correctly. "Might" because it does not prevent the application to try to run, it will emit a warning but nothing more. if you want it to not run if conditions are not met, you can create in the root of your app a file named <code>.npmrc</code> and put <code>engine-strict=true</code> inside it. <code>.npmrc</code> has more functionalities but, for this post this one is just enough<li><code>scripts</code>: This is where you define the commands to build, build:prod, test, run or whatever you find necessary. Like Maven plugins where you tell maven how to run or compile your application<li><code>dependencies</code>: This is where you define a list of libraries your program dependends on, like <a href=https://reactjs.org/>React</a>, <a href=https://angularjs.org/>Angular</a>, <a href=https://momentjs.com/>MomentJS</a>, etc<li><code>devDependencies</code>: This is where you define a list of dependencies that will not be packaged with your code. Imagine you are coding in <a href=https://coffeescript.org/>Coffeescript</a> or <a href=https://www.typescriptlang.org/>Typescript</a>. You don't need to package their compilers to your code, because in the end everything becomes Javascript. But not only compilers, for example, <a href=https://www.npmjs.com/package/uglify-js>Uglyfy</a> is a program that makes your code awful for anybody to read, once it runs it is not needed anymore, so you list it here instead of normal dependencies property.</ol><p>After you create this file, NPM will be used mostly for running your application and 'installing' your dependencies. Installing here is between quotation because unlike Maven, that you have to manually put all dependencies, NPM provide a nice syntax where you download the dependency package and at the same time add it to your <code>package.json</code> file if you do not have this dependency in your dependency list:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install dependency-a dependency-b
+</span></code></pre><p>This syntax is to download the latest version of the dependency-a or dependency-b, if you want to specify the version you can:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install dependency@1.2.3 dependency-b@^1.0.0
+</span></code></pre><p>This <code>^</code> between <code>@</code> and the version means you want the latest version from 1.x.x series, so imagine that today the newest version is 1.1.0, but tomorrow you run this command the newest version is 1.2.0. This will update dependency-b version automatically when downloading it, so you don't have to look everyday in case you are waiting for an update from 1.x.x series to fix a security bug or perfomance issue.<p>And to add dependencies to the property <code>devDependencies</code> you use a similar syntax. Simply add a <code>--save-dev</code> to your <code>npm install</code> command:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> --save-dev</span><span> devDependency-a devDependency-b@^1.0.0 devDependency-c@3.0.0
+</span></code></pre><p>And last but no least, to execute the scripts you created in <code>scripts</code> sections you simply call <code>npm run-script script-name</code>(or a short version <code>npm run script-name</code>)<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> run-script run </span><span style=color:#65737e>#or npm run run
+</span><span style=color:#bf616a>npm</span><span> run-script test </span><span style=color:#65737e>#or npm run test
+</span></code></pre><h1 id=installing-node-and-npm>Installing Node and NPM</h1><p>I'm not going to detail this process because you can find it very detailed on NodeJS website itself. Go to <a href=https://nodejs.org/en/download/>NodeJS</a> page, choose the appropriate package for your Operating System. If you are using Windows you can simply double click the EXE file and follow the next~next~next~install pattern. If you are on Linux or Mac you can unpackage the tar.xz file you downloaded using any graphical or terminal application you prefer, put the contents in some directory of your choice and then create an Environment Variable named NODE_HOME variable pointing to <code>/path/to/node/</code> and add it to your <code>PATH</code> environment variable:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>...
+</span><span style=color:#bf616a>NODE_HOME</span><span>=</span><span style=color:#a3be8c>/path/to/node
 </span><span>
-</span><span style="color:#bf616a;">PATH</span><span>=$</span><span style="color:#bf616a;">PATH</span><span style="color:#a3be8c;">:</span><span>$</span><span style="color:#bf616a;">NODE_HOME</span><span style="color:#a3be8c;">/bin
-</span></code></pre>
-<p>Create HOME env variable in Windows too, so you can access node via cmd. For more details please refer to <a href="https://github.com/nodejs/help/wiki/Installation">this page</a> or <a href="https://nodejs.org/en/download/package-manager/">this one</a>. As I said, NPM comes together, so once you get Node installed NPM will be installed too. Now simply test if everything is Ok:</p>
-<img src="node_npm_check.png" />
-<p>If you prefer, many Linux OSes have package managers and Node is in their repositories so you can install like this:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">sudo</span><span> pacman</span><span style="color:#bf616a;"> -S</span><span> nodejs </span><span style="color:#65737e;">#Arch based OSes
-</span><span style="color:#bf616a;">sudo</span><span> apt-get install nodejs </span><span style="color:#65737e;">#Debian based
-</span><span style="color:#bf616a;">...#</span><span> and so on and so forth
-</span></code></pre>
-<h1 id="starting-the-project">Starting the project</h1>
-<p>Now that you understood the minimum about Node and how to get it running on your machine, let's start our Node project as a simple CLI(<a href="https://en.wikipedia.org/wiki/Command-line_interface">Command Line Interface</a>) app written in pure JS.
-So the first thing you have to do is create our app directory. Let's call it <code>node_app</code>:</p>
-<img src="create_app_dir.png" />
-<p>Now we create our <code>package.json</code>. Very simple one:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>{
-</span><span>  &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">Node-example-app</span><span>&quot;,
-</span><span>  &quot;</span><span style="color:#a3be8c;">version</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">0.0.1-snapshot</span><span>&quot;,
-</span><span>  &quot;</span><span style="color:#a3be8c;">description</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">A simple Node application</span><span>&quot;,
-</span><span>  &quot;</span><span style="color:#a3be8c;">engines</span><span>&quot;: {
-</span><span>    &quot;</span><span style="color:#a3be8c;">node</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">&gt;=12.0.0</span><span>&quot;,
-</span><span>    &quot;</span><span style="color:#a3be8c;">npm</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">&gt;=6.0.0</span><span>&quot;
+</span><span style=color:#bf616a>PATH</span><span>=$</span><span style=color:#bf616a>PATH</span><span style=color:#a3be8c>:</span><span>$</span><span style=color:#bf616a>NODE_HOME</span><span style=color:#a3be8c>/bin
+</span></code></pre><p>Create HOME env variable in Windows too, so you can access node via cmd. For more details please refer to <a href=https://github.com/nodejs/help/wiki/Installation>this page</a> or <a href=https://nodejs.org/en/download/package-manager/>this one</a>. As I said, NPM comes together, so once you get Node installed NPM will be installed too. Now simply test if everything is Ok:</p><img src=node_npm_check.png><p>If you prefer, many Linux OSes have package managers and Node is in their repositories so you can install like this:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>sudo</span><span> pacman</span><span style=color:#bf616a> -S</span><span> nodejs </span><span style=color:#65737e>#Arch based OSes
+</span><span style=color:#bf616a>sudo</span><span> apt-get install nodejs </span><span style=color:#65737e>#Debian based
+</span><span style=color:#bf616a>...#</span><span> and so on and so forth
+</span></code></pre><h1 id=starting-the-project>Starting the project</h1><p>Now that you understood the minimum about Node and how to get it running on your machine, let's start our Node project as a simple CLI(<a href=https://en.wikipedia.org/wiki/Command-line_interface>Command Line Interface</a>) app written in pure JS. So the first thing you have to do is create our app directory. Let's call it <code>node_app</code>:</p><img src=create_app_dir.png><p>Now we create our <code>package.json</code>. Very simple one:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>{
+</span><span>  "</span><span style=color:#a3be8c>name</span><span>": "</span><span style=color:#a3be8c>Node-example-app</span><span>",
+</span><span>  "</span><span style=color:#a3be8c>version</span><span>": "</span><span style=color:#a3be8c>0.0.1-snapshot</span><span>",
+</span><span>  "</span><span style=color:#a3be8c>description</span><span>": "</span><span style=color:#a3be8c>A simple Node application</span><span>",
+</span><span>  "</span><span style=color:#a3be8c>engines</span><span>": {
+</span><span>    "</span><span style=color:#a3be8c>node</span><span>": "</span><span style=color:#a3be8c>>=12.0.0</span><span>",
+</span><span>    "</span><span style=color:#a3be8c>npm</span><span>": "</span><span style=color:#a3be8c>>=6.0.0</span><span>"
 </span><span>  },
-</span><span>  &quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
-</span><span>    &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">echo </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">Error: no tests were specified</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;"> &amp;&amp; exit 1</span><span>&quot;
+</span><span>  "</span><span style=color:#a3be8c>scripts</span><span>": {
+</span><span>    "</span><span style=color:#a3be8c>test</span><span>": "</span><span style=color:#a3be8c>echo </span><span style=color:#96b5b4>\"</span><span style=color:#a3be8c>Error: no tests were specified</span><span style=color:#96b5b4>\"</span><span style=color:#a3be8c> && exit 1</span><span>"
 </span><span>  }
 </span><span>}
-</span></code></pre>
-<p>PS:The above section is "copy-able". It means if you don't want to manually type it, this is a simple text so you can copy and paste. All sections similar to this one allows it. Just pay attention because sometimes I will post a fragment of something you have to change and not the whole file and I'll add some <code>...</code> (three dots) to denote that from bellow or above it you have to keep the original content</p>
-<p>As we added <code>engine</code> property to define the minimum Node version we want to guarantee our app will run, we need to finish this config creating <code>.npmrc</code> in our root directory:</p>
-<pre data-lang="properties" style="background-color:#2b303b;color:#c0c5ce;" class="language-properties "><code class="language-properties" data-lang="properties"><span>engine-strict=</span><span style="color:#a3be8c;">true
-</span></code></pre>
-<p>PS: Note that I'm using node v12 and npm v6 in our <code>engine</code> property while newest Node is v13. You cannot expect servers to be completely up to date with newer Node version for many reasons like security, stability, etc.</p>
-<p>Next step is to create a <code>src</code> directory and inside this directory create a <code>app.js</code> file in it and as content simply add 'console.log("Hello World")':</p>
-<img src="create_src_and_appjs.png"/>
-<p>Ok now we have the minimum for our app. Edit your <code>package.json</code> to add a new script:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
-</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+</span></code></pre><p>PS:The above section is "copy-able". It means if you don't want to manually type it, this is a simple text so you can copy and paste. All sections similar to this one allows it. Just pay attention because sometimes I will post a fragment of something you have to change and not the whole file and I'll add some <code>...</code> (three dots) to denote that from bellow or above it you have to keep the original content<p>As we added <code>engine</code> property to define the minimum Node version we want to guarantee our app will run, we need to finish this config creating <code>.npmrc</code> in our root directory:<pre class=language-properties data-lang=properties style=color:#c0c5ce;background-color:#2b303b><code class=language-properties data-lang=properties><span>engine-strict=</span><span style=color:#a3be8c>true
+</span></code></pre><p>PS: Note that I'm using node v12 and npm v6 in our <code>engine</code> property while newest Node is v13. You cannot expect servers to be completely up to date with newer Node version for many reasons like security, stability, etc.<p>Next step is to create a <code>src</code> directory and inside this directory create a <code>app.js</code> file in it and as content simply add 'console.log("Hello World")':</p><img src=create_src_and_appjs.png><p>Ok now we have the minimum for our app. Edit your <code>package.json</code> to add a new script:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>...
+</span><span>"</span><span style=color:#a3be8c>scripts</span><span>": {
 </span><span>  ...
-</span><span>  &quot;</span><span style="color:#a3be8c;">execute</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">node src/app.js</span><span>&quot;, 
+</span><span>  "</span><span style=color:#a3be8c>execute</span><span>": "</span><span style=color:#a3be8c>node src/app.js</span><span>", 
 </span><span>  ...
 </span><span>}
 </span><span>...
-</span></code></pre>
-<p>And execute it with the command I already taught you:</p>
-<img src="first_run.png"/>
-<p>If you've seen something similar to the below image, congratulations, you just made your first Node CLI application.</p>
-<h1 id="adding-a-dependency">Adding a dependency</h1>
-<p>I showed you all possibilities of NPM command to add a dependency but, what exactly is a dependency? A dependency in this context, is an external code that add or extend functionalities to your program. They help us not to reinvent the wheel, so we can focus on the specific parts that these libraries cannot do. It is called dependency for once you add it to your code, it literally depends on that library from that moment on and if it is not in your classpath when running the application your program will not properly run.</p>
-<p>Javascript has support for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> objects that represents manipulation of Years, Months, Days, Hours, Minutes, Seconds, etc. But, it is known that it is a little hard to handle, specially when you need to convert a date from one TimeZone to another. So there is a third party library, named <a href="https://momentjs.com/">moment.js</a>, that is specialized in manipulating date/time, giving you more options than built-in Date. Let's add moment to our application to display the date and time for our user, then by adding this library to your dependecy list it will be available in your code like if you had coded it earlier.</p>
-<p>First add it to you <code>package.json</code> file using the following command:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install moment@2.24.0
-</span></code></pre>
-<p>PS: Use the same version of the library I put above, so in the future this post will still work</p>
-<p>Notice 2 things:</p>
-<ol>
-<li>Your <code>package.json</code> file now has a new field named <code>dependencies</code> and <code>momentjs</code> as the only item there:
-<img src="package_json_first_dependency.png"/></li>
-<li>Two items were created in your root directory:
-<ol>
-<li>A new directory named <code>node_modules</code>. This directory is automatically created whenever you run <code>npm install</code>(and/or it's variations) and it contains all dependencies your app has. If you accidentally delete it, don't worry, when you run <code>npm install</code>, boom, it appears again, for this reason you can ignore this directory using <code>.gitignore</code>, <code>.dockerignore</code> or any <code>ignore[something]</code> in any versioning system</li>
-<li>A new file named <code>package-lock.json</code>. This file is similar to <code>package.json</code> but, with a small difference: It lists all the dependencies trees, making it easier for NPM to install the dependencies later and to verify if there is any conflict, like if <code>package.json</code> is the human readable version and <code>package-lock.json</code> is the machine readable version. It is recomendable to not ignore this file in your versioning system, even though it will be recreated after <code>npm install</code> is executed
-<img src="node_modules_.png"/></li>
-</ol>
-</li>
-</ol>
-<p>Now we update our <code>/src/app.js</code> to import and print the date:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">moment </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">moment</span><span>&quot;);
+</span></code></pre><p>And execute it with the command I already taught you:</p><img src=first_run.png><p>If you've seen something similar to the below image, congratulations, you just made your first Node CLI application.<h1 id=adding-a-dependency>Adding a dependency</h1><p>I showed you all possibilities of NPM command to add a dependency but, what exactly is a dependency? A dependency in this context, is an external code that add or extend functionalities to your program. They help us not to reinvent the wheel, so we can focus on the specific parts that these libraries cannot do. It is called dependency for once you add it to your code, it literally depends on that library from that moment on and if it is not in your classpath when running the application your program will not properly run.<p>Javascript has support for <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date>Date</a> objects that represents manipulation of Years, Months, Days, Hours, Minutes, Seconds, etc. But, it is known that it is a little hard to handle, specially when you need to convert a date from one TimeZone to another. So there is a third party library, named <a href=https://momentjs.com/>moment.js</a>, that is specialized in manipulating date/time, giving you more options than built-in Date. Let's add moment to our application to display the date and time for our user, then by adding this library to your dependecy list it will be available in your code like if you had coded it earlier.<p>First add it to you <code>package.json</code> file using the following command:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install moment@2.24.0
+</span></code></pre><p>PS: Use the same version of the library I put above, so in the future this post will still work<p>Notice 2 things:<ol><li>Your <code>package.json</code> file now has a new field named <code>dependencies</code> and <code>momentjs</code> as the only item there: <img src=package_json_first_dependency.png><li>Two items were created in your root directory: <ol><li>A new directory named <code>node_modules</code>. This directory is automatically created whenever you run <code>npm install</code>(and/or it's variations) and it contains all dependencies your app has. If you accidentally delete it, don't worry, when you run <code>npm install</code>, boom, it appears again, for this reason you can ignore this directory using <code>.gitignore</code>, <code>.dockerignore</code> or any <code>ignore[something]</code> in any versioning system<li>A new file named <code>package-lock.json</code>. This file is similar to <code>package.json</code> but, with a small difference: It lists all the dependencies trees, making it easier for NPM to install the dependencies later and to verify if there is any conflict, like if <code>package.json</code> is the human readable version and <code>package-lock.json</code> is the machine readable version. It is recomendable to not ignore this file in your versioning system, even though it will be recreated after <code>npm install</code> is executed <img src=node_modules_.png></ol></ol><p>Now we update our <code>/src/app.js</code> to import and print the date:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>moment </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>moment</span><span>");
 </span><span>
-</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">It is: </span><span>&quot; + </span><span style="color:#8fa1b3;">moment</span><span>().</span><span style="color:#8fa1b3;">format</span><span>());
-</span></code></pre>
-<p>Run your app again and see the date appearing:</p>
-<img src="second_run_with_moment.png"/>
-<h1 id="testing-in-javascript">Testing in Javascript</h1>
-<p>You know, programming is one thing but, testing your code to guarantee it does what you really want it to do is a completely different thing. So, how one test code in Javascript? In Node? One of the most famous libraries for testing that I know in Javascript is called <a href="https://www.npmjs.com/package/jest">Jest</a>. It is a very complete test suite framework, with assertion support, hooks to setup and tear down, mocking, code coverage and more. First step is to install Jest in our dev-dependency list:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> jest@26.0.1
-</span></code></pre>
-<p>Notice that our <code>package.json</code> file was updated again and now it has a new field named <code>dev-dependecies</code> and Jest is the only item:</p>
-<img src="package_json_first_dev_dependency.png"/>
-<p>Let's create a separate class named <code>Greetings</code> in a different package/directory. First create <code>javascript</code> directory inside <code>/src</code>. Inside it(javascript) create a package/directory named <code>greetings</code> and finally inside it create a file named <code>Greetings.js</code> and put the given content:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">name</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name </span><span>= </span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greet</span><span>()</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Hello Mr/Ms </span><span>&quot; + </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name;
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
+</span><span style=color:#ebcb8b>console</span><span>.</span><span style=color:#96b5b4>log</span><span>("</span><span style=color:#a3be8c>It is: </span><span>" + </span><span style=color:#8fa1b3>moment</span><span>().</span><span style=color:#8fa1b3>format</span><span>());
+</span></code></pre><p>Run your app again and see the date appearing:</p><img src=second_run_with_moment.png><h1 id=testing-in-javascript>Testing in Javascript</h1><p>You know, programming is one thing but, testing your code to guarantee it does what you really want it to do is a completely different thing. So, how one test code in Javascript? In Node? One of the most famous libraries for testing that I know in Javascript is called <a href=https://www.npmjs.com/package/jest>Jest</a>. It is a very complete test suite framework, with assertion support, hooks to setup and tear down, mocking, code coverage and more. First step is to install Jest in our dev-dependency list:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> --save-dev</span><span> jest@26.0.1
+</span></code></pre><p>Notice that our <code>package.json</code> file was updated again and now it has a new field named <code>dev-dependecies</code> and Jest is the only item:</p><img src=package_json_first_dev_dependency.png><p>Let's create a separate class named <code>Greetings</code> in a different package/directory. First create <code>javascript</code> directory inside <code>/src</code>. Inside it(javascript) create a package/directory named <code>greetings</code> and finally inside it create a file named <code>Greetings.js</code> and put the given content:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>class </span><span style=color:#ebcb8b>Greetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>constructor</span><span>(</span><span style=color:#bf616a>name</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.name </span><span>= </span><span style=color:#bf616a>name</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greet</span><span>()</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>"</span><span style=color:#a3be8c>Hello Mr/Ms </span><span>" + </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.name;
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
 </span><span>
-</span><span>module.exports.</span><span style="color:#bf616a;">Greetings </span><span>= </span><span style="color:#bf616a;">Greetings</span><span>;
-</span></code></pre>
-<p>Now come back to the root of our app and create a directory named <code>test</code>, inside it create the same structure we have in our <code>/src</code>:</p>
-<img src="test_dir.png"/>
-<p>PS: It is not mandatory to follow the same structure, it is just to make it easier to read and Jest by default looks for a <code>test</code> directory in the root of your project</p>
-<p>Now we code our tests. I'll write only two. One for success and one for "failure". Very simple tests as it is just a demonstration. So inside <code>/test/javascript/greetings</code> create our <code>Greetings.test.js</code> file and add the bellow code:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">Greetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span>&#39;);
+</span><span>module.exports.</span><span style=color:#bf616a>Greetings </span><span>= </span><span style=color:#bf616a>Greetings</span><span>;
+</span></code></pre><p>Now come back to the root of our app and create a directory named <code>test</code>, inside it create the same structure we have in our <code>/src</code>:</p><img src=test_dir.png><p>PS: It is not mandatory to follow the same structure, it is just to make it easier to read and Jest by default looks for a <code>test</code> directory in the root of your project<p>Now we code our tests. I'll write only two. One for success and one for "failure". Very simple tests as it is just a demonstration. So inside <code>/test/javascript/greetings</code> create our <code>Greetings.test.js</code> file and add the bellow code:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>Greetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>('</span><span style=color:#a3be8c>../../../src/javascript/greetings/Greetings.js</span><span>');
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetDev </span><span>= new Greetings(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span>&quot;);
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>greetDev </span><span>= new Greetings("</span><span style=color:#a3be8c>NodeJSDev</span><span>");
 </span><span>
-</span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">Greetings</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">#greet()</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJSDev&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev</span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();      
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>Greetings</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>#greet()</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should return "Hello Mr/Ms NodeJSDev"</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJSDev</span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();      
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toBe</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>    
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJSDev &quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev </span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();      
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#bf616a;">not</span><span>.</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should not return "Hello Mr/Ms NodeJSDev "</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJSDev </span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();      
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#bf616a>not</span><span>.</span><span style=color:#8fa1b3>toBe</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>  });
 </span><span>});
-</span></code></pre>
-<p>Next step is to modify <code>test</code> script in our <code>package.json</code> to execute Jest for us:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>{
+</span></code></pre><p>Next step is to modify <code>test</code> script in our <code>package.json</code> to execute Jest for us:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span>{
 </span><span>  ...
-</span><span>  &quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+</span><span>  "</span><span style=color:#a3be8c>scripts</span><span>": {
 </span><span>    ...
-</span><span>    &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">jest</span><span>&quot;
+</span><span>    "</span><span style=color:#a3be8c>test</span><span>": "</span><span style=color:#a3be8c>jest</span><span>"
 </span><span>    ...
 </span><span>  }
 </span><span>}
-</span></code></pre>
-<p>Run it!!!</p>
-<img src="run_tests.png"/>
-<h2 id="unit-testing-and-mocking">Unit testing and mocking</h2>
-<p>Not always your code will be simple enough to not depend on anything but it`s internal code. For example:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">// Hypothetical file user_db_repo.js
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">DB </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">./some_DB_lib</span><span>&quot;);
+</span></code></pre><p>Run it!!!</p><img src=run_tests.png><h2 id=unit-testing-and-mocking>Unit testing and mocking</h2><p>Not always your code will be simple enough to not depend on anything but it`s internal code. For example:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#65737e>// Hypothetical file user_db_repo.js
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>DB </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>./some_DB_lib</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">UserDBRepo </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;"> </span><span style="color:#8fa1b3;">getUserBirthdayByID</span><span>(</span><span style="color:#bf616a;">userID</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">   </span><span style="color:#65737e;">//Hypothetical DB API
-</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">birthdate </span><span>= </span><span style="color:#bf616a;">DB</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">query</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">Select u.birthday From User u where u.id = :id</span><span>&quot;</span><span style="color:#eff1f5;">).</span><span style="color:#8fa1b3;">on</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">userID</span><span style="color:#eff1f5;">).</span><span style="color:#8fa1b3;">execute</span><span style="color:#eff1f5;">();
-</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">if</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">birthdate </span><span>=== </span><span style="color:#d08770;">null</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">throw </span><span>new </span><span style="color:#eff1f5;">Error(</span><span>&quot;</span><span style="color:#a3be8c;">UserID is invalid or user has no birthdate registered</span><span>&quot;</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">   } </span><span style="color:#b48ead;">else </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">return </span><span>new </span><span style="color:#eff1f5;">Date(</span><span style="color:#bf616a;">birthdate</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">   }
-</span><span style="color:#eff1f5;"> }
-</span><span style="color:#eff1f5;">}
-</span><span>module.exports.</span><span style="color:#bf616a;">UserDBRepo </span><span>= </span><span style="color:#bf616a;">UserDBRepo</span><span>;
-</span></code></pre>
-<p>Then you have another class that has a method that receives the user id and return it's age:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#65737e;">// Hypothetical file user_service.js
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">UserDBRepo</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">./user_db_repo.js</span><span>&quot;);
+</span><span style=color:#b48ead>class </span><span style=color:#ebcb8b>UserDBRepo </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5> </span><span style=color:#8fa1b3>getUserBirthdayByID</span><span>(</span><span style=color:#bf616a>userID</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>   </span><span style=color:#65737e>//Hypothetical DB API
+</span><span style=color:#eff1f5>   </span><span style=color:#b48ead>const </span><span style=color:#bf616a>birthdate </span><span>= </span><span style=color:#bf616a>DB</span><span style=color:#eff1f5>.</span><span style=color:#8fa1b3>query</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>Select u.birthday From User u where u.id = :id</span><span>"</span><span style=color:#eff1f5>).</span><span style=color:#8fa1b3>on</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>id</span><span>"</span><span style=color:#eff1f5>, </span><span style=color:#bf616a>userID</span><span style=color:#eff1f5>).</span><span style=color:#8fa1b3>execute</span><span style=color:#eff1f5>();
+</span><span style=color:#eff1f5>   </span><span style=color:#b48ead>if</span><span style=color:#eff1f5>(</span><span style=color:#bf616a>birthdate </span><span>=== </span><span style=color:#d08770>null</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>     </span><span style=color:#b48ead>throw </span><span>new </span><span style=color:#eff1f5>Error(</span><span>"</span><span style=color:#a3be8c>UserID is invalid or user has no birthdate registered</span><span>"</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>   } </span><span style=color:#b48ead>else </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>     </span><span style=color:#b48ead>return </span><span>new </span><span style=color:#eff1f5>Date(</span><span style=color:#bf616a>birthdate</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>   }
+</span><span style=color:#eff1f5> }
+</span><span style=color:#eff1f5>}
+</span><span>module.exports.</span><span style=color:#bf616a>UserDBRepo </span><span>= </span><span style=color:#bf616a>UserDBRepo</span><span>;
+</span></code></pre><p>Then you have another class that has a method that receives the user id and return it's age:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#65737e>// Hypothetical file user_service.js
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>UserDBRepo</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>./user_db_repo.js</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">UserService </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">constructor</span><span>()</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">userDbRepo </span><span>= new </span><span style="color:#eff1f5;">UserDBRepo();
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">getUserAge</span><span>(</span><span style="color:#bf616a;">userID</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">try </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">now </span><span>= </span><span style="color:#ebcb8b;">Date</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">now</span><span style="color:#eff1f5;">();
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">birthdate </span><span>= </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">userDbRepo</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">getUserBirthdayByID</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">userID</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">years </span><span>= </span><span style="color:#bf616a;">now</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">getFullYear</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#bf616a;">birthdate</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">getFullYear</span><span style="color:#eff1f5;">();
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">months </span><span>= </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">years </span><span>* </span><span style="color:#d08770;">12</span><span style="color:#eff1f5;">) </span><span>+ </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">now</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">getMonth</span><span style="color:#eff1f5;">() </span><span>- </span><span style="color:#bf616a;">birthdate</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">getMonth</span><span style="color:#eff1f5;">()) ;
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">calculatedAge </span><span>= -</span><span style="color:#d08770;">1 </span><span>* </span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">months </span><span>/ </span><span style="color:#d08770;">12</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">      
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">calculatedAge</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    } </span><span style="color:#b48ead;">catch</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">e</span><span style="color:#eff1f5;">){
-</span><span style="color:#eff1f5;">      </span><span style="color:#b48ead;">throw </span><span>new </span><span style="color:#eff1f5;">Error(</span><span>&quot;</span><span style="color:#a3be8c;">Age not calculated for {</span><span>&quot; + </span><span style="color:#bf616a;">e </span><span>+ &quot;</span><span style="color:#a3be8c;">} reason</span><span>&quot;</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">    }
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
-</span><span>module.exports.</span><span style="color:#bf616a;">UserService </span><span>= </span><span style="color:#bf616a;">UserService</span><span>;
-</span></code></pre>
-<p>To test UserService, you would be required to set up a temporary database, as you cannot connect to dev or even prod databases to run your tests, and the more methods you have the more data you have to put in this local database, not to mention that you have to wait for the database to be up so then your tests can start running. But that's why I said, "You would", not you should nor have to.</p>
-<p><a href="http://softwaretestingfundamentals.com/unit-testing/">Unit Test</a> is one of some test technique levels to guarantee that your code delivers what you intend by breaking it in as small pieces as you can/as possible. It does not matter if your code is divided in functions or classes or modules. You will treat the smallest part of your code as a unit and pretend that anything that piece depends on, is a working piece and ignore it when testing.</p>
-<p>In our case, classes are our smallest pieces and our dependency is the class <code>UserDBRepo</code>. To "ignore this dependecy" in our test and only focus in our code(in this case, calculate the age of the user), we can use a technique called <a href="https://en.wikipedia.org/wiki/Mock_object">mocking</a> where we will manipulate the class metadata to do what we want instead of connecting to a database, so we can simply return a hardcoded Date object making our tests to be executed fast and save us a lot of time by not worrying about setting up a temp db, configure the tests to connect to this db, put valid data, etc.</p>
-<p>Even though Jest comes with mocking capabilities, I consider them a little "weak" for you don't have so many options to mock your objects. To do this, we need another library, one more focused in mocking and one of the most famous in Javascript world nowadays is <a href="https://sinonjs.org/">Sinon</a>. With Sinon you can mock the objects you want to ignore and force their functions to return hardcoded values to you simulating valid scenarios. Let's install it:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> sinon@9.0.2
-</span></code></pre>
-<p>Now let's see how we mock our <code>UserDBRepo</code> to achieve our age calculation test:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">sinon </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;);
+</span><span style=color:#b48ead>class </span><span style=color:#ebcb8b>UserService </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>constructor</span><span>()</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>userDbRepo </span><span>= new </span><span style=color:#eff1f5>UserDBRepo();
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>getUserAge</span><span>(</span><span style=color:#bf616a>userID</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>try </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>now </span><span>= </span><span style=color:#ebcb8b>Date</span><span style=color:#eff1f5>.</span><span style=color:#8fa1b3>now</span><span style=color:#eff1f5>();
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>birthdate </span><span>= </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>userDbRepo</span><span style=color:#eff1f5>.</span><span style=color:#8fa1b3>getUserBirthdayByID</span><span style=color:#eff1f5>(</span><span style=color:#bf616a>userID</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>years </span><span>= </span><span style=color:#bf616a>now</span><span style=color:#eff1f5>.</span><span style=color:#96b5b4>getFullYear</span><span style=color:#eff1f5>() </span><span>- </span><span style=color:#bf616a>birthdate</span><span style=color:#eff1f5>.</span><span style=color:#96b5b4>getFullYear</span><span style=color:#eff1f5>();
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>months </span><span>= </span><span style=color:#eff1f5>(</span><span style=color:#bf616a>years </span><span>* </span><span style=color:#d08770>12</span><span style=color:#eff1f5>) </span><span>+ </span><span style=color:#eff1f5>(</span><span style=color:#bf616a>now</span><span style=color:#eff1f5>.</span><span style=color:#96b5b4>getMonth</span><span style=color:#eff1f5>() </span><span>- </span><span style=color:#bf616a>birthdate</span><span style=color:#eff1f5>.</span><span style=color:#96b5b4>getMonth</span><span style=color:#eff1f5>()) ;
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>calculatedAge </span><span>= -</span><span style=color:#d08770>1 </span><span>* </span><span style=color:#eff1f5>(</span><span style=color:#bf616a>months </span><span>/ </span><span style=color:#d08770>12</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>      
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>return </span><span style=color:#bf616a>calculatedAge</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>    } </span><span style=color:#b48ead>catch</span><span style=color:#eff1f5>(</span><span style=color:#bf616a>e</span><span style=color:#eff1f5>){
+</span><span style=color:#eff1f5>      </span><span style=color:#b48ead>throw </span><span>new </span><span style=color:#eff1f5>Error(</span><span>"</span><span style=color:#a3be8c>Age not calculated for {</span><span>" + </span><span style=color:#bf616a>e </span><span>+ "</span><span style=color:#a3be8c>} reason</span><span>"</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>    }
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
+</span><span>module.exports.</span><span style=color:#bf616a>UserService </span><span>= </span><span style=color:#bf616a>UserService</span><span>;
+</span></code></pre><p>To test UserService, you would be required to set up a temporary database, as you cannot connect to dev or even prod databases to run your tests, and the more methods you have the more data you have to put in this local database, not to mention that you have to wait for the database to be up so then your tests can start running. But that's why I said, "You would", not you should nor have to.<p><a href=http://softwaretestingfundamentals.com/unit-testing/>Unit Test</a> is one of some test technique levels to guarantee that your code delivers what you intend by breaking it in as small pieces as you can/as possible. It does not matter if your code is divided in functions or classes or modules. You will treat the smallest part of your code as a unit and pretend that anything that piece depends on, is a working piece and ignore it when testing.<p>In our case, classes are our smallest pieces and our dependency is the class <code>UserDBRepo</code>. To "ignore this dependecy" in our test and only focus in our code(in this case, calculate the age of the user), we can use a technique called <a href=https://en.wikipedia.org/wiki/Mock_object>mocking</a> where we will manipulate the class metadata to do what we want instead of connecting to a database, so we can simply return a hardcoded Date object making our tests to be executed fast and save us a lot of time by not worrying about setting up a temp db, configure the tests to connect to this db, put valid data, etc.<p>Even though Jest comes with mocking capabilities, I consider them a little "weak" for you don't have so many options to mock your objects. To do this, we need another library, one more focused in mocking and one of the most famous in Javascript world nowadays is <a href=https://sinonjs.org/>Sinon</a>. With Sinon you can mock the objects you want to ignore and force their functions to return hardcoded values to you simulating valid scenarios. Let's install it:<pre class=language-sh data-lang=sh style=color:#c0c5ce;background-color:#2b303b><code class=language-sh data-lang=sh><span style=color:#bf616a>npm</span><span> install</span><span style=color:#bf616a> --save-dev</span><span> sinon@9.0.2
+</span></code></pre><p>Now let's see how we mock our <code>UserDBRepo</code> to achieve our age calculation test:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>sinon </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>sinon</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">UserDBRepo</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">../../../src/javascript/mock_example/user_db_repo.js</span><span>&quot;);
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">UserService</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">../../../src/javascript/mock_example/user_service.js</span><span>&quot;);
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>UserDBRepo</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>../../../src/javascript/mock_example/user_db_repo.js</span><span>");
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>UserService</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>../../../src/javascript/mock_example/user_service.js</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">userService </span><span>= new UserService(); </span><span style="color:#65737e;">// Object to be tested
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>userService </span><span>= new UserService(); </span><span style=color:#65737e>// Object to be tested
 </span><span>
-</span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">UserService</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#8fa1b3;">beforeAll</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
-</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mockedNowDate </span><span>= </span><span style="color:#ebcb8b;">Date</span><span>.</span><span style="color:#96b5b4;">parse</span><span>(&quot;</span><span style="color:#a3be8c;">02 May 1989 09:00:00</span><span>&quot;);
-</span><span>    </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">Date</span><span>).</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">now</span><span>&quot;).</span><span style="color:#8fa1b3;">returns</span><span>(new Date(</span><span style="color:#bf616a;">mockedNowDate</span><span>));
+</span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>UserService</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#8fa1b3>beforeAll</span><span>(</span><span style=color:#b48ead>function</span><span>(){
+</span><span>    </span><span style=color:#b48ead>const </span><span style=color:#bf616a>mockedNowDate </span><span>= </span><span style=color:#ebcb8b>Date</span><span>.</span><span style=color:#96b5b4>parse</span><span>("</span><span style=color:#a3be8c>02 May 1989 09:00:00</span><span>");
+</span><span>    </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>mock</span><span>(</span><span style=color:#ebcb8b>Date</span><span>).</span><span style=color:#8fa1b3>expects</span><span>("</span><span style=color:#a3be8c>now</span><span>").</span><span style=color:#8fa1b3>returns</span><span>(new Date(</span><span style=color:#bf616a>mockedNowDate</span><span>));
 </span><span>  });
 </span><span>  
-</span><span>  </span><span style="color:#8fa1b3;">afterEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
-</span><span>    </span><span style="color:#65737e;">//To restore any mock you have done after the test is ran
-</span><span>    </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">restore</span><span>();
+</span><span>  </span><span style=color:#8fa1b3>afterEach</span><span>(</span><span style=color:#b48ead>function</span><span>(){
+</span><span>    </span><span style=color:#65737e>//To restore any mock you have done after the test is ran
+</span><span>    </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>restore</span><span>();
 </span><span>  });
-</span><span>  </span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">#getUserAge(userID)</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return 31</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= </span><span style="color:#d08770;">31</span><span>;
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">userID </span><span>= </span><span style="color:#d08770;">5</span><span>;
-</span><span>      </span><span style="color:#65737e;">//Change the behavior of getUserBirthdayByID to return 30 only when the argument is exactly 5
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mockedDate </span><span>= </span><span style="color:#ebcb8b;">Date</span><span>.</span><span style="color:#96b5b4;">parse</span><span>(&quot;</span><span style="color:#a3be8c;">02 May 2020 09:00:00</span><span>&quot;);
-</span><span>      </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">UserDBRepo</span><span>.prototype).</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">getUserBirthdayByID</span><span>&quot;).</span><span style="color:#8fa1b3;">withExactArgs</span><span>(</span><span style="color:#d08770;">5</span><span>).</span><span style="color:#8fa1b3;">returns</span><span>(new Date(</span><span style="color:#bf616a;">mockedDate</span><span>));
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">userService</span><span>.</span><span style="color:#8fa1b3;">getUserAge</span><span>(</span><span style="color:#bf616a;">userID</span><span>);      
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toEqual</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>  </span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>#getUserAge(userID)</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should return 31</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= </span><span style=color:#d08770>31</span><span>;
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>userID </span><span>= </span><span style=color:#d08770>5</span><span>;
+</span><span>      </span><span style=color:#65737e>//Change the behavior of getUserBirthdayByID to return 30 only when the argument is exactly 5
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>mockedDate </span><span>= </span><span style=color:#ebcb8b>Date</span><span>.</span><span style=color:#96b5b4>parse</span><span>("</span><span style=color:#a3be8c>02 May 2020 09:00:00</span><span>");
+</span><span>      </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>mock</span><span>(</span><span style=color:#ebcb8b>UserDBRepo</span><span>.prototype).</span><span style=color:#8fa1b3>expects</span><span>("</span><span style=color:#a3be8c>getUserBirthdayByID</span><span>").</span><span style=color:#8fa1b3>withExactArgs</span><span>(</span><span style=color:#d08770>5</span><span>).</span><span style=color:#8fa1b3>returns</span><span>(new Date(</span><span style=color:#bf616a>mockedDate</span><span>));
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>userService</span><span>.</span><span style=color:#8fa1b3>getUserAge</span><span>(</span><span style=color:#bf616a>userID</span><span>);      
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toEqual</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>    
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should throw error: &quot;Age not calculated&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= new Error(&quot;</span><span style="color:#a3be8c;">Age not calculated for {Error: UserID is invalid or user has no birthdate registered} reason</span><span>&quot;);
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">userID </span><span>= </span><span style="color:#d08770;">5</span><span>;
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">errorToBeThrown </span><span>= new Error(&quot;</span><span style="color:#a3be8c;">UserID is invalid or user has no birthdate registered</span><span>&quot;);
-</span><span>      </span><span style="color:#65737e;">//Change the behavior of getUserBirthdayByID to throw an exception only when the argument is exactly 5
-</span><span>      </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">UserDBRepo</span><span>.prototype).</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">getUserBirthdayByID</span><span>&quot;).</span><span style="color:#8fa1b3;">withExactArgs</span><span>(</span><span style="color:#d08770;">5</span><span>).</span><span style="color:#8fa1b3;">throws</span><span>(</span><span style="color:#bf616a;">errorToBeThrown</span><span>);      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(() </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">userService</span><span>.</span><span style="color:#8fa1b3;">getUserAge</span><span>(</span><span style="color:#bf616a;">userID</span><span>)).</span><span style="color:#8fa1b3;">toThrow</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should throw error: "Age not calculated"</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= new Error("</span><span style=color:#a3be8c>Age not calculated for {Error: UserID is invalid or user has no birthdate registered} reason</span><span>");
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>userID </span><span>= </span><span style=color:#d08770>5</span><span>;
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>errorToBeThrown </span><span>= new Error("</span><span style=color:#a3be8c>UserID is invalid or user has no birthdate registered</span><span>");
+</span><span>      </span><span style=color:#65737e>//Change the behavior of getUserBirthdayByID to throw an exception only when the argument is exactly 5
+</span><span>      </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>mock</span><span>(</span><span style=color:#ebcb8b>UserDBRepo</span><span>.prototype).</span><span style=color:#8fa1b3>expects</span><span>("</span><span style=color:#a3be8c>getUserBirthdayByID</span><span>").</span><span style=color:#8fa1b3>withExactArgs</span><span>(</span><span style=color:#d08770>5</span><span>).</span><span style=color:#8fa1b3>throws</span><span>(</span><span style=color:#bf616a>errorToBeThrown</span><span>);      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(() </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>userService</span><span>.</span><span style=color:#8fa1b3>getUserAge</span><span>(</span><span style=color:#bf616a>userID</span><span>)).</span><span style=color:#8fa1b3>toThrow</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>  });
 </span><span>});
-</span></code></pre>
-<p>And just like that we ignored everything <code>UserDbRepo.getUserBirthdayByID</code> does and focused on the two cases we have there: When we receive a valid date and when we get an Exception error. This way we asserted that our method <code>UserService.getUserAge</code> is doing what we expect it to do using both Jest and Sinon.</p>
-<p>And to prove that mocking can really do as I said, I made this hypothetical example in a working test where I created a useless db lib that not even returns something, mocked user db repo to return a spam of 31 years, like in the above example, created the test exactly as you read and if you want to run it to see the power of mocking please checkout this <code>nodejs_introduction_mock_example</code> branch.</p>
-<h2 id="applying-to-our-code">Applying to our code</h2>
-<p>Now going back to our code, as Unit test and mocking were explained, how can we improve our code and test it properly? Let's transform this part <code>"It is: " + moment().format();</code>  in a separate class, so our smallest parts will be classes and our <code>/src/app.js</code> will have no code, but will call other classes code. This class, let's call it <code>DateTimeGreetings</code>, depends on moment js library. Moment Js is supposed to be tested already so you do not need to check if it does what you expect it to do, thus ignore it. Create the class <code>/src/javascript/greetings/DateTimeGreetings.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">moment </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">moment</span><span>&quot;);
+</span></code></pre><p>And just like that we ignored everything <code>UserDbRepo.getUserBirthdayByID</code> does and focused on the two cases we have there: When we receive a valid date and when we get an Exception error. This way we asserted that our method <code>UserService.getUserAge</code> is doing what we expect it to do using both Jest and Sinon.<p>And to prove that mocking can really do as I said, I made this hypothetical example in a working test where I created a useless db lib that not even returns something, mocked user db repo to return a spam of 31 years, like in the above example, created the test exactly as you read and if you want to run it to see the power of mocking please checkout this <code>nodejs_introduction_mock_example</code> branch.<h2 id=applying-to-our-code>Applying to our code</h2><p>Now going back to our code, as Unit test and mocking were explained, how can we improve our code and test it properly? Let's transform this part <code>"It is: " + moment().format();</code> in a separate class, so our smallest parts will be classes and our <code>/src/app.js</code> will have no code, but will call other classes code. This class, let's call it <code>DateTimeGreetings</code>, depends on moment js library. Moment Js is supposed to be tested already so you do not need to check if it does what you expect it to do, thus ignore it. Create the class <code>/src/javascript/greetings/DateTimeGreetings.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>moment </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>moment</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">DateTimeGreetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greetDateTime</span><span>(</span><span style="color:#bf616a;">dateFormat</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">It is: </span><span>&quot; + </span><span style="color:#8fa1b3;">moment</span><span style="color:#eff1f5;">().</span><span style="color:#8fa1b3;">format</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">dateFormat</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
+</span><span style=color:#b48ead>class </span><span style=color:#ebcb8b>DateTimeGreetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greetDateTime</span><span>(</span><span style=color:#bf616a>dateFormat</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>"</span><span style=color:#a3be8c>It is: </span><span>" + </span><span style=color:#8fa1b3>moment</span><span style=color:#eff1f5>().</span><span style=color:#8fa1b3>format</span><span style=color:#eff1f5>(</span><span style=color:#bf616a>dateFormat</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
 </span><span>
-</span><span>module.exports.</span><span style="color:#bf616a;">DateTimeGreetings </span><span>= </span><span style="color:#bf616a;">DateTimeGreetings</span><span>;
-</span></code></pre>
-<p>I know it is a simple code, but it is good enough to show unit test in our scenario. Here we have a problem when testing: Time is not constant, because everytime you execute your code it will show you different time, so once you write your test it will be literally "out-dated" in the next second and will fail assertion.</p>
-<p>To fix it, we will use a function named <code>useFakeTimers</code>, that allows us to force moment or any library you might be using(even the native Date library that all browsers have) to always fetch a date and time you provided when checking internally for it. We have to do this instead of use <code>sinon.mock</code> because moment is a function returning an object that has no <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">prototype</a> structure, thus we cannot mock it using normal means.</p>
-<p>This way we can ignore moment and force it to return what we want, because again, what we want to test is not moment, but our own code, in this case <code>It is: {date-time}</code>. I will again create two tests only, just to ilustrate what I was explaining. Now go to <code>/test/javascript/greetings/</code>, create <code>DateTimeGreetings.test.js</code> and put our tests:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">sinon </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;);
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">DateTimeGreetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/DateTimeGreetings.js</span><span>&quot;);
+</span><span>module.exports.</span><span style=color:#bf616a>DateTimeGreetings </span><span>= </span><span style=color:#bf616a>DateTimeGreetings</span><span>;
+</span></code></pre><p>I know it is a simple code, but it is good enough to show unit test in our scenario. Here we have a problem when testing: Time is not constant, because everytime you execute your code it will show you different time, so once you write your test it will be literally "out-dated" in the next second and will fail assertion.<p>To fix it, we will use a function named <code>useFakeTimers</code>, that allows us to force moment or any library you might be using(even the native Date library that all browsers have) to always fetch a date and time you provided when checking internally for it. We have to do this instead of use <code>sinon.mock</code> because moment is a function returning an object that has no <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>prototype</a> structure, thus we cannot mock it using normal means.<p>This way we can ignore moment and force it to return what we want, because again, what we want to test is not moment, but our own code, in this case <code>It is: {date-time}</code>. I will again create two tests only, just to ilustrate what I was explaining. Now go to <code>/test/javascript/greetings/</code>, create <code>DateTimeGreetings.test.js</code> and put our tests:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>sinon </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>sinon</span><span>");
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>DateTimeGreetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>../../../src/javascript/greetings/DateTimeGreetings.js</span><span>");
 </span><span>
-</span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">DateTimeGreetings</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#65737e;">//Create a function that receives a date and lock internal clock to always return this date
-</span><span>  </span><span style="color:#65737e;">//to whatever function is fetching date-time
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">clock </span><span>= </span><span style="color:#bf616a;">date </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">useFakeTimers</span><span>(</span><span style="color:#ebcb8b;">Date</span><span>.</span><span style="color:#96b5b4;">parse</span><span>(</span><span style="color:#bf616a;">date</span><span>));
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mockdate </span><span>= &quot;</span><span style="color:#a3be8c;">30 Apr 2020 10:20:00</span><span>&quot;
+</span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>DateTimeGreetings</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#65737e>//Create a function that receives a date and lock internal clock to always return this date
+</span><span>  </span><span style=color:#65737e>//to whatever function is fetching date-time
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#8fa1b3>clock </span><span>= </span><span style=color:#bf616a>date </span><span style=color:#b48ead>=> </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>useFakeTimers</span><span>(</span><span style=color:#ebcb8b>Date</span><span>.</span><span style=color:#96b5b4>parse</span><span>(</span><span style=color:#bf616a>date</span><span>));
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>mockdate </span><span>= "</span><span style=color:#a3be8c>30 Apr 2020 10:20:00</span><span>"
 </span><span>
-</span><span>  </span><span style="color:#8fa1b3;">beforeEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){ </span><span style="color:#65737e;">// Mocha utility function to run whatever you want before the tests
-</span><span>    </span><span style="color:#65737e;">//Execute clock function to lock the date and time to what we want
-</span><span>    </span><span style="color:#8fa1b3;">clock</span><span>(</span><span style="color:#bf616a;">mockdate</span><span>);
+</span><span>  </span><span style=color:#8fa1b3>beforeEach</span><span>(</span><span style=color:#b48ead>function</span><span>(){ </span><span style=color:#65737e>// Mocha utility function to run whatever you want before the tests
+</span><span>    </span><span style=color:#65737e>//Execute clock function to lock the date and time to what we want
+</span><span>    </span><span style=color:#8fa1b3>clock</span><span>(</span><span style=color:#bf616a>mockdate</span><span>);
 </span><span>  })
 </span><span>  
-</span><span>  </span><span style="color:#8fa1b3;">afterEach</span><span>(</span><span style="color:#b48ead;">function</span><span>() { </span><span style="color:#65737e;">// Mocha utility function to run whatever you want after the test
-</span><span>    </span><span style="color:#65737e;">//Restore internal clock
-</span><span>    </span><span style="color:#8fa1b3;">clock</span><span>(</span><span style="color:#bf616a;">mockdate</span><span>).</span><span style="color:#8fa1b3;">restore</span><span>();
+</span><span>  </span><span style=color:#8fa1b3>afterEach</span><span>(</span><span style=color:#b48ead>function</span><span>() { </span><span style=color:#65737e>// Mocha utility function to run whatever you want after the test
+</span><span>    </span><span style=color:#65737e>//Restore internal clock
+</span><span>    </span><span style=color:#8fa1b3>clock</span><span>(</span><span style=color:#bf616a>mockdate</span><span>).</span><span style=color:#8fa1b3>restore</span><span>();
 </span><span>  });
 </span><span>  
-</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">dateGreet </span><span>= new DateTimeGreetings();
+</span><span>  </span><span style=color:#b48ead>const </span><span style=color:#bf616a>dateGreet </span><span>= new DateTimeGreetings();
 </span><span>
-</span><span>  </span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">#greetDateTime()</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 30-04-2020&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">format </span><span>= &quot;</span><span style="color:#a3be8c;">DD-MM-YYYY</span><span>&quot;;
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">It is: 30-04-2020</span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">dateGreet</span><span>.</span><span style="color:#8fa1b3;">greetDateTime</span><span>(</span><span style="color:#bf616a;">format</span><span>);      
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>  </span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>#greetDateTime()</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should return "It is: 30-04-2020"</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>format </span><span>= "</span><span style=color:#a3be8c>DD-MM-YYYY</span><span>";
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>It is: 30-04-2020</span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>dateGreet</span><span>.</span><span style=color:#8fa1b3>greetDateTime</span><span>(</span><span style=color:#bf616a>format</span><span>);      
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toBe</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>    
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 04-30-2020_10:20:00&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">format </span><span>= &quot;</span><span style="color:#a3be8c;">MM-DD-YYYY_hh:mm:ss</span><span>&quot;;
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">It is: 04-30-2020_10:20:00</span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">dateGreet</span><span>.</span><span style="color:#8fa1b3;">greetDateTime</span><span>(</span><span style="color:#bf616a;">format</span><span>);      
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>('</span><span style=color:#a3be8c>should return "It is: 04-30-2020_10:20:00"</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>format </span><span>= "</span><span style=color:#a3be8c>MM-DD-YYYY_hh:mm:ss</span><span>";
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>It is: 04-30-2020_10:20:00</span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>dateGreet</span><span>.</span><span style=color:#8fa1b3>greetDateTime</span><span>(</span><span style=color:#bf616a>format</span><span>);      
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toBe</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>  });
 </span><span>});
-</span></code></pre>
-<p>Now, instead of using this class directly in <code>/src/app.js</code> we will use it in <code>/src/javascript/greetings/Greetings.js</code>. Let's change our <code>/src/javascript/greetings/Greetings.js</code> file to make <code>/src/javascript/greetings/DateTimeGreetings.js</code> a dependency to demonstrate again how we have to ignore dependencies when testing our "unit":</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">DateTimeGreetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">./DateTimeGreetings.js</span><span>&quot;);
+</span></code></pre><p>Now, instead of using this class directly in <code>/src/app.js</code> we will use it in <code>/src/javascript/greetings/Greetings.js</code>. Let's change our <code>/src/javascript/greetings/Greetings.js</code> file to make <code>/src/javascript/greetings/DateTimeGreetings.js</code> a dependency to demonstrate again how we have to ignore dependencies when testing our "unit":<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>DateTimeGreetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>./DateTimeGreetings.js</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Greetings </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">  </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">name</span><span>)</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name </span><span>= </span><span style="color:#bf616a;">name</span><span style="color:#eff1f5;">;
-</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">dateTimeGreeter </span><span>= new </span><span style="color:#eff1f5;">DateTimeGreetings();
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">  
-</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">greet</span><span>()</span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Hello Mr/Ms </span><span>&quot; + </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.name </span><span>+ &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot; + </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">dateTimeGreeter</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">greetDateTime</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">  }
-</span><span style="color:#eff1f5;">}
+</span><span style=color:#b48ead>class </span><span style=color:#ebcb8b>Greetings </span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>  </span><span style=color:#b48ead>constructor</span><span>(</span><span style=color:#bf616a>name</span><span>)</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.name </span><span>= </span><span style=color:#bf616a>name</span><span style=color:#eff1f5>;
+</span><span style=color:#eff1f5>    </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>dateTimeGreeter </span><span>= new </span><span style=color:#eff1f5>DateTimeGreetings();
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>  
+</span><span style=color:#eff1f5>  </span><span style=color:#8fa1b3>greet</span><span>()</span><span style=color:#eff1f5>{
+</span><span style=color:#eff1f5>    </span><span style=color:#b48ead>return </span><span>"</span><span style=color:#a3be8c>Hello Mr/Ms </span><span>" + </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.name </span><span>+ "</span><span style=color:#96b5b4>\n</span><span>" + </span><span style=color:#bf616a>this</span><span style=color:#eff1f5>.</span><span style=color:#bf616a>dateTimeGreeter</span><span style=color:#eff1f5>.</span><span style=color:#8fa1b3>greetDateTime</span><span style=color:#eff1f5>(</span><span>"</span><span style=color:#a3be8c>MMMM Do YYYY, h:mm:ss a</span><span>"</span><span style=color:#eff1f5>);
+</span><span style=color:#eff1f5>  }
+</span><span style=color:#eff1f5>}
 </span><span>
-</span><span>module.exports.</span><span style="color:#bf616a;">Greetings </span><span>= </span><span style="color:#bf616a;">Greetings</span><span>;
-</span></code></pre>
-<p>This time, we will have a different strategy. Instead of manipulating the clock to always returns the same date and time, we will manipulate the class <code>DateTimeGreetings</code> to whenever we execute the method <code>greetDateTime</code> with the given parameter <code>MMMM Do YYYY, h:mm:ss a</code>, it should ignore the original code and return to us the following output: "It is: April 30rd 2020, 10:20:00 pm". Let's edit our <code>/test/javascript/greetings/Greetings.test.js</code> test suite to see how to do the mock:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">sinon </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;); 
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">Greetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/Greetings.js</span><span>&#39;);
-</span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">DateTimeGreetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&#39;</span><span style="color:#a3be8c;">../../../src/javascript/greetings/DateTimeGreetings.js</span><span>&#39;);
+</span><span>module.exports.</span><span style=color:#bf616a>Greetings </span><span>= </span><span style=color:#bf616a>Greetings</span><span>;
+</span></code></pre><p>This time, we will have a different strategy. Instead of manipulating the clock to always returns the same date and time, we will manipulate the class <code>DateTimeGreetings</code> to whenever we execute the method <code>greetDateTime</code> with the given parameter <code>MMMM Do YYYY, h:mm:ss a</code>, it should ignore the original code and return to us the following output: "It is: April 30rd 2020, 10:20:00 pm". Let's edit our <code>/test/javascript/greetings/Greetings.test.js</code> test suite to see how to do the mock:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span style=color:#bf616a>sinon </span><span>= </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>sinon</span><span>"); 
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>Greetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>('</span><span style=color:#a3be8c>../../../src/javascript/greetings/Greetings.js</span><span>');
+</span><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>DateTimeGreetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>('</span><span style=color:#a3be8c>../../../src/javascript/greetings/DateTimeGreetings.js</span><span>');
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetDev </span><span>= new Greetings(&quot;</span><span style="color:#a3be8c;">NodeJSDev</span><span>&quot;);
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>greetDev </span><span>= new Greetings("</span><span style=color:#a3be8c>NodeJSDev</span><span>");
 </span><span>
-</span><span style="color:#8fa1b3;">describe</span><span>(&quot;</span><span style="color:#a3be8c;">Greetings</span><span>&quot;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>  </span><span style="color:#8fa1b3;">beforeEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
-</span><span>    </span><span style="color:#bf616a;">sinon
-</span><span>      .</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">DateTimeGreetings</span><span>.prototype)
-</span><span>      .</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">greetDateTime</span><span>&quot;)
-</span><span>      .</span><span style="color:#8fa1b3;">withExactArgs</span><span>(&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;)
-</span><span>      .</span><span style="color:#8fa1b3;">returns</span><span>(&quot;</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;);
+</span><span style=color:#8fa1b3>describe</span><span>("</span><span style=color:#a3be8c>Greetings</span><span>", </span><span style=color:#b48ead>function</span><span>() {
+</span><span>  </span><span style=color:#8fa1b3>beforeEach</span><span>(</span><span style=color:#b48ead>function</span><span>(){
+</span><span>    </span><span style=color:#bf616a>sinon
+</span><span>      .</span><span style=color:#8fa1b3>mock</span><span>(</span><span style=color:#ebcb8b>DateTimeGreetings</span><span>.prototype)
+</span><span>      .</span><span style=color:#8fa1b3>expects</span><span>("</span><span style=color:#a3be8c>greetDateTime</span><span>")
+</span><span>      .</span><span style=color:#8fa1b3>withExactArgs</span><span>("</span><span style=color:#a3be8c>MMMM Do YYYY, h:mm:ss a</span><span>")
+</span><span>      .</span><span style=color:#8fa1b3>returns</span><span>("</span><span style=color:#a3be8c>It is: April 30rd 2020, 10:20:00 pm</span><span>");
 </span><span>  });
 </span><span>  
-</span><span>  </span><span style="color:#8fa1b3;">afterEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
-</span><span>    </span><span style="color:#65737e;">//This is to restore all your mocks to original code
-</span><span>    </span><span style="color:#65737e;">//As you can mock things directly in the test in case you need, as I did in our db example
-</span><span>    </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">restore</span><span>();
+</span><span>  </span><span style=color:#8fa1b3>afterEach</span><span>(</span><span style=color:#b48ead>function</span><span>(){
+</span><span>    </span><span style=color:#65737e>//This is to restore all your mocks to original code
+</span><span>    </span><span style=color:#65737e>//As you can mock things directly in the test in case you need, as I did in our db example
+</span><span>    </span><span style=color:#bf616a>sinon</span><span>.</span><span style=color:#8fa1b3>restore</span><span>();
 </span><span>  });
 </span><span>  
-</span><span>  </span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">#greet()</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJSDev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#8fa1b3;">toEqual</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>  </span><span style=color:#8fa1b3>describe</span><span>('</span><span style=color:#a3be8c>#greet()</span><span>', </span><span style=color:#b48ead>function</span><span>() {
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>(`</span><span style=color:#a3be8c>should return "Hello Mr/Ms NodeJSDev</span><span style=color:#96b5b4>\\</span><span style=color:#a3be8c>nIt is: April 30rd 2020, 10:20:00 pm"</span><span>`, </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJSDev</span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>It is: April 30rd 2020, 10:20:00 pm</span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#8fa1b3>toEqual</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>    
-</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJSDev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
-</span><span>      </span><span style="color:#65737e;">//GIVEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= &quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJSDev </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;;      
-</span><span>      </span><span style="color:#65737e;">//WHEN
-</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
-</span><span>      </span><span style="color:#65737e;">//THEN
-</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>).</span><span style="color:#bf616a;">not</span><span>.</span><span style="color:#8fa1b3;">toEqual</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    </span><span style=color:#8fa1b3>test</span><span>(`</span><span style=color:#a3be8c>should not return "Hello Mr/Ms NodeJSDev </span><span style=color:#96b5b4>\\</span><span style=color:#a3be8c>nIt is: April 30rd 2020, 10:20:00 pm"</span><span>`, </span><span style=color:#b48ead>function</span><span>() {
+</span><span>      </span><span style=color:#65737e>//GIVEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>expected </span><span>= "</span><span style=color:#a3be8c>Hello Mr/Ms NodeJSDev </span><span style=color:#96b5b4>\n</span><span style=color:#a3be8c>It is: April 30rd 2020, 10:20:00 pm</span><span>";      
+</span><span>      </span><span style=color:#65737e>//WHEN
+</span><span>      </span><span style=color:#b48ead>const </span><span style=color:#bf616a>actual </span><span>= </span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>();
+</span><span>      </span><span style=color:#65737e>//THEN
+</span><span>      </span><span style=color:#8fa1b3>expect</span><span>(</span><span style=color:#bf616a>actual</span><span>).</span><span style=color:#bf616a>not</span><span>.</span><span style=color:#8fa1b3>toEqual</span><span>(</span><span style=color:#bf616a>expected</span><span>);
 </span><span>    });
 </span><span>  });
 </span><span>});
-</span></code></pre>
-<p>And now run the tests again and you should see this:</p>
-<img src="unit_tests.png"/>
-<p>Just o be clear, all these "rules" I said are for Unit Testing and Unit Testing is 1(one) of many tests types. There is a specific type of test named <a href="http://softwaretestingfundamentals.com/integration-testing/">Integration Test</a> that you have to fake a database for example or a backend server for ajax tests or even an HTTP engine to see if your code pieces integrate well and deliver what is expected as a whole. But, I will leave it for another post focused in testing only.</p>
-<p>And now change <code>/src/app.js</code>:</p>
-<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">Greetings</span><span>} = </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">./javascript/greetings/Greetings.js</span><span>&quot;);
+</span></code></pre><p>And now run the tests again and you should see this:</p><img src=unit_tests.png><p>Just o be clear, all these "rules" I said are for Unit Testing and Unit Testing is 1(one) of many tests types. There is a specific type of test named <a href=http://softwaretestingfundamentals.com/integration-testing/>Integration Test</a> that you have to fake a database for example or a backend server for ajax tests or even an HTTP engine to see if your code pieces integrate well and deliver what is expected as a whole. But, I will leave it for another post focused in testing only.<p>And now change <code>/src/app.js</code>:<pre class=language-javascript data-lang=javascript style=color:#c0c5ce;background-color:#2b303b><code class=language-javascript data-lang=javascript><span style=color:#b48ead>const </span><span>{</span><span style=color:#bf616a>Greetings</span><span>} = </span><span style=color:#96b5b4>require</span><span>("</span><span style=color:#a3be8c>./javascript/greetings/Greetings.js</span><span>");
 </span><span>
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetDev </span><span>= new Greetings(&quot;</span><span style="color:#a3be8c;">Node Dev</span><span>&quot;);
+</span><span style=color:#b48ead>const </span><span style=color:#bf616a>greetDev </span><span>= new Greetings("</span><span style=color:#a3be8c>Node Dev</span><span>");
 </span><span>
-</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>());
-</span></code></pre>
-<p>Run your app and see what it has become:</p>
-<img src="last_run.png"/>
-<h1 id="conclusion">Conclusion</h1>
-<p>In this post we learned the basic of the basic about creating a Node JS app with simple and more complex tests. For now it is a simple CLI app but, from here we can evolve it easily to a complex frontend or even backend app. If you want to see the complete code, please, clone the <a href="https://bitbucket.org/kiberStender/node_app/">bitbucket repository</a> for this post and checkout branch <code>nodejs_introduction</code>. And if you came here but you don't speak english or even prefer portuguese language please check out the <a href="https://kiberstender.github.io/pt_br/node-js-introduction/">Brazilian Portuguese version</a> for this post</p>
-
-        </section>
-    </article>
-</main>
-
-
-
-        
-            
-        
-
-        
-    </div>
-</body>
-
-</html>
+</span><span style=color:#ebcb8b>console</span><span>.</span><span style=color:#96b5b4>log</span><span>(</span><span style=color:#bf616a>greetDev</span><span>.</span><span style=color:#8fa1b3>greet</span><span>());
+</span></code></pre><p>Run your app and see what it has become:</p><img src=last_run.png><h1 id=conclusion>Conclusion</h1><p>In this post we learned the basic of the basic about creating a Node JS app with simple and more complex tests. For now it is a simple CLI app but, from here we can evolve it easily to a complex frontend or even backend app. If you want to see the complete code, please, clone the <a href=https://bitbucket.org/kiberStender/node_app/>bitbucket repository</a> for this post and checkout branch <code>nodejs_introduction</code>. And if you came here but you don't speak english or even prefer portuguese language please check out the <a href=https://kiberstender.github.io/pt_br/node-js-introduction/>Brazilian Portuguese version</a> for this post</section></article></main></div>
