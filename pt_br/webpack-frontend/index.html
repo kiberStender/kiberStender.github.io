@@ -1,200 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark light">
 
 <head>
-    
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;kiberstender.github.io">
 
-    <!-- Enable responsiveness on mobile devices-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    
 
+    
+    
+    
     <title>
-        kiberBlog
+         Webpack- Começando um frontend
+        
     </title>
 
-    
+        
+            <meta property="og:title" content="Webpack- Começando um frontend" />
+        
+     
 
-<link id="darkly" class="stylesheet" rel="stylesheet"
-    href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;darkly.css" />
+     
+         
+     
 
-
-    <!-- This script must follow css -->
-    
-
-    
-
-    
-    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;elasticlunr.min.js"></script>
-    <script defer type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;search_index.en.js"></script>
+     
+         
     
 
     
     
 
-    <noscript>
-        <style>
-            .navbar-menu {
-                display: block;
-            }
-
-            .js-only {
-                display: none;
-            }
-        </style>
-    </noscript>
     
-</head>
+    
+        <link href=https://kiberstender.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="" href="https://kiberstender.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://kiberstender.github.io/theme/light.css />
+        <link rel="stylesheet" type="text/css" href="https://kiberstender.github.io/theme/dark.css" media="(prefers-color-scheme: dark)" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://kiberstender.github.io/js/themetoggle.js></script>
+
+        
+            <script>
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    setTheme("dark");
+                } else {
+                    setTheme("light");
+                }
+            </script>
+        
+    
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://kiberstender.github.io/main.css />
+
+    
+
+    </head>
+
 
 <body>
-    
-    
-<!-- START NAV -->
+    <div class="content">
+        <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;kiberstender.github.io></a>
+        
 
 
-    
-
-<header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                
-                <a class="navbar-item" href="/">
-                    
-                    <img src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;images&#x2F;bulma.png"
-                        alt="Home">
-                    
-                </a>
-                
-                <span class="navbar-burger burger" data-target="navbarMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </div>
-            <div id="navbarMenu" class="navbar-menu">
-                <div class="navbar-end">
-                    
-                    
-                    
-                    
-                    <a itemprop="url"
-                        class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;categories">
-                        <span itemprop="name">Categories
-                        </span>
-                    </a>
-                    
-                    
-                    
-                    <a itemprop="url"
-                        class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;tags">
-                        <span itemprop="name">Tags
-                        </span>
-                    </a>
-                    
-                    
-                    
-                    <a itemprop="url"
-                        class="navbar-item "
-                        href="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;authors">
-                        <span itemprop="name">Authors
-                        </span>
-                    </a>
-                    
-                    
-
-                    
-                    <div class="navbar-item search-container js-only">
-                        <input class="input" id="search" type="search" placeholder="Search">
-
-                        <div class="search-results box">
-                            <div class="search-results__items"></div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+        <div class="socials">
+            
         </div>
+    </div>
+
+    <nav>
+        
+
+        
+
+        
     </nav>
 </header>
 
 
+        
+        
     
-
-<!-- END NAV -->
 <main>
-    <section class="container">
-        <div class="columns is-desktop">
-            <div class="column is-10-desktop is-offset-1-desktop">
-                <article itemscope itemtype="http://schema.org/BlogPosting">
-                    <div class="card article">
-                        <div class="card-content">
-                            
-<header>
-    <div class="has-text-centered">
-        <a href="https://kiberstender.github.io/pt_br/webpack-frontend/">
-            <p class="title article-title">Webpack- Começando um frontend
-            </p>
-        </a>
-        <div class="tags has-addons level-item">
-            <span class="tag is-rounded">2020-05-16</span>
+    <article>
+        <div class="title">
             
-            <span class="tag is-rounded is-primary">
-                    
-                    Kleber Stender
-                    
-                    
-            </span>
-                       
-            <span class="tag is-rounded">
-<svg class="i-clock" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round"
-    stroke-linejoin="round" stroke-width="6.25%">
-    <circle cx="16" cy="16" r="14" />
-    <path d="M16 8 L16 16 20 20" />
-</svg>
-<span>&nbsp;27 minute read</span>
-</span>
-        </div>
+            
+    <div class="page-header">
+        Webpack- Começando um frontend<span class="primary-color" style="font-size: 1.6em">.</span>
     </div>
-</header>
 
-                            <div itemprop="articleBody" class="content article-body">
-                                <h1 id="intro">Introdução</h1>
+
+                <div class="meta">
+                    
+                        Posted on <time>2020-05-16</time>
+                    
+
+                    
+
+                    
+
+                    
+                        :: 4277 Words
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://kiberstender.github.io/pt_br/tags/webpack/" class="post-tag">webpack</a>, 
+                                
+                                    <a href="https://kiberstender.github.io/pt_br/tags/scss/" class="post-tag">scss</a>, 
+                                
+                                    <a href="https://kiberstender.github.io/pt_br/tags/bootstrap/" class="post-tag">bootstrap</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <h1 id="intro">Introdução</h1>
 <p>A postagem anterior (<a href="https://kiberstender.github.io/pt_br/webpack-introduction/">Webpack- Uma introdução completa</a>) introduziu o básico do Webpack, mas manteve tudo que fora feito para ser uma aplicação <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a>(Command Line Interface/ Interface de linha de comando), enquanto que o Webpack é mais focado em aplicações frontend. Logo, nesta postagem irei mostrar- lhes o que é necessário para ao invés de imprimir no console, renderizar os dados em uma página HTML.</p>
 <p>Irei continuar o desenvolvimento de um projeto Javascript estava trabalhando na postagem anterior, assim, se você não a leu, por favor considere fazê- lo antes de começar esta postagem ou se preferir, você pode clonar o projeto e fazer um <em>checkout</em> na branch da postagem:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">git</span><span style="color:#c0c5ce;"> clone https://bitbucket.org/kiberStender/node_app.git
-</span><span style="color:#96b5b4;">cd</span><span style="color:#c0c5ce;"> node_app/
-</span><span style="color:#bf616a;">git</span><span style="color:#c0c5ce;"> checkout</span><span style="color:#bf616a;"> --track</span><span style="color:#c0c5ce;"> origin/webpack_introduction
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">git</span><span> clone https://bitbucket.org/kiberStender/node_app.git
+</span><span style="color:#96b5b4;">cd</span><span> node_app/
+</span><span style="color:#bf616a;">git</span><span> checkout</span><span style="color:#bf616a;"> --track</span><span> origin/webpack_introduction
+</span></code></pre>
 <p>Não irei explicar o que já fora explicado na outra postagem e irei assumir que você já está familiarizado com Javascript, NodeJs e o básico de Webpack.</p>
 <h3 id="html-loader-e-htmlwebpackplugin">HTML-Loader e HTMLWebpackPlugin</h3>
-<p>Bem, tudo que fora feito na postagem anterior é legal e bacana mas, a idéia deste tutorial é criar um frontend e não uma aplicação CLI. Para fazer isso, temos que lidar com arquivos HTML. Mas.... o que há para se lidar: HTML é uma &quot;linguagem<a href="https://kiberstender.github.io/pt_br/webpack-frontend/#disclaimer">*</a>&quot; tão simples, porque você teria que lidar com isso? Por agora, temos apenas um arquivo Javascript(<code>main.js</code>), mas conforme a aplicação cresce, as boas práticas nos pedem que dividamos em o máximo de partes que pudermos/precisarmos e por causa do Javascript ser uma linguagem interpretada, se você esquecer de incluir algum arquivo(<code>&lt;script src=&quot;.../caminho&quot;&gt;</code>),  não urá notar até que seja muito tarde. Assim temos um modo automatizado de adicionar todos os arquivos Javascript e CSS, para que nunca os esqueçamos. Para conseguir isso, precisamos do <a href="https://webpack.js.org/plugins/html-webpack-plugin/">HtmlWebpackPlugin</a>. Para configurá- lo, primeiro o adicionamos via <code>npm install ...</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> html-webpack-plugin@4.2.0
-</span></pre>
+<p>Bem, tudo que fora feito na postagem anterior é legal e bacana mas, a idéia deste tutorial é criar um frontend e não uma aplicação CLI. Para fazer isso, temos que lidar com arquivos HTML. Mas.... o que há para se lidar: HTML é uma "linguagem<a href="https://kiberstender.github.io/pt_br/webpack-frontend/#disclaimer">*</a>" tão simples, porque você teria que lidar com isso? Por agora, temos apenas um arquivo Javascript(<code>main.js</code>), mas conforme a aplicação cresce, as boas práticas nos pedem que dividamos em o máximo de partes que pudermos/precisarmos e por causa do Javascript ser uma linguagem interpretada, se você esquecer de incluir algum arquivo(<code>&lt;script src=".../caminho"&gt;</code>),  não urá notar até que seja muito tarde. Assim temos um modo automatizado de adicionar todos os arquivos Javascript e CSS, para que nunca os esqueçamos. Para conseguir isso, precisamos do <a href="https://webpack.js.org/plugins/html-webpack-plugin/">HtmlWebpackPlugin</a>. Para configurá- lo, primeiro o adicionamos via <code>npm install ...</code>:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> html-webpack-plugin@4.2.0
+</span></code></pre>
 <p>PS: Para esta postagem funcionar mesmo anos após escrita, use as mesmas versões que estou a usar das bibliotecas.</p>
-<p>Agora você deve adicionar a &quot;importação&quot; do HTMLWebpackPlugin em <code>/webpack.config.js</code> antes de <code>module.exports = {...</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">const HtmlWebpackPlugin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">html-webpack-plugin</span><span style="color:#c0c5ce;">&quot;);
-
-module.exports = {
-...
-</span></pre>
-<p>PS: Sempre que ver esses três pontos <code>...</code> significa: &quot;mantenha o que vier antes disso&quot;. Ou se vier após o que estamos a adicionar/modificar, siginifica: &quot;mantenha o que vier após esses pontos&quot;</p>
+<p>Agora você deve adicionar a "importação" do HTMLWebpackPlugin em <code>/webpack.config.js</code> antes de <code>module.exports = {...</code>:</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">HtmlWebpackPlugin </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">html-webpack-plugin</span><span>&quot;);
+</span><span>
+</span><span>module.exports = {
+</span><span>...
+</span></code></pre>
+<p>PS: Sempre que ver esses três pontos <code>...</code> significa: "mantenha o que vier antes disso". Ou se vier após o que estamos a adicionar/modificar, siginifica: "mantenha o que vier após esses pontos"</p>
 <p>Agora configure na propriedade <code>plugins</code> e diga qual arquivo HTML quer operar:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">plugins</span><span style="color:#c0c5ce;">: [
-  ...
-  new </span><span style="color:#bf616a;">HtmlWebpackPlugin</span><span style="color:#c0c5ce;">({template: &quot;</span><span style="color:#a3be8c;">./src/index.html</span><span style="color:#c0c5ce;">&quot;}),
-  ...
-]
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>plugins: [
+</span><span>  ...
+</span><span>  new HtmlWebpackPlugin({template: &quot;</span><span style="color:#a3be8c;">./src/index.html</span><span>&quot;}),
+</span><span>  ...
+</span><span>]
+</span><span>...
+</span></code></pre>
 <p>PS: Você pode especificar mais de um arquivo HTML mas, lembre-se que o Webpack é mais indicado para  <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA(Single Page Application/Aplicação de uma só pagina)</a></p>
 <p>Se rodar isso, perceberá que tens 2(dois) problemas:</p>
 <ol>
@@ -202,700 +200,565 @@ module.exports = {
 <li>Webpack irá reclamar que precisa de um <em>loader</em> para arquivos HTML</li>
 </ol>
 <p>Então primeiro vamos resolver o HTML inexistente. Crie o arquivo HTML chamado <code>index.html</code> dentro de <code>/src</code>. Agora adicione o conteúdo:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">&lt;!</span><span style="color:#bf616a;">doctype</span><span style="color:#c0c5ce;"> html&gt;
-&lt;</span><span style="color:#bf616a;">html</span><span style="color:#c0c5ce;">&gt;
-  &lt;</span><span style="color:#bf616a;">head</span><span style="color:#c0c5ce;">&gt;
-    &lt;</span><span style="color:#bf616a;">title</span><span style="color:#c0c5ce;">&gt;Getting Started&lt;/</span><span style="color:#bf616a;">title</span><span style="color:#c0c5ce;">&gt;
-  &lt;/</span><span style="color:#bf616a;">head</span><span style="color:#c0c5ce;">&gt;
-  &lt;</span><span style="color:#bf616a;">body</span><span style="color:#c0c5ce;">&gt;
-    &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">root</span><span style="color:#c0c5ce;">&quot;&gt;&lt;</span><span style="color:#bf616a;">div</span><span style="color:#c0c5ce;">&gt;
-  &lt;/</span><span style="color:#bf616a;">body</span><span style="color:#c0c5ce;">&gt;
-&lt;/</span><span style="color:#bf616a;">html</span><span style="color:#c0c5ce;">&gt;
-</span></pre>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;!doctype html&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">html</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">head</span><span>&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">title</span><span>&gt;Getting Started&lt;/</span><span style="color:#bf616a;">title</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">head</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">root</span><span>&quot;&gt;&lt;</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">html</span><span>&gt;
+</span></code></pre>
 <p>Agora adicione o <em>loader</em> para arquivos HTML. Simplesmetne instale o <a href="https://webpack.js.org/loaders/html-loader/">html-loader</a>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> html-loader@1.1.0
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> html-loader@1.1.0
+</span></code></pre>
 <p>Você poderia executar agora, mas ainda não iria functionar, porque não configuramos o <code>html-loader</code>, então vamos fazê- lo:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">rules</span><span style="color:#c0c5ce;">: [
-  ...
-  {
-    test: /</span><span style="color:#96b5b4;">\.(html</span><span style="color:#c0c5ce;">|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span style="color:#c0c5ce;">/,
-    use: {
-      loader: &quot;</span><span style="color:#a3be8c;">html-loader</span><span style="color:#c0c5ce;">&quot;
-    }
-  },
-  ...
-]
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>rules: [
+</span><span>  ...
+</span><span>  {
+</span><span>    test: /</span><span style="color:#96b5b4;">\.(html</span><span>|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span>/,
+</span><span>    use: {
+</span><span>      loader: &quot;</span><span style="color:#a3be8c;">html-loader</span><span>&quot;
+</span><span>    }
+</span><span>  },
+</span><span>  ...
+</span><span>]
+</span><span>...
+</span></code></pre>
 <p>Se você executar agora, isso é que é esperado que você veja:</p>
 <img src="html_loader_running.png">
-<p>Se prestar atenção ao nosso arquivo HTML, não existe uma tag <code>&lt;script&gt;</code> nele, mas se abrir o arquivo <code>/dist/index.html</code> poderá ver que há um <code>&lt;script type=&quot;text/javascript&quot; src=&quot;main.js&quot;&gt;&lt;/script&gt;</code> que inclui nosso <code>main.js</code>. O <em>loader</em> não está ali somente para ajudar nosso <em>plugin</em> funcionar, mas pode configurar o HTML para remover todos os espaços em branco e comentários, tornando- o mais leve para transferência. Simplesmente adicione a seguinte configuração na propriedade <code>options</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-{
-  test: /</span><span style="color:#96b5b4;">\.(html</span><span style="color:#c0c5ce;">|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span style="color:#c0c5ce;">/,
-  use: {
-    loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span style="color:#c0c5ce;">&#39;,
-    options: {
-      </span><span style="color:#65737e;">// Desabilita processamento de tags e attributos
-      </span><span style="color:#c0c5ce;">minimize: </span><span style="color:#d08770;">true
-    </span><span style="color:#c0c5ce;">}
-  }
-}
-...
-</span></pre><h1 id="hot-reload-atualizacao-quente-ou-live-reload-atualizacao-ao-vivo">Hot-Reload(Atualização quente) ou Live-Reload(Atualização ao vivo)</h1>
+<p>Se prestar atenção ao nosso arquivo HTML, não existe uma tag <code>&lt;script&gt;</code> nele, mas se abrir o arquivo <code>/dist/index.html</code> poderá ver que há um <code>&lt;script type="text/javascript" src="main.js"&gt;&lt;/script&gt;</code> que inclui nosso <code>main.js</code>. O <em>loader</em> não está ali somente para ajudar nosso <em>plugin</em> funcionar, mas pode configurar o HTML para remover todos os espaços em branco e comentários, tornando- o mais leve para transferência. Simplesmente adicione a seguinte configuração na propriedade <code>options</code>:</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>{
+</span><span>  test: /</span><span style="color:#96b5b4;">\.(html</span><span>|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span>/,
+</span><span>  use: {
+</span><span>    loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span>&#39;,
+</span><span>    options: {
+</span><span>      </span><span style="color:#65737e;">// Desabilita processamento de tags e attributos
+</span><span>      minimize: </span><span style="color:#d08770;">true
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>...
+</span></code></pre>
+<h1 id="hot-reload-atualizacao-quente-ou-live-reload-atualizacao-ao-vivo">Hot-Reload(Atualização quente) ou Live-Reload(Atualização ao vivo)</h1>
 <p>Webpack é feito para ajudá- lo a criar frontend com páginas estáticas. Iso significa que, nenhum servidor(<a href="https://www.javaworld.com/article/3322533/what-is-jsf-introducing-javaserver-faces.html">JSF</a>, <a href="https://www.tutorialspoint.com/php/index.htm">PHP</a>, etc) irá pré processar suas páginas HTML antes de enviar para o usuário. Todo processamento para mudar dados na tela é feito pelo seus arquivos Javascript e CSS locais no navegador do usuário, assim diminuindo o número de requisições ao <em>backend</em>. Mas para testar sua aplicação no navegador, você tem que a cada vez que mudar  algo, ir ao navegador e manualmente apertar <code>CTRL + F5</code>. Se você possui dois monitores e mantém o código aberto em um e o navegador em outro, é muito chato ter que trocar de monitor toda hora para atualizar a página e ver se o que você fez está correto. Hot-Reload ou Live-Reload é um recurso que ajuda você detectando todas as mudanças feitas em seu código e automaticamente atualiza sua aplicação em execução. Primeiro instale <code>webpack-dev-server</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> webpack-dev-server@3.10.3
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> webpack-dev-server@3.10.3
+</span></code></pre>
 <p>Isso é um servidor simples que executa sua aplicação em Hot/Live-reload, assim toda vez que você salvar um arquivo, Webpack irá detectar se há alguma mudança e se houver, recompilar aquele arquivo para você sem parar a aplicação intenria por causa de uma mudançca. PS: Hot/Live-Reload é apenas para proprósitos de desenvolvimento, NÃO USE EM PRODUÇÃO. Ele é lento e não <em>uglifica</em> seu código tornando fácil para pessoas não autorizadas lê- lo ou depurá- lo.</p>
 <p>Vamos criar nosso comando <code>hot-reload</code>. Abra seu arquivo <code>package.json</code> e em <code>scripts</code> adicione estas linhas:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-&quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;: {
-  ...
-  &quot;</span><span style="color:#a3be8c;">live</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode development</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">live:prod</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span style="color:#c0c5ce;">&quot;,
-  ...
-}
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;: {
+</span><span>  ...
+</span><span>  &quot;</span><span style="color:#a3be8c;">live</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode development</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">live:prod</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">webpack-dev-server --mode production</span><span>&quot;,
+</span><span>  ...
+</span><span>}
+</span><span>...
+</span></code></pre>
 <p>E é isso aí, nenhuma outra configuração é necessária. Execute e irá ver isso:</p>
 <img src="live_reload_running.png">
 <p>Vá para <a href="http://localhost:8080">http://localhost:8080</a> e veja sua página aberta com um simples título: <code>Getting started</code> e o resto da página em branco. Vamos colocar alguma ação nisso. Mude o conteúdo de seu arquivo <code>/src/index.js</code> para:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">buildGreetElement</span><span style="color:#c0c5ce;">(){
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetElement </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Person</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">person</span><span style="color:#c0c5ce;">);
-  </span><span style="color:#bf616a;">greetElement</span><span style="color:#c0c5ce;">.innerHTML = </span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">();
-  
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">greetElement</span><span style="color:#c0c5ce;">;
-}
-
-</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">component</span><span style="color:#c0c5ce;">() {
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">buildGreetElement</span><span style="color:#c0c5ce;">());
-
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">;
-}
-
-document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;).</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">component</span><span style="color:#c0c5ce;">());
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">buildGreetElement</span><span>(){
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetElement </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span>= new Person(&quot;</span><span style="color:#a3be8c;">Node</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span>= new Greetings(</span><span style="color:#bf616a;">person</span><span>);
+</span><span>  </span><span style="color:#bf616a;">greetElement</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>= </span><span style="color:#bf616a;">greetings</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
+</span><span>  
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">greetElement</span><span>;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">component</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#8fa1b3;">buildGreetElement</span><span>());
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span>;
+</span><span>}
+</span><span>
+</span><span>document.</span><span style="color:#96b5b4;">querySelector</span><span>(&quot;</span><span style="color:#a3be8c;">#root</span><span>&quot;).</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#8fa1b3;">component</span><span>());
+</span></code></pre>
 <p>Sem parar a aplicação, verifique seu terminal após salvar <code>/src/index.js</code> e verá que o Webpack recompilou/retranspilou os arquivos alterados(neste caso apenas <code>/src/index.js</code>), agora vá para seu navegador e sem apertar nenhum botão a página em branco irá te mostrar a seguinte imagem:</p>
 <img src="frontend_running.png">
 <p>Você pode ver que o <code>\n</code> não pula uma linha aqui certo? Então vamos tornar isso mais <em>frontend</em>. Primeiro abra <code>/src/javascript/greetings/DateTimeGreetings,js</code> e faça o retornar um elemento HTML, assim mudando a função <code>greetDateTime</code> para:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">greetDateTime</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">dateFormat</span><span style="color:#c0c5ce;">){
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#65737e;">//São: ${moment().format(dateFormat)}
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">append</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">It is: </span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">moment</span><span style="color:#c0c5ce;">().</span><span style="color:#bf616a;">format</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">dateFormat</span><span style="color:#c0c5ce;">)}`);
-    
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">;
-}
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#8fa1b3;">greetDateTime</span><span>(</span><span style="color:#bf616a;">dateFormat</span><span>){
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span>&quot;);
+</span><span>  </span><span style="color:#65737e;">//São: ${moment().format(dateFormat)}
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">append</span><span>(`</span><span style="color:#a3be8c;">It is: ${</span><span style="color:#8fa1b3;">moment</span><span style="color:#a3be8c;">().</span><span style="color:#8fa1b3;">format</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">dateFormat</span><span style="color:#a3be8c;">)}</span><span>`);
+</span><span>    
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span>;
+</span><span>}
+</span><span>...
+</span></code></pre>
 <p>Agora abra <code>/src/javascript/greetings/DateTimeGreetings,js</code> e faça o mesmo com a função <code>greet</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">(){
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;); </span><span style="color:#65737e;">//A div principal que irá armazenar tudo
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot;);
-    
-  </span><span style="color:#b48ead;">const </span><span style="color:#c0c5ce;">{</span><span style="color:#bf616a;">name</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">surname</span><span style="color:#c0c5ce;">} = </span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.person;
-    
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">append</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">Hello Mr/Ms </span><span style="color:#c0c5ce;">${</span><span style="color:#bf616a;">name</span><span style="color:#c0c5ce;">} ${</span><span style="color:#bf616a;">surname</span><span style="color:#c0c5ce;">}`); </span><span style="color:#65737e;">// Adicionando o greet que será mostrado
-  // greetDateTime retorna um elemento HTML
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">this</span><span style="color:#c0c5ce;">.dateTimeGreeter.</span><span style="color:#bf616a;">greetDateTime</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span style="color:#c0c5ce;">&quot;));
-    
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">;
-}
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#8fa1b3;">greet</span><span>(){
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;); </span><span style="color:#65737e;">//A div principal que irá armazenar tudo
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">greetings-component</span><span>&quot;);
+</span><span>    
+</span><span>  </span><span style="color:#b48ead;">const </span><span>{</span><span style="color:#bf616a;">name</span><span>, </span><span style="color:#bf616a;">surname</span><span>} = </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">person</span><span>;
+</span><span>    
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">append</span><span>(`</span><span style="color:#a3be8c;">Hello Mr/Ms ${</span><span style="color:#bf616a;">name</span><span style="color:#a3be8c;">} ${</span><span style="color:#bf616a;">surname</span><span style="color:#a3be8c;">}</span><span>`); </span><span style="color:#65737e;">// Adicionando o greet que será mostrado
+</span><span>  </span><span style="color:#65737e;">// greetDateTime retorna um elemento HTML
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">dateTimeGreeter</span><span>.</span><span style="color:#8fa1b3;">greetDateTime</span><span>(&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;));
+</span><span>    
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span>;
+</span><span>}
+</span><span>...
+</span></code></pre>
 <p>Agora abra <code>/src/index.js</code> e mude uma última vez:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">person/Person</span><span style="color:#c0c5ce;">&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
-
-</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">component</span><span style="color:#c0c5ce;">() {
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">greetings-example</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Person</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Node</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Greetings</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">person</span><span style="color:#c0c5ce;">);
-  
-  </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetings</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">());
-
-  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#c0c5ce;">;
-}
-
-document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;).</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">component</span><span style="color:#c0c5ce;">());
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
+</span><span>
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">component</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">greetings-example</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span>= new Person(&quot;</span><span style="color:#a3be8c;">Node</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">Dev</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">greetings </span><span>= new Greetings(</span><span style="color:#bf616a;">person</span><span>);
+</span><span>  
+</span><span>  </span><span style="color:#bf616a;">mainDiv</span><span>.</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#bf616a;">greetings</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>());
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span>;
+</span><span>}
+</span><span>
+</span><span>document.</span><span style="color:#96b5b4;">querySelector</span><span>(&quot;</span><span style="color:#a3be8c;">#root</span><span>&quot;).</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#8fa1b3;">component</span><span>());
+</span></code></pre>
 <p>Agora deve estar mais ou menos assim:</p>
 <img src="frontend_running_2.png">
 <p>E o código HTML no navegador:</p>
 <img src="frontend_html_source.png">
 <h1 id="arquivos-com-hash-no-nome">Arquivos com <em>Hash</em> no nome</h1>
 <p>Uma vez que a aplicação se tornou oficialmente uma aplicação <em>Frontend</em>, pode haver um problema que fora começado a ser removido quando fora adicionado o <a href="https://kiberstender.github.io/webpack-introduction/#auto-deleting-self-generated-files-to-avoid-old-cache">clean-webpack-plugin</a>. Mas, naquela época, <em>cache</em> era um problema no nível do desenvolvimento e como eu mencionei, ele é ótimo de se ter no nível de produção, porque ele acelera a aplicação. Navegadores modernos quando detectam pelo nome de um arquivo que este já fora baixado, eles nao precisam fazer o <em>download</em> novamente caso a página seja atualizada, assim diminuindo a quantidade de banda utilizada para carregar a página e tornar a renderização mais rápida.</p>
-<p>Isso é maravilhoso uma vez que a página está em produção, mas quando em desenvolvimento, isso pode criar <em>caches</em> velhos irritantes que não atualizam a página. Para impedir isso você pode usar nomes com <em>hash</em> fornecidos pelo Webpack &quot;de graça&quot;. Webpack irá <em>hashear</em>(Gerar um código único baseado no conteúdo de seus arquivos) todo os arquivos em nível de <em>build</em> e gerar uma <em>string hash</em>, assim toda vez que recompilar um arquivo, se houverem diferenças, o valor deste <em>hash</em> será diferente e os navegadores não irão usar o cache nunca em algo que mudou o nome. Para fazer isso é muito simples, basta adicionar <code>[hash]</code> em qualquer parte do nome arquivo de saída em <code>webpack.config.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">output</span><span style="color:#c0c5ce;">: {
-  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span style="color:#c0c5ce;">&quot;,
-  path: ...
-},
-...
-</span></pre>
+<p>Isso é maravilhoso uma vez que a página está em produção, mas quando em desenvolvimento, isso pode criar <em>caches</em> velhos irritantes que não atualizam a página. Para impedir isso você pode usar nomes com <em>hash</em> fornecidos pelo Webpack "de graça". Webpack irá <em>hashear</em>(Gerar um código único baseado no conteúdo de seus arquivos) todo os arquivos em nível de <em>build</em> e gerar uma <em>string hash</em>, assim toda vez que recompilar um arquivo, se houverem diferenças, o valor deste <em>hash</em> será diferente e os navegadores não irão usar o cache nunca em algo que mudou o nome. Para fazer isso é muito simples, basta adicionar <code>[hash]</code> em qualquer parte do nome arquivo de saída em <code>webpack.config.js</code>:</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>output: {
+</span><span>  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span>&quot;,
+</span><span>  path: ...
+</span><span>},
+</span><span>...
+</span></code></pre>
 <p>Agora, colocando tudo junto: O <em>clean plugin</em>  irá sempre deletar o conteúdo de <code>/dist</code>, <em>hashing</em> irá sempre gerar um nome novo para seus arquivos conforme você os altera, assim o <em>loader de HTML</em> sempre irá incluí- los em sua página para você, assim você não irá esquecer nenhum arquivo Javascript. Agora você pode apenas focar em programar seu código sem medo de ter coisas velhas em seu <em>cache</em> ou problemas porque algum arquivo novo não fora adicionado à sua página. Isto é o que você verá após executar <code>npm run-script build</code> ou <code>npm run-script build:prod</code>:</p>
 <img src="hashed_name.png" />
 <h3 id="mas-e-o-css">Mas e o CSS?</h3>
 <p>Assim como o Javascript possui muitos transpiladores (Typescript, Coffescript, o próprio Javascript em versões diferentes) em CSS existem 2(dois) transpiladores principais(chamaods Pré-processadores): <a href="http://lesscss.org/">LESS</a> e <a href="https://sass-lang.com/">SASS</a>. Neste tutorial irei usar SASS, porque irei usar <a href="https://getbootstrap.com/">Boostrap</a> e este é feito usando SASS, logo ao usar ambos juntos, você pode usar as funções pré-definidas do Boostrap e outras coisas específicas do SASS. Se você, por algun motivo não quiser usar SASS, mas ainda quer usar Boostrap, não se preocupe, ainda é possíevel, mas você terá que compilar o Bootstrap para CSS e então usá- lo em seus arquivos de LESS ou CSS puro sem nenhum problema. Então vamos começar a configurar o SASS instalando todas as dependências:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> sass@1.26.5 sass-loader@8.0.2 style-loader@1.2.0 css-loader@3.5.3
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> sass@1.26.5 sass-loader@8.0.2 style-loader@1.2.0 css-loader@3.5.3
+</span></code></pre>
 <p>Agora vá para <code>/webpack.config.js</code> e adicione a nova regra na propriedade <code>module</code>, como fora feito com o Babel e o HTML-Loader:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-{
-  test: /</span><span style="color:#96b5b4;">\.s</span><span style="color:#d08770;">[ac]</span><span style="color:#96b5b4;">ss</span><span style="color:#c0c5ce;">|</span><span style="color:#96b5b4;">css</span><span style="color:#b48ead;">$</span><span style="color:#c0c5ce;">/</span><span style="color:#b48ead;">i</span><span style="color:#c0c5ce;">,
-  use: [&quot;</span><span style="color:#a3be8c;">style-loader</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">css-loader</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">sass-loader</span><span style="color:#c0c5ce;">&quot;]
-}
-...
-
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>{
+</span><span>  test: /</span><span style="color:#96b5b4;">\.s</span><span style="color:#d08770;">[ac]</span><span style="color:#96b5b4;">ss</span><span>|</span><span style="color:#96b5b4;">css</span><span style="color:#b48ead;">$</span><span>/</span><span style="color:#b48ead;">i</span><span>,
+</span><span>  use: [&quot;</span><span style="color:#a3be8c;">style-loader</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">css-loader</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">sass-loader</span><span>&quot;]
+</span><span>}
+</span><span>...
+</span><span>
+</span></code></pre>
 <p>Agora crie um diretório chamado <code>styles</code> dentro de <code>/src</code> para armazenar os arquivos SASS e adicioná- los ao resolvedor de caminho(<em>path resolution</em>) no arquivo de configuração do Webpack:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">: {
-  modules: [path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &quot;</span><span style="color:#a3be8c;">src/javascript</span><span style="color:#c0c5ce;">&quot;), path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, &quot;</span><span style="color:#a3be8c;">src/styles</span><span style="color:#c0c5ce;">&quot;), &quot;</span><span style="color:#a3be8c;">node_modules</span><span style="color:#c0c5ce;">&quot;]
-}
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>resolve: {
+</span><span>  modules: [</span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, &quot;</span><span style="color:#a3be8c;">src/javascript</span><span>&quot;), </span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, &quot;</span><span style="color:#a3be8c;">src/styles</span><span>&quot;), &quot;</span><span style="color:#a3be8c;">node_modules</span><span>&quot;]
+</span><span>}
+</span><span>...
+</span></code></pre>
 <p>Agora faça o mesmo em <code>/jest.config.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">module.exports = {
-  &quot;</span><span style="color:#a3be8c;">moduleDirectories</span><span style="color:#c0c5ce;">&quot;:[&quot;</span><span style="color:#a3be8c;">src/javascript</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">src/styles</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">node_modules</span><span style="color:#c0c5ce;">&quot;]
-}
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>module.exports = {
+</span><span>  &quot;</span><span style="color:#a3be8c;">moduleDirectories</span><span>&quot;:[&quot;</span><span style="color:#a3be8c;">src/javascript</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">src/styles</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">node_modules</span><span>&quot;]
+</span><span>}
+</span></code></pre>
 <p>PS: Como <code>node_modules</code> tende a ser um diretório gigante para se fazer buscas, eu prefiro deixá- lo como o último no <em>array</em> de módulos, assim Webpack/Jest sempre irão procurar nos outros módulos antes de qualquer coisa, mas, eu tenho que dizer aqui que não tenho 100% de certeza que a ordem da declaração é obedecida.</p>
 <p>E isso é tudo o que é necessário para ter SASS no projeto. Uma pequena menção aqui para a propriedade <code>test</code> ondeo valor é este: <code>s[ac]ss</code>. Isso ocorre devido ao SASS ter 2(dois) formatos principais de arquivo: <code>.sass</code> e <code>.scss</code>. Ambos significam o mesmo, se você quer entender mais sobre isso leia <a href="https://marksheet.io/sass-scss-less.html">aqui(em inglês)</a>. Um dia eu faço um tutorial focado em SASS e explico as diferenças nos formatos de arquivos. Agora para testar se tudo funcionou você pode criar um arquivo <code>index.scss</code> em seu diretório <code>/src/styles</code> e colocar o seguinte:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">$a_color: red; //Uma variável
-
-</span><span style="color:#bf616a;">#greetings-example</span><span style="color:#c0c5ce;"> {
-  color: $a_color; //Usando a variável
-}
-</span></pre>
+<pre data-lang="sass" style="background-color:#2b303b;color:#c0c5ce;" class="language-sass "><code class="language-sass" data-lang="sass"><span>$</span><span style="color:#bf616a;">a_color</span><span>: red</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span> </span><span style="color:#65737e;">//Uma variável
+</span><span>
+</span><span style="color:#8fa1b3;">#greetings-example </span><span style="background-color:#bf616a;color:#2b303b;">{</span><span>
+</span><span>  color: $</span><span style="color:#bf616a;">a_color</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span> </span><span style="color:#65737e;">//Usando a variável
+</span><span style="background-color:#bf616a;color:#2b303b;">}</span><span>
+</span></code></pre>
 <p>Vá para o arquivo <code>/src/index.js</code> e importe o arquivo <code>/src/styles/index.scss</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">import Greetings from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">index.scss</span><span style="color:#c0c5ce;">&quot;;
-...
-</span></pre>
-<p>Sim, para arquivos CSS, SASS ou LESS, quando os importamos, não há necessidade de adicionar a palavra &quot;from&quot;. Mantenha o resto do código como está. Se você não parou a aplicação, reinicie- a ou execute caso contrário.(npm run-script live). Se seu texto está vermelho, parabéns, você conseguiu adicionar o pré-processaador SASS em sua aplicação:</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
+</span><span style="color:#b48ead;">import </span><span>&quot;</span><span style="color:#a3be8c;">index.scss</span><span>&quot;;
+</span><span>...
+</span></code></pre>
+<p>Sim, para arquivos CSS, SASS ou LESS, quando os importamos, não há necessidade de adicionar a palavra "from". Mantenha o resto do código como está. Se você não parou a aplicação, reinicie- a ou execute caso contrário.(npm run-script live). Se seu texto está vermelho, parabéns, você conseguiu adicionar o pré-processaador SASS em sua aplicação:</p>
 <img src="red_page_scss.png">
 <h3 id="bootstrap">Bootstrap</h3>
 <p>Bootstrap é uma das bibliotecas de CSS mais famosas atualmente. É muito simples de se usar e tem uma enorme comunidade para se tirar dúvidas. Eu poderia usar qualquer biblioteca aqui, mas decidi usar esta por ser muito conhecida e fácil de adicionar. Para ter Bootstrap simplesmente instale as dependências:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install bootstrap@4.4.1 jquery@3.5.0
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install bootstrap@4.4.1 jquery@3.5.0
+</span></code></pre>
 <p><a href="https://jquery.com/">jQuery</a> está aqui rque o Bootstrap precisa dele para funcionar, não irei usar JQuery para nada neste turtorial. Agora para testar se isso funcionou, adicione as seguintes modificações no arquivo <code>/src/styles/index.scss</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">@import &#39;~bootstrap&#39;;
-
-</span><span style="color:#bf616a;">#greetings-example</span><span style="color:#c0c5ce;"> {
-  @extend .container;
-  @extend .text-primary;
-}
-</span></pre>
+<pre data-lang="sass" style="background-color:#2b303b;color:#c0c5ce;" class="language-sass "><code class="language-sass" data-lang="sass"><span style="color:#b48ead;">@import </span><span>&#39;</span><span style="color:#a3be8c;">~bootstrap</span><span>&#39;;
+</span><span>
+</span><span style="color:#8fa1b3;">#greetings-example </span><span style="background-color:#bf616a;color:#2b303b;">{</span><span>
+</span><span>  </span><span style="color:#b48ead;">@extend </span><span style="color:#8fa1b3;">.</span><span style="color:#d08770;">container</span><span>;
+</span><span>  </span><span style="color:#b48ead;">@extend </span><span style="color:#8fa1b3;">.</span><span style="color:#d08770;">text-primary</span><span>;
+</span><span style="background-color:#bf616a;color:#2b303b;">}</span><span>
+</span></code></pre>
 <p>Olhe novamente para sua página(se você não parou a aplicação, caso contrário execute- a) e se a cor agora é azul, você conseguiu, você tem uma aplicação frontend totalmente funcional com Webpack, Babel, SASS e Boostrap.</p>
 <img src="blue_centralized.png">
 <h3 id="diferentes-regras-de-css-para-cada-classe">Diferentes regras de CSS para cada classe</h3>
-<p>Uma simples regra de boas práticas aqui. A razão pelo qual eu coloquei um ID único para cada <code>mainDiv</code> dentro de cada classe do projeto, é para separar o escopo usando CSS. Logo usar o Webpack lhe permite criar um arquivo diferente  para cada &quot;componente&quot; que se tenha no projeto tornando mais fácil  criar um arquivo CSS(ou neste caso SASS) para cada classe para não se misturar as responsabilidades. Para demonstrar isso, irei criar um novo arquivo chamado <code>/src/javascript/App.js</code> que irá ser o ponto de entrada da aplicação deixando <code>/src/index.js</code> para apenas iniciar a aplicação e nada mais, assim como o método <em>main</em> em Java/C/C++.</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">person/Person</span><span style="color:#c0c5ce;">&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
-
-</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">app.scss</span><span style="color:#c0c5ce;">&quot;;
-
+<p>Uma simples regra de boas práticas aqui. A razão pelo qual eu coloquei um ID único para cada <code>mainDiv</code> dentro de cada classe do projeto, é para separar o escopo usando CSS. Logo usar o Webpack lhe permite criar um arquivo diferente  para cada "componente" que se tenha no projeto tornando mais fácil  criar um arquivo CSS(ou neste caso SASS) para cada classe para não se misturar as responsabilidades. Para demonstrar isso, irei criar um novo arquivo chamado <code>/src/javascript/App.js</code> que irá ser o ponto de entrada da aplicação deixando <code>/src/index.js</code> para apenas iniciar a aplicação e nada mais, assim como o método <em>main</em> em Java/C/C++.</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>&quot;</span><span style="color:#a3be8c;">app.scss</span><span>&quot;;
+</span><span>
 </span><span style="color:#b48ead;">export default class </span><span style="color:#ebcb8b;">App </span><span style="color:#eff1f5;">{
-  </span><span style="color:#8fa1b3;">buildTitle</span><span style="color:#eff1f5;">(){
-    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">h2Element </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">h1</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
-    </span><span style="color:#bf616a;">h2Element</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">append</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Greetings Example</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
-  
-    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">h2Element</span><span style="color:#eff1f5;">;
-  }
-  
-  </span><span style="color:#8fa1b3;">buildGreetings</span><span style="color:#eff1f5;">(){
-    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">Person</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Node</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Dev</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
-    </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">new </span><span style="color:#bf616a;">Greetings</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">person</span><span style="color:#eff1f5;">);
-  }
-
-  </span><span style="color:#8fa1b3;">build</span><span style="color:#eff1f5;">(){
-    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span style="color:#c0c5ce;">= </span><span style="color:#eff1f5;">document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
-    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">, </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings-example</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
-
-    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">buildTitle</span><span style="color:#eff1f5;">());  
-    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">buildGreetings</span><span style="color:#eff1f5;">().</span><span style="color:#bf616a;">greet</span><span style="color:#eff1f5;">());
-
-    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">;
-  }
-}
-</span></pre>
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">buildTitle</span><span>()</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">h2Element </span><span>= </span><span style="color:#eff1f5;">document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">h1</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">h2Element</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">append</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">Greetings Example</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">h2Element</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">  
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">buildGreetings</span><span>()</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">person </span><span>= new </span><span style="color:#eff1f5;">Person(</span><span>&quot;</span><span style="color:#a3be8c;">Node</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">Dev</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span>new </span><span style="color:#eff1f5;">Greetings(</span><span style="color:#bf616a;">person</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">  </span><span style="color:#8fa1b3;">build</span><span>()</span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mainDiv </span><span>= </span><span style="color:#eff1f5;">document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#eff1f5;">(</span><span>&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;</span><span style="color:#eff1f5;">, </span><span>&quot;</span><span style="color:#a3be8c;">greetings-example</span><span>&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">buildTitle</span><span style="color:#eff1f5;">());  
+</span><span style="color:#eff1f5;">    </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">buildGreetings</span><span style="color:#eff1f5;">().</span><span style="color:#8fa1b3;">greet</span><span style="color:#eff1f5;">());
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">mainDiv</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">  }
+</span><span style="color:#eff1f5;">}
+</span></code></pre>
 <p>Perceba que eu importei <code>app.scss</code> e não <code>index.scss</code>. Não irei criar um arquivo novo, irei renomear <code>/src/styles/index.scss</code> para <code>/src/styles/app.scss</code> e manter o resto:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">mv</span><span style="color:#c0c5ce;"> src/styles/index.scss src/styles/app.scss
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">mv</span><span> src/styles/index.scss src/styles/app.scss
+</span></code></pre>
 <p>Agora edite <code>/src/index.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">App </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">App.js</span><span style="color:#c0c5ce;">&quot;
-
-document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;).</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(new </span><span style="color:#bf616a;">App</span><span style="color:#c0c5ce;">().</span><span style="color:#bf616a;">build</span><span style="color:#c0c5ce;">());
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">App </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">App.js</span><span>&quot;
+</span><span>
+</span><span>document.</span><span style="color:#96b5b4;">querySelector</span><span>(&quot;</span><span style="color:#a3be8c;">#root</span><span>&quot;).</span><span style="color:#96b5b4;">appendChild</span><span>(new App().</span><span style="color:#8fa1b3;">build</span><span>());
+</span></code></pre>
 <p>E assim é como deve estar agora:</p>
 <img src="title_added.png">
 <p>Agora crie um diretório chamado <code>greetings</code> dentro <code>/src/styles/</code> e crie um arquivo dentro disso(<code>/src/styles/greetings/</code>) chamado <code>dateTimeGreetings.scss</code> e adicione o seguinte conteúdo:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">#date-time-greetings-component</span><span style="color:#c0c5ce;"> {
-  color: green;
-}
-</span></pre>
+<pre data-lang="sass" style="background-color:#2b303b;color:#c0c5ce;" class="language-sass "><code class="language-sass" data-lang="sass"><span style="color:#8fa1b3;">#date-time-greetings-component </span><span style="background-color:#bf616a;color:#2b303b;">{</span><span>
+</span><span>  color: green</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span>
+</span><span style="background-color:#bf616a;color:#2b303b;">}</span><span>
+</span></code></pre>
 <p>Agora import- o dentro de <code>/src/javascrit/greetings/DateTimeGreetings.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">moment </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">moment</span><span style="color:#c0c5ce;">&quot;;
-
-</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/dateTimeGreetings.scss</span><span style="color:#c0c5ce;">&quot;;
-...
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">moment </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">moment</span><span>&quot;;
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>&quot;</span><span style="color:#a3be8c;">greetings/dateTimeGreetings.scss</span><span>&quot;;
+</span><span>...
+</span><span>...
+</span></code></pre>
 <p>PS: Observe que por <code>/src/styles</code> ter sido adicionado no resolvedor de caminhos(<em>path resolution</em>) pode- se usar o mesmo estilo de url para importar CSS/SASS</p>
 <p>Agora a página deve estar assim:</p>
 <img src="date_time_greetings_green.png">
 <p>Agora crie um arquvivo <code>greetings.scss</code> dentro de <code>/src/styles/greetings/</code> e adicione:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">#greetings-component</span><span style="color:#c0c5ce;"> {
-  color: black;
-}
-</span></pre>
+<pre data-lang="sass" style="background-color:#2b303b;color:#c0c5ce;" class="language-sass "><code class="language-sass" data-lang="sass"><span style="color:#8fa1b3;">#greetings-component </span><span style="background-color:#bf616a;color:#2b303b;">{</span><span>
+</span><span>  color: black</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span>
+</span><span style="background-color:#bf616a;color:#2b303b;">}</span><span>
+</span></code></pre>
 <p>Importe - o em <code>/src/javascrit/greetings/Greetings.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">import Person from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">person/Person</span><span style="color:#c0c5ce;">&quot;;
-
-</span><span style="color:#b48ead;">import </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/greetings.scss</span><span style="color:#c0c5ce;">&quot;;
-...
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Person </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">person/Person</span><span>&quot;;
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>&quot;</span><span style="color:#a3be8c;">greetings/greetings.scss</span><span>&quot;;
+</span><span>...
+</span><span>...
+</span></code></pre>
 <p>E este é o resultado final:</p>
 <img src="greetings_black.png">
 <p>Mesmo que isso pareça bobo, isto é para mostrar como você pode ter seus arquivos completamente segregados um dos outros e o resultado final ser um código final limpo, sem acoplamento e não muito difícil de gerenciar por causa da ajuda do Webpack.</p>
 <h1 id="serve">Serve</h1>
-<p>Quando explicava sobre Hot/Live-reload, menciono que vocẽ não deve nunca usá- lo em produção, porque ele não otimiza seu código tornando- o lento e também não <em>uglifica</em> permitindo outras pessoas facilmente ler e depurá- lo ou mesmo copiar o que você fez. Mas eu também disse que o Webpack é usado para fazer frontends estáticos, assim como alguém pode executar essa aplicação em produção? Alguns servidores como o <a href="https://pages.github.com/">servidor estático do Github</a> irão simplesmente &quot;servir&quot; sua aplicação sem nenhuma configuração, vocẽ simplesmente copia tudo o que está em seu diretório <code>dist</code> e <em>comita</em>. Mas quando você não tem tal servidor e em que criar o seu prório, como fazer isso? Existe uma aplicação CLI chamada <code>serve</code> que faz isso para você. Para instalá- la execute o comando:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> serve@11.3.0
-</span></pre>
+<p>Quando explicava sobre Hot/Live-reload, menciono que vocẽ não deve nunca usá- lo em produção, porque ele não otimiza seu código tornando- o lento e também não <em>uglifica</em> permitindo outras pessoas facilmente ler e depurá- lo ou mesmo copiar o que você fez. Mas eu também disse que o Webpack é usado para fazer frontends estáticos, assim como alguém pode executar essa aplicação em produção? Alguns servidores como o <a href="https://pages.github.com/">servidor estático do Github</a> irão simplesmente "servir" sua aplicação sem nenhuma configuração, vocẽ simplesmente copia tudo o que está em seu diretório <code>dist</code> e <em>comita</em>. Mas quando você não tem tal servidor e em que criar o seu prório, como fazer isso? Existe uma aplicação CLI chamada <code>serve</code> que faz isso para você. Para instalá- la execute o comando:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> serve@11.3.0
+</span></code></pre>
 <p>Agora mude o script <code>execute</code> para:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-&quot;</span><span style="color:#a3be8c;">scripts</span><span style="color:#c0c5ce;">&quot;:{
-  ...
-  &quot;</span><span style="color:#a3be8c;">serve</span><span style="color:#c0c5ce;">&quot;:&quot;</span><span style="color:#a3be8c;">serve -s dist</span><span style="color:#c0c5ce;">&quot;,
-  &quot;</span><span style="color:#a3be8c;">execute</span><span style="color:#c0c5ce;">&quot;:&quot;</span><span style="color:#a3be8c;">npm run-script build:prod &amp;&amp; npm run-script serve</span><span style="color:#c0c5ce;">&quot;,
-  ...
-}
-...
-</span></pre>
-<p>Caso você queira &quot;servir&quot;, mas quer escolher se irá fazer o <em>build</em> no modo dev ou prod eu criei um comando simples <code>serve</code> e editei o comando <code>execute</code> para ser seu comando de <em>deploy</em> assim ele sempre irá <em>buildar</em> em modo de produção e &quot;servir&quot;. <code>dist</code> em <code>serve -s dist</code> é o nome do diretório que você quer &quot;servir&quot;, logo se você configurou seu Webpack para que os arquivos vão para outro lugar, por favor mude de acordo. E para executar:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> run-script execute
-</span></pre>
-<p>E agora confira em <a href="http://localhost:5000">http://localhost:5000</a>. Diferente do Hot-Reload, toda mudança que fizer será completamente ignorada, porque está sendo &quot;servido&quot; estaticamente seu diretório <code>dist</code>. Mas claro que se você disparar o <em>build</em> de outro terminal, pois o serve bloqueia o terminal atual que você está a usar, e então apertar <code>F5</code>ou <code>CTRL + F5</code> ou mesmo clicar no botão de atualizar suas mudanças serão mostradas, mas isto, claro, mata todo o propósito de &quot;servir&quot; a aoplicação estaticamente já que esta é sua aplicação em produção.</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>&quot;</span><span style="color:#a3be8c;">scripts</span><span>&quot;:{
+</span><span>  ...
+</span><span>  &quot;</span><span style="color:#a3be8c;">serve</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">serve -s dist</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">execute</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">npm run-script build:prod &amp;&amp; npm run-script serve</span><span>&quot;,
+</span><span>  ...
+</span><span>}
+</span><span>...
+</span></code></pre>
+<p>Caso você queira "servir", mas quer escolher se irá fazer o <em>build</em> no modo dev ou prod eu criei um comando simples <code>serve</code> e editei o comando <code>execute</code> para ser seu comando de <em>deploy</em> assim ele sempre irá <em>buildar</em> em modo de produção e "servir". <code>dist</code> em <code>serve -s dist</code> é o nome do diretório que você quer "servir", logo se você configurou seu Webpack para que os arquivos vão para outro lugar, por favor mude de acordo. E para executar:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> run-script execute
+</span></code></pre>
+<p>E agora confira em <a href="http://localhost:5000">http://localhost:5000</a>. Diferente do Hot-Reload, toda mudança que fizer será completamente ignorada, porque está sendo "servido" estaticamente seu diretório <code>dist</code>. Mas claro que se você disparar o <em>build</em> de outro terminal, pois o serve bloqueia o terminal atual que você está a usar, e então apertar <code>F5</code>ou <code>CTRL + F5</code> ou mesmo clicar no botão de atualizar suas mudanças serão mostradas, mas isto, claro, mata todo o propósito de "servir" a aoplicação estaticamente já que esta é sua aplicação em produção.</p>
 <h1 id="problema-com-tamanho">Problema com tamanho</h1>
 <p>Agora que a aplicação é um <em>frontend</em> ao invés de uma CLI, para que ela tenha sucesso, ela deve ter boa performance. Isso significa que, após o usuário digitar a url em seu navegador, a aplicação deve carregar rápido. Um problema que ela tem neste momento é seu tamanho: ela pesa mais de 400 KiB:</p>
 <image src="size_before_moment_plugin.png"/>
 <p>Webpack recomendar que o tamanho máximo seja de 244KiB. Isso dito, o que pode ser feito? Primeiro, encontrar o que causa este tamanho imenso. Neste caso, o problema é o MomentJS. Ele está a ser carregado por inteiro e a aplicação usa apenas uma pequena parte. Como resolver? MomentJS possui um <em>plugin</em> chamado <a href="https://www.npmjs.com/package/moment-locales-webpack-plugin">moment-locales-webpack-plugin</a>, que ajuda a remover <em>locales</em> não necessário da aplicação: Instale- o:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> --save-dev</span><span style="color:#c0c5ce;"> moment-locales-webpack-plugin@1.2.0
-</span></pre>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install</span><span style="color:#bf616a;"> --save-dev</span><span> moment-locales-webpack-plugin@1.2.0
+</span></code></pre>
 <p>Agora, configure o no arquivo <code>/webpack.config.js</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">const MomentLocalesPlugin </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">moment-locales-webpack-plugin</span><span style="color:#c0c5ce;">&#39;);
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">MomentLocalesPlugin </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&#39;</span><span style="color:#a3be8c;">moment-locales-webpack-plugin</span><span>&#39;);
+</span><span>...
+</span></code></pre>
 <p>Na sessão <em>plugin</em>, ainda em <code>/webpack.config.js</code>, instancie o novo <em>plugin</em>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">plugins</span><span style="color:#c0c5ce;">:[
-   ...,
-   new </span><span style="color:#bf616a;">MomentLocalesPlugin</span><span style="color:#c0c5ce;">(),
-   ...
-]
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>plugins:[
+</span><span>   ...,
+</span><span>   new MomentLocalesPlugin(),
+</span><span>   ...
+</span><span>]
+</span><span>...
+</span></code></pre>
 <p>Por padrão, se alguém usar <code>new MomentLocalesPlugin()</code>, o <em>plugin</em> irá entender que somente o <em>locale</em> <code>en</code> deve ser mantido, mas se se você quiser adicionar outro <em>locale</em> basta passar um objeto para o construtor:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-new </span><span style="color:#bf616a;">MomentLocalesPlugin</span><span style="color:#c0c5ce;">({localesToKeep: [&#39;</span><span style="color:#a3be8c;">ru</span><span style="color:#c0c5ce;">&#39;]}), </span><span style="color:#65737e;">//Russian Locale
-</span><span style="color:#c0c5ce;">...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>new MomentLocalesPlugin({localesToKeep: [&#39;</span><span style="color:#a3be8c;">ru</span><span>&#39;]}), </span><span style="color:#65737e;">//Russian Locale
+</span><span>...
+</span></code></pre>
 <p>Desta forma o <em>plugin</em> irá manter os dois <em>locales</em> <code>en</code> e <code>ru</code>. Execute o comando <code>build:prod</code> e veja a aplicação pesar menos de 244 KiB:</p>
 <image src="size_after_moment_plugin.png"/>
 <h1 id="separacao-de-ambientes">Separação de ambientes</h1>
 <p>Quando se faz uma aplicação profissional, geralmente, você tem que separar o que você usar em desenvolvimento e o que você usa em produção, para não ter por exemplo dados errados em produção or deixar a aplicação iniciar lentamente em desenvolvimento, porque você quis usar todas as otimizações que vocẽ usa em produção. Por isso e outros pequenos problemas se faz necessário separar as opões para a configuração da aplicação.</p>
 <p>Como eu provavelmente já mencionei mais de 3(três) vezes nesta série de postagens, Webpack possui suporte para isso, ambos os controles automático e manuais sobre os ambientes. Como nossa aplicação é muito simples e pequena irei usar dois casos de uso muito simples:</p>
 <ol>
-<li><code>dev-tool</code>: No início eu configurei uma properiedade no arquivo <code>webpack.config.js</code> chamada <code>devtool</code> como o valor <code>source-map</code>. Isso é muito legal para ajudar o navegador a saber mais sobre sua aplicação já que ele a carrega e iterpreta, assim ele pode aplicar algumas otimizações a mais em &quot;nível de hardware&quot;. Mas o <em>source-map</em>, é um meta dado muito detalhado sobre suas funções, classes, módulos, etc, assim quanto maior sua base de código é, maior o tempo para gerar o <em>source-map</em>. Não que irá levar 1 hora, mas quando você está a desenvolver algo novo ou corrigir um erro, qualquer segundo extra que a aplicação leva para iniciar a executar para vocẽ ver se corrigiu ou nao é irritante. E se você pudesse desligar o <em>source-map</em> em modo de desenvolvimento e deixá- lo apenas para quando colocar a aplicação em produção?</li>
+<li><code>dev-tool</code>: No início eu configurei uma properiedade no arquivo <code>webpack.config.js</code> chamada <code>devtool</code> como o valor <code>source-map</code>. Isso é muito legal para ajudar o navegador a saber mais sobre sua aplicação já que ele a carrega e iterpreta, assim ele pode aplicar algumas otimizações a mais em "nível de hardware". Mas o <em>source-map</em>, é um meta dado muito detalhado sobre suas funções, classes, módulos, etc, assim quanto maior sua base de código é, maior o tempo para gerar o <em>source-map</em>. Não que irá levar 1 hora, mas quando você está a desenvolver algo novo ou corrigir um erro, qualquer segundo extra que a aplicação leva para iniciar a executar para vocẽ ver se corrigiu ou nao é irritante. E se você pudesse desligar o <em>source-map</em> em modo de desenvolvimento e deixá- lo apenas para quando colocar a aplicação em produção?</li>
 <li><code>html-loader</code>: Quando eu estava a mostrar nesta postagem que o <code>html-loader</code> pode diminuir o tamanho do arquivo HTML ao remover espaços em branco e comentário isso era muito legal, mas em desenvolvimento ás vezes ter esses comentários e identação pode ajudar a ler o código e poderia ser melhor se só tivesse essa melhoria em produção.</li>
 </ol>
 <p>Para fazer isso existem pelo menos 3(três) possibilidades e irei explicar mais afundo apenas 1, mas vale a pena saber todas:</p>
 <ol>
-<li>Ter mais de um <code>webpack.config.file</code>: Você pode ter quantos você quiser e cada um pode ser específico de um ambiente. Para selecionar qual usar você só precisa passar nos comandos <code>scripts</code> em package.json. Por exemplo, há 2(dois) commandos de <em>build</em>(<code>build</code> e <code>build:prod</code>), e se houvessem 2(dois) arquivos de configuração do Webpack como: <code>webpack.dev.config.js</code> e <code>webpack.prod.config.js</code>, haveria a possibilidade de mudar os <code>scripts</code> para:<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#c0c5ce;">  &quot;</span><span style="color:#a3be8c;">build</span><span style="color:#c0c5ce;">&quot;:&quot;</span><span style="color:#a3be8c;">webpack --config webpack.dev.config.js</span><span style="color:#c0c5ce;">&quot;,
-</span><span style="color:#c0c5ce;">  &quot;</span><span style="color:#a3be8c;">build:prod</span><span style="color:#c0c5ce;">&quot;:&quot;</span><span style="color:#a3be8c;">webpack --config webpack.prod.config.js</span><span style="color:#c0c5ce;">&quot;
-</span><span style="color:#c0c5ce;">...
-</span></pre>Então nos respectivos arquivo de configuração do Webpack pode- se configurar uma propriedade chamada <code>mode</code> para ou <code>development</code> or <code>environment</code>, assim sempre que os comandos de <em>build</em> forem executados, não serão mostrados os aviso de <em>fallback</em> de ambiente.</li>
+<li>Ter mais de um <code>webpack.config.file</code>: Você pode ter quantos você quiser e cada um pode ser específico de um ambiente. Para selecionar qual usar você só precisa passar nos comandos <code>scripts</code> em package.json. Por exemplo, há 2(dois) commandos de <em>build</em>(<code>build</code> e <code>build:prod</code>), e se houvessem 2(dois) arquivos de configuração do Webpack como: <code>webpack.dev.config.js</code> e <code>webpack.prod.config.js</code>, haveria a possibilidade de mudar os <code>scripts</code> para:<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>  &quot;</span><span style="color:#a3be8c;">build</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">webpack --config webpack.dev.config.js</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">build:prod</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">webpack --config webpack.prod.config.js</span><span>&quot;
+</span><span>...
+</span></code></pre>
+Então nos respectivos arquivo de configuração do Webpack pode- se configurar uma propriedade chamada <code>mode</code> para ou <code>development</code> or <code>environment</code>, assim sempre que os comandos de <em>build</em> forem executados, não serão mostrados os aviso de <em>fallback</em> de ambiente.</li>
 <li><a href="https://www.npmjs.com/package/cross-env">Croos-env library</a>: Quando rodar a aplicação em Sistemas Operacionais diferentes, a forma que a variável de ambiente é passada na linha de comando pode mudar e isso pode ser um problema. Então instalar essa biblioteca pode te ajudar já resolver que ela pode resolver as diferenças para você e você pode escrever apenas uma vez o comando em <code>scripts</code> no package.json e passar os valores sem incompatibilidade. Assim você pode passar uma variável de ambiente para ajudar o Webpack para Produção ou Desenvolvimento e mudar a propriedade <code>mode</code> e usar <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">expressões ternárias</a> para passar valores as propriedades dentro de <code>webpack.config.file</code>.</li>
 <li>Mudar <code>webpack.config.file</code> de um objeto literal para uma função que retorna um objeto literal: Esta função possui dois parâmetros e o segundo tem o valor <em>mode</em> colocado no comando <code>build</code> no arquivo package.json: O <code>--mode development</code> ou <code>--mode production</code>. Desta forma pode-se também usar uma expressão ternária para declarar os valores das propriedades no arquivo <code>webpack.config.js</code>.</li>
 </ol>
 <p>O mais fácil para mim(não o melhor) é a terceria forma. Porque não exige criar arquivos adicionais, nem mudar o apckage.json nem mesmo adicionar nenhum biblioteca. Novamente, é o mais fácil, não o melhor.</p>
 <p>Original:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-module.exports = {
-  entry:...,
-  output:...,
-  devtool:...,
-  plugins:...,
-  module:...,
-  resolve:...
-};
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>module.exports = {
+</span><span>  entry:...,
+</span><span>  output:...,
+</span><span>  devtool:...,
+</span><span>  plugins:...,
+</span><span>  module:...,
+</span><span>  resolve:...
+</span><span>};
+</span></code></pre>
 <p>O que tem de ser feito:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#ebcb8b;">module</span><span style="color:#c0c5ce;">.</span><span style="color:#8fa1b3;">exports </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(nv, options) {
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">isProd </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">options</span><span style="color:#c0c5ce;">.mode === &quot;</span><span style="color:#a3be8c;">production</span><span style="color:#c0c5ce;">&quot;;
-  
-  </span><span style="color:#b48ead;">return </span><span style="color:#c0c5ce;">{
-    entry:...,
-    output:...,
-    devtool:...,
-    plugins:...,
-    module:...,
-    resolve:...
-  };
-}
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>module.exports = </span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">nv</span><span>, </span><span style="color:#bf616a;">options</span><span>) {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">isProd </span><span>= </span><span style="color:#bf616a;">options</span><span>.</span><span style="color:#bf616a;">mode </span><span>=== &quot;</span><span style="color:#a3be8c;">production</span><span>&quot;;
+</span><span>  
+</span><span>  </span><span style="color:#b48ead;">return </span><span>{
+</span><span>    entry:...,
+</span><span>    output:...,
+</span><span>    devtool:...,
+</span><span>    plugins:...,
+</span><span>    module:...,
+</span><span>    resolve:...
+</span><span>  };
+</span><span>}
+</span></code></pre>
 <p>Agora pode- se usar uma expressão ternária para declarar dinamicamente valores de acordo com o ambiente em qualquer propriedade desejada, como por exemplo, mudar o <em>dev-tool</em>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">devtool</span><span style="color:#c0c5ce;">: </span><span style="color:#bf616a;">isProd </span><span style="color:#c0c5ce;">? &quot;</span><span style="color:#a3be8c;">source-map</span><span style="color:#c0c5ce;">&quot; : &quot;</span><span style="color:#a3be8c;">eval</span><span style="color:#c0c5ce;">&quot;,
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>devtool: </span><span style="color:#bf616a;">isProd </span><span>? &quot;</span><span style="color:#a3be8c;">source-map</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">eval</span><span>&quot;,
+</span><span>...
+</span></code></pre>
 <p>E em <code>html-loader</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">{
-  test: /</span><span style="color:#96b5b4;">\.(html</span><span style="color:#c0c5ce;">|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span style="color:#c0c5ce;">/,
-  </span><span style="color:#bf616a;">use</span><span style="color:#c0c5ce;">: {
-    loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span style="color:#c0c5ce;">&#39;,
-    </span><span style="color:#bf616a;">options</span><span style="color:#c0c5ce;">: {
-      minimize: </span><span style="color:#bf616a;">isProd
-    </span><span style="color:#c0c5ce;">}
-  }
-}
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>{
+</span><span>  test: /</span><span style="color:#96b5b4;">\.(html</span><span>|</span><span style="color:#96b5b4;">htm)</span><span style="color:#b48ead;">$</span><span>/,
+</span><span>  use: {
+</span><span>    loader: &#39;</span><span style="color:#a3be8c;">html-loader</span><span>&#39;,
+</span><span>    options: {
+</span><span>      minimize: </span><span style="color:#bf616a;">isProd
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span></code></pre>
 <p>Agora execute <code>npm run-script build</code> e verifique <code>/dist</code>. Você irá perceber que não há um arquivo <em>map</em> mais e se checar <code>index.html</code> ele terá todos os espaços e identação.</p>
 <h3 id="servir-no-backend">Servir no Backend</h3>
 <p>Se você usa algum framework de backend como <a href="https://spring.io/">Spring</a>, você pode simplesmente compilar/transpilar tudo para <code>/src/main/resources/static</code> ou se usar <a href="https://www.playframework.com/">Play Framework</a> compilar/transpilar para <code>/public</code> quando em modo de produção. Ou para ser mais genérico, compilar/transpilar tudo de <code>/dist</code> para o diretório dedicado para arquivos estáticos do moto/framework de backend quando estiver em modo de produção.</p>
 <p>Imagine que você possui um diretório chamado <code>webapp</code> na raís de sua apolicação Spring e tudo que fora feito nesta postagem está dentro de <code>/webapp</code>, assim <code>webpack.config.js</code> não está na raíz, você terá que ajustar a saída:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">output</span><span style="color:#c0c5ce;">: {
-  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span style="color:#c0c5ce;">&quot;,
-  path: path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, </span><span style="color:#bf616a;">isProd </span><span style="color:#c0c5ce;">? &quot;</span><span style="color:#a3be8c;">../src/main/resources/static</span><span style="color:#c0c5ce;">&quot; : &quot;</span><span style="color:#a3be8c;">dist</span><span style="color:#c0c5ce;">&quot;)
-},
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>output: {
+</span><span>  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span>&quot;,
+</span><span>  path: </span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, </span><span style="color:#bf616a;">isProd </span><span>? &quot;</span><span style="color:#a3be8c;">../src/main/resources/static</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">dist</span><span>&quot;)
+</span><span>},
+</span><span>...
+</span></code></pre>
 <p>Para o Playframerwork é a mesma coisa, há de se voltar um nível(se você estiver usando a estrutura do webapp) e colocar tudo no diretório <code>/ublic</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">output</span><span style="color:#c0c5ce;">: {
-  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span style="color:#c0c5ce;">&quot;,
-  path: path.</span><span style="color:#bf616a;">resolve</span><span style="color:#c0c5ce;">(__dirname, </span><span style="color:#bf616a;">isProd </span><span style="color:#c0c5ce;">? &quot;</span><span style="color:#a3be8c;">../public: : </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#bf616a;">dist</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">)</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span style="color:#c0c5ce;">},
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span>output: {
+</span><span>  filename: &quot;</span><span style="color:#a3be8c;">main.[hash].js</span><span>&quot;,
+</span><span>  path: </span><span style="color:#bf616a;">path</span><span>.</span><span style="color:#96b5b4;">resolve</span><span>(__dirname, </span><span style="color:#bf616a;">isProd </span><span>? &quot;</span><span style="color:#a3be8c;">../public: : </span><span>&quot;</span><span style="color:#bf616a;">dist</span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">)</span><span>
+</span><span>},
+</span><span>...
+</span></code></pre>
 <p>Se esta é sua realidade, ignore a instação do <code>serve</code> e mude onde <code>output.path</code> em <code>webpack.config.js</code> coloca o conteúdo após <code>npm run-script build:prod</code>.</p>
 <h1 id="testando-seu-frontend">Testando seu frontend</h1>
 <p>E cá estamos novamente, a mudar os testes para refletirem o código novo. Se você tentar executà- los aogra irá ver que estão quebrados porque o Jest não consegue reconhecer a síntaxe do SASS quando importa- se os arquivos <code>.scss</code>:</p>
 <img src="sass_import_error.png"/>
 <p>Para resolver isso é necessário dizer ao Jest que para qualquer arquvo não-Javascript importado, que ele mude o código para um objeto vazio(<code>{}</code>). Assim será criado um arquivo <em>stub</em> para todos os arquivos CSS/SASS/LESS que forem importados no código. Vá para <code>/test</code> e crie um novo diretório chamado <code>jest_stub</code>, agora dentro deste novo diretório crie um arquivo de nome <code>CssStub.js</code> e coloque o seguinte conteúdo:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">module.exports = {};
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>module.exports = {};
+</span></code></pre>
 <p>Agora abra <code>/jest.config.js</code> e adicione uma nova propriedade chamda <code>moduleNameMapper</code> com o seguinte valor:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">module.exports = {
-  &quot;</span><span style="color:#a3be8c;">moduleDirectories</span><span style="color:#c0c5ce;">&quot;: ...,
-  &quot;</span><span style="color:#a3be8c;">moduleNameMapper</span><span style="color:#c0c5ce;">&quot;: {
-    &quot;</span><span style="color:#a3be8c;">^.+</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.(css|scss|less)$</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">&lt;rootDir&gt;/test/jest_stub/CssStub.js</span><span style="color:#c0c5ce;">&quot;,
-  }
-}
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>module.exports = {
+</span><span>  &quot;</span><span style="color:#a3be8c;">moduleDirectories</span><span>&quot;: ...,
+</span><span>  &quot;</span><span style="color:#a3be8c;">moduleNameMapper</span><span>&quot;: {
+</span><span>    &quot;</span><span style="color:#a3be8c;">^.+</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.(css|scss|less)$</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">&lt;rootDir&gt;/test/jest_stub/CssStub.js</span><span>&quot;,
+</span><span>  }
+</span><span>}
+</span></code></pre>
 <p>Agora se você exectuar os testes novamente o problema do <code>import</code> não mais existirá e agora há problemas porque a suite de testes estava a esperar que as classes retornassem <em>Strings</em> mas elas estão a retornar objetos <em>HTML Node</em> agora:</p>
 <img src="html_node_error.png"/>
 <p>Para resolver isso é necessário usar o método <code>innerHTML</code> da clase <em>HTML Node</em>  n função <code>expected</code>. vamos corrigir <code>/test/javascript/greetings/DateTimeGreetings.test.js</code> já que esta é a suite de teste mais fácil:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 30-04-2020&quot;</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-  ...
-  </span><span style="color:#65737e;">//THEN
-  </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-});
-    
-</span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 04-30-2020_10:20:00&quot;</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-  ...
-  </span><span style="color:#65737e;">//THEN
-  </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-});
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 30-04-2020&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  ...
+</span><span>  </span><span style="color:#65737e;">//THEN
+</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>});
+</span><span>    
+</span><span style="color:#8fa1b3;">test</span><span>(&#39;</span><span style="color:#a3be8c;">should return &quot;It is: 04-30-2020_10:20:00&quot;</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  ...
+</span><span>  </span><span style="color:#65737e;">//THEN
+</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>});
+</span><span>...
+</span></code></pre>
 <p>Agora <code>/test/javascript/greetings/Greetings.test.js</code> será corrigido. Como esta suite possui precisa de um <em>mock</em> para a classe <code>DateTimeGreetings</code>, ela não pode forçar a retornar uma String. Mesmo eu dizendo que quando <em>mockarmos</em> podemos forçar a classe a retornar qualquer valor que quisermos, não se deve mudar o tipo original da função que se está a <em>mockar</em>. Isso é porque, por exemplo, <code>mainDiv.appendChild</code> não aceita uma <em>String</em> como parâmetro, logo deve- se criar uma instância de <em>HTML Node</em> para usar em <code>sinon.mock(...)returns</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#c0c5ce;">...
-</span><span style="color:#bf616a;">const dateTimeGreetNode </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-</span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#c0c5ce;">&quot;);
-</span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">.innerHTML = &quot;</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span style="color:#c0c5ce;">&quot;;
-  
-</span><span style="color:#bf616a;">beforeEach</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(){
-
-  </span><span style="color:#bf616a;">sinon
-    </span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">mock</span><span style="color:#c0c5ce;">(</span><span style="color:#ebcb8b;">DateTimeGreetings</span><span style="color:#c0c5ce;">.prototype)
-    .</span><span style="color:#bf616a;">expects</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">greetDateTime</span><span style="color:#c0c5ce;">&quot;)
-    .</span><span style="color:#bf616a;">withExactArgs</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span style="color:#c0c5ce;">&quot;)
-    .</span><span style="color:#bf616a;">returns</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">);
-});
-...
-
-</span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nSão: April 30rd 2020, 10:20:00 pm&quot;</span><span style="color:#c0c5ce;">`, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-  </span><span style="color:#65737e;">//GIVEN
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= `</span><span style="color:#a3be8c;">&lt;div&gt;Hello Mr/Ms NodeJS Dev&lt;/div&gt;&lt;div id=&quot;date-time-greetings-component&quot;&gt;São: April 30rd 2020, 10:20:00 pm&lt;/div&gt;</span><span style="color:#c0c5ce;">`;
-  </span><span style="color:#65737e;">//WHEN
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">();
-  </span><span style="color:#65737e;">//THEN
-  </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-});
-    
-</span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nSão: April 30rd 2020, 10:20:00 pm&quot;</span><span style="color:#c0c5ce;">`, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-  </span><span style="color:#65737e;">//GIVEN
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= `</span><span style="color:#a3be8c;">&lt;div&gt;Hello Mr/Ms NodeJS Dev&amp;nbsp;&lt;/div&gt;&lt;div id=&quot;date-time-greetings-component&quot;&gt;Sâo: April 30rd 2020, 10:20:00 pm&lt;/div&gt;</span><span style="color:#c0c5ce;">`;
-  </span><span style="color:#65737e;">//WHEN
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">greetDev</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">greet</span><span style="color:#c0c5ce;">();
-  </span><span style="color:#65737e;">//THEN
-  </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).not.</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-});
-...
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>...
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">dateTimeGreetNode </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span style="color:#bf616a;">dateTimeGreetNode</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span>&quot;);
+</span><span style="color:#bf616a;">dateTimeGreetNode</span><span>.</span><span style="color:#bf616a;">innerHTML </span><span>= &quot;</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;;
+</span><span>  
+</span><span style="color:#8fa1b3;">beforeEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>
+</span><span>  </span><span style="color:#bf616a;">sinon
+</span><span>    .</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">DateTimeGreetings</span><span>.prototype)
+</span><span>    .</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">greetDateTime</span><span>&quot;)
+</span><span>    .</span><span style="color:#8fa1b3;">withExactArgs</span><span>(&quot;</span><span style="color:#a3be8c;">MMMM Do YYYY, h:mm:ss a</span><span>&quot;)
+</span><span>    .</span><span style="color:#8fa1b3;">returns</span><span>(</span><span style="color:#bf616a;">dateTimeGreetNode</span><span>);
+</span><span>});
+</span><span>...
+</span><span>
+</span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should return &quot;Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nSão: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  </span><span style="color:#65737e;">//GIVEN
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= `</span><span style="color:#a3be8c;">&lt;div&gt;Hello Mr/Ms NodeJS Dev&lt;/div&gt;&lt;div id=&quot;date-time-greetings-component&quot;&gt;São: April 30rd 2020, 10:20:00 pm&lt;/div&gt;</span><span>`;
+</span><span>  </span><span style="color:#65737e;">//WHEN
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
+</span><span>  </span><span style="color:#65737e;">//THEN
+</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>});
+</span><span>    
+</span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should not return &quot;Hello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nSão: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  </span><span style="color:#65737e;">//GIVEN
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= `</span><span style="color:#a3be8c;">&lt;div&gt;Hello Mr/Ms NodeJS Dev&amp;nbsp;&lt;/div&gt;&lt;div id=&quot;date-time-greetings-component&quot;&gt;Sâo: April 30rd 2020, 10:20:00 pm&lt;/div&gt;</span><span>`;
+</span><span>  </span><span style="color:#65737e;">//WHEN
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">greetDev</span><span>.</span><span style="color:#8fa1b3;">greet</span><span>();
+</span><span>  </span><span style="color:#65737e;">//THEN
+</span><span>  </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#bf616a;">not</span><span>.</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>});
+</span><span>...
+</span></code></pre>
 <p>Agora crie um teste para a nova classe <code>/src/javascript/App.js</code> em <code>/test/javascript/App.test.js</code>. Este teste irá <em>mockar</em> a classe <code>Greetings</code>:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">sinon</span><span style="color:#c0c5ce;">&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span style="color:#c0c5ce;">&quot;;
-</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">App </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">App</span><span style="color:#c0c5ce;">&quot;
-
-</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">app </span><span style="color:#c0c5ce;">= new </span><span style="color:#bf616a;">App</span><span style="color:#c0c5ce;">();
-
-</span><span style="color:#bf616a;">describe</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">App</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">dateTimeGreetNode </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">append</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetingsNode </span><span style="color:#c0c5ce;">= document.</span><span style="color:#96b5b4;">createElement</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">div</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">greetingsNode</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">setAttribute</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">id</span><span style="color:#c0c5ce;">&quot;, &quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">greetingsNode</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">append</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJS Dev</span><span style="color:#c0c5ce;">&quot;);
-  </span><span style="color:#bf616a;">greetingsNode</span><span style="color:#c0c5ce;">.</span><span style="color:#96b5b4;">appendChild</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">dateTimeGreetNode</span><span style="color:#c0c5ce;">);  
-  
-  </span><span style="color:#bf616a;">beforeEach</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(){
-    </span><span style="color:#bf616a;">sinon
-      </span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">mock</span><span style="color:#c0c5ce;">(</span><span style="color:#ebcb8b;">Greetings</span><span style="color:#c0c5ce;">.prototype)
-      .</span><span style="color:#bf616a;">expects</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">greet</span><span style="color:#c0c5ce;">&quot;)
-      .</span><span style="color:#bf616a;">returns</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">greetingsNode</span><span style="color:#c0c5ce;">);
-  });
-  
-  </span><span style="color:#bf616a;">afterEach</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(){
-    </span><span style="color:#bf616a;">sinon</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">restore</span><span style="color:#c0c5ce;">();
-  });
-  
-  </span><span style="color:#bf616a;">describe</span><span style="color:#c0c5ce;">(&#39;</span><span style="color:#a3be8c;">#build()</span><span style="color:#c0c5ce;">&#39;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-    </span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">should return &quot;Greetings Example</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nGreetings Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span style="color:#c0c5ce;">`, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-      </span><span style="color:#65737e;">//GIVEN
-      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= `</span><span style="color:#a3be8c;">&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;Hello Mr/Ms NodeJS Dev&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;It is: April 30rd 2020, 10:20:00 pm&lt;/div&gt;&lt;/div&gt;</span><span style="color:#c0c5ce;">`;
-      </span><span style="color:#65737e;">//WHEN
-      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">app</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">build</span><span style="color:#c0c5ce;">();
-      </span><span style="color:#65737e;">//THEN
-      </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-    });
-    
-    </span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(`</span><span style="color:#a3be8c;">should not return &quot;Greetings Example</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nHello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span style="color:#c0c5ce;">`, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-      </span><span style="color:#65737e;">//GIVEN
-      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= `</span><span style="color:#a3be8c;">&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;Hello Mr/Ms NodeJS Dev&amp;nbsp;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;It is: April 30rd 2020, 10:20:00 pm&lt;/div&gt;&lt;/div&gt;</span><span style="color:#c0c5ce;">`;
-      </span><span style="color:#65737e;">//WHEN
-      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span style="color:#c0c5ce;">= </span><span style="color:#bf616a;">app</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">build</span><span style="color:#c0c5ce;">();
-      </span><span style="color:#65737e;">//THEN
-      </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">actual</span><span style="color:#c0c5ce;">.innerHTML).not.</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-    });
-  });
-});
-
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;;
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">Greetings </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">greetings/Greetings</span><span>&quot;;
+</span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">App </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">App</span><span>&quot;
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">app </span><span>= new App();
+</span><span>
+</span><span style="color:#8fa1b3;">describe</span><span>(&quot;</span><span style="color:#a3be8c;">App</span><span>&quot;, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">dateTimeGreetNode </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">dateTimeGreetNode</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">dateTimeGreetNode</span><span>.</span><span style="color:#96b5b4;">append</span><span>(&quot;</span><span style="color:#a3be8c;">It is: April 30rd 2020, 10:20:00 pm</span><span>&quot;);
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">greetingsNode </span><span>= document.</span><span style="color:#96b5b4;">createElement</span><span>(&quot;</span><span style="color:#a3be8c;">div</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">greetingsNode</span><span>.</span><span style="color:#96b5b4;">setAttribute</span><span>(&quot;</span><span style="color:#a3be8c;">id</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">greetings-component</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">greetingsNode</span><span>.</span><span style="color:#96b5b4;">append</span><span>(&quot;</span><span style="color:#a3be8c;">Hello Mr/Ms NodeJS Dev</span><span>&quot;);
+</span><span>  </span><span style="color:#bf616a;">greetingsNode</span><span>.</span><span style="color:#96b5b4;">appendChild</span><span>(</span><span style="color:#bf616a;">dateTimeGreetNode</span><span>);  
+</span><span>  
+</span><span>  </span><span style="color:#8fa1b3;">beforeEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#bf616a;">sinon
+</span><span>      .</span><span style="color:#8fa1b3;">mock</span><span>(</span><span style="color:#ebcb8b;">Greetings</span><span>.prototype)
+</span><span>      .</span><span style="color:#8fa1b3;">expects</span><span>(&quot;</span><span style="color:#a3be8c;">greet</span><span>&quot;)
+</span><span>      .</span><span style="color:#8fa1b3;">returns</span><span>(</span><span style="color:#bf616a;">greetingsNode</span><span>);
+</span><span>  });
+</span><span>  
+</span><span>  </span><span style="color:#8fa1b3;">afterEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">restore</span><span>();
+</span><span>  });
+</span><span>  
+</span><span>  </span><span style="color:#8fa1b3;">describe</span><span>(&#39;</span><span style="color:#a3be8c;">#build()</span><span>&#39;, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should return &quot;Greetings Example</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nGreetings Hello Mr/Ms NodeJS Dev</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>      </span><span style="color:#65737e;">//GIVEN
+</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= `</span><span style="color:#a3be8c;">&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;Hello Mr/Ms NodeJS Dev&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;It is: April 30rd 2020, 10:20:00 pm&lt;/div&gt;&lt;/div&gt;</span><span>`;
+</span><span>      </span><span style="color:#65737e;">//WHEN
+</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">app</span><span>.</span><span style="color:#8fa1b3;">build</span><span>();
+</span><span>      </span><span style="color:#65737e;">//THEN
+</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    });
+</span><span>    
+</span><span>    </span><span style="color:#8fa1b3;">test</span><span>(`</span><span style="color:#a3be8c;">should not return &quot;Greetings Example</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nHello Mr/Ms NodeJS Dev </span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">nIt is: April 30rd 2020, 10:20:00 pm&quot;</span><span>`, </span><span style="color:#b48ead;">function</span><span>() {
+</span><span>      </span><span style="color:#65737e;">//GIVEN
+</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= `</span><span style="color:#a3be8c;">&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;Hello Mr/Ms NodeJS Dev&amp;nbsp;&lt;div id=</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">date-time-greetings-component</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">&gt;It is: April 30rd 2020, 10:20:00 pm&lt;/div&gt;&lt;/div&gt;</span><span>`;
+</span><span>      </span><span style="color:#65737e;">//WHEN
+</span><span>      </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">actual </span><span>= </span><span style="color:#bf616a;">app</span><span>.</span><span style="color:#8fa1b3;">build</span><span>();
+</span><span>      </span><span style="color:#65737e;">//THEN
+</span><span>      </span><span style="color:#8fa1b3;">expect</span><span>(</span><span style="color:#bf616a;">actual</span><span>.</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#bf616a;">not</span><span>.</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>    });
+</span><span>  });
+</span><span>});
+</span><span>
+</span></code></pre>
 <p>Está feito, os testes estão corrigidos agora e se você rodá- los, eles deverão passar. Mas ainda há algo faltando.... Alguma coisa para mostrar que realmente está certo. Um <a href="http://softwaretestingfundamentals.com/integration-testing/">teste de iintegração</a> se faz necessário para ver se o HTML no navegador é realmente modificado para o que esperamos que seja modificado. Como por agora é apenas verificado o que as funções retornam mas isso não necessariamente significa que irá funcionar em um navegador real. Então como verificar isso? Jest vem com uma biblioteca chamada <a href="https://www.npmjs.com/package/jsdom">JSDom</a>. Esta biblioteca cria um navegador falso, assim pode- se usar isso nos testes para verificar se um botão foi clicar, se este clique no botão mudou algo que era esperado mudar, se mudou corretamente, e assim por diante.</p>
 <p>Então vamos criar o nosso primeiro Teste de Integração. Iremos somente forçar a data por causa do problema com data e tempo serem constantes e deixaremos o resto acontecer automaticamente sem <em>mockar</em> nada e verificar e nossa div de ID <code>root</code> mudou de acordo. Primeiro criaremos o arquivo <code>/test/javascript/AppIntegration.test.js</code> e adicionar o seguinte conteúdo:</p>
-<pre style="background-color:#2b303b;">
-<span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">sinon</span><span style="color:#c0c5ce;">&quot;;
-
-</span><span style="color:#bf616a;">describe</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">AppIntegrationTest</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {  
-  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">clock </span><span style="color:#c0c5ce;">= date </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">sinon</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">useFakeTimers</span><span style="color:#c0c5ce;">(</span><span style="color:#ebcb8b;">Date</span><span style="color:#c0c5ce;">.</span><span style="color:#bf616a;">parse</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">date</span><span style="color:#c0c5ce;">));
-  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mockdate </span><span style="color:#c0c5ce;">= &quot;</span><span style="color:#a3be8c;">30 Apr 2020 10:20:00</span><span style="color:#c0c5ce;">&quot;
-
-  </span><span style="color:#bf616a;">beforeEach</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(){
-    </span><span style="color:#bf616a;">clock</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">mockdate</span><span style="color:#c0c5ce;">);
-  });
-  
-  </span><span style="color:#bf616a;">afterEach</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">() {
-    </span><span style="color:#bf616a;">clock</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">mockdate</span><span style="color:#c0c5ce;">).</span><span style="color:#bf616a;">restore</span><span style="color:#c0c5ce;">();
-  });
-  
-  </span><span style="color:#bf616a;">test</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">Check integration of all parts</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#b48ead;">function</span><span style="color:#c0c5ce;">(){
-    </span><span style="color:#65737e;">//GIVEN
-    </span><span style="color:#c0c5ce;">document.body.innerHTML = `</span><span style="color:#a3be8c;">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</span><span style="color:#c0c5ce;">`;
-    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span style="color:#c0c5ce;">= `</span><span style="color:#a3be8c;">&lt;div id=&quot;greetings-example&quot;&gt;&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=&quot;greetings-component&quot;&gt;Hello Mr/Ms Node Dev&lt;div id=&quot;date-time-greetings-component&quot;&gt;It is: April 30th 2020, 10:20:00 am&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</span><span style="color:#c0c5ce;">`;
-    
-    </span><span style="color:#65737e;">//WHEN
-    </span><span style="color:#bf616a;">require</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">../../src/index.js</span><span style="color:#c0c5ce;">&quot;);
-    
-    </span><span style="color:#65737e;">//THEN
-    </span><span style="color:#bf616a;">expect</span><span style="color:#c0c5ce;">(document.</span><span style="color:#bf616a;">querySelector</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">#root</span><span style="color:#c0c5ce;">&quot;).innerHTML).</span><span style="color:#bf616a;">toBe</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">expected</span><span style="color:#c0c5ce;">);
-  });
-});
-</span></pre>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">import </span><span style="color:#bf616a;">sinon </span><span style="color:#b48ead;">from </span><span>&quot;</span><span style="color:#a3be8c;">sinon</span><span>&quot;;
+</span><span>
+</span><span style="color:#8fa1b3;">describe</span><span>(&quot;</span><span style="color:#a3be8c;">AppIntegrationTest</span><span>&quot;, </span><span style="color:#b48ead;">function</span><span>() {  
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#8fa1b3;">clock </span><span>= </span><span style="color:#bf616a;">date </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">sinon</span><span>.</span><span style="color:#8fa1b3;">useFakeTimers</span><span>(</span><span style="color:#ebcb8b;">Date</span><span>.</span><span style="color:#96b5b4;">parse</span><span>(</span><span style="color:#bf616a;">date</span><span>));
+</span><span>  </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">mockdate </span><span>= &quot;</span><span style="color:#a3be8c;">30 Apr 2020 10:20:00</span><span>&quot;
+</span><span>
+</span><span>  </span><span style="color:#8fa1b3;">beforeEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#8fa1b3;">clock</span><span>(</span><span style="color:#bf616a;">mockdate</span><span>);
+</span><span>  });
+</span><span>  
+</span><span>  </span><span style="color:#8fa1b3;">afterEach</span><span>(</span><span style="color:#b48ead;">function</span><span>() {
+</span><span>    </span><span style="color:#8fa1b3;">clock</span><span>(</span><span style="color:#bf616a;">mockdate</span><span>).</span><span style="color:#8fa1b3;">restore</span><span>();
+</span><span>  });
+</span><span>  
+</span><span>  </span><span style="color:#8fa1b3;">test</span><span>(&quot;</span><span style="color:#a3be8c;">Check integration of all parts</span><span>&quot;, </span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#65737e;">//GIVEN
+</span><span>    document.body.</span><span style="color:#bf616a;">innerHTML </span><span>= `</span><span style="color:#a3be8c;">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</span><span>`;
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">expected </span><span>= `</span><span style="color:#a3be8c;">&lt;div id=&quot;greetings-example&quot;&gt;&lt;h1&gt;Greetings Example&lt;/h1&gt;&lt;div id=&quot;greetings-component&quot;&gt;Hello Mr/Ms Node Dev&lt;div id=&quot;date-time-greetings-component&quot;&gt;It is: April 30th 2020, 10:20:00 am&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</span><span>`;
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">//WHEN
+</span><span>    </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">../../src/index.js</span><span>&quot;);
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">//THEN
+</span><span>    </span><span style="color:#8fa1b3;">expect</span><span>(document.</span><span style="color:#96b5b4;">querySelector</span><span>(&quot;</span><span style="color:#a3be8c;">#root</span><span>&quot;).</span><span style="color:#bf616a;">innerHTML</span><span>).</span><span style="color:#8fa1b3;">toBe</span><span>(</span><span style="color:#bf616a;">expected</span><span>);
+</span><span>  });
+</span><span>});
+</span></code></pre>
 <p>E voi là, um teste de integração funcionando. Como eu disse que nada fora <em>mockado</em> além da data e hora do nosso sistema, caso contrário, este teste falaharia mesmo antes da primeira execução já que a hora que seria colocada na constante <code>expected</code> seria diferente 1ms depois. Agora execute e veja o resultado:</p>
 <img src="running_with_integration_test.png" />
 <h4 id="disclaimer">* Jamais diga que HTML é uma linguagem em nenhuma entrevista. JAMAIS!</h4>
 <h1 id="conclusao">Conclusão</h1>
 <p>Nesta postagem aprendemos que o Webpack existe para aplicações de frontend estático. Adiciomos SASS, Bootstrap, <em>hasheamos</em> nossos arquivo Javascript para tirar vantagem do mecanismo de cache do navegador, aprendemos como controlar o ambiente, melhoramos nossos teste e adicionamos um novo Teste de integração. Se por algum acaso você precisar ou quiser ver o código todo desta postagem, clone este <a href="https://bitbucket.org/kiberStender/node_app/">repositório</a> and faça o <em>checkout</em> da branch chamada <code>webpack_frotend</code>. Sinta- se livre para acessar a versão original desta postagem em inglês <a href="https://kiberstender.github.io/webpack-frontend/">inglês</a>.</p>
 
-                            </div>
-                        </div>
-                        
-                        
-<footer class="card-footer">
-    <div class="article-footer">
-        <div class="columns is-multiline">
-            <div class="column is-12">
-                <p>
-                    Published
-                    
-
-<time datetime="2020-05-16">
-    2020-05-16
-</time>
-
-
-                    
-
-by
-
-<a href="https://kiberstender.github.io/authors/kleber-stender/">
-    <span class="tag is-primary">Kleber Stender </span>
-</a>
-
-
-
-
-                    
-
-
-in <a href="https://kiberstender.github.io/categories/tutorials/">
-    <span class="tag is-success">
-        Tutorials
-    </span>
-</a>
-
-
-                    
-
-and tagged
-
-<a href="https://kiberstender.github.io/tags/webpack/">
-    <span class="tag is-link">webpack </span>
-</a>
-
-
-
-,
-
-
-
-
-<a href="https://kiberstender.github.io/tags/scss/">
-    <span class="tag is-link">scss </span>
-</a>
-
-
-
-and
-
-
-
-
-<a href="https://kiberstender.github.io/tags/bootstrap/">
-    <span class="tag is-link">bootstrap </span>
-</a>
-
-
-
-
-
-
-                </p>
-            </div>
-            <div class="column">
-                <a class="button is-pulled-right is-info" href="/">Back Home</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-                        
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+        </section>
+    </article>
 </main>
 
-    
-    
 
 
-    
+        
+            
+        
 
-    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_navbar.js"></script>
-
-    
-    <script type="text/javascript" src="https:&#x2F;&#x2F;kiberstender.github.io&#x2F;js&#x2F;zulma_search.js"></script>
-    
-
-    
+        
+    </div>
 </body>
 
 </html>
