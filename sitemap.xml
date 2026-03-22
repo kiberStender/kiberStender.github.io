@@ -10,10 +10,20 @@
         <loc>https://kiberstender.github.io/authors/kleber-stender/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/builders-basic/</loc>
+        <lastmod>2026-03-22T02:30:00Z</lastmod>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/categories/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/categories/builder/</loc>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/categories/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/categories/introduction/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/categories/tutorials/</loc>
@@ -24,7 +34,7 @@
     </url>
     <url>
         <loc>https://kiberstender.github.io/miscelaneous-spring-websocket-stomp-specific-user/</loc>
-        <lastmod>2019-12-15T23:00:00Z</lastmod>
+        <lastmod>2026-03-19T07:43:00</lastmod>
     </url>
     <url>
         <loc>https://kiberstender.github.io/node-js-introduction/</loc>
@@ -43,10 +53,20 @@
         <loc>https://kiberstender.github.io/pt_br/authors/kleber-stender/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/pt_br/builders-basic/</loc>
+        <lastmod>2026-03-22T02:30:00Z</lastmod>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/pt_br/categories/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/pt_br/categories/builder/</loc>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/pt_br/categories/hello/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/categories/introduction/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/categories/tutorials/</loc>
@@ -57,7 +77,7 @@
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/miscelaneous-spring-websocket-stomp-specific-user/</loc>
-        <lastmod>2019-12-15T23:00:00Z</lastmod>
+        <lastmod>2026-03-19T07:43:00</lastmod>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/node-js-introduction/</loc>
@@ -80,10 +100,16 @@
         <loc>https://kiberstender.github.io/pt_br/tags/chat/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/gradle/</loc>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/pt_br/tags/hello/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/tags/introduction/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/maven/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/tags/nodejs/</loc>
@@ -93,6 +119,9 @@
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/tags/react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/tags/sbt/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/tags/scss/</loc>
@@ -137,10 +166,16 @@
         <loc>https://kiberstender.github.io/tags/chat/</loc>
     </url>
     <url>
+        <loc>https://kiberstender.github.io/tags/gradle/</loc>
+    </url>
+    <url>
         <loc>https://kiberstender.github.io/tags/hello/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/introduction/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/maven/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/nodejs/</loc>
@@ -150,6 +185,9 @@
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/tags/sbt/</loc>
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/scss/</loc>
