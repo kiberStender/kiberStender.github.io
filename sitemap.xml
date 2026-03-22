@@ -37,10 +37,6 @@
         <lastmod>2026-03-19T07:43:00</lastmod>
     </url>
     <url>
-        <loc>https://kiberstender.github.io/node-js-introduction/</loc>
-        <lastmod>2020-05-03T23:00:00Z</lastmod>
-    </url>
-    <url>
         <loc>https://kiberstender.github.io/page/1/</loc>
     </url>
     <url>
@@ -80,15 +76,29 @@
         <lastmod>2026-03-19T07:43:00</lastmod>
     </url>
     <url>
-        <loc>https://kiberstender.github.io/pt_br/node-js-introduction/</loc>
-        <lastmod>2020-05-03T23:00:00Z</lastmod>
-    </url>
-    <url>
         <loc>https://kiberstender.github.io/pt_br/page/1/</loc>
     </url>
     <url>
-        <loc>https://kiberstender.github.io/pt_br/react-introduction/</loc>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/node-js-introduction/</loc>
+        <lastmod>2020-05-03T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/react-introduction/</loc>
         <lastmod>2020-05-23T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/road_to_react/1/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/webpack-frontend/</loc>
+        <lastmod>2020-05-16T22:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/pt_br/road_to_react/webpack-introduction/</loc>
+        <lastmod>2020-05-05T23:00:00Z</lastmod>
     </url>
     <url>
         <loc>https://kiberstender.github.io/pt_br/tags/</loc>
@@ -145,16 +155,26 @@
         <loc>https://kiberstender.github.io/pt_br/tags/world/</loc>
     </url>
     <url>
-        <loc>https://kiberstender.github.io/pt_br/webpack-frontend/</loc>
+        <loc>https://kiberstender.github.io/road_to_react/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/road_to_react/node-js-introduction/</loc>
+        <lastmod>2020-05-03T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/road_to_react/react-introduction/</loc>
+        <lastmod>2020-05-23T23:00:00Z</lastmod>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/road_to_react/road_to_react/1/</loc>
+    </url>
+    <url>
+        <loc>https://kiberstender.github.io/road_to_react/webpack-frontend/</loc>
         <lastmod>2020-05-16T22:00:00Z</lastmod>
     </url>
     <url>
-        <loc>https://kiberstender.github.io/pt_br/webpack-introduction/</loc>
+        <loc>https://kiberstender.github.io/road_to_react/webpack-introduction/</loc>
         <lastmod>2020-05-05T23:00:00Z</lastmod>
-    </url>
-    <url>
-        <loc>https://kiberstender.github.io/react-introduction/</loc>
-        <lastmod>2020-05-23T23:00:00Z</lastmod>
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/</loc>
@@ -209,13 +229,5 @@
     </url>
     <url>
         <loc>https://kiberstender.github.io/tags/world/</loc>
-    </url>
-    <url>
-        <loc>https://kiberstender.github.io/webpack-frontend/</loc>
-        <lastmod>2020-05-16T22:00:00Z</lastmod>
-    </url>
-    <url>
-        <loc>https://kiberstender.github.io/webpack-introduction/</loc>
-        <lastmod>2020-05-05T23:00:00Z</lastmod>
     </url>
 </urlset>
